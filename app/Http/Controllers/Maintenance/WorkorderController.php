@@ -31,7 +31,7 @@ class WorkorderController extends Controller
     {
         $workorder = Workorder::all();
 
-        return view('workorder.index', compact('workorder'));
+        return view('maintenance.workorder.index', compact('workorder'));
     }
 
     public function create()

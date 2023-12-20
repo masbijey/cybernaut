@@ -2,7 +2,6 @@
 
 @section('content')
 <h1 class="h3 text-gray-800">DETAIL WORK ORDER</h1>
-
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
