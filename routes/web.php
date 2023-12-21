@@ -129,8 +129,11 @@ Route::controller(TaskController::class)->middleware('auth')->group(function(){
 
     Route::post('task/addfile', 'addfile')->name('task.addfile');
 
-    Route::get('checklist', 'checklist')->name('checklist.index');
-    Route::post('checklist', 'checkliststr')->name('checklist.store');
+    Route::get('task/done/{id}', 'taskdone')->name('task.done');
+    Route::get('task/undone/{id}', 'taskundone')->name('task.undone');
+
+    // Route::get('checklist', 'checklist')->name('checklist.index');
+    // Route::post('checklist', 'checkliststr')->name('checklist.store');
 });
 
 Route::controller(WorkorderController::class)->middleware('auth')->group(function(){

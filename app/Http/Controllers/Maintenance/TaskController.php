@@ -212,4 +212,30 @@ class TaskController extends Controller
         alert()->success('Berhasil.', 'Data berhasil ditambahkan');
         return redirect()->back();
     }
+
+    public function taskdone($id)
+    {
+        $update_by = Auth::user()->id;
+
+        $task = Task::findOrFail($id);
+        $task->task_status = 'Done';
+        $task->employee_id = $update_by;
+        $task->updated_at = now();
+        $task->save();
+
+        return redirect()->back();
+    }
+
+    public function taskundone($id)
+    {
+        $update_by = Auth::user()->id;
+
+        $task = Task::findOrFail($id);
+        $task->task_status = 'On Progress';
+        $task->employee_id = $update_by;
+        $task->updated_at = now();
+        $task->save();
+
+        return redirect()->back();
+    }
 }

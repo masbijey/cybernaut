@@ -99,7 +99,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Components:</h6>
                         <a class="collapse-item" href="{{ route('signage.index') }}">TV Signage</a>
-                        <a class="collapse-item" href="{{ route('workorder.index')}}">Workorder Managementr</a>
+                        <a class="collapse-item" href="{{ route('workorder.index')}}">Workorder Management</a>
                         <a class="collapse-item" href="{{ route('task.index')}}">Task Management</a>
                     </div>
                 </div>
