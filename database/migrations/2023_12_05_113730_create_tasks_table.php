@@ -12,7 +12,8 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->softDeletes();
-            $table->unsignedBigInteger('employee_id');
+            $table->unsignedBigInteger('employee_id')->nullable(); //latest updated by
+            $table->integer('user_id'); //created by
             $table->string('task_title');
             $table->text('task_desc');
             $table->string('task_status')->nullable();

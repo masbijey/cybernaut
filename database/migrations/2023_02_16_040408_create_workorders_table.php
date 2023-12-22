@@ -13,14 +13,12 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->string('title');
+            $table->string('description');
             $table->string('priority'); //low, medium, high
             $table->string('status'); //open, on progress, selesai
             $table->dateTime('end_date')->nullable();
 
-            $table->integer('asset_id')->nullable();
-            $table->integer('location_id')->nullable();
-            $table->integer('department_id');
-            $table->integer('employee_id')->nullable(); //updated by
+            $table->unsignedBigInteger('employee_id')->nullable(); //latest updated by
             $table->integer('user_id'); //created by
 
         });

@@ -1,12 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<h1 class="h3 text-gray-800">Add New Task</h1>
+<h1 class="h3 text-gray-800">New Task</h1>
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('workorder.index') }}">Task List</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('task.index') }}">Task List</a></li>
+        <li class="breadcrumb-item active" aria-current="page">New Task</li>
     </ol>
 </nav>
 
@@ -15,7 +16,7 @@
 
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-8">
-            <div class="card mt-1 shadow-sm">
+            <div class="card mt-3 shadow-sm">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Task Information</h6>
                 </div>
@@ -85,7 +86,7 @@
         </div>
 
         <div class="col-sm-12 col-md-12 col-lg-4">
-            <div class="card mt-1 shadow-sm">
+            <div class="card mt-3 shadow-sm">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Related</h6>
                 </div>
@@ -123,7 +124,7 @@
                 </div>
             </div>
 
-            <div class="card mt-1 shadow-sm">
+            <div class="card mt-3 shadow-sm">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Vendor Information</h6>
                 </div>
@@ -149,7 +150,7 @@
                 </div>
             </div>
 
-            <div class="card mt-1 shadow-sm">
+            <div class="card mt-3 shadow-sm">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Documents</h6>
                 </div>

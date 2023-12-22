@@ -12,7 +12,7 @@ class Task extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'employee_id',
+        'user_id',
         'task_title',
         'task_desc',
         'task_status',
@@ -28,6 +28,17 @@ class Task extends Model
     public function location()
     {
         return $this->belongsTo(Location::class, 'location_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class, 'employee_id');
     }
 
     public function asset()
@@ -54,4 +65,5 @@ class Task extends Model
     {
         return $this->hasMany(Tasktag::class, 'task_id');
     }
+
 }

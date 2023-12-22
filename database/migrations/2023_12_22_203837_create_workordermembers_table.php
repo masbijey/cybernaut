@@ -8,27 +8,23 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('taskemployees', function (Blueprint $table) {
+        Schema::create('workordermembers', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->softDeletes();
-            $table->integer('task_id');
+            $table->integer('workorder_id');
             $table->integer('employee_id');
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('taskemployees');
+        Schema::dropIfExists('workordermembers');
     }
 };

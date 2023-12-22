@@ -25,11 +25,10 @@
                     <th style="width: 10%;">Due Date</th>
                     <th>Title</th>
                     <th style="width: 10%;">Status</th>
-                    <!-- <th>Description</th> -->
                     <th style="width: 10%;">Priority</th>
-                    <th style="width: 10%;">Department</th>
-                    <th style="width: 10%;">Asset</th>
-                    <th style="width: 10%;">Location</th>
+                    <th style="width: 10%;">Departments</th>
+                    <th style="width: 10%;">Assets</th>
+                    <th style="width: 10%;">Locations</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,39 +37,36 @@
                     <td>
                         {{ \Carbon\Carbon::parse($data->created_at)->format('d/m/y') }}
                     </td>
-                    <td><a href="/workorder/detail/{{ $data->id }}">{{ $data->title }}</a></td>
                     <td>
-                        @if($data->status == 'Done')
-                        <span class="badge badge-success">Done</span>
+                        {{ \Carbon\Carbon::parse($data->due_date)->format('d/m/y') }}
+                    </td>
+                    <td>
+                        <a href="/workorder/detail/{{ $data->id }}">{{ $data->title }}</a>
+                    </td>
+                    <td>
+                        @if($data->status !== 'Done')
+                        <span class="badge badge-danger">Open</span>
                         @else
-                        <span class="badge badge-danger">On Progress</span>
+                        <span class="badge badge-success">Done</span>
                         @endif
                     </td>
-                    <!-- <td>{{ $data->description }}</td> -->
                     <td>
                         @if($data->priority == 'Low')
                         <span class="badge badge-success">Low</span>
-                        <blade @elseif ($data->priority == 'Medium')
-                            <span class="badge badge-warning">Medium</span>
-                            @else
-                            <span class="badge badge-danger">High</span>
-                            @endif
-                    </td>
-
-                    <td>{{ $data->department->name }}</td>
-                    <td>
-                        @if(isset($data->asset_id))
-                        {{ $data->asset->name }}
+                        @elseif($data->priority == 'Medium')
+                        <span class="badge badge-warning">Medium</span>
                         @else
-                        -
+                        <span class="badge badge-danger">High</span>
                         @endif
                     </td>
                     <td>
-                        @if(isset($data->location_id))
-                        {{ $data->location->name }}
-                        @else
-                        -
-                        @endif
+                        <i>null</i>
+                    </td>
+                    <td>
+                        <i>null</i>
+                    </td>
+                    <td>
+                        <i>null</i>
                     </td>
                 </tr>
                 @endforeach

@@ -70,9 +70,9 @@ class TaskController extends Controller
                 ->withInput();
         }
 
-        $update_by = Auth::user()->id;
+        $created_by = Auth::user()->id;
         $task = Task::create([
-            'employee_id' => $update_by,
+            'user_id' => $created_by,
             'task_title' => $request->task_title,
             'task_desc' => $request->task_desc,
             'task_status' => $request->task_status,
@@ -149,7 +149,6 @@ class TaskController extends Controller
             $data->task_vendor = $request->input('task_vendor');
             $data->task_vendor_phone = $request->input('task_vendor_phone');
             $data->save();    
-
         }
 
         if (isset($request->asset_ids)) {

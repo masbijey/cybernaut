@@ -51,4 +51,19 @@ class Workorder extends Model
         return $this->belongsTo(Location::class, 'location_id');
     }
 
+    public function locationMany()
+    {
+        return $this->hasMany(Workordertag::class, 'workorder_id');
+    }
+
+    public function assetMany()
+    {
+        return $this->hasMany(Workordertag::class, 'workorder_id');
+    }
+
+    public function departmentMany()
+    {
+        return $this->hasMany(Workordertag::class, 'workorder_id');
+    }
+
 }

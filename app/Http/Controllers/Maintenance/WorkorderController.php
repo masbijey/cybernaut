@@ -5,13 +5,11 @@ namespace App\Http\Controllers\Maintenance;
 use App\Http\Controllers\Controller;
 
 use App\Models\Workorder;
-use App\Models\Task;
-use App\Models\Taskmember;
-use App\Models\Tasktag;
+use App\Models\Workordermember;
+use App\Models\Workordertag;
 use App\Models\Department;
 use App\Models\Location;
 use App\Models\Employee;
-use App\Models\Assetallocation;
 use App\Models\Asset;
 use App\Models\File;
 
@@ -64,23 +62,73 @@ class WorkorderController extends Controller
                 ->withInput();
         }
 
-        $update_by = Auth::user()->id;
+        $user_id = Auth::user()->id;
+        $status = "Open";
         $workorder = Workorder::create([
-            'user_id' => $update_by,
+            'user_id' => $user_id,
             'due_date' => $request->due_date,
             'priority' => $request->priority,
             'title' => $request->title,
             'description' => $request->description,
+            'status' => $status
         ]);
 
+        $path = $request->file->store('public/workorder');
+        $url = Storage::url($path);
 
+        File::create([
+            'workorder_id' => $workorder->id,
+            'file' => $url,
+            'remark' => $request->file_remark,
+        ]);
+
+        // $members = $request->member_ids;
+        // foreach ($members as $member) {
+        //     Workordermember::create([
+        //         'workorder_id' => $workorder->id,
+        //         'employee_id' => $member
+        //     ]);
+        // }
+
+        if (isset($request->asset_ids)) {
+            $assets = $request->asset_ids;
+            foreach ($assets as $asset) {
+                Workordertag::create([
+                    'workorder_id' => $workorder->id,
+                    'asset_id' => $asset,
+                ]);
+            }
+        }
+
+        if (isset($request->location_ids)) {
+            $locations = $request->location_ids;
+            foreach ($locations as $location) {
+                Workordertag::create([
+                    'workorder_id' => $workorder->id,
+                    'location_id' => $location,
+                ]);
+            }
+        }
+
+        if (isset($request->department_ids)) {
+            $departments = $request->department_ids;
+            foreach ($departments as $department) {
+                Workordertag::create([
+                    'workorder_id' => $workorder->id,
+                    'department_id' => $department,
+                ]);
+            }
+        }
+
+        alert()->success('Berhasil.', 'Data berhasil ditambahkan');
+        return redirect('/workorder/detail/' . $workorder->id);
     }
 
     public function show($id)
     {
         $workorder = Workorder::findOrFail($id);
         
-        return view('workorder.detail', compact('workorder'));
+        return view('maintenance.workorder.detail', compact('workorder'));
     }
 
     public function edit(Workorder $workorder)

@@ -13,7 +13,7 @@
 <button type="button" class="btn d-inline-block">UPDATE : </button>
 <a href="{{ route('task.create') }}" class="btn btn-primary btn-sm"><i class='fas fa-plus'></i> New Task</a>
 
-<div class="card shadow-sm mt-2">
+<div class="card shadow-sm mt-3">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Task List</h6>
     </div>
