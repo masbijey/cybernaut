@@ -178,7 +178,7 @@
                 @if($workorder->commentMany !== null)
                 @foreach($workorder->commentMany as $comment)
 
-                <div class="media">
+                <div class="media mb-1">
                     <a href="{{ $comment->file }}" target="_blank"><img class="d-flex mr-3" data-src="holder.js/64x64?theme=sky" alt="64x64" src="{{ $comment->file }}" data-holder-rendered="true" style="width: 64px; height: 64px;"></a>
                     <div class="media-body">
                         <small class="text-info">{{ $comment->employee->name }} | {{ $comment->created_at }} </small>
