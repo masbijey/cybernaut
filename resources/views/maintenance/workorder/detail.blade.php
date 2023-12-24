@@ -11,13 +11,19 @@
 </nav>
 
 <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-5">
+    <div class="col-sm-12 col-md-12 col-lg-4">
         <div class="card mt-3 shadow-sm">
             <div class="card-header py-3 text-primary">
                 <h6 class="m-0 font-weight-bold text-primary">Work Order Information</h6>
             </div>
             <div class="card-body">
                 <table class="table table-borderless table-sm">
+                    <tr>
+                        <td class="font-weight-bold">No. Work Order</td>
+                        <td>
+                            <p class="text-danger font-weight-bold">{{ $workorder->order_no }}</p>
+                        </td>
+                    </tr>
                     <tr>
                         <td class="font-weight-bold">Title</td>
                         <td>
@@ -31,17 +37,49 @@
                     </tr>
                     <tr>
                         <td class="font-weight-bold">Description</td>
-                        <td>{{ $workorder->description }}</td>
+                        <td>
+                            <p>{!! nl2br(e($workorder->description)) !!}</p>
+                        </td>
                     </tr>
                     <tr>
                         <td class="font-weight-bold">Status</td>
                         <td>
                             @if($workorder->status == 'Done')
-                            <a href="#" class="btn btn-success">Done</a><br>
-                            <small>{{ $workorder->end_date }}</small> <br>
-                            <small>by {{ $workorder->user->name }}</small>
+                            <a href="#" class="btn btn-success shadow">Done</a> <br>
                             @else
-                            <a href="#" class="btn btn-warning">On Progress</a>
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                                On Progress
+                            </button>
+
+                            <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Apakah anda ingin menyelesaikan WO ini ?</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+
+                                        <form method="POST" action="{{ route('workorder.done') }}" enctype="multipart/form-data">
+                                            @csrf
+
+                                            <div class="modal-body">
+                                                <input type="hidden" name="id" value="{{ $workorder->id }}">
+                                                <small class="text-info">Masukkan foto bukti pekerjaan telah selesai.</small>
+                                                <div class="form-group">
+                                                    <input type="file" class="form-control-file" id="file" name="file" required>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                <button type="submit" class="btn btn-success shadow">Yes, It's Done !</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
                             @endif
                         </td>
                     </tr>
@@ -134,32 +172,41 @@
     <div class="col-sm-12 col-md-12 col-lg-5">
         <div class="card mt-3 shadow-sm">
             <div class="card-header py-3 text-primary">
-                <h6 class="m-0 font-weight-bold text-primary">Timeline</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Comments</h6>
             </div>
             <div class="card-body">
+                @if($workorder->commentMany !== null)
+                @foreach($workorder->commentMany as $comment)
+
                 <div class="media">
-                    <img class="d-flex mr-3" data-src="holder.js/64x64?theme=sky" alt="64x64" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2264%22%20height%3D%2264%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18c87c0112a%20text%20%7B%20fill%3A%23FFFFFF%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18c87c0112a%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%230D8FDB%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2213.17521858215332%22%20y%3D%2236.55999994277954%22%3E64x64%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" style="width: 64px; height: 64px;">
+                    <a href="{{ $comment->file }}" target="_blank"><img class="d-flex mr-3" data-src="holder.js/64x64?theme=sky" alt="64x64" src="{{ $comment->file }}" data-holder-rendered="true" style="width: 64px; height: 64px;"></a>
                     <div class="media-body">
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                        <small class="text-info">{{ $comment->employee->name }} | {{ $comment->created_at }} </small>
+                        <p>{!! nl2br(e($comment->description)) !!}</p>
                     </div>
                 </div>
 
-                <br>
+                @endforeach
+                @else
+                <small class="text-danger">Belum ada komentar</small>
+                @endif
 
-                <form method="POST" action="{{ route('workorder.addfile') }}" enctype="multipart/form-data">
+                <hr>
+                <h5>Add Comments</h5>
+                <form method="POST" action="{{ route('workorder.addcomment') }}" enctype="multipart/form-data">
                     @csrf
 
                     <input type="hidden" name="id" value="{{ $workorder->id }}">
 
                     <div class="form-group">
-                        <label for="" class="font-weight-bold">Insert Image</label>
-                        <input type="file" class="form-control-file" id="file" name="file">
+                        <label for="" class="font-weight-bold">Insert Image <small class="text-danger">*</small></label>
+                        <input type="file" class="form-control-file" id="file" name="file" required>
                         <small class="text-info">image only</small>
                     </div>
 
                     <div class="form-group">
-                        <label for="file_remark" class="font-weight-bold">Description</label>
-                        <textarea name="file_remark" id="file_remark" class="form-control" required placeholder="enter comment or description here.."></textarea>
+                        <label for="file_remark" class="font-weight-bold">Description <small class="text-danger">*</small></label>
+                        <textarea name="description" id="file_remark" class="form-control" required rows="5"></textarea>
                     </div>
 
                     <button class="btn shadow btn-primary btn-sm" type="submit">Save</button>

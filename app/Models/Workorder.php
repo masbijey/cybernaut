@@ -13,6 +13,7 @@ class Workorder extends Model
     use SoftDeletes;
 
     Protected $fillable = [
+        'order_no',
         'title',
         'description',
         'priority',
@@ -65,5 +66,11 @@ class Workorder extends Model
     {
         return $this->hasMany(Workordertag::class, 'workorder_id');
     }
+
+    public function commentMany()
+    {
+        return $this->hasMany(Workordercomment::class, 'workorder_id');
+    }
+
 
 }

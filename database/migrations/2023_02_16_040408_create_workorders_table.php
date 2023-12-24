@@ -12,8 +12,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->softDeletes();
+            $table->string('order_no')->unique();
             $table->string('title');
-            $table->string('description');
+            $table->text('description');
             $table->string('priority'); //low, medium, high
             $table->string('status'); //open, on progress, selesai
             $table->dateTime('end_date')->nullable();

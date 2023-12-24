@@ -140,12 +140,15 @@ Route::controller(WorkorderController::class)->middleware('auth')->group(functio
     Route::get('workorder', 'index')->name('workorder.index');
     Route::post('workorder', 'store')->name('workorder.store');
     Route::get('workorder/create', 'create')->name('workorder.create');
-    Route::get('workorder/detail/{id}', 'show')->name('workorder.show');
+    Route::get('workorder/detail/{orderNumber}', 'show')->name('workorder.show');
     Route::put('workorder/{id}', 'update')->name('workorder.update');
     Route::delete('workorder/{id}', 'destroy')->name('workorder.destroy');
     Route::get('workorder/{id}/edit', 'edit')->name('workorder.edit');
 
-    Route::post('workorder/addfile', 'addfile')->name('workorder.addfile');
+    Route::post('workorder/addcomment', 'addcomment')->name('workorder.addcomment');
+    Route::post('workorder/done', 'wodone')->name('workorder.done');
+    Route::get('workorder/undone/{orderNumber}', 'woundone')->name('workorder.undone');
+
 });
 
 Route::controller(DepartmentController::class)->middleware('auth')->group(function(){

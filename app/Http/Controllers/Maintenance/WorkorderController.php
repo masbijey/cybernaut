@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Workorder;
 use App\Models\Workordermember;
+use App\Models\Workordercomment;
 use App\Models\Workordertag;
 use App\Models\Department;
 use App\Models\Location;
@@ -64,7 +65,9 @@ class WorkorderController extends Controller
 
         $user_id = Auth::user()->id;
         $status = "Open";
+        $order_no = 'WO-' . date('Ymd') . '-' . sprintf('%04d', (WorkOrder::count() + 1));
         $workorder = Workorder::create([
+            'order_no' => $order_no,
             'user_id' => $user_id,
             'due_date' => $request->due_date,
             'priority' => $request->priority,
@@ -121,12 +124,12 @@ class WorkorderController extends Controller
         }
 
         alert()->success('Berhasil.', 'Data berhasil ditambahkan');
-        return redirect('/workorder/detail/' . $workorder->id);
+        return redirect('/workorder/detail/' . $workorder->order_no);
     }
 
-    public function show($id)
+    public function show($orderNumber)
     {
-        $workorder = Workorder::findOrFail($id);
+        $workorder = WorkOrder::where('order_no', $orderNumber)->firstOrFail();
         
         return view('maintenance.workorder.detail', compact('workorder'));
     }
@@ -145,4 +148,86 @@ class WorkorderController extends Controller
     {
         //
     }
+
+    public function addcomment(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|mimes:jpeg,jpg,png,pdf',
+            'description' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            alert()->error('Gagal.', 'pastikan mengisi data dengan benar');
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $path = $request->file->store('public/wo_comment');
+        $url = Storage::url($path);
+
+        $update_by = Auth::user()->id;
+
+        Workordercomment::create([
+            'employee_id' => $update_by,
+            'workorder_id' => $request->id,
+            'file' => $url,
+            'description' => $request->description,
+        ]);
+
+        alert()->success('Berhasil.', 'Data berhasil ditambahkan');
+        return redirect()->back();
+    }
+
+    public function wodone(Request $request)
+    {
+        $update_by = Auth::user()->id;
+
+        $wo = workorder::where('id', $request->id)->firstOrFail();
+        $wo->status = 'Done';
+        $wo->employee_id = $update_by;
+        $wo->updated_at = now();
+        $wo->save();
+
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|mimes:jpeg,jpg,png,pdf',
+        ]);
+
+        if ($validator->fails()) {
+            alert()->error('Gagal.', 'pastikan mengisi data dengan benar');
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $path = $request->file->store('public/wo_comment');
+        $url = Storage::url($path);
+
+        $update_by = Auth::user()->id;
+        $description = 'Work Order Finished';
+        Workordercomment::create([
+            'employee_id' => $update_by,
+            'workorder_id' => $request->id,
+            'file' => $url,
+            'description' => $description,
+        ]);
+
+        alert()->success('Berhasil.', 'Work Order has been Finished');
+        return redirect()->back();
+    }
+
+    public function woundone($orderNumber)
+    {
+        $update_by = Auth::user()->id;
+
+        $wo = WorkOrder::where('order_no', $orderNumber)->firstOrFail();
+        $wo->status = 'On Progress';
+        $wo->employee_id = $update_by;
+        $wo->updated_at = now();
+        $wo->save();
+
+        return redirect()->back();
+    }
+
+
 }
