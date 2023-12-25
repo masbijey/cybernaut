@@ -39,21 +39,21 @@ class WorkorderController extends Controller
         $asset = Asset::all();
         $location = Location::all();
         $department = Department::all();
-        
+
         return view('maintenance.workorder.create', compact('employee', 'asset', 'location', 'department'));
     }
 
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-        'department_ids' => 'required',
-        'asset_ids' => 'nullable',
-        'location_ids' => 'nullable',
-        'due_date' => 'nullable',
-        'priority' => 'required',
-        'title' => 'required',
-        'description' => 'required',
-        'file' => 'required'
+            'department_ids' => 'required',
+            'asset_ids' => 'nullable',
+            'location_ids' => 'nullable',
+            'due_date' => 'nullable',
+            'priority' => 'required',
+            'title' => 'required',
+            'description' => 'required',
+            'file' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -76,22 +76,17 @@ class WorkorderController extends Controller
             'status' => $status
         ]);
 
-        $path = $request->file->store('public/workorder');
+        $path = $request->file->store('public/wo_comment');
         $url = Storage::url($path);
 
-        File::create([
+        $update_by = Auth::user()->id;
+        $description = 'Before';
+        Workordercomment::create([
+            'employee_id' => $update_by,
             'workorder_id' => $workorder->id,
             'file' => $url,
-            'remark' => $request->file_remark,
+            'description' => $description,
         ]);
-
-        // $members = $request->member_ids;
-        // foreach ($members as $member) {
-        //     Workordermember::create([
-        //         'workorder_id' => $workorder->id,
-        //         'employee_id' => $member
-        //     ]);
-        // }
 
         if (isset($request->asset_ids)) {
             $assets = $request->asset_ids;
@@ -130,23 +125,11 @@ class WorkorderController extends Controller
     public function show($orderNumber)
     {
         $workorder = WorkOrder::where('order_no', $orderNumber)->firstOrFail();
-        
-        return view('maintenance.workorder.detail', compact('workorder'));
-    }
+        $locationlist = Location::all();
+        $assetlist = Asset::all();
+        $departmentlist = Department::all();
 
-    public function edit(Workorder $workorder)
-    {
-        //
-    }
-
-    public function update(Request $request, Workorder $workorder)
-    {
-        //
-    }
-
-    public function destroy(Workorder $workorder)
-    {
-        //
+        return view('maintenance.workorder.detail', compact('workorder', 'locationlist', 'assetlist', 'departmentlist'));
     }
 
     public function addcomment(Request $request)
@@ -176,6 +159,41 @@ class WorkorderController extends Controller
         ]);
 
         alert()->success('Berhasil.', 'Data berhasil ditambahkan');
+        return redirect()->back();
+    }
+
+    public function addrelation(Request $request)
+    {
+        if (isset($request->asset_ids)) {
+            $assets = $request->asset_ids;
+            foreach ($assets as $asset) {
+                Workordertag::create([
+                    'workorder_id' => $request->id,
+                    'asset_id' => $asset,
+                ]);
+            }
+        }
+
+        if (isset($request->location_ids)) {
+            $locations = $request->location_ids;
+            foreach ($locations as $location) {
+                Workordertag::create([
+                    'workorder_id' => $request->id,
+                    'location_id' => $location,
+                ]);
+            }
+        }
+
+        if (isset($request->department_ids)) {
+            $abc = $request->department_ids;
+            foreach ($abc as $department) {
+                Workordertag::create([
+                    'workorder_id' => $request->id,
+                    'department_id' => $department,
+                ]);
+            }
+        }
+
         return redirect()->back();
     }
 
@@ -228,6 +246,4 @@ class WorkorderController extends Controller
 
         return redirect()->back();
     }
-
-
 }

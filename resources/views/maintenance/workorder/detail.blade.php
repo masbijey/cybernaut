@@ -95,9 +95,114 @@
                             @endif
                         </td>
                     </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-12 col-lg-4">
+        <div class="card mt-3 shadow-sm">
+            <div class="card-header py-3 text-primary">
+                <h6 class="m-0 font-weight-bold text-primary">Related Information</h6>
+            </div>
+            <div class="card-body">
+                <table class="table table-sm table-borderless">
+                    <tr>
+                        <td class="font-weight-bold">To Departments</td>
+                        <td>
+                            @if ($workorder->status !== 'Done')
+
+                            <table class="table table-sm">
+                                <tbody>
+                                    @foreach ($workorder->departmentMany as $department)
+                                    @if ($department->department !== null)
+                                    <tr>
+                                        <td><a href="#">{{ $department->department->name }}</a></td>
+                                        <td class="text-right">
+                                            <a href="" class="btn btn-danger btn-sm" data-placement="top" title="Hapus"><i class='fas fa-trash'></i></a>
+                                        </td>
+                                    </tr>
+                                    @endif
+                                    @endforeach
+                                </tbody>
+                            </table>
+
+                            <form method="POST" action="{{ route('workorder.addrelation') }}" enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $workorder->id }}">
+                                <div class="form-group">
+                                    <select class="js-example-basic-multiple custom-select form-control form-control-sm" id="select-dept-add" name="department_ids[]" multiple="multiple" required>
+                                        @if(!isset($workorder->departmentMany))
+                                        @foreach($workorder->departmentMany as $data)
+                                        <option value="{{ $data->location->id }}" selected>{{ $data->department->name }}</option>
+                                        @endforeach
+                                        @endif
+
+                                        @foreach($departmentlist as $data)
+                                        <option value="{{ $data->id }}">{{ $data->name }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary shadow">Save</button>
+                            </form>
+
+                            @else
+
+                            <table class="table table-sm">
+                                <tbody>
+                                    @foreach($workorder->departmentMany as $department)
+                                    @if($department->department !== null)
+                                    <tr>
+                                        <td><a href="#">{{ $department->department->name }}</a></td>
+                                    </tr>
+                                    @endif
+                                    @endforeach
+                                </tbody>
+                            </table>
+
+                            @endif
+                        </td>
+                    </tr>
+
                     <tr>
                         <td class="font-weight-bold">Locations</td>
                         <td>
+                            @if ($workorder->status !== 'Done')
+                            <table class="table table-sm">
+                                <tbody>
+                                    @foreach($workorder->locationMany as $location)
+                                    @if($location->location !== null)
+                                    <tr>
+                                        <td><a href="#">{{ $location->location->name }}</a></td>
+                                        <td class="text-right">
+                                            <a href="#" class="btn btn-danger btn-sm" data-placement="top" title="Hapus"><i class='fas fa-trash'></i></a>
+                                        </td>
+                                    </tr>
+                                    @endif
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            <form method="POST" action="{{ route('workorder.addrelation') }}" enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $workorder->id }}">
+                                <div class="form-group">
+                                    <select class="js-example-basic-multiple custom-select form-control" id="select-location-add" name="location_ids[]" multiple="multiple" required>
+                                        @if(!isset($workorder->locationMany))
+                                        @foreach($workorder->locationMany as $data)
+                                        <option value="{{ $data->location->id }}" selected>{{ $data->location->name }}</option>
+                                        @endforeach
+                                        @endif
+
+                                        @foreach($locationlist as $data)
+                                        <option value="{{ $data->id }}">{{ $data->name }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary shadow">Save</button>
+                            </form>
+                            @else
                             <table class="table table-sm">
                                 <tbody>
                                     @if($workorder->locationMany == null)
@@ -108,25 +213,22 @@
                                     @if($location->location !== null)
                                     <tr>
                                         <td><a href="#">{{ $location->location->name }}</a></td>
-                                        <td class="text-right">
-                                            <a href="" class="btn btn-danger btn-sm" data-placement="top" title="Hapus"><i class='fas fa-trash'></i></a>
-                                        </td>
                                     </tr>
                                     @endif
                                     @endforeach
                                 </tbody>
                             </table>
+                            @endif
                         </td>
                     </tr>
+
                     <tr>
                         <td class="font-weight-bold">Assets</td>
                         <td>
+                            @if ($workorder->status !== 'Done')
+
                             <table class="table table-sm">
                                 <tbody>
-                                    @if($workorder->assetMany == null)
-                                    <small class="text-danger">Asset belum ditambahkan</small>
-                                    @endif
-
                                     @foreach($workorder->assetMany as $asset)
                                     @if($asset->asset !== null)
                                     <tr>
@@ -139,29 +241,42 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="font-weight-bold">Departments</td>
-                        <td>
+
+                            <form method="POST" action="{{ route('workorder.addrelation') }}" enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $workorder->id }}">
+                                <div class="form-group">
+                                    <select class="js-example-basic-multiple custom-select form-control" id="select-asset-add" name="asset_ids[]" multiple="multiple" required>
+                                        @if(!isset($workorder->assetMany))
+                                        @foreach($workorder->assetMany as $data)
+                                        <option value="{{ $data->asset->id }}" selected>{{ $data->asset->name }}</option>
+                                        @endforeach
+                                        @endif
+
+                                        @foreach($assetlist as $data)
+                                        <option value="{{ $data->id }}">{{ $data->name }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary shadow">Save</button>
+                            </form>
+
+                            @else
+
                             <table class="table table-sm">
                                 <tbody>
-                                    @if($workorder->departmentMany == null)
-                                    <small class="text-danger">Department belum ditambahkan</small>
-                                    @endif
-
-                                    @foreach($workorder->departmentMany as $department)
-                                    @if($department->department !== null)
+                                    @foreach($workorder->assetMany as $asset)
+                                    @if($asset->asset !== null)
                                     <tr>
-                                        <td>{{ $department->department->name }}</td>
-                                        <td class="text-right">
-                                            <a href="" class="btn btn-danger btn-sm" data-placement="top" title="Hapus"><i class='fas fa-trash'></i></a>
-                                        </td>
+                                        <td><a href="#">{{ $asset->asset->name }}</a></td>
                                     </tr>
                                     @endif
                                     @endforeach
                                 </tbody>
                             </table>
+
+                            @endif
                         </td>
                     </tr>
                 </table>
@@ -169,7 +284,7 @@
         </div>
     </div>
 
-    <div class="col-sm-12 col-md-12 col-lg-5">
+    <div class="col-sm-12 col-md-12 col-lg-4">
         <div class="card mt-3 shadow-sm">
             <div class="card-header py-3 text-primary">
                 <h6 class="m-0 font-weight-bold text-primary">Comments</h6>
@@ -234,6 +349,26 @@
     $("#tag-location-edit").select2({
         theme: 'bootstrap'
     });
+
+    $("#wo-add-assets").select2({
+        theme: 'bootstrap'
+    });
+
+    $("#select-dept-add").select2({
+        theme: 'bootstrap',
+        placeholder: "Select department"
+    });
+
+    $("#select-location-add").select2({
+        theme: 'bootstrap',
+        placeholder: "Select location"
+    });
+
+    $("#select-asset-add").select2({
+        theme: 'bootstrap',
+        placeholder: "Select asset"
+    });
+
 
     $("#tag-employee-edit").select2({
         theme: 'bootstrap'

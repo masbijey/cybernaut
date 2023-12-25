@@ -15,6 +15,7 @@ class Workordertag extends Model
         'workorder_id',
         'location_id',
         'asset_id',
+        'department_id'
     ];
 
     public function location()

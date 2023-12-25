@@ -149,6 +149,8 @@ Route::controller(WorkorderController::class)->middleware('auth')->group(functio
     Route::post('workorder/done', 'wodone')->name('workorder.done');
     Route::get('workorder/undone/{orderNumber}', 'woundone')->name('workorder.undone');
 
+    Route::post('workorder/addrelation', 'addrelation')->name('workorder.addrelation');
+
 });
 
 Route::controller(DepartmentController::class)->middleware('auth')->group(function(){
