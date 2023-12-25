@@ -36,9 +36,16 @@
                         </td>
                     </tr>
                     <tr>
+                        <td class="font-weight-bold">Due date</td>
+                        <td>
+                            <p>{!! nl2br(e($workorder->due_date)) !!}</p>
+                        </td>
+                    </tr>
+                    <tr>
                         <td class="font-weight-bold">Description</td>
                         <td>
                             <p>{!! nl2br(e($workorder->description)) !!}</p>
+                            <br>
                         </td>
                     </tr>
                     <tr>
@@ -95,18 +102,6 @@
                             @endif
                         </td>
                     </tr>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-sm-12 col-md-12 col-lg-4">
-        <div class="card mt-3 shadow-sm">
-            <div class="card-header py-3 text-primary">
-                <h6 class="m-0 font-weight-bold text-primary">Related Information</h6>
-            </div>
-            <div class="card-body">
-                <table class="table table-sm table-borderless">
                     <tr>
                         <td class="font-weight-bold">To Departments</td>
                         <td>
@@ -164,7 +159,18 @@
                             @endif
                         </td>
                     </tr>
+                </table>
+            </div>
+        </div>
+    </div>
 
+    <div class="col-sm-12 col-md-12 col-lg-4">
+        <div class="card mt-3 shadow-sm">
+            <div class="card-header py-3 text-primary">
+                <h6 class="m-0 font-weight-bold text-primary">Related Information</h6>
+            </div>
+            <div class="card-body">
+                <table class="table table-sm table-borderless">
                     <tr>
                         <td class="font-weight-bold">Locations</td>
                         <td>

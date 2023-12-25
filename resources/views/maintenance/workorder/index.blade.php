@@ -38,7 +38,7 @@
                         <a href="/workorder/detail/{{ $data->order_no }}">{{ $data->order_no }}</a>
                     </td>
                     <td>
-                        {{ \Carbon\Carbon::parse($data->due_date)->format('d/m/y') }}
+                        {{ $data->due_date }}
                     </td>
                     <td>
                         {{ $data->title }}

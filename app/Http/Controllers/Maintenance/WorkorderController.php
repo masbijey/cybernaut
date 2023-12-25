@@ -49,7 +49,7 @@ class WorkorderController extends Controller
             'department_ids' => 'required',
             'asset_ids' => 'nullable',
             'location_ids' => 'nullable',
-            'due_date' => 'nullable',
+            'due_date' => 'required',
             'priority' => 'required',
             'title' => 'required',
             'description' => 'required',
@@ -222,7 +222,7 @@ class WorkorderController extends Controller
         $url = Storage::url($path);
 
         $update_by = Auth::user()->id;
-        $description = 'Work Order Finished';
+        $description = 'Done.';
         Workordercomment::create([
             'employee_id' => $update_by,
             'workorder_id' => $request->id,

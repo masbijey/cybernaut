@@ -19,6 +19,7 @@ class Workorder extends Model
         'priority',
         'status',
         'end_date',
+        'due_date',
 
         'asset_id',
         'location_id',
