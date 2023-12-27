@@ -9,8 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>think hitech</title>
-    <link href="{{ url('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ url('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://startbootstrap.github.io/startbootstrap-sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url('vendor/select2/select2-bootstrap.css')}}">
     <link href="{{ url('vendor/select2/select2-bootstrap4.min.css')}}" rel="stylesheet">
     <link href="{{ url('vendor/select2/select2.min.css')}}" rel="stylesheet" />
@@ -410,10 +410,10 @@
     </div>
 
     @include('sweetalert::alert')
-    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-    <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+    <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script>
+    <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
     <script src="{{ asset('vendor/select2/select2.min.js')}}"></script>
     <script src="{{ asset('vendor/datepicker/gijgo.min.js')}}" type="text/javascript"></script>
     <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
