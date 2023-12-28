@@ -12,12 +12,12 @@
 
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-4">
-        <div class="card mt-3 shadow-sm">
-            <div class="card-header py-3 text-primary">
+        <div class="card mt-1 shadow-sm">
+            <div class="card-header text-primary">
                 <h6 class="m-0 font-weight-bold text-primary">Work Order Information</h6>
             </div>
             <div class="card-body">
-                <table class="table table-borderless table-sm">
+                <table class="table table-sm">
                     <tr>
                         <td class="font-weight-bold">No. Work Order</td>
                         <td>
@@ -107,7 +107,7 @@
                         <td>
                             @if ($workorder->status !== 'Done')
 
-                            <table class="table table-sm">
+                            <table class="table table-sm table-borderless">
                                 <tbody>
                                     @foreach ($workorder->departmentMany as $department)
                                     @if ($department->department !== null)
@@ -165,12 +165,12 @@
     </div>
 
     <div class="col-sm-12 col-md-12 col-lg-4">
-        <div class="card mt-3 shadow-sm">
-            <div class="card-header py-3 text-primary">
+        <div class="card mt-1 shadow-sm">
+            <div class="card-header text-primary">
                 <h6 class="m-0 font-weight-bold text-primary">Related Information</h6>
             </div>
             <div class="card-body">
-                <table class="table table-sm table-borderless">
+                <table class="table table-sm">
                     <tr>
                         <td class="font-weight-bold">Locations</td>
                         <td>
@@ -189,6 +189,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+
                             <form method="POST" action="{{ route('workorder.addrelation') }}" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $workorder->id }}">
@@ -208,7 +209,9 @@
                                 </div>
                                 <button type="submit" class="btn btn-primary shadow">Save</button>
                             </form>
+
                             @else
+                            
                             <table class="table table-sm">
                                 <tbody>
                                     @if($workorder->locationMany == null)
@@ -291,8 +294,8 @@
     </div>
 
     <div class="col-sm-12 col-md-12 col-lg-4">
-        <div class="card mt-3 shadow-sm">
-            <div class="card-header py-3 text-primary">
+        <div class="card mt-1 shadow-sm">
+            <div class="card-header text-primary">
                 <h6 class="m-0 font-weight-bold text-primary">Comments</h6>
             </div>
             <div class="card-body">

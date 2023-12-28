@@ -132,8 +132,6 @@ Route::controller(TaskController::class)->middleware('auth')->group(function(){
     Route::get('task/done/{id}', 'taskdone')->name('task.done');
     Route::get('task/undone/{id}', 'taskundone')->name('task.undone');
 
-    // Route::get('checklist', 'checklist')->name('checklist.index');
-    // Route::post('checklist', 'checkliststr')->name('checklist.store');
 });
 
 Route::controller(WorkorderController::class)->middleware('auth')->group(function(){
@@ -183,6 +181,10 @@ Route::controller(AssetController::class)->middleware('auth')->group(function(){
 
     Route::get('vendor', 'vendor')->name('vendor.index');
     Route::post('vendor/store', 'vendorstr')->name('vendor.store');
+    
+    Route::get('checklist', 'checklist')->name('checklist.index');
+    Route::post('checklist', 'checkliststr')->name('checklist.store');
+
 });
 Auth::routes();
 
