@@ -16,16 +16,17 @@
     <div class="col-sm-12 col-md-12 col-lg-4">
         <div class="card shadow mt-2">
             <div class="card-header">
-                <h6 class="m-0 font-weight-bold text-primary">Informations</h6>
+                <div class="d-sm-flex align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Informations</h6>
+                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-edit fa-sm text-white-50"></i> Modify</a>
+                </div>
             </div>
             <div class="card-body">
-                <table class="table table-sm">
-                    <tr>
-                        <!-- <td><label for="file" class="font-weight-bold">Photo</label></td> -->
-                        <td colspan="2" class="text-center">
-                            <img class="img-thumbnail" src="{{ $data->file }}" alt="Thumbnail image">
-                        </td>
-                    </tr>
+                <div class="mb-3 text-center">
+                    <img class="img-thumbnail" src="{{ $data->file }}" alt="Thumbnail image">
+                </div>
+
+                <table class="table">
                     <tr>
                         <td><label for="name" class="font-weight-bold">Created at</label></td>
                         <td>{{ $data->created_at }}</td>
@@ -68,12 +69,21 @@
                     </tr>
                     <tr>
                         <td><label for="buyPrice" class="font-weight-bold">Buy Price</label></td>
-                        <td>{{ $data->buyPrice }}</td>
+                        <td>
+                            IDR {{ number_format($data->buyPrice, 2, ',', '.') }}
+                        </td>
                     </tr>
                     <tr>
                         <td><label for="status" class="font-weight-bold">Buy Condition</label></td>
-                        <td>{{ $data->buyCond }}</td>
+                        <td>
+                            <span class="badge badge-success">{{ $data->buyCond }}</span>
+                        </td>
                     </tr>
+                    <tr>
+                        <td><label for="remark" class="font-weight-bold">Remark</label></td>
+                        <td>{{ $data->remark }}</td>
+                    </tr>
+
                 </table>
             </div>
         </div>
@@ -82,7 +92,10 @@
     <div class="col-sm-12 col-md-12 col-lg-8">
         <div class="card shadow mt-2">
             <div class="card-header">
-                <h6 class="m-0 font-weight-bold text-primary">Workorders</h6>
+                <div class="d-sm-flex align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Task List</h6>
+                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Task</a>
+                </div>
             </div>
             <div class="card-body">
 
@@ -91,7 +104,10 @@
 
         <div class="card shadow mt-2">
             <div class="card-header">
-                <h6 class="m-0 font-weight-bold text-primary">Tasks</h6>
+                <div class="d-sm-flex align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Work Order List</h6>
+                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Work Order</a>
+                </div>
             </div>
             <div class="card-body">
 
@@ -100,7 +116,10 @@
 
         <div class="card shadow mt-2">
             <div class="card-header">
-                <h6 class="m-0 font-weight-bold text-primary">Allocations</h6>
+                <div class="d-sm-flex align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Allocation List</h6>
+                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Allocation</a>
+                </div>
             </div>
             <div class="card-body">
                 <table class="table table-hover" id="table-allocation">

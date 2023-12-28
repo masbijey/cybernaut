@@ -57,14 +57,14 @@
                             @if(!in_array(Auth::user()->role->hris, ['1', '2', '3']))
                             @else
                             <a class="collapse-item" href="{{ route('employee.index')}}">Employee</a>
-                            <!-- <a class="collapse-item" href="#" disable>Attendance</a>
+                            <a class="collapse-item" href="#" disable>Attendance</a>
                             @endif
-                            <a class="collapse-item" href="#" disable>Leave form</a> -->
+                            <a class="collapse-item" href="#" disable>Leave form</a>
                         </div>
                     </div>
                 </li>
 
-            <!-- <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3"
                     aria-expanded="true" aria-controls="collapse3">
                     <i class="fas fa-chart-line	"></i>
@@ -86,7 +86,7 @@
 
                     </div>
                 </div>
-            </li> -->
+            </li>
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
@@ -115,45 +115,11 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Components:</h6>
-                        <a class="collapse-item" href="{{ route('asset.index')}}">Assets List</a>
-                        <a class="collapse-item" href="{{ route('asset.index')}}">Location List</a>
-                        <a class="collapse-item" href="{{ route('asset.index')}}">Category List</a>
+                        <a class="collapse-item" href="{{ route('asset.index')}}">Asset Management</a>
+                        <a class="collapse-item" href="{{ route('asset.index')}}">Asset Category List</a>
                     </div>
                 </div>
             </li>
-
-            <!-- <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#hotelaudit"
-                    aria-expanded="true" aria-controls="collapseOne">
-                    <i class="fas fa-user-secret"></i>
-                    <span>HOTEL AUDIT</span>
-                </a>
-                <div id="hotelaudit" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Audit:</h6>
-                        <a class="collapse-item" href="/department">FB Audit</a>
-                        <a class="collapse-item" href="/location">HR Audit</a>
-                        <a class="collapse-item" href="/user">Engineering Audit</a>
-                        <a class="collapse-item" href="/user">IT Audit</a>
-                    </div>
-                </div>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#report"
-                    aria-expanded="true" aria-controls="collapseOne">
-                    <i class="fas fa-file-signature"></i>
-                    <span>REPORT</span>
-                </a>
-                <div id="report" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">List:</h6>
-                        <a class="collapse-item" href="#">Electricity</a>
-                        <a class="collapse-item" href="#">Tenda Revenue</a>
-                    </div>
-                </div>
-            </li> -->
-
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
@@ -280,7 +246,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
+                                        <img class="rounded-circle" src="{{ url('img/undraw_profile_1.svg') }}" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -291,7 +257,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
+                                        <img class="rounded-circle" src="{{ url('img/undraw_profile_2.svg') }}" alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -302,7 +268,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
+                                        <img class="rounded-circle" src="{{ url('img/undraw_profile_3.svg') }}" alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>

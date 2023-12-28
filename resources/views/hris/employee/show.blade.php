@@ -413,21 +413,22 @@
                         <h6 class="m-0 font-weight-bold text-primary">History of Leave</h6>
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered table-hover table-responsive-sm table-sm">
+                        <table class="table wrap table-responsive-sm">
                             <thead>
-                                <tr class="text-center">
-                                    <th>#</th>
-                                    <th>Created At</th>
-                                    <th>Type</th>
-                                    <th>Valid</th>
-                                    <th>Pick</th>
+                                <tr">
+                                    <th class="text-center" style="width: 5%;">#</th>
+                                    <th style="width: 7%;">Created At</th>
+                                    <th style="width: 5%;">Type</th>
+                                    <th style="width: 7%;">Valid date</th>
+                                    <th style="width: 10%;">Pick date</th>
                                     <th>Description</th>
-                                    <th>Request form</th>
+                                    <th style="width: 10%;">Leader Appr.</th>
+                                    <th style="width: 10%;">HR Appr.</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($employee->leave as $data)
-                                <tr class="text-center">
+                                <tr>
                                     <td class="text-center">
                                         {{ $loop->iteration }}
                                     </td>
@@ -453,6 +454,7 @@
                                         @endif
                                     </td>
                                     <td>{{ $data->description }}</td>
+                                    <td>null</td>
                                     <td>null</td>
                                 </tr>
                                 @endforeach
@@ -682,6 +684,11 @@
         $('#rewpun').DataTable({
             responsive: true
         });
+
+        $('#table-employee-leave').DataTable({
+            responsive: true
+        });
+
     });
 
 
