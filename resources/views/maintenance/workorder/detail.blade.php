@@ -28,11 +28,6 @@
                         <td class="font-weight-bold">Title</td>
                         <td>
                             {{ $workorder->title }}
-                            <br>
-                            <small class="text-info">
-                                Created by {{ $workorder->user->name }} <br>
-                                {{ $workorder->created_at }}
-                            </small>
                         </td>
                     </tr>
                     <tr>
@@ -49,48 +44,6 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="font-weight-bold">Status</td>
-                        <td>
-                            @if($workorder->status == 'Done')
-                            <a href="#" class="btn btn-success shadow">Done</a> <br>
-                            @else
-                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
-                                On Progress
-                            </button>
-
-                            <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Apakah anda ingin menyelesaikan WO ini ?</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">×</span>
-                                            </button>
-                                        </div>
-
-                                        <form method="POST" action="{{ route('workorder.done') }}" enctype="multipart/form-data">
-                                            @csrf
-
-                                            <div class="modal-body">
-                                                <input type="hidden" name="id" value="{{ $workorder->id }}">
-                                                <small class="text-info">Masukkan foto bukti pekerjaan telah selesai.</small>
-                                                <div class="form-group">
-                                                    <input type="file" class="form-control-file" id="file" name="file" required>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                <button type="submit" class="btn btn-success shadow">Yes, It's Done !</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-
-                            @endif
-                        </td>
-                    </tr>
-                    <tr>
                         <td class="font-weight-bold">Prioriy</td>
                         <td>
                             @if($workorder->prioriy == 'Low')
@@ -103,10 +56,76 @@
                         </td>
                     </tr>
                     <tr>
+                        <td class="font-weight-bold">Progress</td>
+                        <td>
+                            @if ($workorder->status == 'Done')
+
+                            @elseif ($workorder->status == 'Open')
+
+                            @elseif ($workorder->status == 'On Progress')
+                            <button type="button" class="btn btn-warning shadow-sm btn-sm" data-toggle="modal" data-target="#exampleModal">
+                                On Progress
+                            </button>
+
+                            <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Completion Confirmation</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+
+                                        <form method="POST" action="{{ route('workorder.done') }}" enctype="multipart/form-data">
+                                            @csrf
+
+                                            <div class="modal-body">
+                                                <input type="hidden" name="id" value="{{ $workorder->id }}">
+
+                                                <div class="form-group">
+                                                    <label class="font-weight-bolder">Upload image :</label>
+                                                    <input type="file" class="form-control-file" id="file" name="file" required>
+                                                    <small class="text-info">Masukkan foto bukti pekerjaan telah selesai.</small>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="font-weight-bolder">Finished by :</label>
+                                                    <select class="js-example-basic-multiple js-states form-control" id="tag-employee-edit" name="member_ids[]" multiple="multiple" style="width: 100%;" required>
+                                                        @foreach($employeelist as $data)
+                                                        <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                <button type="submit" class="btn btn-primary shadow">Yes, It's Done !</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+
+                            <a href="#collapseExample" class="text-decoration-none" data-toggle="collapse"> <i class="fas fa-exclamation"></i> see</a>
+
+                            <div class="collapse" id="collapseExample">
+                                <div class="card card-body">
+                                    <small class="text-info">
+                                        created by <b>Ruswandi</b> at <b>2023-12-29 17:00</b> <br>
+                                        received by <b>Subandi</b> at <b>2023-12-29 17:00</b> <br>
+                                        done by <b>Fadli</b> at <b>2023-12-29 17:00</b>
+                                    </small>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
                         <td class="font-weight-bold">To Departments</td>
                         <td>
                             @if ($workorder->status !== 'Done')
-
                             <table class="table table-sm table-borderless">
                                 <tbody>
                                     @foreach ($workorder->departmentMany as $department)
@@ -144,7 +163,7 @@
 
                             @else
 
-                            <table class="table table-sm">
+                            <table class="table table-sm table-borderless">
                                 <tbody>
                                     @foreach($workorder->departmentMany as $department)
                                     @if($department->department !== null)
@@ -155,7 +174,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-
                             @endif
                         </td>
                     </tr>
@@ -175,7 +193,7 @@
                         <td class="font-weight-bold">Locations</td>
                         <td>
                             @if ($workorder->status !== 'Done')
-                            <table class="table table-sm">
+                            <table class="table table-borderless">
                                 <tbody>
                                     @foreach($workorder->locationMany as $location)
                                     @if($location->location !== null)
@@ -211,8 +229,8 @@
                             </form>
 
                             @else
-                            
-                            <table class="table table-sm">
+
+                            <table class="table table-borderless">
                                 <tbody>
                                     @if($workorder->locationMany == null)
                                     <small class="text-danger">Location belum ditambahkan</small>
@@ -230,13 +248,11 @@
                             @endif
                         </td>
                     </tr>
-
                     <tr>
                         <td class="font-weight-bold">Assets</td>
                         <td>
                             @if ($workorder->status !== 'Done')
-
-                            <table class="table table-sm">
+                            <table class="table table-sm table-borderless">
                                 <tbody>
                                     @foreach($workorder->assetMany as $asset)
                                     @if($asset->asset !== null)
@@ -273,7 +289,7 @@
 
                             @else
 
-                            <table class="table table-sm">
+                            <table class="table table-sm table-borderless">
                                 <tbody>
                                     @foreach($workorder->assetMany as $asset)
                                     @if($asset->asset !== null)
@@ -284,9 +300,12 @@
                                     @endforeach
                                 </tbody>
                             </table>
-
                             @endif
                         </td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Finished by</td>
+                        <td></td>
                     </tr>
                 </table>
             </div>
@@ -299,22 +318,16 @@
                 <h6 class="m-0 font-weight-bold text-primary">Comments</h6>
             </div>
             <div class="card-body">
-                @if($workorder->commentMany !== null)
                 @foreach($workorder->commentMany as $comment)
-
-                <div class="media mb-1">
+                <div class="media mb-0">
                     <a href="{{ $comment->file }}" target="_blank"><img class="d-flex mr-3" data-src="holder.js/64x64?theme=sky" alt="64x64" src="{{ $comment->file }}" data-holder-rendered="true" style="width: 64px; height: 64px;"></a>
                     <div class="media-body">
                         <small class="text-info">{{ $comment->employee->name }} | {{ $comment->created_at }} </small>
                         <p>{!! nl2br(e($comment->description)) !!}</p>
                     </div>
                 </div>
-
+                <hr>
                 @endforeach
-                @else
-                <small class="text-danger">Belum ada komentar</small>
-                @endif
-
                 <hr>
                 <h5>Add Comments</h5>
                 <form method="POST" action="{{ route('workorder.addcomment') }}" enctype="multipart/form-data">

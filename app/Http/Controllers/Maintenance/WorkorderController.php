@@ -128,8 +128,9 @@ class WorkorderController extends Controller
         $locationlist = Location::all();
         $assetlist = Asset::all();
         $departmentlist = Department::all();
+        $employeelist = Employee::all();
 
-        return view('maintenance.workorder.detail', compact('workorder', 'locationlist', 'assetlist', 'departmentlist'));
+        return view('maintenance.workorder.detail', compact('workorder', 'locationlist', 'assetlist', 'departmentlist', 'employeelist'));
     }
 
     public function addcomment(Request $request)
