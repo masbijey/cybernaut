@@ -145,6 +145,7 @@ Route::controller(WorkorderController::class)->middleware('auth')->group(functio
 
     Route::post('workorder/addcomment', 'addcomment')->name('workorder.addcomment');
     Route::post('workorder/done', 'wodone')->name('workorder.done');
+    Route::post('workorder/received', 'woreceived')->name('workorder.received');
     Route::get('workorder/undone/{orderNumber}', 'woundone')->name('workorder.undone');
 
     Route::post('workorder/addrelation', 'addrelation')->name('workorder.addrelation');

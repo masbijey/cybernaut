@@ -204,9 +204,20 @@ class WorkorderController extends Controller
 
         $wo = workorder::where('id', $request->id)->firstOrFail();
         $wo->status = 'Done';
-        $wo->employee_id = $update_by;
-        $wo->updated_at = now();
+        $wo->finished_by = $update_by;
+        $wo->finished_date = now();
         $wo->save();
+
+        if (isset($request->member_ids)) {
+            $abc = $request->member_ids;
+            foreach ($abc as $member) {
+                Workordermember::create([
+                    'workorder_id' => $request->id,
+                    'employee_id' => $member,
+                ]);
+            }
+        }
+
 
         $validator = Validator::make($request->all(), [
             'file' => 'required|mimes:jpeg,jpg,png,pdf',
@@ -234,6 +245,21 @@ class WorkorderController extends Controller
         alert()->success('Berhasil.', 'Work Order has been Finished');
         return redirect()->back();
     }
+
+    public function woreceived(Request $request)
+    {
+        $update_by = Auth::user()->id;
+
+        $wo = workorder::where('id', $request->id)->firstOrFail();
+        $wo->status = 'On Progress';
+        $wo->received_by = $update_by;
+        $wo->received_date = now();
+        $wo->save();
+
+        alert()->success('Berhasil.', 'Work Order has been Confirm by HOD');
+        return redirect()->back();
+    }
+
 
     public function woundone($orderNumber)
     {

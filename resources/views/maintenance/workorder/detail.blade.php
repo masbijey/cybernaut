@@ -12,7 +12,7 @@
 
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-4">
-        <div class="card mt-1 shadow-sm">
+        <div class="card mb-2 shadow-sm">
             <div class="card-header text-primary">
                 <h6 class="m-0 font-weight-bold text-primary">Work Order Information</h6>
             </div>
@@ -59,14 +59,49 @@
                         <td class="font-weight-bold">Progress</td>
                         <td>
                             @if ($workorder->status == 'Open')
-                            <a href="#" class="btn btn-danger btn-sm">Open</a>
+                            <button type="button" class="btn btn-danger shadow-sm btn-sm" data-toggle="modal" data-target="#openModal">
+                                Open
+                            </button>
+
+                            <div class="modal" id="openModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">WO Receive Confirmation</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+
+                                        <form method="POST" action="{{ route('workorder.received') }}" enctype="multipart/form-data">
+                                            @csrf
+
+                                            <div class="modal-body">
+                                                <input type="hidden" name="id" value="{{ $workorder->id }}">
+                                                <input type="hidden" name="receivedBy" value="{{ Auth::user()->id }}">
+
+                                                <div class="form-group">
+                                                    <input type="checkbox" id="checkbox" required>
+                                                    <label for="checkbox">I have received this work order. [{{ Auth::user()->name }}]</label>
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                <button type="submit" class="btn btn-primary shadow">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
 
                             @elseif ($workorder->status == 'On Progress')
-                            <button type="button" class="btn btn-warning shadow-sm btn-sm" data-toggle="modal" data-target="#exampleModal">
+                            <button type="button" class="btn btn-warning shadow-sm btn-sm" data-toggle="modal" data-target="#onProgressModal">
                                 On Progress
                             </button>
 
-                            <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal" id="onProgressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -121,7 +156,7 @@
                                     <small class="text-info">
                                         created by <b>{{ $workorder->createdBy->name }}</b> at <b>{{ $workorder->created_at }}</b> <br>
 
-                                        @if ($workorder->recivedBy !== null)
+                                        @if ($workorder->receivedBy !== null)
                                         received by <b> {{ $workorder->receivedBy->name }}</b> at <b>{{ $workorder->received_date }}</b> <br>
                                         @endif
 
@@ -195,7 +230,7 @@
     </div>
 
     <div class="col-sm-12 col-md-12 col-lg-4">
-        <div class="card mt-1 shadow-sm">
+        <div class="card mb-2 shadow-sm">
             <div class="card-header text-primary">
                 <h6 class="m-0 font-weight-bold text-primary">Related Information</h6>
             </div>
@@ -317,7 +352,19 @@
                     </tr>
                     <tr>
                         <td class="font-weight-bold">Finished by</td>
-                        <td></td>
+                        <td>
+                            <table class="table table-sm table-borderless">
+                                <tbody>
+                                    @foreach($workorder->memberMany as $member)
+                                    @if($member->employee !== null)
+                                    <tr>
+                                        <td><a href="#">{{ $member->employee->name }}</a></td>
+                                    </tr>
+                                    @endif
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -325,7 +372,7 @@
     </div>
 
     <div class="col-sm-12 col-md-12 col-lg-4">
-        <div class="card mt-1 shadow-sm">
+        <div class="card mb-2 shadow-sm">
             <div class="card-header text-primary">
                 <h6 class="m-0 font-weight-bold text-primary">Comments</h6>
             </div>

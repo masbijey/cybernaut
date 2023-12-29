@@ -88,6 +88,11 @@ class Workorder extends Model
         return $this->belongsTo(User::class, 'received_by');
     }
 
+    public function memberMany()
+    {
+        return $this->hasMany(Workordermember::class, 'workorder_id');
+    }
+
 
 
 }
