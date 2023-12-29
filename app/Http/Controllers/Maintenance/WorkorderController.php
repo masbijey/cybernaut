@@ -63,12 +63,12 @@ class WorkorderController extends Controller
                 ->withInput();
         }
 
-        $user_id = Auth::user()->id;
+        $createdBy = Auth::user()->id;
         $status = "Open";
         $order_no = 'WO-' . date('Ymd') . '-' . sprintf('%04d', (WorkOrder::count() + 1));
         $workorder = Workorder::create([
             'order_no' => $order_no,
-            'user_id' => $user_id,
+            'created_by' => $createdBy,
             'due_date' => $request->due_date,
             'priority' => $request->priority,
             'title' => $request->title,
@@ -124,7 +124,7 @@ class WorkorderController extends Controller
 
     public function show($orderNumber)
     {
-        $workorder = WorkOrder::where('order_no', $orderNumber)->firstOrFail();
+        $workorder = WorkOrder::where('order_no', $orderNumber)->with('user')->firstOrFail();
         $locationlist = Location::all();
         $assetlist = Asset::all();
         $departmentlist = Department::all();

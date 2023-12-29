@@ -58,9 +58,8 @@
                     <tr>
                         <td class="font-weight-bold">Progress</td>
                         <td>
-                            @if ($workorder->status == 'Done')
-
-                            @elseif ($workorder->status == 'Open')
+                            @if ($workorder->status == 'Open')
+                            <a href="#" class="btn btn-danger btn-sm">Open</a>
 
                             @elseif ($workorder->status == 'On Progress')
                             <button type="button" class="btn btn-warning shadow-sm btn-sm" data-toggle="modal" data-target="#exampleModal">
@@ -107,16 +106,29 @@
                                     </div>
                                 </div>
                             </div>
+
+                            @else ($workorder->status == 'Done')
+                            <a href="#" class="btn btn-success btn-sm">Done</a>
                             @endif
 
-                            <a href="#collapseExample" class="text-decoration-none" data-toggle="collapse"> <i class="fas fa-exclamation"></i> see</a>
+                            <small class="">
+                                <a href="#collapseExample" class="text-decoration-none" data-toggle="collapse"> <i class="fas fa-exclamation"></i> info</a><br>
+                            </small>
+                            <small class="text-info">press button to change.</small>
 
                             <div class="collapse" id="collapseExample">
                                 <div class="card card-body">
                                     <small class="text-info">
-                                        created by <b>Ruswandi</b> at <b>2023-12-29 17:00</b> <br>
-                                        received by <b>Subandi</b> at <b>2023-12-29 17:00</b> <br>
-                                        done by <b>Fadli</b> at <b>2023-12-29 17:00</b>
+                                        created by <b>{{ $workorder->createdBy->name }}</b> at <b>{{ $workorder->created_at }}</b> <br>
+
+                                        @if ($workorder->recivedBy !== null)
+                                        received by <b> {{ $workorder->receivedBy->name }}</b> at <b>{{ $workorder->received_date }}</b> <br>
+                                        @endif
+
+                                        @if ($workorder->finishedBy !== null)
+                                        finished by <b>{{ $workorder->finishedBy->name }}</b> at <b>{{ $workorder->finished_date }}</b>
+                                        @endif
+
                                     </small>
                                 </div>
                             </div>

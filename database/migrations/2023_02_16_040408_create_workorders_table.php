@@ -15,13 +15,17 @@ return new class extends Migration
             $table->string('order_no')->unique();
             $table->string('title');
             $table->text('description');
-            $table->string('priority'); //low, medium, high
-            $table->string('status'); //open, on progress, selesai
-            $table->dateTime('end_date')->nullable();
+            $table->string('priority');
+            $table->string('status'); 
             $table->string('due_date');
 
-            $table->unsignedBigInteger('employee_id')->nullable(); //latest updated by
-            $table->integer('user_id'); //created by
+            $table->integer('received_by')->nullable();
+            $table->dateTime('received_date')->nullable();
+
+            $table->integer('created_by')->nullable();
+
+            $table->integer('finished_by')->nullable();
+            $table->dateTime('finished_date')->nullable();
 
         });
     }

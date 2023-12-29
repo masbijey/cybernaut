@@ -21,11 +21,11 @@ class Workorder extends Model
         'end_date',
         'due_date',
 
-        'asset_id',
-        'location_id',
-        'department_id',
-        'employee_id',
-        'user_id'
+        'received_by',
+        'received_date',
+        'created_by',
+        'finished_by',
+        'finished_date'
     ];
 
     public function employee()
@@ -72,6 +72,22 @@ class Workorder extends Model
     {
         return $this->hasMany(Workordercomment::class, 'workorder_id');
     }
+
+    public function finishedBy()
+    {
+        return $this->belongsTo(User::class, 'finished_by');
+    }
+
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function receivedBy()
+    {
+        return $this->belongsTo(User::class, 'received_by');
+    }
+
 
 
 }
