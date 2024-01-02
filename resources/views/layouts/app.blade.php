@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>think hitech</title>
-    <link href="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://startbootstrap.github.io/startbootstrap-sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
+    <title>@yield('title')</title>
+    <link href="{{ url('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url('css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ url('vendor/select2/select2-bootstrap.css')}}">
     <link href="{{ url('vendor/select2/select2-bootstrap4.min.css')}}" rel="stylesheet">
     <link href="{{ url('vendor/select2/select2.min.css')}}" rel="stylesheet" />
@@ -332,9 +332,7 @@
                 </nav>
 
                 <div class="container-fluid">
-
                     @yield('content')
-
                 </div>
             </div>
 
@@ -365,7 +363,6 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <!-- <a class="btn btn-primary" href="login.html">Logout</a> -->
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit" class="btn btn-primary">Logout</button>
@@ -376,10 +373,10 @@
     </div>
 
     @include('sweetalert::alert')
-    <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script>
-    <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
+    <script src="{{ url('vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ url('js/sb-admin-2.min.js') }}"></script>
     <script src="{{ asset('vendor/select2/select2.min.js')}}"></script>
     <script src="{{ asset('vendor/datepicker/gijgo.min.js')}}" type="text/javascript"></script>
     <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>

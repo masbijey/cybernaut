@@ -21,8 +21,8 @@
         <table class="table nowrap" id="employee-table">
             <thead class="thead-light">
                 <tr>
-                    <th style="width: 12%;">No. WO</th>
                     <th style="width: 10%;">Due Date</th>
+                    <th style="width: 12%;">No. WO</th>
                     <th>Title</th>
                     <th style="width: 10%;">Status</th>
                     <th style="width: 10%;">Priority</th>
@@ -35,10 +35,10 @@
                 @foreach($workorder as $data)
                 <tr>
                     <td>
-                        <a href="/workorder/detail/{{ $data->order_no }}">{{ $data->order_no }}</a>
+                        {{ $data->due_date }}
                     </td>
                     <td>
-                        {{ $data->due_date }}
+                        <a href="/workorder/detail/{{ $data->order_no }}">{{ $data->order_no }}</a>
                     </td>
                     <td>
                         {{ $data->title }}

@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
+@section('title')
+Workoder detail | {{ $workorder->title }}
+@endsection
+
 @section('content')
-<h1 class="h3 text-gray-800">Work Order Details</h1>
+<h3 class="h3 text-gray-800">Work Order Details</h3>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -149,7 +153,10 @@
                             <small class="">
                                 <a href="#collapseExample" class="text-decoration-none" data-toggle="collapse"> <i class="fas fa-exclamation"></i> info</a><br>
                             </small>
+
+                            @if ($workorder->status !== 'Done')
                             <small class="text-info">press button to change.</small>
+                            @endif
 
                             <div class="collapse" id="collapseExample">
                                 <div class="card card-body">
@@ -173,7 +180,7 @@
                         <td class="font-weight-bold">To Departments</td>
                         <td>
                             @if ($workorder->status !== 'Done')
-                            <table class="table table-sm table-borderless">
+                            <table class="table table-sm table-borderless table-hover">
                                 <tbody>
                                     @foreach ($workorder->departmentMany as $department)
                                     @if ($department->department !== null)
@@ -188,28 +195,36 @@
                                 </tbody>
                             </table>
 
-                            <form method="POST" action="{{ route('workorder.addrelation') }}" enctype="multipart/form-data">
-                                @csrf
-                                <input type="hidden" name="id" value="{{ $workorder->id }}">
-                                <div class="form-group">
-                                    <select class="js-example-basic-multiple custom-select form-control form-control-sm" id="select-dept-add" name="department_ids[]" multiple="multiple" required>
-                                        @if(!isset($workorder->departmentMany))
-                                        @foreach($workorder->departmentMany as $data)
-                                        <option value="{{ $data->location->id }}" selected>{{ $data->department->name }}</option>
-                                        @endforeach
-                                        @endif
+                            <small class="">
+                                <a href="#collapseAddDepartment" data-toggle="collapse">+ add many deparnents</a><br>
+                            </small>
 
-                                        @foreach($departmentlist as $data)
-                                        <option value="{{ $data->id }}">{{ $data->name }}
-                                        </option>
-                                        @endforeach
-                                    </select>
+                            <div class="collapse" id="collapseAddDepartment">
+                                <div class="card card-body">
+                                    <form method="POST" action="{{ route('workorder.addrelation') }}" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $workorder->id }}">
+                                        <div class="form-group">
+                                            <label for="">Select departments</label>
+                                            <select class="js-example-basic-multiple custom-select form-control form-control-sm" id="select-dept-add" name="department_ids[]" multiple="multiple" style="width: 100%;" required>
+                                                @if(!isset($workorder->departmentMany))
+                                                @foreach($workorder->departmentMany as $data)
+                                                <option value="{{ $data->location->id }}" selected>{{ $data->department->name }}</option>
+                                                @endforeach
+                                                @endif
+
+                                                @foreach($departmentlist as $data)
+                                                <option value="{{ $data->id }}">{{ $data->name }}
+                                                </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <button type="submit" class="btn btn-sm btn-primary shadow">Save</button>
+                                    </form>
                                 </div>
-                                <button type="submit" class="btn btn-primary shadow">Save</button>
-                            </form>
+                            </div>
 
                             @else
-
                             <table class="table table-sm table-borderless">
                                 <tbody>
                                     @foreach($workorder->departmentMany as $department)
@@ -255,28 +270,35 @@
                                 </tbody>
                             </table>
 
-                            <form method="POST" action="{{ route('workorder.addrelation') }}" enctype="multipart/form-data">
-                                @csrf
-                                <input type="hidden" name="id" value="{{ $workorder->id }}">
-                                <div class="form-group">
-                                    <select class="js-example-basic-multiple custom-select form-control" id="select-location-add" name="location_ids[]" multiple="multiple" required>
-                                        @if(!isset($workorder->locationMany))
-                                        @foreach($workorder->locationMany as $data)
-                                        <option value="{{ $data->location->id }}" selected>{{ $data->location->name }}</option>
-                                        @endforeach
-                                        @endif
+                            <small class="">
+                                <a href="#collapseAddLocation" data-toggle="collapse">+ add more location</a><br>
+                            </small>
 
-                                        @foreach($locationlist as $data)
-                                        <option value="{{ $data->id }}">{{ $data->name }}
-                                        </option>
-                                        @endforeach
-                                    </select>
+                            <div class="collapse" id="collapseAddLocation">
+                                <div class="card card-body">
+                                    <form method="POST" action="{{ route('workorder.addrelation') }}" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $workorder->id }}">
+                                        <div class="form-group">
+                                            <select class="js-example-basic-multiple custom-select form-control form-control-sm" id="select-location-add" name="location_ids[]" multiple="multiple" style="width: 100%;">
+                                                @if(!isset($workorder->locationMany))
+                                                @foreach($workorder->locationMany as $data)
+                                                <option value="{{ $data->location->id }}" selected>{{ $data->location->name }}</option>
+                                                @endforeach
+                                                @endif
+
+                                                @foreach($locationlist as $data)
+                                                <option value="{{ $data->id }}">{{ $data->name }}
+                                                </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary shadow btn-sm">Save</button>
+                                    </form>
                                 </div>
-                                <button type="submit" class="btn btn-primary shadow">Save</button>
-                            </form>
+                            </div>
 
                             @else
-
                             <table class="table table-borderless">
                                 <tbody>
                                     @if($workorder->locationMany == null)
@@ -318,7 +340,7 @@
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $workorder->id }}">
                                 <div class="form-group">
-                                    <select class="js-example-basic-multiple custom-select form-control" id="select-asset-add" name="asset_ids[]" multiple="multiple" required>
+                                    <select class="js-example-basic-multiple custom-select form-control form-control-sm" id="select-asset-add" name="asset_ids[]" multiple="multiple" required>
                                         @if(!isset($workorder->assetMany))
                                         @foreach($workorder->assetMany as $data)
                                         <option value="{{ $data->asset->id }}" selected>{{ $data->asset->name }}</option>
@@ -331,7 +353,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <button type="submit" class="btn btn-primary shadow">Save</button>
+                                <button type="submit" class="btn btn-primary shadow btn-sm">Save</button>
                             </form>
 
                             @else
@@ -351,6 +373,8 @@
                         </td>
                     </tr>
                     <tr>
+                        @if ($workorder->status !== 'Done')
+                        @else
                         <td class="font-weight-bold">Finished by</td>
                         <td>
                             <table class="table table-sm table-borderless">
@@ -365,6 +389,7 @@
                                 </tbody>
                             </table>
                         </td>
+                        @endif
                     </tr>
                 </table>
             </div>
