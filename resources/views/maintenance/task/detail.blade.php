@@ -132,7 +132,7 @@
                         <td class="font-weight-bold"><label for="">Assets</label></td>
                         <td>
                             @if ($task->task_status != 'Done')
-                            <table class="table table-sm table-bordered">
+                            <table class="table table-sm">
                                 <tbody>
                                     @if($task->assetMany == null)
                                     <small class="text-center text-danger">Aset belum ditambahkan</small>

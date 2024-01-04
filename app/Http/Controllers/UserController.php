@@ -89,18 +89,19 @@ class UserController extends Controller
 
     public function update(Request $request, User $id)
     {
-        $validator = Validator::make($request->all(), [
-            'admin' => $request->admin,
-            'signage' => $request->signage,
-            'workorder' => $request->workorder,
-            'task' => $request->task,
-            'asset' => $request->asset,
-            'voucher' => $request->voucher,
-            'beo' => $request->beo,
-            'hris' => $request->hris,
-            'attendance' => $request->attendance,
-            'leave' => $request->leave,
-        ]);
+
+        // $validator = Validator::make($request->all(), [
+        //     'admin' => $request->admin,
+        //     'signage' => $request->signage,
+        //     'workorder' => $request->workorder,
+        //     'task' => $request->task,
+        //     'asset' => $request->asset,
+        //     'voucher' => $request->voucher,
+        //     'beo' => $request->beo,
+        //     'hris' => $request->hris,
+        //     'attendance' => $request->attendance,
+        //     'leave' => $request->leave,
+        // ]);
 
         $data = Userrole::where('user_id', $id->id);
 

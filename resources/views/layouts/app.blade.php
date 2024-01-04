@@ -11,12 +11,16 @@
         @yield('title')
     </title>
     <link href="{{ url('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ url('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- <link href="{{ url('css/sb-admin-2.min.css') }}" rel="stylesheet"> -->
+    <link href="https://startbootstrap.github.io/startbootstrap-sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link rel="stylesheet" href="{{ url('vendor/select2/select2-bootstrap.css')}}">
     <link href="{{ url('vendor/select2/select2-bootstrap4.min.css')}}" rel="stylesheet">
     <link href="{{ url('vendor/select2/select2.min.css')}}" rel="stylesheet" />
     <link href="{{ url('vendor/datepicker/gijgo.min.css')}}" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{ asset('vendor/datatables/responsive.bootstrap4.min.css')}}">
     @yield('css')
@@ -96,7 +100,11 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Components:</h6>
                         <a class="collapse-item" href="{{ route('signage.index') }}">TV Signage</a>
+
+                        @if(in_array(Auth::user()->role->workorder, ['1', '2', '3']))
                         <a class="collapse-item" href="{{ route('workorder.index')}}">Workorder Management</a>
+                        @endif
+                        
                         <a class="collapse-item" href="{{ route('task.index')}}">Task Management</a>
                     </div>
                 </div>
@@ -287,7 +295,7 @@
                                     null
                                     @endif
                                 </span>
-                                <img class="img-profile rounded-circle" src="/img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="{{ url('/img/undraw_profile.svg') }}">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
@@ -353,10 +361,18 @@
     </div>
 
     @include('sweetalert::alert')
-    <script src="{{ url('vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ url('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ url('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-    <script src="{{ url('js/sb-admin-2.min.js') }}"></script>
+    <!-- <script src="{{ url('vendor/jquery/jquery.min.js') }}"></script> -->
+    <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script>
+
+    <!-- <script src="{{ url('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script> -->
+    <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- <script src="{{ url('vendor/jquery-easing/jquery.easing.min.js') }}"></script> -->
+    <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- <script src="{{ url('js/sb-admin-2.min.js') }}"></script> -->
+    <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
+
     <script src="{{ asset('vendor/select2/select2.min.js')}}"></script>
     <script src="{{ asset('vendor/datepicker/gijgo.min.js')}}" type="text/javascript"></script>
     <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>

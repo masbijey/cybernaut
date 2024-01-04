@@ -11,8 +11,7 @@
     </button>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label"
-        aria-hidden="true">
+    <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -49,58 +48,91 @@
                             <th class="text-center">
                                 Akses
                             </th>
-                            <th class="text-center"> 
+                            <th class="text-center">
                                 Keterangan
                             </th>
+
                             <tr>
-                                <td class="w-25"><label for="Admin">User Management</label></td>
-                                <td class="w-25"><input type="number" class="form-control-sm" name="admin" required></td>
+                                <td><label for="">User Management</label></td>
+                                <td>
+                                    <select class="custom-select" name="admin" required>
+                                        <option selected>--select--</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                    </select>
+                                </td>
                                 <td><i>0 = no access, 1 = full access</i></td>
                             </tr>
                             <tr>
-                                <td><label for="Admin">Signage</label></td>
-                                <td class="w-25"><input type="number" class="form-control-sm" name="signage" required></td>
+                                <td><label for="">Signage</label></td>
+                                <td>
+                                    <select class="custom-select" name="signage" required>
+                                        <option selected>--select--</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                    </select>
+                                </td>
                                 <td><i>0 = no access, 1 = read only, 2 = read and create, 3 = special</i></td>
-                
+
                             </tr>
                             <tr>
-                                <td><label for="Admin">Workorder</label></td>
-                                <td class="w-25"><input type="number" class="form-control-sm" name="workorder" required></td>
+                                <td><label for="">Workorder</label></td>
+                                <td>
+                                    <input type="number" class="form-control-sm" name="workorder" required>
+                                </td>
                                 <td><i>0 = no access, 1 = read only, 2 = read and create, 3 = approval, 4 = special </i></td>
                             </tr>
                             <tr>
-                                <td><label for="Admin">Maintenance</label></td>
-                                <td class="w-25"><input type="number" class="form-control-sm" name="maintenance" required></td>
+                                <td><label for="">Task</label></td>
+                                <td>
+                                    <input type="number" class="form-control-sm" name="task" required>
+                                </td>
                                 <td><i>0 = no access, 1 = read only, 2 = read and create, 3 = approval, 4 = special </i></td>
                             </tr>
                             <tr>
-                                <td><label for="Admin">Asset</label></td>
-                                <td class="w-25"><input type="number" class="form-control-sm" name="asset" required></td>
+                                <td><label for="">Asset</label></td>
+                                <td>
+                                    <input type="number" class="form-control-sm" name="asset" required>
+                                </td>
                                 <td><i>0 = no access, 1 = read only, 2 = read and create, 3 = approval, 4 = special </i></td>
                             </tr>
                             <tr>
-                                <td><label for="Admin">Voucher</label></td>
-                                <td class="w-25"><input type="number" class="form-control-sm" name="voucher" required></td>
+                                <td><label for="">Voucher</label></td>
+                                <td>
+                                    <input type="number" class="form-control-sm" name="voucher" required>
+                                </td>
                                 <td><i>0 = no access, 1 = read only, 2 = read and create, 3 = approval, 4 = special </i></td>
                             </tr>
                             <tr>
-                                <td><label for="Admin">BEO</label></td>
-                                <td class="w-25"><input type="number" class="form-control-sm" name="beo" required></td>
+                                <td><label for="">BEO</label></td>
+                                <td>
+                                    <input type="number" class="form-control-sm" name="beo" required>
+                                </td>
                                 <td><i>0 = no access, 1 = read only, 2 = read and create, 3 = approval, 4 = special </i></td>
                             </tr>
                             <tr>
-                                <td><label for="Admin">HRIS</label></td>
-                                <td class="w-25"><input type="number" class="form-control-sm" name="hris" required></td>
+                                <td><label for="">HRIS</label></td>
+                                <td>
+                                    <input type="number" class="form-control-sm" name="hris" required>
+                                </td>
                                 <td><i>0 = no access, 1 = read only, 2 = read and create, 3 = approval, 4 = special </i></td>
                             </tr>
                             <tr>
-                                <td><label for="Admin">Attendance</label></td>
-                                <td class="w-25"><input type="number" class="form-control-sm" name="attendance" required></td>
+                                <td><label for="">Attendance</label></td>
+                                <td>
+                                    <input type="number" class="form-control-sm" name="attendance" required>
+                                </td>
                                 <td><i>0 = no access, 1 = read only, 2 = read and create, 3 = approval, 4 = special </i></td>
                             </tr>
                             <tr>
-                                <td><label for="Admin">Leave</label></td>
-                                <td class="w-25"><input type="number" class="form-control-sm" name="leave" required></td>
+                                <td><label for="">Leave</label></td>
+                                <td>
+                                    <input type="number" class="form-control-sm" name="leave" required>
+                                </td>
                                 <td><i>0 = no access, 1 = read only, 2 = read and create, 3 = approval, 4 = special </i></td>
                             </tr>
                         </table>
@@ -112,7 +144,7 @@
 
                             <button class="btn btn-dark" type="reset">Cancel</button>
                         </div>
-                
+
                     </form>
                 </div>
             </div>
@@ -154,15 +186,12 @@
                             @endif
                         </td>
                         <td class="text-center">
-                            <a href="/user/show/{{ $user->id }}" class="btn btn-primary btn-sm" data-placement="top"
-                                title="Tampilkan"><i class='fas fa-eye'></i></a>
+                            <a href="/user/show/{{ $user->id }}" class="btn btn-primary btn-sm" data-placement="top" title="Tampilkan"><i class='fas fa-eye'></i></a>
 
                             @if ($user->deleted_at == null)
-                            <a href="/user/delete/{{ $user->id }}" class="btn btn-danger btn-sm" data-placement="top"
-                                title="Hapus"><i class='fas fa-trash'></i></a>
+                            <a href="/user/delete/{{ $user->id }}" class="btn btn-danger btn-sm" data-placement="top" title="Hapus"><i class='fas fa-trash'></i></a>
                             @else
-                            <a href="/user/restore/{{ $user->id }}" class="btn btn-success btn-sm" data-placement="top"
-                                title="aktifkan"><i class='fas fa-check'></i></a>
+                            <a href="/user/restore/{{ $user->id }}" class="btn btn-success btn-sm" data-placement="top" title="aktifkan"><i class='fas fa-check'></i></a>
                             @endif
                         </td>
                         </td>

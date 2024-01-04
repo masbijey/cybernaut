@@ -54,10 +54,10 @@
                     <td><i>0 = no access, 1 = read only, 2 = read and create, 3 = approval, 4 = special </i></td>
                 </tr>
                 <tr>
-                    <td><label for="Admin">Maintenance</label></td>
+                    <td><label for="Admin">Task</label></td>
                     <td class="text-center">
                         <input type="text" class="form-control-sm bg-warning text-dark font-weight-bold text-center"
-                            value="{{ $data->role->maintenance }}" size="3" name="maintenance">
+                            value="{{ $data->role->task }}" size="3" name="task">
                     </td>
                     <td><i>0 = no access, 1 = read only, 2 = read and create, 3 = approval, 4 = special </i></td>
                 </tr>
