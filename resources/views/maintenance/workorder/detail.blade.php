@@ -17,7 +17,7 @@ Workoder detail | {{ $workorder->title }}
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-4">
         <div class="card mb-2 shadow">
-            <div class="card-header bg-primary text-light">
+            <div class="card-header py-3 bg-primary text-light">
                 <h6 class="m-0 font-weight-bold">Work Order Information</h6>
             </div>
             <div class="card-body">
@@ -63,7 +63,7 @@ Workoder detail | {{ $workorder->title }}
                         <td class="font-weight-bold">Progress</td>
                         <td>
                             @if ($workorder->status == 'Open')
-                            <button type="button" class="btn btn-danger shadow-sm btn-sm" data-toggle="modal" data-target="#openModal">
+                            <button type="button" class="btn btn-danger shadow btn-sm" data-toggle="modal" data-target="#openModal">
                                 Open
                             </button>
 
@@ -187,7 +187,7 @@ Workoder detail | {{ $workorder->title }}
                                     <tr>
                                         <td><a href="#">{{ $department->department->name }}</a></td>
                                         <td class="text-right">
-                                            <a href="" class="btn btn-sm" data-placement="top" title="Hapus"><i class='fas fa-trash'></i></a>
+                                            <a href="" class="btn btn-sm text-decoration-none" data-placement="top" title="Hapus"><i class='fas fa-trash'></i></a>
                                         </td>
                                     </tr>
                                     @endif
@@ -245,7 +245,7 @@ Workoder detail | {{ $workorder->title }}
 
     <div class="col-sm-12 col-md-12 col-lg-4">
         <div class="card mb-2 shadow">
-            <div class="card-header bg-primary text-light">
+            <div class="card-header py-3 bg-primary text-light">
                 <h6 class="m-0 font-weight-bold">Related Information</h6>
             </div>
             <div class="card-body">
@@ -405,7 +405,7 @@ Workoder detail | {{ $workorder->title }}
 
     <div class="col-sm-12 col-md-12 col-lg-4">
         <div class="card mb-2 shadow">
-            <div class="card-header bg-primary text-light">
+            <div class="card-header py-3 bg-primary text-light">
                 <h6 class="m-0 font-weight-bold">Comments</h6>
             </div>
             <div class="card-body">
