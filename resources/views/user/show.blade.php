@@ -1,11 +1,22 @@
 @extends('layouts.app')
 
+@section('title')
+User Details | {{ $data->name }}
+@endsection
+
 @section('content')
-<h1 class="h3 mb-2 text-gray-800">User Access Definition</h1>
+<h3 class="h3 text-gray-800">User Details</h3>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('user.index') }}">User List</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ $data->name }}</li>
+    </ol>
+</nav>
 
 <div class="card shadow mt-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">{{ $data->name}}</h6>
+    <div class="card-header bg-primary">
+        <h6 class="m-0 font-weight-bold text-light">{{ $data->name}}</h6>
     </div>
 
     <div class="card-body">

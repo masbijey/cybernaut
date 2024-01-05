@@ -16,9 +16,9 @@ Workoder detail | {{ $workorder->title }}
 
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-4">
-        <div class="card mb-2 shadow-sm">
-            <div class="card-header text-primary">
-                <h6 class="m-0 font-weight-bold text-primary">Work Order Information</h6>
+        <div class="card mb-2 shadow">
+            <div class="card-header bg-primary text-light">
+                <h6 class="m-0 font-weight-bold">Work Order Information</h6>
             </div>
             <div class="card-body">
                 <table class="table table-sm">
@@ -187,7 +187,7 @@ Workoder detail | {{ $workorder->title }}
                                     <tr>
                                         <td><a href="#">{{ $department->department->name }}</a></td>
                                         <td class="text-right">
-                                            <a href="" class="btn btn-danger btn-sm" data-placement="top" title="Hapus"><i class='fas fa-trash'></i></a>
+                                            <a href="" class="btn btn-sm" data-placement="top" title="Hapus"><i class='fas fa-trash'></i></a>
                                         </td>
                                     </tr>
                                     @endif
@@ -196,7 +196,7 @@ Workoder detail | {{ $workorder->title }}
                             </table>
 
                             <small class="">
-                                <a href="#collapseAddDepartment" data-toggle="collapse">+ add many deparnents</a><br>
+                                <a href="#collapseAddDepartment" data-toggle="collapse"><i class='fas fa-edit'></i> add departments</a><br>
                             </small>
 
                             <div class="collapse" id="collapseAddDepartment">
@@ -205,8 +205,7 @@ Workoder detail | {{ $workorder->title }}
                                         @csrf
                                         <input type="hidden" name="id" value="{{ $workorder->id }}">
                                         <div class="form-group">
-                                            <label for="">Select departments</label>
-                                            <select class="js-example-basic-multiple custom-select form-control form-control-sm" id="select-dept-add" name="department_ids[]" multiple="multiple" style="width: 100%;" required>
+                                            <select class="js-example-basic-multiple custom-select" id="select-dept-add" name="department_ids[]" multiple="multiple" style="width: 100%;" required>
                                                 @if(!isset($workorder->departmentMany))
                                                 @foreach($workorder->departmentMany as $data)
                                                 <option value="{{ $data->location->id }}" selected>{{ $data->department->name }}</option>
@@ -245,9 +244,9 @@ Workoder detail | {{ $workorder->title }}
     </div>
 
     <div class="col-sm-12 col-md-12 col-lg-4">
-        <div class="card mb-2 shadow-sm">
-            <div class="card-header text-primary">
-                <h6 class="m-0 font-weight-bold text-primary">Related Information</h6>
+        <div class="card mb-2 shadow">
+            <div class="card-header bg-primary text-light">
+                <h6 class="m-0 font-weight-bold">Related Information</h6>
             </div>
             <div class="card-body">
                 <table class="table table-sm">
@@ -255,14 +254,14 @@ Workoder detail | {{ $workorder->title }}
                         <td class="font-weight-bold">Locations</td>
                         <td>
                             @if ($workorder->status !== 'Done')
-                            <table class="table table-borderless">
+                            <table class="table table-borderless table-hover">
                                 <tbody>
                                     @foreach($workorder->locationMany as $location)
                                     @if($location->location !== null)
                                     <tr>
                                         <td><a href="#">{{ $location->location->name }}</a></td>
                                         <td class="text-right">
-                                            <a href="#" class="btn btn-danger btn-sm" data-placement="top" title="Hapus"><i class='fas fa-trash'></i></a>
+                                            <a href="#" class="btn btn-sm" data-placement="top" title="Hapus"><i class='fas fa-trash'></i></a>
                                         </td>
                                     </tr>
                                     @endif
@@ -271,7 +270,7 @@ Workoder detail | {{ $workorder->title }}
                             </table>
 
                             <small class="">
-                                <a href="#collapseAddLocation" data-toggle="collapse">+ add more location</a><br>
+                                <a href="#collapseAddLocation" data-toggle="collapse"><i class='fas fa-edit'></i> add location</a><br>
                             </small>
 
                             <div class="collapse" id="collapseAddLocation">
@@ -328,7 +327,7 @@ Workoder detail | {{ $workorder->title }}
                                     <tr>
                                         <td>{{ $asset->asset->name }}</td>
                                         <td class="text-right">
-                                            <a href="" class="btn btn-danger btn-sm" data-placement="top" title="Hapus"><i class='fas fa-trash'></i></a>
+                                            <a href="" class="btn btn-sm" data-placement="top" title="Hapus"><i class='fas fa-trash'></i></a>
                                         </td>
                                     </tr>
                                     @endif
@@ -336,25 +335,33 @@ Workoder detail | {{ $workorder->title }}
                                 </tbody>
                             </table>
 
-                            <form method="POST" action="{{ route('workorder.addrelation') }}" enctype="multipart/form-data">
-                                @csrf
-                                <input type="hidden" name="id" value="{{ $workorder->id }}">
-                                <div class="form-group">
-                                    <select class="js-example-basic-multiple custom-select form-control form-control-sm" id="select-asset-add" name="asset_ids[]" multiple="multiple" required>
-                                        @if(!isset($workorder->assetMany))
-                                        @foreach($workorder->assetMany as $data)
-                                        <option value="{{ $data->asset->id }}" selected>{{ $data->asset->name }}</option>
-                                        @endforeach
-                                        @endif
+                            <small class="">
+                                <a href="#collapseAddAsset" data-toggle="collapse"><i class='fas fa-edit'></i> add assets</a><br>
+                            </small>
 
-                                        @foreach($assetlist as $data)
-                                        <option value="{{ $data->id }}">{{ $data->name }}
-                                        </option>
-                                        @endforeach
-                                    </select>
+                            <div class="collapse" id="collapseAddAsset">
+                                <div class="card card-body">
+                                    <form method="POST" action="{{ route('workorder.addrelation') }}" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $workorder->id }}">
+                                        <div class="form-group">
+                                            <select class="js-example-basic-multiple custom-select" id="select-asset-add" name="asset_ids[]" multiple="multiple" required style="width: 100%;">
+                                                @if(!isset($workorder->assetMany))
+                                                @foreach($workorder->assetMany as $data)
+                                                <option value="{{ $data->asset->id }}" selected>{{ $data->asset->name }}</option>
+                                                @endforeach
+                                                @endif
+
+                                                @foreach($assetlist as $data)
+                                                <option value="{{ $data->id }}">{{ $data->name }}
+                                                </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary shadow btn-sm">Save</button>
+                                    </form>
                                 </div>
-                                <button type="submit" class="btn btn-primary shadow btn-sm">Save</button>
-                            </form>
+                            </div>
 
                             @else
 
@@ -397,9 +404,9 @@ Workoder detail | {{ $workorder->title }}
     </div>
 
     <div class="col-sm-12 col-md-12 col-lg-4">
-        <div class="card mb-2 shadow-sm">
-            <div class="card-header text-primary">
-                <h6 class="m-0 font-weight-bold text-primary">Comments</h6>
+        <div class="card mb-2 shadow">
+            <div class="card-header bg-primary text-light">
+                <h6 class="m-0 font-weight-bold">Comments</h6>
             </div>
             <div class="card-body">
                 @foreach($workorder->commentMany as $comment)
@@ -412,26 +419,33 @@ Workoder detail | {{ $workorder->title }}
                 </div>
                 <hr>
                 @endforeach
-                <hr>
-                <h5>Add Comments</h5>
-                <form method="POST" action="{{ route('workorder.addcomment') }}" enctype="multipart/form-data">
-                    @csrf
 
-                    <input type="hidden" name="id" value="{{ $workorder->id }}">
+                <small class="">
+                    <a href="#collapseAddComment" data-toggle="collapse"><i class='fas fa-edit'></i> add comments</a><br>
+                </small>
 
-                    <div class="form-group">
-                        <label for="" class="font-weight-bold">Insert Image <small class="text-danger">*</small></label>
-                        <input type="file" class="form-control-file" id="file" name="file" required>
-                        <small class="text-info">image only</small>
+                <div class="collapse" id="collapseAddComment">
+                    <div class="card card-body">
+                        <form method="POST" action="{{ route('workorder.addcomment') }}" enctype="multipart/form-data">
+                            @csrf
+
+                            <input type="hidden" name="id" value="{{ $workorder->id }}">
+
+                            <div class="form-group">
+                                <label for="" class="font-weight-bold">Insert Image <small class="text-danger">*</small></label>
+                                <input type="file" class="form-control-file" id="file" name="file" required>
+                                <small class="text-info">image only</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="file_remark" class="font-weight-bold">Description <small class="text-danger">*</small></label>
+                                <textarea name="description" id="file_remark" class="form-control" required rows="5"></textarea>
+                            </div>
+
+                            <button class="btn shadow btn-primary btn-sm" type="submit">Save</button>
+                        </form>
                     </div>
-
-                    <div class="form-group">
-                        <label for="file_remark" class="font-weight-bold">Description <small class="text-danger">*</small></label>
-                        <textarea name="description" id="file_remark" class="form-control" required rows="5"></textarea>
-                    </div>
-
-                    <button class="btn shadow btn-primary btn-sm" type="submit">Save</button>
-                </form>
+                </div>
             </div>
         </div>
     </div>

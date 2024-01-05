@@ -23,7 +23,7 @@
 
                     <div class="form-group">
                         <label for="department" class="font-weight-bolder">To Department</label>
-                        <select class="js-example-basic-multiple custom-select form-control form-control-sm" id="tag-department" name="department_ids[]" multiple="multiple" required>
+                        <select class="js-example-basic-multiple custom-select" id="tag-department" name="department_ids[]" multiple="multiple" required>
                             @foreach($department as $data)
                             <option value="{{ $data->id }}">{{ $data->name }}</option>
                             @endforeach

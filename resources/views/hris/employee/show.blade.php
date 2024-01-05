@@ -1,59 +1,61 @@
 @extends('layouts.app')
 
+@section('title')
+Employee details | {{ $employee->name }}
+@endsection
+
 @section('content')
-<div class="bg-light">
-    <h1 class="h3 mb-2">{{ $employee->name }}</h1>
-    <p class="my-1">
-        @if (!empty($role->jobtitle ))
-    <h5>{{ $role->jobtitle }} | {{ $role->level }}</h5>
-    @else
-    <p class="text-danger">belum kontrak</p>
-    @endif
-    </p>
-</div>
+<h3 class="h3 text-gray-800">{{ $employee->name }}</h3>
+@if (!empty($role->jobtitle ))
+<h5>{{ $role->jobtitle }} | {{ $role->level }}</h5>
+@else
+<p class="text-danger">belum kontrak</p>
+@endif
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('employee.index') }}">Employee List</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ $employee->name }}</li>
+    </ol>
+</nav>
 
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Employee Details</h6>
-    </div>
-
+<div class="card shadow mb-1">
     <div class="card-body">
         <div class="form-group">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#profile" data-placement="top"
-                        title="Summary profile">
-                        Profile
+                    <a class="nav-link active" data-toggle="tab" href="#profile" data-placement="top" title="Summary profile">
+                        <i class='fas fa-user'></i> Profile
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#journey" data-placement="top" title="Journey">
-                        <i class='fas fa-user-secret'></i>
+                        <i class='fas fa-user-secret'></i> Journey
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#leave" data-placement="top" title="Leave">
-                        <i class='fas fa-child'></i>
+                        <i class='fas fa-child'></i> Leave
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#inventory" data-placement="top" title="Inventory">
-                        <i class='fas fa-biking'></i>
+                        <i class='fas fa-biking'></i> Inventory
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#training" data-placement="top" title="Training">
-                        <i class='fas fa-user-graduate'></i>
+                        <i class='fas fa-user-graduate'></i> Training
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#log" data-placement="top" title="Log">
-                        <i class='fas fa-list'></i>
+                        <i class='fas fa-list'></i> Log
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#attendance" data-placement="top" title="Attendance">
-                        <i class='fas fa-user-clock'></i>
+                        <i class='fas fa-user-clock'></i> Attendance
                     </a>
                 </li>
             </ul>
@@ -62,99 +64,103 @@
         <div class="tab-content">
             <div class="tab-pane active" id="profile">
                 <div class="row">
-                    <div class="col-md-8 order-sm-2 order-md-1">
-                        <table class="table table-borderless">
-                            <tr>
-                                <td>NIK</td>
-                                <td><input type="text" class="form-control" value="{{ $employee->nik}}" disabled></td>
-                            </tr>
-                            <tr>
-                                <td>Name</td>
-                                <td><input type="text" class="form-control" value="{{ $employee->name}}" disabled></td>
-                            </tr>
-                            <tr>
-                                <td>Born</td>
-                                <td><input type="text" class="form-control" value="{{ $employee->bornplace}}, {{ $employee->borndate}}" disabled></td>
-                            </tr>
-                            <tr>
-                                <td>Address</td>
-                                <td><input type="text" class="form-control" value="{{ $employee->address}}" disabled></td>
-                            </tr>
-                            <tr>
-                                <td>Religion</td>
-                                <td><input type="text" class="form-control" value="{{ $employee->religion}}" disabled></td>
-                            </tr>
-                            <tr>
-                                <td>Phone</td>
-                                <td><input type="text" class="form-control" value="{{ $employee->phone}}" disabled></td>
-                            </tr>
-                            <tr>
-                                <td>Email</td>
-                                <td><input type="text" class="form-control" value="{{ $employee->email }}" disabled></td>
-                            </tr>
-                            <tr>
-                                <td>NPWP</td>
-                                <td><input type="text" class="form-control" value="{{ $employee->npwp }}" disabled></td>
-                            </tr>
-                        </table>        
+                    <div class="col-sm-12 col-md-12 col-lg-4 order-sm-2 order-md-1">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tr>
+                                    <td class="font-weight-bolder">NIK</td>
+                                    <td>{{ $employee->nik}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-weight-bolder">Name</td>
+                                    <td>{{ $employee->name}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-weight-bolder">Born</td>
+                                    <td>{{ $employee->bornplace}}, {{ $employee->borndate}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-weight-bolder">Address</td>
+                                    <td>{{ $employee->address}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-weight-bolder">Religion</td>
+                                    <td>{{ $employee->religion}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-weight-bolder">Phone</td>
+                                    <td>{{ $employee->phone}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-weight-bolder">Email</td>
+                                    <td>{{ $employee->email }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-weight-bolder">NPWP</td>
+                                    <td>{{ $employee->npwp }}</td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
-                    <div class="col-md-4 text-center order-sm-1 order-md-1 py-3">
+                    <div class="col-sm-12 col-md-12 col-lg-4 text-center order-sm-1 order-md-1 py-3">
                         <img src="https://source.unsplash.com/K4mSJ7kc0As/600x800" alt="" width="50%">
-                        <p class="py-3">{{ $employee->name}}</p>
                     </div>
                 </div>
+
                 <div class="row">
-                    <div class="col">
+                    <div class="col-sm-12 col-md-12 col-lg-6">
                         <div class="card mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Education</h6>
+                            <div class="card-header bg-secondary text-light">
+                                <h6 class="m-0 font-weight-bold">Education</h6>
                             </div>
                             <div class="card-body">
-                                <table class="table table-bordered table-hover table-responsive-sm table-sm" id="edu-table">
-                                    <thead class="text-center">
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Institution</th>
-                                            <th>Skill</th>
-                                            <th>Start</th>
-                                            <th>End</th>
-                                            <th>Description</th>
-                                            <th>File</th>
-                                    </thead>
-                                    <tbody class="text-center">
-                                        @foreach($employee->education as $edu)
-                                        <tr>
-                                            <td class="text-center">
-                                                {{ $loop->iteration }}
-                                            </td>
-                                            <td>
-                                                {{ $edu->institution }}
-                                            </td>
-                                            <td>{{ $edu->category }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($edu->start)->format('d/m/y') }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($edu->end)->format('d/m/y') }}</td>
-                                            <td>{{ $edu->description }}</td>
-                                            <td>
-                                                <a href="{{ $edu->file }}" class="btn btn-primary btn-sm"
-                                                    target="_blank">
-                                                    <i class='far fa-eye'></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                <div class="table-responsive">
+                                    <table class="table table-hover" id="edu-table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Institution</th>
+                                                <th>Skill</th>
+                                                <th>Start</th>
+                                                <th>End</th>
+                                                <th>Description</th>
+                                                <th>File</th>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($employee->education as $edu)
+                                            <tr>
+                                                <td>
+                                                    {{ $loop->iteration }}
+                                                </td>
+                                                <td>
+                                                    {{ $edu->institution }}
+                                                </td>
+                                                <td>{{ $edu->category }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($edu->start)->format('d/m/y') }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($edu->end)->format('d/m/y') }}</td>
+                                                <td>{{ $edu->description }}</td>
+                                                <td>
+                                                    <a href="{{ $edu->file }}" class="btn btn-primary btn-sm" target="_blank">
+                                                        <i class='far fa-eye'></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col">
+
+                    <div class="col-sm-12 col-md-12 col-lg-6">
                         <div class="card mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Experience</h6>
+                            <div class="card-header bg-secondary text-light">
+                                <h6 class="m-0 font-weight-bold">Experience</h6>
                             </div>
                             <div class="card-body">
-                                <table class="table table-bordered table-hover table-responsive-sm table-sm">
-                                    <thead class="text-center">
+                                <table class="table table-hover">
+                                    <thead>
                                         <tr>
                                             <th>#</th>
                                             <th>Company</th>
@@ -167,8 +173,8 @@
                                     </thead>
                                     <tbody>
                                         @foreach($employee->experience as $exp)
-                                        <tr class="text-center">
-                                            <td class="text-center">
+                                        <tr>
+                                            <td>
                                                 {{ $loop->iteration }}
                                             </td>
                                             <td>
@@ -179,8 +185,7 @@
                                             <td>{{ \Carbon\Carbon::parse($edu->end)->format('d/m/y') }}</td>
                                             <td>{{ $exp->description }}</td>
                                             <td>
-                                                <a href="{{ $exp->file }}" class="btn btn-primary btn-sm"
-                                                    target="_blank">
+                                                <a href="{{ $exp->file }}" class="btn btn-primary btn-sm" target="_blank">
                                                     <i class='far fa-eye'></i>
                                                 </a>
                                             </td>
@@ -192,15 +197,16 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="row">
-                    <div class="col">
+                    <div class="col-sm-12 col-md-12 col-lg-6">
                         <div class="card mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Family</h6>
+                            <div class="card-header bg-secondary text-light">
+                                <h6 class="m-0 font-weight-bold">Family</h6>
                             </div>
                             <div class="card-body">
-                                <table class="table table-bordered table-hover table-responsive-sm table-sm">
-                                    <thead class="text-center">
+                                <table class="table">
+                                    <thead>
                                         <tr>
                                             <th>#</th>
                                             <th>Name</th>
@@ -211,8 +217,8 @@
                                     </thead>
                                     <tbody>
                                         @foreach($employee->family as $fml)
-                                        <tr class="text-center">
-                                            <td class="text-center">
+                                        <tr>
+                                            <td>
                                                 {{ $loop->iteration }}
                                             </td>
                                             <td>
@@ -231,14 +237,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col">
+
+                    <div class="col-sm-12 col-md-12 col-lg-6">
                         <div class="card mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Sickness</h6>
+                            <div class="card-header bg-secondary text-light">
+                                <h6 class="m-0 font-weight-bold">Sickness</h6>
                             </div>
                             <div class="card-body">
-                                <table class="table table-bordered table-hover table-responsive-sm table-sm">
-                                    <thead class="text-center">
+                                <table class="table">
+                                    <thead>
                                         <tr>
                                             <th>#</th>
                                             <th>Disease name</th>
@@ -247,8 +254,8 @@
                                     </thead>
                                     <tbody>
                                         @foreach($employee->sickness as $sick)
-                                        <tr class="text-center">
-                                            <td class="text-center">
+                                        <tr>
+                                            <td>
                                                 {{ $loop->iteration }}
                                             </td>
                                             <td>
@@ -268,7 +275,7 @@
             </div>
 
             <div class="tab-pane fade" id="journey">
-                <div class="col-md-5">
+                <div class="col-sm-12 col-md-12 col-lg-4">
                     <table class="table table-borderless">
                         <tr>
                             <td>Employee number</td>
@@ -281,80 +288,85 @@
                     </table>
                 </div>
 
-                <div class="card mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Contract</h6>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-6">
+                        <div class="card mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Contract</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table" id="contract-table">
+                                        <thead>
+                                            <tr class="text-center">
+                                                <th>Start</th>
+                                                <th>End</th>
+                                                <th>Department</th>
+                                                <th>Jobtitle</th>
+                                                <th>Level</th>
+                                                <th>Description</th>
+                                                <th>File</th>
+                                            </tr>
+                                        </thead>
+                                        @foreach($employee->contract as $crt)
+                                        <tr>
+                                            <td>{{ \Carbon\Carbon::parse($crt->start)->format('d/m/y') }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($crt->end)->format('d/m/y') }}</td>
+                                            <td>{{ $crt->department->name }}</td>
+                                            <td>{{ $crt->jobtitle }}</td>
+                                            <td>{{ $crt->level }}</td>
+                                            <td>{{ $crt->description }}</td>
+                                            <td><a href="{{ $crt->file }}" class="btn btn-primary btn-sm" target="_blank"><i class='far fa-eye'></i></a></td>
+                                        </tr>
+                                        @endforeach
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <table class="table table-bordered table-hover table-responsive-sm table-sm">
-                            <thead>
-                                <tr class="text-center">
-                                    <th>Start</th>
-                                    <th>End</th>
-                                    <th>Department</th>
-                                    <th>Jobtitle</th>
-                                    <th>Level</th>
-                                    <th>Description</th>
-                                    <th>File</th>
-                                </tr>
-                            </thead>
-                            @foreach($employee->contract as $crt)
-                            <tr>
-                                <td>{{ \Carbon\Carbon::parse($crt->start)->format('d/m/y') }}</td>
-                                <td>{{ \Carbon\Carbon::parse($crt->end)->format('d/m/y') }}</td>
-                                <td>{{ $crt->department->name }}</td>
-                                <td>{{ $crt->jobtitle }}</td>
-                                <td>{{ $crt->level }}</td>
-                                <td>{{ $crt->description }}</td>
-                                <td><a href="{{ $crt->file }}" class="btn btn-primary btn-sm" target="_blank"><i
-                                            class='far fa-eye'></i></a></td>
-                            </tr>
-                            @endforeach
-                        </table>
+
+                    <div class="col-sm-12 col-md-12 col-lg-6">
+                        <div class="card mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Punishment & Reward</h6>
+                            </div>
+                            <div class="card-body">
+                                <table class="table">
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th class="font-weight-bold">#</th>
+                                            <th>Type</th>
+                                            <th>Start</th>
+                                            <th>End</th>
+                                            <th>Description</th>
+                                            <th>File</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-center">
+                                        @foreach($employee->rewpun as $data)
+                                        <tr>
+                                            <td class="text-center font-weight-bold">
+                                                {{ $loop->iteration }}
+                                            </td>
+                                            <td>
+                                                @if ($data->type == 'Reward')
+                                                <span class="badge badge-success">Reward</span>
+                                                @else
+                                                <span class="badge badge-danger">Pusnishment</span>
+                                                @endif
+                                            </td>
+                                            <td>{{ \Carbon\Carbon::parse($data->start)->format('d/m/y') }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($data->end)->format('d/m/y') }}</td>
+                                            <td>{{ $data->description }}</td>
+                                            <td><a href="{{ $data->file }}" class="btn btn-primary btn-sm" target="_blank"><i class='far fa-eye'></i></a></td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="card mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Punishment & Reward</h6>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-bordered table-hover table-responsive-sm table-sm">
-                            <thead class="text-center">
-                                <tr>
-                                    <th class="font-weight-bold">#</th>
-                                    <th>Type</th>
-                                    <th>Start</th>
-                                    <th>End</th>
-                                    <th>Description</th>
-                                    <th>File</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-center">
-                                @foreach($employee->rewpun as $data)
-                                <tr>
-                                    <td class="text-center font-weight-bold">
-                                        {{ $loop->iteration }}
-                                    </td>
-                                    <td>
-                                        @if ($data->type == 'Reward')
-                                        <span class="badge badge-success">Reward</span>
-                                        @else
-                                        <span class="badge badge-danger">Pusnishment</span>
-                                        @endif
-                                    </td>
-                                    <td>{{ \Carbon\Carbon::parse($data->start)->format('d/m/y') }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($data->end)->format('d/m/y') }}</td>
-                                    <td>{{ $data->description }}</td>
-                                    <td><a href="{{ $data->file }}" class="btn btn-primary btn-sm" target="_blank"><i
-                                                class='far fa-eye'></i></a></td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
             </div>
 
             <div class="tab-pane fade" id="leave">
@@ -375,9 +387,9 @@
                             <td class="text-center">
                                 @if ($balanceAl == '0')
                                 <h3 class="text-danger">{{ $balanceAl }}</h3>
-                                    <p class="text-danger font-weight-bold"></p>
-                                @else 
-                                    <p class="text-success font-weight-bold">{{ $balanceAl }}</p>
+                                <p class="text-danger font-weight-bold"></p>
+                                @else
+                                <p class="text-success font-weight-bold">{{ $balanceAl }}</p>
                                 @endif
                             </td>
                         </tr>
@@ -387,9 +399,9 @@
                             <td class="text-center">{{ $takenEo }}</td>
                             <td class="text-center">
                                 @if ($balanceEo == '0')
-                                    <p class="text-danger font-weight-bold">{{ $balanceEo }}</p>
-                                @else 
-                                    <p class="text-success font-weight-bold">{{ $balanceEo }}</p>
+                                <p class="text-danger font-weight-bold">{{ $balanceEo }}</p>
+                                @else
+                                <p class="text-success font-weight-bold">{{ $balanceEo }}</p>
                                 @endif
                             </td>
                         </tr>
@@ -399,9 +411,9 @@
                             <td class="text-center">{{ $takenPh }}</td>
                             <td class="text-center">
                                 @if ($balancePh == '0')
-                                    <p class="text-danger font-weight-bold">{{ $balancePh }}</p>
-                                @else 
-                                    <p class="text-success font-weight-bold">{{ $balancePh }}</p>
+                                <p class="text-danger font-weight-bold">{{ $balancePh }}</p>
+                                @else
+                                <p class="text-success font-weight-bold">{{ $balancePh }}</p>
                                 @endif
                             </td>
                         </tr>
@@ -424,7 +436,7 @@
                                     <th>Description</th>
                                     <th style="width: 10%;">Leader Appr.</th>
                                     <th style="width: 10%;">HR Appr.</th>
-                                </tr>
+                                    </tr>
                             </thead>
                             <tbody>
                                 @foreach($employee->leave as $data)
@@ -667,7 +679,7 @@
 @endsection
 
 @section('css')
-{{--  --}}
+{{-- --}}
 @endsection
 
 @section('js')
@@ -680,8 +692,16 @@
         theme: 'bootstrap'
     });
 
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('#rewpun').DataTable({
+            responsive: true
+        });
+
+        $('#edu-table').DataTable({
+            responsive: true
+        });
+
+        $('#contract-table').DataTable({
             responsive: true
         });
 
@@ -691,6 +711,8 @@
 
     });
 
-
+    $(document).ready(function() {
+        $('.table').DataTable();
+    });
 </script>
 @endsection

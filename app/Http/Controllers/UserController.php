@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Models\User;
+use App\Models\Employee;
 use App\Models\Userrole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -34,16 +35,6 @@ class UserController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|unique:users|max:255',
             'password' => 'required|min:6',
-            'admin' => 'required',
-            'signage' => 'required',
-            'workorder' => 'required',
-            'task' => 'required',
-            'asset' => 'required',
-            'voucher' => 'required',
-            'beo' => 'required',
-            'hris' => 'required',
-            'attendance' => 'required',
-            'leave' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -57,19 +48,26 @@ class UserController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
+        Employee::create([
+            'user_id' => $newuser->id,
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+
         Userrole::create([
             'user_id' => $newuser->id,
-            'admin' => $request->admin,
-            'signage' => $request->signage,
-            'workorder' => $request->workorder,
-            'task' => $request->task,
-            'asset' => $request->asset,
-            'voucher' => $request->voucher,
-            'beo' => $request->beo,
-            'hris' => $request->hris,
-            'attendance' => $request->attendance,
-            'leave' => $request->leave,
+            'admin' => '0',
+            'signage' => '0',
+            'workorder' => '0',
+            'task' => '0',
+            'asset' => '0',
+            'voucher' => '0',
+            'beo' => '0',
+            'hris' => '0',
+            'attendance' => '0',
+            'leave' => '0',
         ]);
+        
 
         alert()->success('Berhasil.','User berhasil dibuat');
         return redirect('/user');

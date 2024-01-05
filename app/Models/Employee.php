@@ -25,7 +25,8 @@ class Employee extends Model
         'joindate',
         'email',
         'photo',
-        'status'
+        'status',
+        'user_id'
     ];
 
     public function user()
