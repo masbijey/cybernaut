@@ -75,9 +75,13 @@ class UserController extends Controller
 
     public function show($id)
     {
-        $data = User::findOrFail($id);
-
-        return view('user.show', compact('data', 'id')); 
+        if (in_array(Auth::user()->role->admin, ['3', '4'])) {
+            $data = User::findOrFail($id);
+            return view('user.show', compact('data', 'id'));    
+        } else {
+            alert()->error('Stop.', 'Access Forbidden !');
+            return redirect('user');    
+        }
     }
 
     public function edit($id)
@@ -88,18 +92,18 @@ class UserController extends Controller
     public function update(Request $request, User $id)
     {
 
-        // $validator = Validator::make($request->all(), [
-        //     'admin' => $request->admin,
-        //     'signage' => $request->signage,
-        //     'workorder' => $request->workorder,
-        //     'task' => $request->task,
-        //     'asset' => $request->asset,
-        //     'voucher' => $request->voucher,
-        //     'beo' => $request->beo,
-        //     'hris' => $request->hris,
-        //     'attendance' => $request->attendance,
-        //     'leave' => $request->leave,
-        // ]);
+        $validator = Validator::make($request->all(), [
+            'admin' => 'required|number',
+            'signage' => 'required|number',
+            'workorder' => 'required|number',
+            'task' => 'required|number',
+            'asset' => 'required|number',
+            'voucher' => 'required|number',
+            'beo' => 'required|number',
+            'hris' => 'required|number',
+            'attendance' => 'required|number',
+            'leave' => 'required|number',
+        ]);
 
         $data = Userrole::where('user_id', $id->id);
 

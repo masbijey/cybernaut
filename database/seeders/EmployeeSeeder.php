@@ -29,99 +29,48 @@ class EmployeeSeeder extends Seeder
             'email' => 'masbijey@gmail.com'
         ]);
 
-        DB::table('employees')->insert([
-            'user_id'  => '2',
-            'name' => 'Yesita Putri',
-            'gender' => 'Laki-laki',
-            'npwp' => '75.937.878.9-331.000',
-            'nik' => '1673061207950004',
-            'religion' => 'Islam',
-            'bornplace' => 'Lubuklinggau',
-            'borndate' => '2023-03-22',
-            'address' => 'Thehok, Jambi',
-            'phone' => '082307761670',
-            'status_perkawinan' => 'kawin',
-            'joindate' => '01-06-2021',
-            'nip' => '0023',
-            'email' => 'masbijey@gmail.com'
-        ]);
-
-        DB::table('employees')->insert([
-            'user_id'  => '3',
-            'name' => 'Ananda Gentha',
-            'gender' => 'Laki-laki',
-            'npwp' => '75.937.878.9-331.000',
-            'nik' => '1673061207950004',
-            'religion' => 'Islam',
-            'bornplace' => 'Lubuklinggau',
-            'borndate' => '2023-03-22',
-            'address' => 'Thehok, Jambi',
-            'phone' => '082307761670',
-            'status_perkawinan' => 'kawin',
-            'joindate' => '01-06-2021',
-            'nip' => '0023',
-            'email' => 'masbijey@gmail.com'
-        ]);
-
-        DB::table('employees')->insert([
-            'user_id'  => '4',
-            'name' => 'Nia Oktafitri',
-            'gender' => 'Laki-laki',
-            'npwp' => '75.937.878.9-331.000',
-            'nik' => '1673061207950004',
-            'religion' => 'Islam',
-            'bornplace' => 'Lubuklinggau',
-            'borndate' => '2023-03-22',
-            'address' => 'Thehok, Jambi',
-            'phone' => '082307761670',
-            'status_perkawinan' => 'kawin',
-            'joindate' => '01-06-2021',
-            'nip' => '0023',
-            'email' => 'masbijey@gmail.com'
+        DB::table('departments')->insert([
+            'name'  => 'Information Technology'
         ]);
 
         DB::table('departments')->insert([
-            'name'  => 'Cybernaut Unit'
+            'name'  => 'Human and Resource'
         ]);
 
         DB::table('departments')->insert([
-            'name'  => 'Source Unit'
+            'name'  => 'Sales and Marketing'
         ]);
 
         DB::table('departments')->insert([
-            'name'  => 'Brand and Business Unit'
+            'name'  => 'Accounting'
         ]);
 
         DB::table('departments')->insert([
-            'name'  => 'Money Unit'
+            'name'  => 'Housekeeping'
         ]);
 
         DB::table('departments')->insert([
-            'name'  => 'Cleaning Unit'
+            'name'  => 'Engineering'
         ]);
 
         DB::table('departments')->insert([
-            'name'  => 'Fixit Unit'
+            'name'  => 'Front Office'
         ]);
 
         DB::table('departments')->insert([
-            'name'  => 'Welcome Unit'
+            'name'  => 'FB Service'
         ]);
 
         DB::table('departments')->insert([
-            'name'  => 'FB Service Unit'
-        ]);
-
-        DB::table('departments')->insert([
-            'name'  => 'FB Kitchen Unit'
+            'name'  => 'FB Kitchen'
         ]);
 
         DB::table('assetcats')->insert([
-            'name'  => 'IT - Notebook'
+            'name'  => 'IT - Hardware'
         ]);
 
         DB::table('assetcats')->insert([
-            'name'  => 'IT - CPU'
+            'name'  => 'IT - Software'
         ]);
     }
 }

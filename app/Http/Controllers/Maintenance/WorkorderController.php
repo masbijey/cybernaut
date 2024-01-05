@@ -35,242 +35,286 @@ class WorkorderController extends Controller
 
     public function create()
     {
-        $employee = Employee::all();
-        $asset = Asset::all();
-        $location = Location::all();
-        $department = Department::all();
+        if (in_array(Auth::user()->role->workorder, ['1', '2', '3', '4'])) {
+            $employee = Employee::all();
+            $asset = Asset::all();
+            $location = Location::all();
+            $department = Department::all();
 
-        return view('maintenance.workorder.create', compact('employee', 'asset', 'location', 'department'));
+            return view('maintenance.workorder.create', compact('employee', 'asset', 'location', 'department'));
+        } else {
+            alert()->error('Stop.', 'Access Forbidden !');
+            return redirect()->back();
+        }
     }
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'department_ids' => 'required',
-            'asset_ids' => 'nullable',
-            'location_ids' => 'nullable',
-            'due_date' => 'required',
-            'priority' => 'required',
-            'title' => 'required',
-            'description' => 'required',
-            'file' => 'required'
-        ]);
+        if (in_array(Auth::user()->role->workorder, ['2', '3', '4'])) {
+            $validator = Validator::make($request->all(), [
+                'department_ids' => 'required',
+                'asset_ids' => 'nullable',
+                'location_ids' => 'nullable',
+                'due_date' => 'required',
+                'priority' => 'required',
+                'title' => 'required',
+                'description' => 'required',
+                'file' => 'required'
+            ]);
 
-        if ($validator->fails()) {
-            alert()->error('Gagal.', 'pastikan mengisi data dengan benar');
-            return redirect('/workorder/create')
-                ->withErrors($validator)
-                ->withInput();
-        }
-
-        $createdBy = Auth::user()->id;
-        $status = "Open";
-        $order_no = 'WO-' . date('Ymd') . '-' . sprintf('%04d', (WorkOrder::count() + 1));
-        $workorder = Workorder::create([
-            'order_no' => $order_no,
-            'created_by' => $createdBy,
-            'due_date' => $request->due_date,
-            'priority' => $request->priority,
-            'title' => $request->title,
-            'description' => $request->description,
-            'status' => $status
-        ]);
-
-        $path = $request->file->store('public/wo_comment');
-        $url = Storage::url($path);
-
-        $update_by = Auth::user()->id;
-        $description = 'Before';
-        Workordercomment::create([
-            'employee_id' => $update_by,
-            'workorder_id' => $workorder->id,
-            'file' => $url,
-            'description' => $description,
-        ]);
-
-        if (isset($request->asset_ids)) {
-            $assets = $request->asset_ids;
-            foreach ($assets as $asset) {
-                Workordertag::create([
-                    'workorder_id' => $workorder->id,
-                    'asset_id' => $asset,
-                ]);
+            if ($validator->fails()) {
+                alert()->error('Gagal.', 'pastikan mengisi data dengan benar');
+                return redirect('/workorder/create')
+                    ->withErrors($validator)
+                    ->withInput();
             }
-        }
 
-        if (isset($request->location_ids)) {
-            $locations = $request->location_ids;
-            foreach ($locations as $location) {
-                Workordertag::create([
-                    'workorder_id' => $workorder->id,
-                    'location_id' => $location,
-                ]);
+            $createdBy = Auth::user()->id;
+            $status = "Open";
+            $order_no = 'WO-' . date('Ymd') . '-' . sprintf('%04d', (WorkOrder::count() + 1));
+            $workorder = Workorder::create([
+                'order_no' => $order_no,
+                'created_by' => $createdBy,
+                'due_date' => $request->due_date,
+                'priority' => $request->priority,
+                'title' => $request->title,
+                'description' => $request->description,
+                'status' => $status
+            ]);
+
+            $path = $request->file->store('public/wo_comment');
+            $url = Storage::url($path);
+
+            $update_by = Auth::user()->id;
+            $description = 'Before';
+            Workordercomment::create([
+                'employee_id' => $update_by,
+                'workorder_id' => $workorder->id,
+                'file' => $url,
+                'description' => $description,
+            ]);
+
+            if (isset($request->asset_ids)) {
+                $assets = $request->asset_ids;
+                foreach ($assets as $asset) {
+                    Workordertag::create([
+                        'workorder_id' => $workorder->id,
+                        'asset_id' => $asset,
+                    ]);
+                }
             }
-        }
 
-        if (isset($request->department_ids)) {
-            $departments = $request->department_ids;
-            foreach ($departments as $department) {
-                Workordertag::create([
-                    'workorder_id' => $workorder->id,
-                    'department_id' => $department,
-                ]);
+            if (isset($request->location_ids)) {
+                $locations = $request->location_ids;
+                foreach ($locations as $location) {
+                    Workordertag::create([
+                        'workorder_id' => $workorder->id,
+                        'location_id' => $location,
+                    ]);
+                }
             }
-        }
 
-        alert()->success('Berhasil.', 'Data berhasil ditambahkan');
-        return redirect('/workorder/detail/' . $workorder->order_no);
+            if (isset($request->department_ids)) {
+                $departments = $request->department_ids;
+                foreach ($departments as $department) {
+                    Workordertag::create([
+                        'workorder_id' => $workorder->id,
+                        'department_id' => $department,
+                    ]);
+                }
+            }
+
+            alert()->success('Berhasil.', 'Data berhasil ditambahkan');
+            return redirect('/workorder/detail/' . $workorder->order_no);
+        } else {
+            alert()->error('Stop.', 'Access Forbidden !');
+            return redirect()->back();
+        }
     }
 
     public function show($orderNumber)
     {
-        $workorder = WorkOrder::where('order_no', $orderNumber)->with('user')->firstOrFail();
-        $locationlist = Location::all();
-        $assetlist = Asset::all();
-        $departmentlist = Department::all();
-        $employeelist = Employee::all();
+        if (in_array(Auth::user()->role->workorder, ['1', '2', '3', '4'])) {
+            $workorder = WorkOrder::where('order_no', $orderNumber)->with('user')->firstOrFail();
+            $locationlist = Location::all();
+            $assetlist = Asset::all();
+            $departmentlist = Department::all();
+            $employeelist = Employee::all();
 
-        return view('maintenance.workorder.detail', compact('workorder', 'locationlist', 'assetlist', 'departmentlist', 'employeelist'));
+            return view('maintenance.workorder.detail', compact('workorder', 'locationlist', 'assetlist', 'departmentlist', 'employeelist'));
+        } else {
+            alert()->error('Stop.', 'Access Forbidden !');
+            return redirect()->back();
+        }
     }
 
     public function addcomment(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'file' => 'required|mimes:jpeg,jpg,png,pdf',
-            'description' => 'required',
-        ]);
+        if (in_array(Auth::user()->role->workorder, ['1', '2', '3', '4'])) {
+            $validator = Validator::make($request->all(), [
+                'file' => 'required|mimes:jpeg,jpg,png,pdf',
+                'description' => 'required',
+            ]);
 
-        if ($validator->fails()) {
-            alert()->error('Gagal.', 'pastikan mengisi data dengan benar');
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
+            if ($validator->fails()) {
+                alert()->error('Gagal.', 'pastikan mengisi data dengan benar');
+                return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+
+            $path = $request->file->store('public/wo_comment');
+            $url = Storage::url($path);
+
+            $update_by = Auth::user()->id;
+
+            Workordercomment::create([
+                'employee_id' => $update_by,
+                'workorder_id' => $request->id,
+                'file' => $url,
+                'description' => $request->description,
+            ]);
+
+            alert()->success('Berhasil.', 'Data berhasil ditambahkan');
+            return redirect()->back();
+        } else {
+            alert()->error('Stop.', 'Access Forbidden !');
+            return redirect()->back();
         }
-
-        $path = $request->file->store('public/wo_comment');
-        $url = Storage::url($path);
-
-        $update_by = Auth::user()->id;
-
-        Workordercomment::create([
-            'employee_id' => $update_by,
-            'workorder_id' => $request->id,
-            'file' => $url,
-            'description' => $request->description,
-        ]);
-
-        alert()->success('Berhasil.', 'Data berhasil ditambahkan');
-        return redirect()->back();
     }
 
     public function addrelation(Request $request)
     {
-        if (isset($request->asset_ids)) {
-            $assets = $request->asset_ids;
-            foreach ($assets as $asset) {
-                Workordertag::create([
-                    'workorder_id' => $request->id,
-                    'asset_id' => $asset,
-                ]);
-            }
-        }
+        if (in_array(Auth::user()->role->workorder, ['2', '3', '4'])) {
 
-        if (isset($request->location_ids)) {
-            $locations = $request->location_ids;
-            foreach ($locations as $location) {
-                Workordertag::create([
-                    'workorder_id' => $request->id,
-                    'location_id' => $location,
-                ]);
+            if (isset($request->asset_ids)) {
+                $assets = $request->asset_ids;
+                foreach ($assets as $asset) {
+                    Workordertag::create([
+                        'workorder_id' => $request->id,
+                        'asset_id' => $asset,
+                    ]);
+                }
             }
-        }
 
-        if (isset($request->department_ids)) {
-            $abc = $request->department_ids;
-            foreach ($abc as $department) {
-                Workordertag::create([
-                    'workorder_id' => $request->id,
-                    'department_id' => $department,
-                ]);
+            if (isset($request->location_ids)) {
+                $locations = $request->location_ids;
+                foreach ($locations as $location) {
+                    Workordertag::create([
+                        'workorder_id' => $request->id,
+                        'location_id' => $location,
+                    ]);
+                }
             }
-        }
 
-        return redirect()->back();
+            if (isset($request->department_ids)) {
+                $abc = $request->department_ids;
+                foreach ($abc as $department) {
+                    Workordertag::create([
+                        'workorder_id' => $request->id,
+                        'department_id' => $department,
+                    ]);
+                }
+            }
+
+            return redirect()->back();
+        } else {
+            alert()->error('Stop.', 'Access Forbidden !');
+            return redirect()->back();
+        }
     }
 
     public function wodone(Request $request)
     {
-        $update_by = Auth::user()->id;
+        if (in_array(Auth::user()->role->workorder, ['2', '3', '4'])) {
 
-        $wo = workorder::where('id', $request->id)->firstOrFail();
-        $wo->status = 'Done';
-        $wo->finished_by = $update_by;
-        $wo->finished_date = now();
-        $wo->save();
+            $update_by = Auth::user()->id;
 
-        if (isset($request->member_ids)) {
-            $abc = $request->member_ids;
-            foreach ($abc as $member) {
-                Workordermember::create([
-                    'workorder_id' => $request->id,
-                    'employee_id' => $member,
-                ]);
+            $wo = workorder::where('id', $request->id)->firstOrFail();
+            $wo->status = 'Done';
+            $wo->finished_by = $update_by;
+            $wo->finished_date = now();
+            $wo->save();
+
+            if (isset($request->member_ids)) {
+                $abc = $request->member_ids;
+                foreach ($abc as $member) {
+                    Workordermember::create([
+                        'workorder_id' => $request->id,
+                        'employee_id' => $member,
+                    ]);
+                }
             }
+
+
+            $validator = Validator::make($request->all(), [
+                'file' => 'required|mimes:jpeg,jpg,png,pdf',
+            ]);
+
+            if ($validator->fails()) {
+                alert()->error('Gagal.', 'pastikan mengisi data dengan benar');
+                return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+
+            $path = $request->file->store('public/wo_comment');
+            $url = Storage::url($path);
+
+            $update_by = Auth::user()->id;
+            $description = 'Done.';
+            Workordercomment::create([
+                'employee_id' => $update_by,
+                'workorder_id' => $request->id,
+                'file' => $url,
+                'description' => $description,
+            ]);
+
+            alert()->success('Berhasil.', 'Work Order has been Finished');
+            return redirect()->back();
+        } else {
+            alert()->error('Stop.', 'Access Forbidden !');
+            return redirect()->back();
         }
-
-
-        $validator = Validator::make($request->all(), [
-            'file' => 'required|mimes:jpeg,jpg,png,pdf',
-        ]);
-
-        if ($validator->fails()) {
-            alert()->error('Gagal.', 'pastikan mengisi data dengan benar');
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
-        }
-
-        $path = $request->file->store('public/wo_comment');
-        $url = Storage::url($path);
-
-        $update_by = Auth::user()->id;
-        $description = 'Done.';
-        Workordercomment::create([
-            'employee_id' => $update_by,
-            'workorder_id' => $request->id,
-            'file' => $url,
-            'description' => $description,
-        ]);
-
-        alert()->success('Berhasil.', 'Work Order has been Finished');
-        return redirect()->back();
     }
 
     public function woreceived(Request $request)
     {
-        $update_by = Auth::user()->id;
+        if (in_array(Auth::user()->role->workorder, ['2', '3', '4'])) {
 
-        $wo = workorder::where('id', $request->id)->firstOrFail();
-        $wo->status = 'On Progress';
-        $wo->received_by = $update_by;
-        $wo->received_date = now();
-        $wo->save();
+            $update_by = Auth::user()->id;
 
-        alert()->success('Berhasil.', 'Work Order has been Confirm by HOD');
-        return redirect()->back();
+            $wo = workorder::where('id', $request->id)->firstOrFail();
+            $wo->status = 'On Progress';
+            $wo->received_by = $update_by;
+            $wo->received_date = now();
+            $wo->save();
+
+            alert()->success('Berhasil.', 'Work Order has been Confirm by HOD');
+            return redirect()->back();
+        } else {
+            alert()->error('Stop.', 'Access Forbidden !');
+            return redirect()->back();
+        }
     }
 
 
     public function woundone($orderNumber)
     {
-        $update_by = Auth::user()->id;
+        if (in_array(Auth::user()->role->workorder, ['4'])) {
 
-        $wo = WorkOrder::where('order_no', $orderNumber)->firstOrFail();
-        $wo->status = 'On Progress';
-        $wo->employee_id = $update_by;
-        $wo->updated_at = now();
-        $wo->save();
+            $update_by = Auth::user()->id;
 
-        return redirect()->back();
+            $wo = WorkOrder::where('order_no', $orderNumber)->firstOrFail();
+            $wo->status = 'On Progress';
+            $wo->employee_id = $update_by;
+            $wo->updated_at = now();
+            $wo->save();
+
+            return redirect()->back();
+        } else {
+            alert()->error('Stop.', 'Access Forbidden !');
+            return redirect()->back();
+        }
     }
 }

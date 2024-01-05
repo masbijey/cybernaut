@@ -132,42 +132,19 @@ Route::controller(TaskController::class)->middleware('auth')->group(function () 
     Route::get('task/undone/{id}', 'taskundone')->name('task.undone');
 });
 
-Route::controller(WorkorderController::class)->group(function () {
-    Route::get('workorder', 'index')->name('workorder.index')
-        ->middleware((['auth', 'can:workorder-1234']));
-
-    Route::post('workorder', 'store')->name('workorder.store')
-        ->middleware((['auth', 'can:workorder-234']));
-
-    Route::get('workorder/create', 'create')->name('workorder.create')
-        ->middleware((['auth', 'can:workorder-234']));
-
-    Route::get('workorder/detail/{orderNumber}', 'show')->name('workorder.show')
-        ->middleware((['auth', 'can:workorder-1234']));
-
-    Route::put('workorder/{id}', 'update')->name('workorder.update')
-        ->middleware((['auth', 'can:workorder-234']));
-
-    Route::delete('workorder/{id}', 'destroy')->name('workorder.destroy')
-        ->middleware((['auth', 'can:workorder-4']));
-
-    Route::get('workorder/{id}/edit', 'edit')->name('workorder.edit')
-        ->middleware((['auth', 'can:workorder-234']));
-
-    Route::post('workorder/addcomment', 'addcomment')->name('workorder.addcomment')
-        ->middleware((['auth', 'can:workorder-1234']));
-
-    Route::post('workorder/done', 'wodone')->name('workorder.done')
-        ->middleware((['auth', 'can:workorder-234']));
-
-    Route::post('workorder/received', 'woreceived')->name('workorder.received')
-        ->middleware((['auth', 'can:workorder-234']));
-
-    Route::get('workorder/undone/{orderNumber}', 'woundone')->name('workorder.undone')
-        ->middleware((['auth', 'can:workorder-234']));
-
-    Route::post('workorder/addrelation', 'addrelation')->name('workorder.addrelation')
-        ->middleware((['auth', 'can:workorder-234']));
+Route::controller(WorkorderController::class)->middleware('auth')->group(function () {
+    Route::get('workorder', 'index')->name('workorder.index');
+    Route::post('workorder', 'store')->name('workorder.store');
+    Route::get('workorder/create', 'create')->name('workorder.create');
+    Route::get('workorder/detail/{orderNumber}', 'show')->name('workorder.show');
+    Route::put('workorder/{id}', 'update')->name('workorder.update');
+    Route::delete('workorder/{id}', 'destroy')->name('workorder.destroy');
+    Route::get('workorder/{id}/edit', 'edit')->name('workorder.edit');
+    Route::post('workorder/addcomment', 'addcomment')->name('workorder.addcomment');
+    Route::post('workorder/done', 'wodone')->name('workorder.done');
+    Route::post('workorder/received', 'woreceived')->name('workorder.received');
+    Route::get('workorder/undone/{orderNumber}', 'woundone')->name('workorder.undone');
+    Route::post('workorder/addrelation', 'addrelation')->name('workorder.addrelation');
 });
 
 Route::controller(DepartmentController::class)->middleware('auth')->group(function () {

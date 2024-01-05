@@ -23,7 +23,7 @@ class UserroleSeeder extends Seeder
             'hris' => '2',
             'attendance' => '2',
             'leave' => '2',
-            'admin' => '1'
+            'admin' => '3'
         ]);
     }
 }

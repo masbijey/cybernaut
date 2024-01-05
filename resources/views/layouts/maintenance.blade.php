@@ -11,10 +11,10 @@
         @yield('title')
     </title>
     <link href="{{ url('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <!-- <link href="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
+    <link href="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
-    <link href="{{ url('css/sb-admin-2.min.css') }}" rel="stylesheet">
-    <!-- <link href="https://startbootstrap.github.io/startbootstrap-sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet"> -->
+    <!-- <link href="{{ url('css/sb-admin-2.min.css') }}" rel="stylesheet"> -->
+    <link href="https://startbootstrap.github.io/startbootstrap-sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link rel="stylesheet" href="{{ url('vendor/select2/select2-bootstrap.css')}}">
@@ -50,74 +50,12 @@
             <div class="sidebar-heading">
                 Interface
             </div>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span>HRIS</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Components:</h6>
-
-                        @if(in_array(Auth::user()->role->hris, ['1', '2', '3' , '4']))
-                        <a class="collapse-item" href="{{ route('employee.index')}}">Employee List</a>
-                        @endif
-
-                        <a class="collapse-item" href="#" disable>Leave form</a>
-                    </div>
-                </div>
-            </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#asset" aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-toolbox"></i>
-                    <span>ASSET</span>
+                <a class="nav-link collapsed" href="#">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>MAINTENANCE</span>
                 </a>
-                <div id="asset" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Components:</h6>
-
-                        @if(in_array(Auth::user()->role->asset, ['1', '2', '3', '4']))
-                        <a class="collapse-item" href="{{ route('asset.index')}}">Asset Management</a>
-                        @endif
-
-                        @if(in_array(Auth::user()->role->workorder, ['1', '2', '3', '4']))
-                        <a class="collapse-item" href="{{ route('workorder.index')}}">Workorder Management</a>
-                        @endif
-
-                        @if(in_array(Auth::user()->role->task, ['1', '2', '3', '4']))
-                        <a class="collapse-item" href="{{ route('task.index')}}">Task Management</a>
-                        @endif
-
-                        @if(in_array(Auth::user()->role->signage, ['1', '2', '3', '4']))
-                        <a class="collapse-item" href="{{ route('signage.index') }}">TV Signage</a>
-                        @endif
-
-                    </div>
-                </div>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>GENERAL</span>
-                </a>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Master:</h6>
-                        @if(in_array(Auth::user()->role->admin, ['1', '2', '3', '4']))
-                        <a class="collapse-item" href="/department">Department List</a>
-                        @endif
-
-                        @if(in_array(Auth::user()->role->admin, ['1', '2', '3', '4']))
-                        <a class="collapse-item" href="/location">Location List</a>
-                        @endif
-
-                        @if(in_array(Auth::user()->role->admin, ['1', '2', '3', '4']))
-                        <a class="collapse-item" href="/user">User Admninistration</a>
-                        @endif
-                    </div>
-                </div>
             </li>
 
             <div class="text-center d-none d-md-inline">
@@ -342,17 +280,17 @@
     </div>
 
     @include('sweetalert::alert')
-    <script src="{{ url('vendor/jquery/jquery.min.js') }}"></script>
-    <!-- <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script> -->
+    <!-- <script src="{{ url('vendor/jquery/jquery.min.js') }}"></script> -->
+    <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script>
 
-    <script src="{{ url('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+    <!-- <script src="{{ url('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script> -->
+    <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <script src="{{ url('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-    <!-- <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js"></script> -->
+    <!-- <script src="{{ url('vendor/jquery-easing/jquery.easing.min.js') }}"></script> -->
+    <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <script src="{{ url('js/sb-admin-2.min.js') }}"></script>
-    <!-- <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script> -->
+    <!-- <script src="{{ url('js/sb-admin-2.min.js') }}"></script> -->
+    <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
 
     <script src="{{ asset('vendor/select2/select2.min.js')}}"></script>
     <script src="{{ asset('vendor/datepicker/gijgo.min.js')}}" type="text/javascript"></script>
