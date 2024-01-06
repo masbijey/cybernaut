@@ -21,22 +21,22 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="{{ route('user.store') }}">
+                    <form method="POST" action="{{ route('user.store') }}" autocomplete="off">
                         @csrf
 
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" required placeholder="fullname">
+                            <label for="name" class="font-weight-bolder">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" value="" placeholder="fullname" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" required placeholder="email">
+                            <label for="email" class="font-weight-bolder">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" value="" placeholder="email" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="password">Email</label>
-                            <input type="password" class="form-control" id="password" name="password" required placeholder="password">
+                            <label for="password" class="font-weight-bolder">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" value="" placeholder="password" autocomplete="new-password" required>
                         </div>
 
                         <div class="modal-footer">

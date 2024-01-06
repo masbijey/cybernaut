@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('css')
+
+@endsection
+
 @section('title')
 Employee details | {{ $employee->name }}
 @endsection
@@ -19,432 +23,397 @@ Employee details | {{ $employee->name }}
     </ol>
 </nav>
 
-<div class="card shadow mb-1">
-    <div class="card-body">
-        <div class="form-group">
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#profile" data-placement="top" title="Summary profile">
-                        <i class='fas fa-user'></i> Profile
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#journey" data-placement="top" title="Journey">
-                        <i class='fas fa-user-secret'></i> Journey
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#leave" data-placement="top" title="Leave">
-                        <i class='fas fa-child'></i> Leave
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#inventory" data-placement="top" title="Inventory">
-                        <i class='fas fa-biking'></i> Inventory
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#training" data-placement="top" title="Training">
-                        <i class='fas fa-user-graduate'></i> Training
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#log" data-placement="top" title="Log">
-                        <i class='fas fa-list'></i> Log
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#attendance" data-placement="top" title="Attendance">
-                        <i class='fas fa-user-clock'></i> Attendance
-                    </a>
-                </li>
-            </ul>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
+        <div class="d-block d-sm-none d-md-none">
+            <div class="card shadow mb-3">
+                <a href="#personal-card" class="d-block card-header bg-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+                    <h6 class="m-1 font-weight-bold">Personal Information</h6>
+                </a>
+
+                <div class="collapse" id="personal-card">
+                    <div class="card-body">
+                        <table class="table table-borderless table-sm">
+                            <tr>
+                                <td colspan="2"><img src="https://source.unsplash.com/K4mSJ7kc0As/600x800" alt="" width="50%"></td>
+                            </tr>
+
+                            <tr>
+                                <td class="font-weight-bolder">NIK</td>
+                                <td>{{ $employee->nik}}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bolder">Name</td>
+                                <td>{{ $employee->name}}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bolder">Born</td>
+                                <td>{{ $employee->bornplace}}, {{ $employee->borndate}}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bolder">Address</td>
+                                <td>{{ $employee->address}}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bolder">Religion</td>
+                                <td>{{ $employee->religion}}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bolder">Phone</td>
+                                <td>{{ $employee->phone}}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bolder">Email</td>
+                                <td>{{ $employee->email }}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bolder">NPWP</td>
+                                <td>{{ $employee->npwp }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="tab-content">
-            <div class="tab-pane active" id="profile">
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-4 order-sm-2 order-md-1">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <tr>
-                                    <td class="font-weight-bolder">NIK</td>
-                                    <td>{{ $employee->nik}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bolder">Name</td>
-                                    <td>{{ $employee->name}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bolder">Born</td>
-                                    <td>{{ $employee->bornplace}}, {{ $employee->borndate}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bolder">Address</td>
-                                    <td>{{ $employee->address}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bolder">Religion</td>
-                                    <td>{{ $employee->religion}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bolder">Phone</td>
-                                    <td>{{ $employee->phone}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bolder">Email</td>
-                                    <td>{{ $employee->email }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bolder">NPWP</td>
-                                    <td>{{ $employee->npwp }}</td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-4 text-center order-sm-1 order-md-1 py-3">
-                        <img src="https://source.unsplash.com/K4mSJ7kc0As/600x800" alt="" width="50%">
-                    </div>
-                </div>
+        <div class="d-none d-sm-block">
+            <div class="card shadow mb-3">
+                <a href="#personal-card" class="d-block card-header bg-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+                    <h6 class="m-1 font-weight-bold">Personal Information</h6>
+                </a>
 
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-6">
-                        <div class="card mb-4">
-                            <div class="card-header bg-secondary text-light">
-                                <h6 class="m-0 font-weight-bold">Education</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-hover" id="edu-table">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Institution</th>
-                                                <th>Skill</th>
-                                                <th>Start</th>
-                                                <th>End</th>
-                                                <th>Description</th>
-                                                <th>File</th>
-                                        </thead>
-                                        <tbody>
-                                            @foreach($employee->education as $edu)
-                                            <tr>
-                                                <td>
-                                                    {{ $loop->iteration }}
-                                                </td>
-                                                <td>
-                                                    {{ $edu->institution }}
-                                                </td>
-                                                <td>{{ $edu->category }}</td>
-                                                <td>{{ \Carbon\Carbon::parse($edu->start)->format('d/m/y') }}</td>
-                                                <td>{{ \Carbon\Carbon::parse($edu->end)->format('d/m/y') }}</td>
-                                                <td>{{ $edu->description }}</td>
-                                                <td>
-                                                    <a href="{{ $edu->file }}" class="btn btn-primary btn-sm" target="_blank">
-                                                        <i class='far fa-eye'></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-12 col-md-12 col-lg-6">
-                        <div class="card mb-4">
-                            <div class="card-header bg-secondary text-light">
-                                <h6 class="m-0 font-weight-bold">Experience</h6>
-                            </div>
-                            <div class="card-body">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Company</th>
-                                            <th>Job title</th>
-                                            <th>Start</th>
-                                            <th>End</th>
-                                            <th>Description</th>
-                                            <th>File</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($employee->experience as $exp)
-                                        <tr>
-                                            <td>
-                                                {{ $loop->iteration }}
-                                            </td>
-                                            <td>
-                                                {{ $exp->company }}
-                                            </td>
-                                            <td>{{ $exp->jobtitle }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($edu->start)->format('d/m/y') }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($edu->end)->format('d/m/y') }}</td>
-                                            <td>{{ $exp->description }}</td>
-                                            <td>
-                                                <a href="{{ $exp->file }}" class="btn btn-primary btn-sm" target="_blank">
-                                                    <i class='far fa-eye'></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-6">
-                        <div class="card mb-4">
-                            <div class="card-header bg-secondary text-light">
-                                <h6 class="m-0 font-weight-bold">Family</h6>
-                            </div>
-                            <div class="card-body">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Name</th>
-                                            <th>Address</th>
-                                            <th>Status</th>
-                                            <th>Phone</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($employee->family as $fml)
-                                        <tr>
-                                            <td>
-                                                {{ $loop->iteration }}
-                                            </td>
-                                            <td>
-                                                {{ $fml->name }}
-                                            </td>
-                                            <td>{{ $fml->address }}</td>
-                                            <td>{{ $fml->status }}</td>
-                                            <td>
-                                                <a href="http://wa.me/{{ $fml->phone }}" target="_blank">{{ $fml->phone
-                                                    }}</a>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-12 col-md-12 col-lg-6">
-                        <div class="card mb-4">
-                            <div class="card-header bg-secondary text-light">
-                                <h6 class="m-0 font-weight-bold">Sickness</h6>
-                            </div>
-                            <div class="card-body">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Disease name</th>
-                                            <th>Description</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($employee->sickness as $sick)
-                                        <tr>
-                                            <td>
-                                                {{ $loop->iteration }}
-                                            </td>
-                                            <td>
-                                                {{ $sick->name }}
-                                            </td>
-                                            <td>
-                                                {{ $sick->description }}
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tab-pane fade" id="journey">
-                <div class="col-sm-12 col-md-12 col-lg-4">
-                    <table class="table table-borderless">
-                        <tr>
-                            <td>Employee number</td>
-                            <td><input type="text" class="form-control" disabled value="{{ $employee->nip }}"></td>
-                        </tr>
-                        <tr>
-                            <td>Join date</td>
-                            <td><input type="text" class="form-control" disabled value="{{ $employee->joindate }}"></td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-6">
-                        <div class="card mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Contract</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table" id="contract-table">
-                                        <thead>
-                                            <tr class="text-center">
-                                                <th>Start</th>
-                                                <th>End</th>
-                                                <th>Department</th>
-                                                <th>Jobtitle</th>
-                                                <th>Level</th>
-                                                <th>Description</th>
-                                                <th>File</th>
-                                            </tr>
-                                        </thead>
-                                        @foreach($employee->contract as $crt)
-                                        <tr>
-                                            <td>{{ \Carbon\Carbon::parse($crt->start)->format('d/m/y') }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($crt->end)->format('d/m/y') }}</td>
-                                            <td>{{ $crt->department->name }}</td>
-                                            <td>{{ $crt->jobtitle }}</td>
-                                            <td>{{ $crt->level }}</td>
-                                            <td>{{ $crt->description }}</td>
-                                            <td><a href="{{ $crt->file }}" class="btn btn-primary btn-sm" target="_blank"><i class='far fa-eye'></i></a></td>
-                                        </tr>
-                                        @endforeach
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-12 col-md-12 col-lg-6">
-                        <div class="card mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Punishment & Reward</h6>
-                            </div>
-                            <div class="card-body">
-                                <table class="table">
-                                    <thead class="text-center">
-                                        <tr>
-                                            <th class="font-weight-bold">#</th>
-                                            <th>Type</th>
-                                            <th>Start</th>
-                                            <th>End</th>
-                                            <th>Description</th>
-                                            <th>File</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="text-center">
-                                        @foreach($employee->rewpun as $data)
-                                        <tr>
-                                            <td class="text-center font-weight-bold">
-                                                {{ $loop->iteration }}
-                                            </td>
-                                            <td>
-                                                @if ($data->type == 'Reward')
-                                                <span class="badge badge-success">Reward</span>
-                                                @else
-                                                <span class="badge badge-danger">Pusnishment</span>
-                                                @endif
-                                            </td>
-                                            <td>{{ \Carbon\Carbon::parse($data->start)->format('d/m/y') }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($data->end)->format('d/m/y') }}</td>
-                                            <td>{{ $data->description }}</td>
-                                            <td><a href="{{ $data->file }}" class="btn btn-primary btn-sm" target="_blank"><i class='far fa-eye'></i></a></td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tab-pane fade" id="leave">
-                <table class="table table-bordered table-responsive" style="border: none;">
-                    <thead>
-                        <tr class="text-center">
-                            <th>#</th>
-                            <th>Entitle</th>
-                            <th>Taken</th>
-                            <th>Balance</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Annual Leave</td>
-                            <td class="text-center">{{ $entitleAl }}</td>
-                            <td class="text-center">{{ $takenAl }}</td>
-                            <td class="text-center">
-                                @if ($balanceAl == '0')
-                                <h3 class="text-danger">{{ $balanceAl }}</h3>
-                                <p class="text-danger font-weight-bold"></p>
-                                @else
-                                <p class="text-success font-weight-bold">{{ $balanceAl }}</p>
-                                @endif
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Extra Off</td>
-                            <td class="text-center">{{ $entitleEo }}</td>
-                            <td class="text-center">{{ $takenEo }}</td>
-                            <td class="text-center">
-                                @if ($balanceEo == '0')
-                                <p class="text-danger font-weight-bold">{{ $balanceEo }}</p>
-                                @else
-                                <p class="text-success font-weight-bold">{{ $balanceEo }}</p>
-                                @endif
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Day Payment</td>
-                            <td class="text-center">{{ $entitlePh }}</td>
-                            <td class="text-center">{{ $takenPh }}</td>
-                            <td class="text-center">
-                                @if ($balancePh == '0')
-                                <p class="text-danger font-weight-bold">{{ $balancePh }}</p>
-                                @else
-                                <p class="text-success font-weight-bold">{{ $balancePh }}</p>
-                                @endif
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="card mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">History of Leave</h6>
-                    </div>
+                <div class="collapse show" id="personal-card">
                     <div class="card-body">
-                        <table class="table wrap table-responsive-sm">
-                            <thead>
-                                <tr">
-                                    <th class="text-center" style="width: 5%;">#</th>
-                                    <th style="width: 7%;">Created At</th>
-                                    <th style="width: 5%;">Type</th>
-                                    <th style="width: 7%;">Valid date</th>
-                                    <th style="width: 10%;">Pick date</th>
+                        <table class="table table-borderless table-sm">
+                            <tr>
+                                <td colspan="2"><img src="https://source.unsplash.com/K4mSJ7kc0As/600x800" alt="" width="50%"></td>
+                            </tr>
+
+                            <tr>
+                                <td class="font-weight-bolder">NIK</td>
+                                <td>{{ $employee->nik}}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bolder">Name</td>
+                                <td>{{ $employee->name}}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bolder">Born</td>
+                                <td>{{ $employee->bornplace}}, {{ $employee->borndate}}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bolder">Address</td>
+                                <td>{{ $employee->address}}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bolder">Religion</td>
+                                <td>{{ $employee->religion}}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bolder">Phone</td>
+                                <td>{{ $employee->phone}}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bolder">Email</td>
+                                <td>{{ $employee->email }}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bolder">NPWP</td>
+                                <td>{{ $employee->npwp }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-12 col-lg-8">
+        <div class="card shadow mb-3">
+            <a href="#education-card" class="d-block card-header bg-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+                <h6 class="m-1 font-weight-bold">Educations</h6>
+            </a>
+
+            <div class="collapse" id="education-card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="text-nowrap">
+                                <tr>
+                                    <th>Created At</th>
+                                    <th>Institution</th>
+                                    <th>Category</th>
+                                    <th>Periode</th>
                                     <th>Description</th>
-                                    <th style="width: 10%;">Leader Appr.</th>
-                                    <th style="width: 10%;">HR Appr.</th>
-                                    </tr>
+                                    <th>File</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>test test test tes tes tes tes</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow mb-3">
+            <a href="#experience-card" class="d-block card-header bg-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+                <h6 class="m-1 font-weight-bold">Experience</h6>
+            </a>
+
+            <div class="collapse" id="experience-card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="text-nowrap">
+                                <tr>
+                                    <th>Created At</th>
+                                    <th>Institution</th>
+                                    <th>Category</th>
+                                    <th>Periode</th>
+                                    <th>Description</th>
+                                    <th>File</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>test test test tes tes tes tes</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow mb-3">
+            <a href="#family-card" class="d-block card-header bg-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+                <h6 class="m-1 font-weight-bold">Family</h6>
+            </a>
+
+            <div class="collapse" id="family-card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="text-nowrap">
+                                <tr>
+                                    <th>Created At</th>
+                                    <th>Institution</th>
+                                    <th>Category</th>
+                                    <th>Periode</th>
+                                    <th>Description</th>
+                                    <th>File</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>test test test tes tes tes tes</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow mb-3">
+            <a href="#sickness-card" class="d-block card-header bg-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+                <h6 class="m-1 font-weight-bold">Sickness</h6>
+            </a>
+
+            <div class="collapse" id="sickness-card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="text-nowrap">
+                                <tr>
+                                    <th>Created At</th>
+                                    <th>Institution</th>
+                                    <th>Category</th>
+                                    <th>Periode</th>
+                                    <th>Description</th>
+                                    <th>File</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>test test test tes tes tes tes</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow mb-3">
+            <a href="#contract-card" class="d-block card-header bg-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+                <h6 class="m-1 font-weight-bold">Contract</h6>
+            </a>
+
+            <div class="collapse" id="contract-card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="text-nowrap">
+                                <tr>
+                                    <th>Created At</th>
+                                    <th>Institution</th>
+                                    <th>Category</th>
+                                    <th>Periode</th>
+                                    <th>Description</th>
+                                    <th>File</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>test test test tes tes tes tes</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow mb-3">
+            <a href="#pnr-card" class="d-block card-header bg-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+                <h6 class="m-1 font-weight-bold">Punishment & Reward</h6>
+            </a>
+
+            <div class="collapse" id="pnr-card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="text-nowrap">
+                                <tr>
+                                    <th>Created At</th>
+                                    <th>Institution</th>
+                                    <th>Category</th>
+                                    <th>Periode</th>
+                                    <th>Description</th>
+                                    <th>File</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>test test test tes tes tes tes</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow mb-3">
+            <a href="#leave-card" class="d-block card-header bg-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+                <h6 class="m-1 font-weight-bold">Leaves History</h6>
+            </a>
+
+            <div class="collapse" id="leave-card">
+                <div class="card-body">
+                    <table class="table table-sm table-bordered" style="width: 30%;">
+                        <thead>
+                            <tr>
+                                <th>Description</th>
+                                <th>Entitle</th>
+                                <th>Taken</th>
+                                <th>Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody class="nowrap">
+                            <tr>
+                                <td>Annual Leave</td>
+                                <td>{{ $entitleAl }}</td>
+                                <td>{{ $takenAl }}</td>
+                                <td>
+                                    @if ($balanceAl == '0')
+                                    <h3 class="text-danger">{{ $balanceAl }}</h3>
+                                    <p class="text-danger font-weight-bold"></p>
+                                    @else
+                                    <p class="text-success font-weight-bold">{{ $balanceAl }}</p>
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Extra Off</td>
+                                <td>{{ $entitleEo }}</td>
+                                <td>{{ $takenEo }}</td>
+                                <td>
+                                    @if ($balanceEo == '0')
+                                    <p class="text-danger font-weight-bold">{{ $balanceEo }}</p>
+                                    @else
+                                    <p class="text-success font-weight-bold">{{ $balanceEo }}</p>
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Day Payment</td>
+                                <td>{{ $entitlePh }}</td>
+                                <td>{{ $takenPh }}</td>
+                                <td>
+                                    @if ($balancePh == '0')
+                                    <p class="text-danger font-weight-bold">{{ $balancePh }}</p>
+                                    @else
+                                    <p class="text-success font-weight-bold">{{ $balancePh }}</p>
+                                    @endif
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <hr>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="text-nowrap">
+                                <tr>
+                                    <th>Created At</th>
+                                    <th>Type</th>
+                                    <th>Valid date</th>
+                                    <th>Pick date</th>
+                                    <th>Description</th>
+                                    <th>Leader Approved</th>
+                                    <th>HR Approved</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 @foreach($employee->leave as $data)
                                 <tr>
-                                    <td class="text-center">
-                                        {{ $loop->iteration }}
-                                    </td>
-                                    <td>{{ \Carbon\Carbon::parse($data->created_at)->format('d/m/y') }}</td>
+                                    <td>{{ $data->created_at }}</td>
                                     <td>
                                         @if ($data->type == 'public_holiday')
                                         <button class="btn btn-sm btn-success">PH</button>
@@ -462,7 +431,7 @@ Employee details | {{ $employee->name }}
                                         <span class="badge badge-success badge-sm">belum diambil</span>
                                         @else
                                         <span class="badge badge-danger badge-sm">{{
-                                            \Carbon\Carbon::parse($data->pick_date)->format('d/m/y') }}</span>
+                                \Carbon\Carbon::parse($data->pick_date)->format('d/m/y') }}</span>
                                         @endif
                                     </td>
                                     <td>{{ $data->description }}</td>
@@ -475,244 +444,156 @@ Employee details | {{ $employee->name }}
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="tab-pane fade" id="inventory">
-                <div class="card mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Inventory</h6>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-bordered table-hover table-responsive-sm table-sm">
-                            <thead class="text-center">
+        <div class="card shadow mb-3">
+            <a href="#inventory-card" class="d-block card-header bg-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+                <h6 class="m-1 font-weight-bold">Inventory</h6>
+            </a>
+
+            <div class="collapse" id="inventory-card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="text-nowrap">
                                 <tr>
-                                    <th>#</th>
                                     <th>Created At</th>
-                                    <th>Return</th>
+                                    <th>Institution</th>
+                                    <th>Category</th>
+                                    <th>Periode</th>
                                     <th>Description</th>
-                                    <th>Status</th>
                                     <th>File</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-center">
-                                @foreach($employee->inventory as $inv)
-                                <tr class="text-center">
-                                    <td class="text-center">
-                                        {{ $loop->iteration }}
-                                    </td>
-                                    <td>
-                                        {{ $inv->start }}
-                                    </td>
-                                    <td>
-                                        {{ $inv->end }}
-                                    </td>
-                                    <td>
-                                        {{ $inv->description }}
-                                    </td>
-                                    <td>
-                                        @if ($inv->end == null)
-                                        <span class="badge badge-info">Belum dikembalikan</span>
-                                        @else
-                                        <span class="badge badge-success">Sudah dikembalikan</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <a href="{{ $inv->file }}" target="_blank" class="btn btn-primary btn-sm">file</a>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-sm">return now</a>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tab-pane fade" id="training">
-                <div class="card mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Training</h6>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-bordered table-hover table-responsive-sm table-sm">
-                            <thead>
-                                <tr class="text-center">
-                                    <th>#</th>
-                                    <th>Start</th>
-                                    <th>End</th>
-                                    <th>Duration</th>
-                                    <th>Title</th>
-                                    <th>Trainer</th>
-                                    <th>Venue</th>
-                                    <th>File</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($employee->training as $learn)
-                                <tr class="text-center">
-                                    <td class="text-center">
-                                        {{ $loop->iteration }}
-                                    </td>
-                                    <td>
-                                        {{ $learn->start }}
-                                    </td>
-                                    <td>
-                                        {{ $learn->end }}
-                                    </td>
-                                    <td>
-                                        {{ $learn->duration }}
-                                    </td>
-                                    <td>
-                                        {{ $learn->description }}
-                                    </td>
-                                    <td>
-                                        {{ $learn->trainer }}
-                                    </td>
-                                    <td>
-                                        {{ $learn->venue }}
-                                    </td>
-                                    <td>
-                                        <a href="{{ $learn->file }}" target="_blank">file</a>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tab-pane fade" id="log">
-                <div class="card mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Log</h6>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-bordered table-hover table-responsive-sm table-sm">
-                            <thead>
-                                <tr class="text-center">
-                                    <th>Date</th>
-                                    <th>Description</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td></td>
-                                    <td></td>
+                                    <td>test test test tes tes tes tes</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="tab-pane fade" id="attendance">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Attendance</h6>
-                            </div>
-                            <div class="card-body">
-                                <table class="table table-bordered table-hover table-responsive-sm table-sm">
-                                    <thead>
-                                        <tr class="text-center">
-                                            <th>Date</th>
-                                            <th>Time</th>
-                                            <th>Type</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="text-center">
-                                            <td>07/03/2023</td>
-                                            <td>08:30 AM</td>
-                                            <td><span class="badge badge-primary">Check-In</span></td>
-                                        </tr>
-                                        <tr class="text-center">
-                                            <td>07/03/2023</td>
-                                            <td>17:30 PM</td>
-                                            <td><span class="badge badge-primary">Check-In</span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+        <div class="card shadow mb-3">
+            <a href="#training-card" class="d-block card-header bg-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+                <h6 class="m-1 font-weight-bold">Training</h6>
+            </a>
+
+            <div class="collapse" id="training-card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="text-nowrap">
+                                <tr>
+                                    <th>Created At</th>
+                                    <th>Institution</th>
+                                    <th>Category</th>
+                                    <th>Periode</th>
+                                    <th>Description</th>
+                                    <th>File</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>test test test tes tes tes tes</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
+                </div>
+            </div>
+        </div>
 
-                    <div class="col-md-6">
-                        <div class="card mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Canteen</h6>
-                            </div>
-                            <div class="card-body">
-                                <table class="table table-bordered table-hover table-responsive-sm table-sm">
-                                    <thead>
-                                        <tr class="text-center">
-                                            <th>Date</th>
-                                            <th>Time</th>
-                                            <th>Type</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="text-center">
-                                            <td>07/03/2023</td>
-                                            <td>08:30 AM</td>
-                                            <td><span class="badge badge-primary">Check-In</span></td>
-                                        </tr>
-                                        <tr class="text-center">
-                                            <td>07/03/2023</td>
-                                            <td>17:30 PM</td>
-                                            <td><span class="badge badge-primary">Check-In</span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+        <div class="card shadow mb-3">
+            <a href="#attendance-card" class="d-block card-header bg-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+                <h6 class="m-1 font-weight-bold">Attendance</h6>
+            </a>
+
+            <div class="collapse" id="attendance-card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="text-nowrap">
+                                <tr>
+                                    <th>Created At</th>
+                                    <th>Institution</th>
+                                    <th>Category</th>
+                                    <th>Periode</th>
+                                    <th>Description</th>
+                                    <th>File</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>test test test tes tes tes tes</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow mb-3">
+            <a href="#log-card" class="d-block card-header bg-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+                <h6 class="m-1 font-weight-bold">Log</h6>
+            </a>
+
+            <div class="collapse" id="log-card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="text-nowrap">
+                                <tr>
+                                    <th>Created At</th>
+                                    <th>Institution</th>
+                                    <th>Category</th>
+                                    <th>Periode</th>
+                                    <th>Description</th>
+                                    <th>File</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>test test test tes tes tes tes</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                    <td>Test</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-@endsection
+    @endsection
 
-@section('css')
-{{-- --}}
-@endsection
+    @section('css')
 
-@section('js')
-<script>
-    $("#employee").select2({
-        theme: 'bootstrap'
-    });
+    @endsection
 
-    $("#department").select2({
-        theme: 'bootstrap'
-    });
+    @section('js')
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 
-    $(document).ready(function() {
-        $('#rewpun').DataTable({
-            responsive: true
-        });
-
-        $('#edu-table').DataTable({
-            responsive: true
-        });
-
-        $('#contract-table').DataTable({
-            responsive: true
-        });
-
-        $('#table-employee-leave').DataTable({
-            responsive: true
-        });
-
-    });
-
-    $(document).ready(function() {
-        $('.table').DataTable();
-    });
-</script>
-@endsection
+    @endsection

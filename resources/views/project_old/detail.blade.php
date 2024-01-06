@@ -373,6 +373,7 @@
                 aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold text-primary">Project Maintenance's</h6>
             </a>
+            
             <div class="collapse show" id="maintenancelist">
                 <div class="card-body">
                     <table class="table table-bordered table-sm table-hover" style="width:100%" id="maintenance-table">

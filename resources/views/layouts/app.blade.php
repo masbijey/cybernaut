@@ -343,16 +343,12 @@
 
     @include('sweetalert::alert')
     <script src="{{ url('vendor/jquery/jquery.min.js') }}"></script>
-    <!-- <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script> -->
 
     <script src="{{ url('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
 
     <script src="{{ url('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-    <!-- <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js"></script> -->
 
     <script src="{{ url('js/sb-admin-2.min.js') }}"></script>
-    <!-- <script src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script> -->
 
     <script src="{{ asset('vendor/select2/select2.min.js')}}"></script>
     <script src="{{ asset('vendor/datepicker/gijgo.min.js')}}" type="text/javascript"></script>
