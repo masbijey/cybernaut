@@ -13,13 +13,14 @@ class Workordercomment extends Model
     
     protected $fillable = [
         'workorder_id',
-        'employee_id',
         'file',
-        'description'
+        'comment',
+        'created_by',
+        'updated_by',
     ];
 
-    public function employee()
+    public function user()
     {
-        return $this->belongsTo(Employee::class, 'employee_id');
+        return $this->belongsTo(User::class, 'created_by');
     }
 }

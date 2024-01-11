@@ -137,7 +137,7 @@ Employee details | {{ $employee->name }}
             <div class="collapse" id="education-card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table" id="detail-table" style="width: 100%;">
                             <thead class="text-nowrap">
                                 <tr>
                                     <th>Created At</th>
@@ -593,7 +593,13 @@ Employee details | {{ $employee->name }}
     @endsection
 
     @section('js')
-    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#detail-table').DataTable({
+                responsive: true
+            });
+
+        });
+    </script>
 
     @endsection

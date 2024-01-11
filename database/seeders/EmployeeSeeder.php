@@ -14,7 +14,6 @@ class EmployeeSeeder extends Seeder
     {
         DB::table('employees')->insert([
             'user_id'  => '1',
-            'name' => 'Bijey Syenna Lovika Boby',
             'gender' => 'Laki-laki',
             'npwp' => '75.937.878.9-331.000',
             'nik' => '1673061207950004',
@@ -24,9 +23,7 @@ class EmployeeSeeder extends Seeder
             'address' => 'Thehok, Jambi',
             'phone' => '082307761670',
             'status_perkawinan' => 'kawin',
-            'joindate' => '01-06-2021',
             'nip' => '0023',
-            'email' => 'masbijey@gmail.com'
         ]);
 
         DB::table('departments')->insert([

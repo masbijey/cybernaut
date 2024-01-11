@@ -114,7 +114,7 @@
                             <td><label for="members">Assign to <small class="text-danger">*</small></label></td>
                             <td>
                                 <select class="js-example-basic-multiple custom-select form-control form-control-sm" id="tag-employee" name="member_ids[]" multiple="multiple" required>
-                                    @foreach ($employee as $data)
+                                    @foreach ($user as $data)
                                     <option value="{{ $data->id }}">{{ $data->name }}</option>
                                     @endforeach
                                 </select>

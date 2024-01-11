@@ -13,6 +13,8 @@ use App\Models\Location;
 use App\Models\Employee;
 use App\Models\Asset;
 use App\Models\File;
+use App\Models\User;
+
 
 use Carbon\Carbon;
 use Auth;
@@ -88,10 +90,10 @@ class WorkorderController extends Controller
             $update_by = Auth::user()->id;
             $description = 'Before';
             Workordercomment::create([
-                'employee_id' => $update_by,
+                'user_id' => $update_by,
                 'workorder_id' => $workorder->id,
                 'file' => $url,
-                'description' => $description,
+                'comment' => $description,
             ]);
 
             if (isset($request->asset_ids)) {
@@ -139,9 +141,9 @@ class WorkorderController extends Controller
             $locationlist = Location::all();
             $assetlist = Asset::all();
             $departmentlist = Department::all();
-            $employeelist = Employee::all();
+            $userlist = User::all();
 
-            return view('maintenance.workorder.detail', compact('workorder', 'locationlist', 'assetlist', 'departmentlist', 'employeelist'));
+            return view('maintenance.workorder.detail', compact('workorder', 'locationlist', 'assetlist', 'departmentlist', 'userlist'));
         } else {
             alert()->error('Stop.', 'Access Forbidden !');
             return redirect()->back();
@@ -169,7 +171,7 @@ class WorkorderController extends Controller
             $update_by = Auth::user()->id;
 
             Workordercomment::create([
-                'employee_id' => $update_by,
+                'user_id' => $update_by,
                 'workorder_id' => $request->id,
                 'file' => $url,
                 'description' => $request->description,
@@ -241,7 +243,7 @@ class WorkorderController extends Controller
                 foreach ($abc as $member) {
                     Workordermember::create([
                         'workorder_id' => $request->id,
-                        'employee_id' => $member,
+                        'user_id' => $member,
                     ]);
                 }
             }
@@ -264,10 +266,10 @@ class WorkorderController extends Controller
             $update_by = Auth::user()->id;
             $description = 'Done.';
             Workordercomment::create([
-                'employee_id' => $update_by,
+                'created_by' => $update_by,
                 'workorder_id' => $request->id,
                 'file' => $url,
-                'description' => $description,
+                'comment' => $description,
             ]);
 
             alert()->success('Berhasil.', 'Work Order has been Finished');
@@ -307,7 +309,7 @@ class WorkorderController extends Controller
 
             $wo = WorkOrder::where('order_no', $orderNumber)->firstOrFail();
             $wo->status = 'On Progress';
-            $wo->employee_id = $update_by;
+            $wo->user_id = $update_by;
             $wo->updated_at = now();
             $wo->save();
 

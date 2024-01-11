@@ -13,7 +13,7 @@ class Workordermember extends Model
 
     protected $fillable = [
         'workorder_id',
-        'employee_id'
+        'user_id'
     ];
 
     public function employee()

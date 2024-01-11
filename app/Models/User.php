@@ -51,4 +51,21 @@ class User extends Authenticatable
         return $this->hasOne(Employee::class);
     }
 
+    public function contract()
+    {
+        return $this->hasMany(Employeecontract::class, 'user_id');
+    }
+
+    public function employee()
+    {
+        return $this->hasOne(Employee::class);
+    }
+
+    public function leave()
+    {
+        return $this->hasMany(Employeeleave::class, 'user_id');
+    }
+
+
+
 }

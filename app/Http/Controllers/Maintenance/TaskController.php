@@ -10,6 +10,7 @@ use App\Models\Tasktag;
 use App\Models\Department;
 use App\Models\Location;
 use App\Models\Employee;
+use App\Models\User;
 use App\Models\Assetallocation;
 use App\Models\Asset;
 use App\Models\File;
@@ -34,10 +35,10 @@ class TaskController extends Controller
 
     public function create()
     {
-        $employee = Employee::all();
+        $user = User::all();
         $asset = Asset::all();
         $location = Location::all();
-        return view('maintenance.task.create', compact('employee', 'asset', 'location'));
+        return view('maintenance.task.create', compact('user', 'asset', 'location'));
     }
 
     public function store(Request $request)
@@ -131,7 +132,7 @@ class TaskController extends Controller
         $task = Task::findOrFail($id);
         $assetlist = Asset::all();
         $locationlist = Location::all();
-        $employeelist = Employee::all();
+        $employeelist = User::all();
 
         return view('maintenance.task.detail', compact('task', 'assetlist', 'locationlist', 'employeelist'));
     }

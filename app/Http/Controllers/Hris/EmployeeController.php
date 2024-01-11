@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use App\Models\Employee;
+use App\Models\User;
 use App\Models\Token;
 use App\Models\Employeecontract;
 use App\Models\Department;
@@ -23,9 +24,9 @@ class EmployeeController extends Controller
 {
     public function index()
     {
-        $employee = Employee::withTrashed()->get();
+        $user = User::withTrashed()->get();
 
-        return view('hris.employee.index', compact('employee'));
+        return view('hris.employee.index', compact('user'));
     }
 
     public function store(Request $request)
@@ -73,40 +74,40 @@ class EmployeeController extends Controller
 
     public function show($id)
     {
-        $employee = Employee::findOrFail($id);
+        $employee = User::findOrFail($id);
         $role = DB::table('employeecontracts')
-                ->where('employee_id', '=', $id)
+                ->where('user_id', '=', $id)
                 ->latest()
                 ->first();
 
         $entitleEo = DB::table('employeeleaves')
-                ->where('employee_id', '=', $id)
+                ->where('user_id', '=', $id)
                 ->where('type', '=', 'extra_off')
                 ->count();
         $takenEo = DB::table('employeeleaves')
-                ->where('employee_id', '=', $id)
+                ->where('user_id', '=', $id)
                 ->where('type', '=', 'extra_off')
                 ->whereNotNull('pick_date')                
                 ->count();
         $balanceEo = $entitleEo - $takenEo;
 
         $entitlePh = DB::table('employeeleaves')
-                ->where('employee_id', '=', $id)
+                ->where('user_id', '=', $id)
                 ->where('type', '=', 'public_holiday')
                 ->count();
         $takenPh = DB::table('employeeleaves')
-                ->where('employee_id', '=', $id)
+                ->where('user_id', '=', $id)
                 ->where('type', '=', 'public_holiday')
                 ->whereNotNull('pick_date')                
                 ->count();
         $balancePh = $entitlePh - $takenPh;
 
         $entitleAl = DB::table('employeeleaves')
-                ->where('employee_id', '=', $id)
+                ->where('user_id', '=', $id)
                 ->where('type', '=', 'annual_leave')
                 ->count();
         $takenAl = DB::table('employeeleaves')
-                ->where('employee_id', '=', $id)
+                ->where('user_id', '=', $id)
                 ->where('type', '=', 'annual_leave')
                 ->whereNotNull('pick_date')
                 ->count();
@@ -114,7 +115,7 @@ class EmployeeController extends Controller
         $balanceAl = $entitleAl - $takenAl;
 
         $totalSick = DB::table('employeeleaves')
-                ->where('employee_id', '=', $id)
+                ->where('user_id', '=', $id)
                 ->where('type', '=', 'sick_off')
                 ->count();
 

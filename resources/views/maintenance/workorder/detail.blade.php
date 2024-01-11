@@ -130,7 +130,7 @@ Workoder detail | {{ $workorder->title }}
                                                 <div class="form-group">
                                                     <label class="font-weight-bolder">Finished by :</label>
                                                     <select class="js-example-basic-multiple js-states form-control" id="tag-employee-edit" name="member_ids[]" multiple="multiple" style="width: 100%;" required>
-                                                        @foreach($employeelist as $data)
+                                                        @foreach($userlist as $data)
                                                         <option value="{{ $data->id }}">{{ $data->name }}</option>
                                                         @endforeach
                                                     </select>
@@ -413,8 +413,8 @@ Workoder detail | {{ $workorder->title }}
                 <div class="media mb-0">
                     <a href="{{ $comment->file }}" target="_blank"><img class="d-flex mr-3" data-src="holder.js/64x64?theme=sky" alt="64x64" src="{{ $comment->file }}" data-holder-rendered="true" style="width: 64px; height: 64px;"></a>
                     <div class="media-body">
-                        <small class="text-info">{{ $comment->employee->name }} | {{ $comment->created_at }} </small>
-                        <p>{!! nl2br(e($comment->description)) !!}</p>
+                        <small class="text-info">{{ $comment->user->name }} | {{ $comment->created_at }} </small>
+                        <p>{!! nl2br(e($comment->comment)) !!}</p>
                     </div>
                 </div>
                 <hr>

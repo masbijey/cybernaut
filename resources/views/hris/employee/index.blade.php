@@ -10,8 +10,7 @@
         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal3">
             <i class='fas fa-plus'></i> New Employee
         </button>
-        <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="sr-only">Toggle Dropdown</span>
         </button>
         <div class="dropdown-menu">
@@ -30,8 +29,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label"
-    aria-hidden="true">
+<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
@@ -135,60 +133,43 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($employee as $employee)
+                @foreach($user as $user)
                 <tr>
                     <td class="text-center">
                         {{ $loop->iteration }}
                     </td>
-                    <td><a href="/employee/detail/{{ $employee->id }}" class="" data-placement="top" title="Tampilkan">{{
-                            $employee->name }}</a></td>
+                    <td><a href="/employee/detail/{{ $user->id }}" class="" data-placement="top" title="Tampilkan">{{
+                            $user->name }}</a></td>
                     <td class="text-center">
-                        @if (!empty($employee->contract->last()))
-                        {{ $employee->contract->last()->department->name }}
+                        @if (!empty($user->contract->last()))
+                        {{ $user->contract->last()->department->name }}
                         @else
                         <p class="text-danger text-italic">belum kontrak</p>
                         @endif
                     </td>
                     <td class="text-center">
-                        @if (!empty($employee->contract->last()))
-                        {{ $employee->contract->last()->jobtitle }}
+                        @if (!empty($user->contract->last()))
+                        {{ $user->contract->last()->jobtitle }}
                         @else
                         <p class="text-danger text-italic">belum kontrak</p>
                         @endif
                     </td>
                     <td class="text-center">
-                        @if (!empty($employee->contract->last()))
-                        {{ $employee->contract->last()->level }}
+                        @if (!empty($user->contract->last()))
+                        {{ $user->contract->last()->level }}
                         @else
                         <p class="text-danger text-italic">belum kontrak</p>
                         @endif
                     </td>
-                    <td class="text-center">{{ $employee->phone }}</td>
-                    <td class="text-center">{{ $employee->email }}</td>
+                    <td class="text-center">{{ $user->employee->phone }}</td>
+                    <td class="text-center">{{ $user->email  }}</td>
                     <td class="text-center">
-                        @if ($employee->status == 'active')
-                        <span class="badge badge-success">active</span>
-                        @else
-                        <span class="badge badge-danger">non-active</span>
-                        @endif
                     </td>
-                    <td class="text-center">{{ $employee->joindate }}</td>
+                    <td class="text-center">{{ $user->joindate }}</td>
                     <td class="text-center">
 
-                        <a href="/employee/detail/{{ $employee->id }}" class="btn btn-primary btn-sm d-sm-inline"
-                            data-placement="top" title="Tampilkan"><i class='fas fa-eye'></i></a>
+                        <a href="/employee/detail/{{ $user->id }}" class="btn btn-primary btn-sm d-sm-inline" data-placement="top" title="Tampilkan"><i class='fas fa-eye'></i></a>
 
-                        @if ($employee->status == 'active')
-                        <a href="{{ route('employee.destroy', $employee->id) }}" class="btn btn-danger btn-sm d-sm-inline"
-                            data-placement="top" title="Hapus">
-                            <i class='fas fa-trash'></i>
-                        </a>
-                        @else
-                        <a href="{{ route('employee.restore', $employee->id) }}" class="btn btn-success btn-sm d-sm-inline"
-                            data-placement="top" title="aktifkan">
-                            <i class='fas fa-check'></i>
-                        </a>
-                        @endif
                     </td>
                 </tr>
                 @endforeach
@@ -206,12 +187,11 @@
 
 @section('js')
 <script>
-    $(document).ready(function () {
-    $('#employee-table').DataTable({
-        responsive: true
-    });
-    
-});
+    $(document).ready(function() {
+        $('#employee-table').DataTable({
+            responsive: true
+        });
 
+    });
 </script>
 @endsection

@@ -6,18 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Taskmember extends Model
+
+class File extends Model
 {
     use HasFactory;
     use softDeletes;
 
     protected $fillable = [
+        'filenmaintenance_idame',
+        'file',
+        'remark',
         'task_id',
-        'user_id'
+        'workorder_id',
     ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
 }

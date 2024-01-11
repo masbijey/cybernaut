@@ -1,4 +1,4 @@
-@extends('layouts.maintenance')
+@extends('layouts.app')
 
 @section('content')
 <h1 class="h3 text-gray-800">Work Order Management</h1>
