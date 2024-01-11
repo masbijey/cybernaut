@@ -19,9 +19,10 @@ return new class extends Migration
             $table->softDeletes();
             $table->integer('workorder_id');
             $table->string('file');
-            $table->text('description');
+            $table->text('comment');
             
-            $table->integer('employee_id');
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
         });
     }
 

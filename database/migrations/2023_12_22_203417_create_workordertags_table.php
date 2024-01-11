@@ -15,10 +15,14 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->softDeletes();
+
             $table->integer('workorder_id');
             $table->integer('location_id')->nullable();
             $table->integer('asset_id')->nullable();
             $table->integer('department_id')->nullable();
+
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
         });
     }
 

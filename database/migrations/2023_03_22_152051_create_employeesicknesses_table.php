@@ -12,9 +12,15 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->softDeletes();
-            $table->integer('employee_id');
-            $table->string('name');
+            $table->integer('user_id');
+            $table->string('name_of_sick');
             $table->string('description');
+            $table->string('start');
+            $table->string('end');
+            $table->string('file')->nullable();
+
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
         });
     }
 

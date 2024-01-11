@@ -38,7 +38,7 @@
                                 <div class="custom-control custom-radio">
                                     <input type="radio" id="customRadio2" name="type" class="custom-control-input"
                                         value="public_holiday">
-                                    <label class="custom-control-label" for="customRadio2">Day Payment</label>
+                                    <label class="custom-control-label" for="customRadio2">day payment</label>
                                 </div>
 
                                 <div class="custom-control custom-radio">

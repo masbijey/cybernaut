@@ -17,11 +17,17 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->softDeletes();
-            $table->integer('employee_id');
+
+            $table->integer('user_id');
+
             $table->string('name');
-            $table->string('status');
+            $table->string('relationship');
             $table->string('phone');
             $table->string('address');
+            $table->string('file')->nullable();
+
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
         });
     }
 

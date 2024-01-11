@@ -12,7 +12,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->softDeletes();
-            $table->unsignedBigInteger('employee_id')->default(0);
+
+            $table->unsignedBigInteger('user_id')->default(0);
+
             $table->datetime('start');
             $table->datetime('end');
             $table->time('duration');
@@ -20,6 +22,9 @@ return new class extends Migration
             $table->text('description');
             $table->string('venue');
             $table->string('file');
+
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
         });
     }
     

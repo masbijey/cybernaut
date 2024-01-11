@@ -16,7 +16,10 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->integer('workorder_id');
-            $table->integer('employee_id');
+            $table->integer('user_id');
+
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
         });
     }
 

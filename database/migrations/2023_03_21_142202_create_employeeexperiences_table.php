@@ -12,13 +12,18 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->softDeletes();
-            $table->string('employee_id');
+
+            $table->string('user_id');
+
             $table->string('company');
             $table->string('jobtitle');
             $table->string('start');
             $table->string('end');
-            $table->string('description');
+            $table->string('remark')->nullable();
             $table->string('file');
+
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
         });
     }
 

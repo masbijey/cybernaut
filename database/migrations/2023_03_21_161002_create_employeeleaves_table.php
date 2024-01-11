@@ -13,11 +13,21 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->softDeletes(); 
-            $table->integer('employee_id');
-            $table->string('type'); //ph,al,eo
-            $table->date('valid_until'); // tanggal berlaku
+            $table->integer('user_id');
+            $table->string('type');
+            $table->date('valid_until'); 
             $table->date('pick_date')->nullable(); 
             $table->text('description')->nullable();
+            
+            $table->integer('approved_1_by')->nullable();
+            $table->timestamp('approved_1_at')->nullable();
+            $table->integer('approved_2_by')->nullable();
+            $table->timestamp('approved_2_at')->nullable();
+            $table->integer('approved_3_by')->nullable();
+            $table->timestamp('approved_3_at')->nullable();
+
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
         });
     }
 

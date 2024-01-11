@@ -15,7 +15,6 @@ return new class extends Migration
             $table->integer('user_id');
             
             $table->string('nip')->nullable();
-            $table->string('name');
             $table->string('gender')->nullable();
             $table->string('npwp')->nullable();
             $table->string('nik')->nullable();
@@ -25,10 +24,11 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('status_perkawinan')->nullable();
-            $table->string('joindate')->nullable();
-            $table->string('email')->nullable();
             $table->string('photo')->nullable();
             $table->string('status')->default('active');
+
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
         });
     }
 

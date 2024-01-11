@@ -12,11 +12,17 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->softDeletes();
-            $table->integer('employee_id');
-            $table->string('start');
-            $table->string('end')->nullable();
+
+            $table->integer('user_id');
+            $table->integer('asset_id');
             $table->string('description');
             $table->string('file');
+
+            $table->string('start');
+            $table->string('end')->nullable();
+
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
         });
     }
 
