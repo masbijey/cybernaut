@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Asset;
 use App\Models\Assetcat;
 use App\Models\Employee;
+use App\Models\User;
 use App\Models\Department;
 use App\Models\Location;
 use App\Models\Assetallocation;
@@ -34,7 +35,7 @@ class AssetController extends Controller
     {
         $assetcat = Assetcat::all();
         $location = Location::all();
-        $employee = Employee::all();
+        $employee = User::all();
         $department = Department::all();
 
         return view('asset.create', compact('assetcat', 'location', 'employee', 'department'));
@@ -58,7 +59,7 @@ class AssetController extends Controller
             'buycond' => 'required',
 
             //for allocation table
-            'remark' => 'required',
+            'remark' => 'nullable',
             'location' => 'required',
             'department' => 'required',
             'employee' => 'required'
@@ -96,7 +97,7 @@ class AssetController extends Controller
             'buyDate' => $request->buyDate,
             'buyPrice' => $request->buyPrice,
             'file' => $url,
-            'user_id' => $updateBy,
+            'created_by' => $updateBy,
             'buyCond' => $request->buycond
         ]);
 
@@ -107,7 +108,8 @@ class AssetController extends Controller
             'department_id' => $request->department,
             'file' => $url,
             'condition' => $request->condition,
-            'remark' => $request->remark
+            'remark' => $request->remark,
+            'created_by' => $updateBy
         ]);
 
         alert()->success('Berhasil.','Data berhasil dibuat');

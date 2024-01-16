@@ -28,8 +28,9 @@ return new class extends Migration
             $table->datetime('lastMaintenance')->nullable();
             $table->text('remark')->nullable();
             $table->string('file');
-            $table->integer('user_id')->nullable()->constrained()->onDelete('set null');
             $table->string('buyCond');
+            
+            $table->integer('created_by')->nullable();
         });
     }
 

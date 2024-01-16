@@ -33,11 +33,11 @@ Employee details | {{ $employee->name }}
 
                 <div class="collapse" id="personal-card">
                     <div class="card-body">
-                        <table class="table table-borderless table-sm">
-                            <tr>
-                                <td colspan="2"><img src="https://source.unsplash.com/K4mSJ7kc0As/600x800" alt="" width="50%"></td>
-                            </tr>
+                        <div class="mb-3 text-center">
+                            <img src="https://source.unsplash.com/K4mSJ7kc0As/600x800" class="img-fluid" alt="Responsive image" width="200px">
+                        </div>
 
+                        <table class="table table-sm">
                             <tr>
                                 <td class="font-weight-bolder">NIK</td>
                                 <td>{{ $employee->nik}}</td>
@@ -84,11 +84,11 @@ Employee details | {{ $employee->name }}
 
                 <div class="collapse show" id="personal-card">
                     <div class="card-body">
-                        <table class="table table-borderless table-sm">
-                            <tr>
-                                <td colspan="2"><img src="https://source.unsplash.com/K4mSJ7kc0As/600x800" alt="" width="50%"></td>
-                            </tr>
+                        <div class="mb-3 text-center">
+                            <img src="https://source.unsplash.com/K4mSJ7kc0As/600x800" class="img-fluid" alt="Responsive image" width="200px">
+                        </div>
 
+                        <table class="table table-sm">
                             <tr>
                                 <td class="font-weight-bolder">NIK</td>
                                 <td>{{ $employee->nik}}</td>
@@ -172,7 +172,7 @@ Employee details | {{ $employee->name }}
             <div class="collapse" id="experience-card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table" id="detail-experience" style="width: 100%;">
                             <thead class="text-nowrap">
                                 <tr>
                                     <th>Created At</th>
@@ -596,6 +596,13 @@ Employee details | {{ $employee->name }}
     <script>
         $(document).ready(function() {
             $('#detail-table').DataTable({
+                responsive: true
+            });
+
+        });
+
+        $(document).ready(function() {
+            $('#detail-experience').DataTable({
                 responsive: true
             });
 

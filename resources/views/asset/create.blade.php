@@ -124,7 +124,8 @@
                         <tr>
                             <td><label for="location">Location</label></td>
                             <td>
-                                <select class="custom-select form-control form-control-sm" id="location" name="location" required>
+                                <select class="custom-select form-control form-control-sm" 
+                                id="location" name="location" required>
                                     <option value="" selected>-- select location --</option>
                                     @foreach ($location as $data)
                                     <option value="{{ $data->id }}">{{ $data->name }}</option>
@@ -135,7 +136,8 @@
                         <tr>
                             <td><label for="employee">Employee</label></td>
                             <td>
-                                <select class="custom-select form-control form-control-sm" id="employee" name="employee">
+                                <select class="custom-select form-control form-control-sm" 
+                                id="employee" name="employee" required>
                                     <option value="" selected>-- select employee --</option>
                                     @foreach ($employee as $data)
                                     <option value="{{ $data->id }}">{{ $data->name }}</option>
@@ -146,7 +148,8 @@
                         <tr>
                             <td><label for="department">Department</label></td>
                             <td>
-                                <select class="custom-select form-control form-control-sm" id="department" name="department" required>
+                                <select class="custom-select form-control form-control-sm" 
+                                id="department" name="department" required>
                                     <option value="" selected>-- select department --</option>
                                     @foreach ($department as $data)
                                     <option value="{{ $data->id }}">{{ $data->name }}</option>
@@ -159,12 +162,12 @@
                             <td>
                                 <div class="custom-control custom-radio">
                                     <input type="radio" id="good_condition" name="condition" class="custom-control-input"
-                                        value="Good">
+                                        value="Good" required>
                                     <label class="custom-control-label" for="good_condition">Good</label>
                                 </div>
                                 <div class="custom-control custom-radio">
                                     <input type="radio" id="broken_condition" name="condition" class="custom-control-input"
-                                        value="Broken">
+                                        value="Broken" required>
                                     <label class="custom-control-label" for="broken_condition">Broken</label>
                                 </div>
                             </td>
@@ -172,7 +175,7 @@
                         <tr>
                             <td><label for="remark">Remark</label></td>
                             <td>
-                                <textarea name="remark" id="remark" class="form-control form-control-sm" required></textarea>
+                                <textarea name="remark" id="remark" class="form-control form-control-sm"></textarea>
                             </td>
                         </tr>
                         <tr>

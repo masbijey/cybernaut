@@ -15,18 +15,18 @@
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-4">
         <div class="card shadow mt-2">
-            <div class="card-header">
+            <div class="card-header bg-primary text-light">
                 <div class="d-sm-flex align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Informations</h6>
-                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-edit fa-sm text-white-50"></i> Modify</a>
+                    <h6 class="m-0 font-weight-bold">Informations</h6>
+                    <a href="#" class="d-none d-sm-inline-block btn btn-light shadow"><i class="fas fa-edit fa-sm"></i> Modify</a>
                 </div>
             </div>
             <div class="card-body">
                 <div class="mb-3 text-center">
-                    <img class="img-thumbnail" src="{{ $data->file }}" alt="Thumbnail image">
+                    <img src="{{ $data->file }}" class="img-fluid" alt="Responsive image" width="200px">
                 </div>
 
-                <table class="table">
+                <table class="table table-sm">
                     <tr>
                         <td><label for="name" class="font-weight-bold">Created at</label></td>
                         <td>{{ $data->created_at }}</td>
@@ -91,10 +91,10 @@
 
     <div class="col-sm-12 col-md-12 col-lg-8">
         <div class="card shadow mt-2">
-            <div class="card-header">
+            <div class="card-header bg-primary text-light">
                 <div class="d-sm-flex align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Task List</h6>
-                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Task</a>
+                    <h6 class="m-0 font-weight-bold">Task List</h6>
+                    <a href="#" class="d-none d-sm-inline-block btn btn-light shadow"><i class="fas fa-plus fa-sm"></i> Task</a>
                 </div>
             </div>
             <div class="card-body">
@@ -103,10 +103,10 @@
         </div>
 
         <div class="card shadow mt-2">
-            <div class="card-header">
+            <div class="card-header bg-primary text-light">
                 <div class="d-sm-flex align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Work Order List</h6>
-                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Work Order</a>
+                    <h6 class="m-0 font-weight-bold">Work Order List</h6>
+                    <a href="#" class="d-none d-sm-inline-block btn btn-light shadow"><i class="fas fa-plus fa-sm"></i> Work Order</a>
                 </div>
             </div>
             <div class="card-body">
@@ -115,30 +115,30 @@
         </div>
 
         <div class="card shadow mt-2">
-            <div class="card-header">
+            <div class="card-header bg-primary text-light">
                 <div class="d-sm-flex align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Allocation List</h6>
-                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Allocation</a>
+                    <h6 class="m-0 font-weight-bold">Allocation List</h6>
+                    <a href="#" class="d-none d-sm-inline-block btn btn-light shadow"><i class="fas fa-plus fa-sm"></i> Allocation</a>
                 </div>
             </div>
             <div class="card-body">
                 <table class="table table-hover" id="table-allocation">
                     <thead>
                         <tr>
-                            <th style="width: 10%;">Created</th>
+                            <th>Created</th>
                             <th>Employee</th>
-                            <th style="width: 10%;">Department</th>
-                            <th style="width: 10%;">Location</th>
-                            <th style="width: 10%;">Condition</th>
+                            <th>Department</th>
+                            <th>Location</th>
+                            <th>Condition</th>
                             <th>Remark</th>
-                            <th style="width: 10%;">Photo</th>
+                            <th>Photo</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($data->allocation as $dalloc)
                         <tr>
                             <td>{{ $dalloc->created_at }}</td>
-                            <td><a href="/employee/detail/{{ $dalloc->employee_id }}">{{ $dalloc->employee->name }}</a>
+                            <td><a href="/employee/detail/{{ $dalloc->created_by }}">{{ $dalloc->user->name }}</a>
                             </td>
                             <td><a href="/department/detail/{{ $dalloc->department_id }}">{{ $dalloc->department->name }}</a></td>
                             <td><a href="/location/detail/{{ $dalloc->location_id}}">{{ $dalloc->location->name }}</a></td>
@@ -148,7 +148,7 @@
                                 @endif
                             </td>
                             <td>{{ $dalloc->remark }}</td>
-                            <td><a href="{{ $dalloc->file }}" target="_blank"><img class="img-thumbnail" src="{{ $dalloc->file }}" alt="Thumbnail image"></a></td>
+                            <td><a href="{{ $dalloc->file }}" target="_blank"><img class="img-thumbnail" src="{{ $dalloc->file }}" alt="Thumbnail image" width="100"></a></td>
                         </tr>
                         @endforeach
                     </tbody>
