@@ -1,91 +1,88 @@
 @extends('layouts.app')
 
 @section('content')
-<h1 class="h3 mb-2 text-gray-800">Contract</h1>
+<h1 class="h3 text-gray-800">Contract Management</h1>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Contract Management</li>
+    </ol>
+</nav>
 
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-4">
-        <div class="card mt-3 shadow">
-            <div class="card-header bg-primary text-light">
-                <h6 class="font-weight-bold">New Contract</h6>
+        <div class="card mb-2 shadow">
+            <div class="card-header bg-primary text-light py-3">
+                <h6 class="m-0 font-weight-bold">New Contract</h6>
             </div>
             <div class="card-body">
                 <form method="POST" action="{{ route('agreement.store') }}" enctype="multipart/form-data">
                     @csrf
 
-                    <table class="table table-borderless table-sm">
-                        <tr>
-                            <td><label for="name">Employee</label></td>
-                            <td>
-                                <select class="custom-select" id="employee" name="employee">
-                                    <option value="" selected>-- select employee --</option>
-                                    @foreach ($employee as $data)
-                                    <option value="{{ $data->id }}">{{ $data->name }}</option>
-                                    @endforeach
-                                </select>
-                            </td>
-                        </tr>
+                    <div class="form-group">
+                        <label for="name" class="font-weight-bolder">Employee</label>
+                        <select class="custom-select" id="employee" name="employee" required>
+                            <option value="" selected>-- select employee --</option>
+                            @foreach ($employee as $data)
+                            <option value="{{ $data->id }}">{{ $data->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
-                        <tr>
-                            <td><label for="start">Start</label></td>
-                            <td><input type="date" name="start" id="institution" class="form-control"></td>
-                        </tr>
+                    <div class="form-group">
+                        <label for="start" class="font-weight-bolder">Period (Start)</label>
+                        <input type="date" name="start" id="start" class="form-control" placeholder="select date" required>
+                    </div>
 
-                        <tr>
-                            <td><label for="end">End</label></td>
-                            <td><input type="date" name="end" id="category" class="form-control" required></td>
-                        </tr>
+                    <div class="form-group">
+                        <label for="end" class="font-weight-bolder">Period (End)</label>
+                        <input type="date" name="end" id="end" class="form-control" required>
+                    </div>
 
-                        <tr>
-                            <td><label for="department">Department</label></td>
-                            <td>
-                                <select class="custom-select" id="department" name="department">
-                                    <option value="" selected>-- select department --</option>
-                                    @foreach ($department as $data)
-                                    <option value="{{ $data->id }}">{{ $data->name }}</option>
-                                    @endforeach
-                                </select>
-                            </td>
-                        </tr>
+                    <div class="form-group">
+                        <label for="department" class="font-weight-bolder">Department</label>
+                        <select class="custom-select" id="department" name="department" required>
+                            <option value="" selected>-- select department --</option>
+                            @foreach ($department as $data)
+                            <option value="{{ $data->id }}">{{ $data->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
-                        <tr>
-                            <td><label for="jobtitle">Job Title</label></td>
-                            <td><input type="text" name="jobtitle" id="jobtitle" class="form-control" required></td>
-                        </tr>
+                    <div class="form-group">
+                        <label for="jobtitle" class="font-weight-bolder">Job Title</label>
+                        <input type="text" name="jobtitle" id="jobtitle" class="form-control" required>
+                    </div>
 
-                        <tr>
-                            <td><label for="level">Level</label></td>
-                            <td><input type="text" name="level" id="level" class="form-control" required></td>
-                        </tr>
+                    <div class="form-group">
+                        <label for="level" class="font-weight-bolder">Level</label>
+                        <input type="text" name="level" id="level" class="form-control" required>
+                    </div>
 
-                        <tr>
-                            <td><label for="description">Remark</label></td>
-                            <td><input type="text" name="description" id="description" class="form-control">
-                            </td>
-                        </tr>
+                    <div class="form-group">
+                        <label for="description" class="font-weight-bolder">Remark</label>
+                        <input type="text" name="description" id="description" class="form-control">
+                    </div>
 
-                        <tr>
-                            <td><label for="file">File</label></td>
-                            <td>
-                                <div class="custom-file mb-3">
-                                    <input type="file" class="custom-file-input" id="customFile" name="file">
-                                    <label class="custom-file-label" for="customFile">Choose file</label>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
+                    <div class="form-group">
+                        <label for="customFile" class="font-weight-bolder">Upload File</label>
+                        <div class="custom-file mb-3">
+                            <input type="file" class="custom-file-input" id="customFile" name="file" required>
+                            <label class="custom-file-label" for="customFile">Choose file</label>
+                        </div>
+                    </div>
 
-                    <button class="btn btn-primary btn-sm" type="submit">Save</button>
-                    <button class="btn btn-secondary btn-sm" type="reset">Reset</button>
+                    <button class="btn btn-primary" type="submit">Save</button>
+                    <button class="btn btn-secondary" type="reset">Reset</button>
                 </form>
             </div>
         </div>
     </div>
 
     <div class="col-sm-12 col-md-12 col-lg-8">
-        <div class="card mt-3 shadow">
-            <div class="card-header bg-primary text-light">
-                <h6 class="font-weight-bold">Contract</h6>
+        <div class="card mb-2 shadow">
+            <div class="card-header bg-primary text-light py-3">
+                <h6 class="m-0 font-weight-bold">Contract</h6>
             </div>
             <div class="card-body">
                 <table class="table table-hover nowrap" id="employee-table">
