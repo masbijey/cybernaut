@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('department_id');
             $table->string('level');
             $table->string('jobtitle');
-            $table->string('remark');
+            $table->string('remark')->nullable();
             $table->string('file');
 
             $table->integer('created_by')->nullable();

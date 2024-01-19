@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Auth;
 use App\Models\Department;
 use App\Models\Employee;
+use App\Models\User;
 use App\Models\Employeecontract;
 
 
@@ -19,8 +20,10 @@ class ContractController extends Controller
     public function index()
     {
         $contract = Employeecontract::all();
-        $employee = Employee::all();
+        
+        $employee = User::all();
         $department = Department::all();
+
         return view('hris.detail.contract.index', compact('contract', 'employee', 'department'));
     }
 
@@ -33,7 +36,7 @@ class ContractController extends Controller
             'department' => 'required',
             'jobtitle' => 'required',
             'level' => 'required',
-            'description' => 'required',
+            'description' => 'nullable',
             'file' => 'required'
         ]);
 
@@ -46,7 +49,7 @@ class ContractController extends Controller
         $url = Storage::url($path);
 
         Employeecontract::create([
-            'employee_id' => $request->employee,
+            'user_id' => $request->employee,
             'start' => $request->start,
             'end' => $request->end,
             'department_id' => $request->department,

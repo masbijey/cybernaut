@@ -12,13 +12,13 @@ class Employeecontract extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'employee_id',
+        'user_id',
         'start',
         'end',
         'department_id',
         'jobtitle',
         'level',
-        'description',
+        'remark',
         'file'
     ];
 
@@ -26,6 +26,12 @@ class Employeecontract extends Model
     {
         return $this->belongsTo(Employee::class, 'employee_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
 
     public function department()
     {

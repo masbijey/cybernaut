@@ -4,16 +4,16 @@
 <h1 class="h3 mb-2 text-gray-800">Contract</h1>
 
 <div class="row">
-    <div class="col-lg-4">
-        <div class="card mt-3">
-            <div class="card-header">
-                <h6 class="font-weight-bold text-primary">New Education</h6>
+    <div class="col-sm-12 col-md-12 col-lg-4">
+        <div class="card mt-3 shadow">
+            <div class="card-header bg-primary text-light">
+                <h6 class="font-weight-bold">New Contract</h6>
             </div>
             <div class="card-body">
                 <form method="POST" action="{{ route('agreement.store') }}" enctype="multipart/form-data">
                     @csrf
 
-                    <table class="table table-borderless">
+                    <table class="table table-borderless table-sm">
                         <tr>
                             <td><label for="name">Employee</label></td>
                             <td>
@@ -59,18 +59,18 @@
                         </tr>
 
                         <tr>
-                            <td><label for="description">Description</label></td>
-                            <td><input type="text" name="description" id="description" class="form-control" required>
+                            <td><label for="description">Remark</label></td>
+                            <td><input type="text" name="description" id="description" class="form-control">
                             </td>
                         </tr>
 
                         <tr>
                             <td><label for="file">File</label></td>
                             <td>
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="file" name="file">
-                                    <label class="custom-file-label" for="file">Choose file</label>
-                                </div> '
+                                <div class="custom-file mb-3">
+                                    <input type="file" class="custom-file-input" id="customFile" name="file">
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
                             </td>
                         </tr>
                     </table>
@@ -82,10 +82,10 @@
         </div>
     </div>
 
-    <div class="col-lg-8">
-        <div class="card mt-3">
-            <div class="card-header">
-                <h6 class="font-weight-bold text-primary">Contract</h6>
+    <div class="col-sm-12 col-md-12 col-lg-8">
+        <div class="card mt-3 shadow">
+            <div class="card-header bg-primary text-light">
+                <h6 class="font-weight-bold">Contract</h6>
             </div>
             <div class="card-body">
                 <table class="table table-hover nowrap" id="employee-table">
@@ -103,36 +103,39 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($contract as $data)
-                        @if(!empty($data->employee))
+                        @foreach($contract as $contract)
                         <tr>
                             <td class="text-center">{{ $loop->iteration }}</td>
-                            <td>{{ $data->employee->name }}</td>
-                            <td>{{ \Carbon\Carbon::parse($data->start)->format('d/m/y') }}</td>
-                            <td>{{ \Carbon\Carbon::parse($data->end)->format('d/m/y') }}</td>
-                            <td>{{ $data->department->name }}</td>
-                            <td>{{ $data->jobtitle }}</td>
-                            <td>{{ $data->level }}</td>
-                            <td>{{ $data->description }}</td>
+                            <td>{{ $contract->user->name }}</td>
+                            <td>{{ \Carbon\Carbon::parse($contract->start)->format('d/m/y') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($contract->end)->format('d/m/y') }}</td>
+                            <td>{{ $contract->department->name }}</td>
+                            <td>{{ $contract->jobtitle }}</td>
+                            <td>{{ $contract->level }}</td>
+                            <td>{{ $contract->description }}</td>
                             <td><a href="{{ $data->file }}" class="btn btn-primary btn-sm">File</a></td>
                         </tr>
-                        @endif
                         @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-
 </div>
 @endsection
 
 @section('css')
-{{--  --}}
+{{-- --}}
 @endsection
 
 @section('js')
 <script>
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+
     $("#employee").select2({
         theme: 'bootstrap'
     });
@@ -141,11 +144,10 @@
         theme: 'bootstrap'
     });
 
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('#employee-table').DataTable({
             responsive: true
         });
     });
-
 </script>
 @endsection
