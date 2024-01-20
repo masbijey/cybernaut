@@ -11,6 +11,8 @@ class Employeecontract extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $table = 'employeecontracts';
+
     protected $fillable = [
         'user_id',
         'start',
@@ -22,11 +24,6 @@ class Employeecontract extends Model
         'file'
     ];
 
-    public function employee()
-    {
-        return $this->belongsTo(Employee::class, 'employee_id');
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -34,7 +31,7 @@ class Employeecontract extends Model
 
     public function department()
     {
-        return $this->belongsTo(Department::class);
+        return $this->belongsTo(Department::class, 'department_id');
     }
 
 }

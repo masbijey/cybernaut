@@ -11,11 +11,7 @@
         @yield('title')
     </title>
     <link href="{{ url('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <!-- <link href="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
-
     <link href="{{ url('css/sb-admin-2.min.css') }}" rel="stylesheet">
-    <!-- <link href="https://startbootstrap.github.io/startbootstrap-sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet"> -->
-
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link rel="stylesheet" href="{{ url('vendor/select2/select2-bootstrap.css')}}">
     <link href="{{ url('vendor/select2/select2-bootstrap4.min.css')}}" rel="stylesheet">
@@ -24,20 +20,6 @@
     <link rel="stylesheet" href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{ asset('vendor/datatables/responsive.bootstrap4.min.css')}}">
     @yield('css')
-
-    @include('sweetalert::alert')
-    <script src="{{ url('vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ url('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ url('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-    <script src="{{ url('js/sb-admin-2.min.js') }}"></script>
-    <script src="{{ asset('vendor/select2/select2.min.js')}}"></script>
-    <script src="{{ asset('vendor/datepicker/gijgo.min.js')}}" type="text/javascript"></script>
-    <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
-    <script src="{{ asset('vendor/datatables/dataTables.responsive.min.js')}}"></script>
-    <script src="{{ asset('vendor/datatables/responsive.bootstrap4.min.js')}}"></script>
-    @yield('js')
-
 </head>
 
 <body id="page-top">
@@ -187,7 +169,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
+                                        <div class="icon-circle bg-gradient-primary">
                                             <i class="fas fa-file-alt text-white"></i>
                                         </div>
                                     </div>
@@ -354,6 +336,20 @@
             </div>
         </div>
     </div>
+
+    @include('sweetalert::alert')
+    <script src="{{ url('vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ url('js/sb-admin-2.min.js') }}"></script>
+    <script src="{{ asset('vendor/select2/select2.min.js')}}"></script>
+    <script src="{{ asset('vendor/datepicker/gijgo.min.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{ asset('vendor/datatables/dataTables.responsive.min.js')}}"></script>
+    <script src="{{ asset('vendor/datatables/responsive.bootstrap4.min.js')}}"></script>
+    @yield('js')
+
 </body>
 
 </html>

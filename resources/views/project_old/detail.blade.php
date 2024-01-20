@@ -3,7 +3,7 @@
 @section('content')
 <div class="mb-2">
     <h4 class="d-inline bg-dark text-white">Detail Project :</h4> <br>
-    <h3 class="text-white d-inline bg-primary">{{ $project->description }}</h3>
+    <h3 class="text-white d-inline bg-gradient-primary">{{ $project->description }}</h3>
 </div>
 
 <div class="row">

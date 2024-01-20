@@ -15,7 +15,7 @@ User Details | {{ $data->name }}
 </nav>
 <div class="col-sm-12 col-md-12 col-lg-4">
     <div class="card shadow mt-4 mb-4">
-        <div class="card-header py-3 bg-primary">
+        <div class="card-header py-3 bg-gradient-primary">
             <h6 class="m-0 font-weight-bold text-light">{{ $data->name}}</h6>
         </div>
 

@@ -23,7 +23,10 @@ class User extends Authenticatable
     }
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
+        'joinDate'
     ];
 
     protected $dates = ['deleted_at'];
@@ -65,7 +68,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(Employeeleave::class, 'user_id');
     }
-
-
-
 }

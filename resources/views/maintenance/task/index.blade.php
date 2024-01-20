@@ -14,8 +14,8 @@
 <a href="{{ route('task.create') }}" class="btn btn-primary btn-sm"><i class='fas fa-plus'></i> New Task</a>
 
 <div class="card shadow-sm mt-3">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Task List</h6>
+    <div class="card-header py-3 bg-gradient-primary text-light">
+        <h6 class="m-0 font-weight-bold">Task List</h6>
     </div>
     <div class="card-body">
         <div class="">

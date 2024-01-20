@@ -9,8 +9,8 @@
 
         <div class="col-md-4">
             <div class="card mt-3">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Asset Information</h6>
+                <div class="card-header py-3 bg-gradient-primary text-light">
+                    <h6 class="m-0 font-weight-bold">Asset Information</h6>
                 </div>
                 <div class="card-body">
                     <table class="table table-borderless">
@@ -57,8 +57,8 @@
 
         <div class="col-md-4">
             <div class="card mt-3">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Purchase Information</h6>
+                <div class="card-header py-3 bg-gradient-primary text-light">
+                    <h6 class="m-0 font-weight-bold">Purchase Information</h6>
                 </div>
                 <div class="card-body">
                     <table class="table table-borderless">
@@ -108,11 +108,10 @@
 
         <div class="col-md-4">
             <div class="card mt-3">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Asset Allocation</h6>
+                <div class="card-header py-3 bg-gradient-primary text-light">
+                    <h6 class="m-0 font-weight-bold">Asset Allocation</h6>
                 </div>
                 <div class="card-body">
-
                     <table class="table table-borderless">
                         <tr>
                             <td><label for="location">Location</label></td>

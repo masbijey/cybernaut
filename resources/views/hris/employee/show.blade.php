@@ -19,6 +19,13 @@
         });
 
     });
+
+    $(document).ready(function() {
+        $('#contract-table').DataTable({
+            responsive: true
+        });
+
+    });
 </script>
 @endsection
 
@@ -45,7 +52,7 @@ Employee details | {{ $employee->name }}
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
         <div class="d-block d-sm-none d-md-none">
             <div class="card shadow mb-3">
-                <a href="#personal-card" class="d-block card-header bg-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+                <a href="#personal-card" class="d-block card-header bg-gradient-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                     <h6 class="m-1 font-weight-bold">Personal Information</h6>
                 </a>
 
@@ -96,7 +103,7 @@ Employee details | {{ $employee->name }}
 
         <div class="d-none d-sm-block">
             <div class="card shadow mb-3">
-                <a href="#personal-card" class="d-block card-header bg-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+                <a href="#personal-card" class="d-block card-header bg-gradient-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                     <h6 class="m-1 font-weight-bold">Personal Information</h6>
                 </a>
 
@@ -148,7 +155,7 @@ Employee details | {{ $employee->name }}
 
     <div class="col-sm-12 col-md-12 col-lg-8">
         <div class="card shadow mb-3">
-            <a href="#education-card" class="d-block card-header bg-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+            <a href="#education-card" class="d-block card-header bg-gradient-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Educations</h6>
             </a>
 
@@ -183,7 +190,7 @@ Employee details | {{ $employee->name }}
         </div>
 
         <div class="card shadow mb-3">
-            <a href="#experience-card" class="d-block card-header bg-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+            <a href="#experience-card" class="d-block card-header bg-gradient-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Experience</h6>
             </a>
 
@@ -218,7 +225,7 @@ Employee details | {{ $employee->name }}
         </div>
 
         <div class="card shadow mb-3">
-            <a href="#family-card" class="d-block card-header bg-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+            <a href="#family-card" class="d-block card-header bg-gradient-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Family</h6>
             </a>
 
@@ -253,7 +260,7 @@ Employee details | {{ $employee->name }}
         </div>
 
         <div class="card shadow mb-3">
-            <a href="#sickness-card" class="d-block card-header bg-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+            <a href="#sickness-card" class="d-block card-header bg-gradient-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Sickness</h6>
             </a>
 
@@ -288,14 +295,14 @@ Employee details | {{ $employee->name }}
         </div>
 
         <div class="card shadow mb-3">
-            <a href="#contract-card" class="d-block card-header bg-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+            <a href="#contract-card" class="d-block card-header bg-gradient-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Contract</h6>
             </a>
 
             <div class="collapse" id="contract-card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table nowrap">
+                        <table class="table nowrap" id="contract-table" style="width: 100%;">
                             <thead>
                                 <tr>
                                     <th>CREATED AT</th>
@@ -308,11 +315,15 @@ Employee details | {{ $employee->name }}
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($contract as $contract)
+                                @foreach ($contract as $data)
                                 <tr>
-                                    <td>{{ $contract->created_at }}</td>
-                                    <td>{{ $contract->start }}</td>
-                                    <td>{{ $contract->end }}</td>
+                                    <td>{{ $data->created_at }}</td>
+                                    <td>{{ $data->start }}</td>
+                                    <td>{{ $data->end }}</td>
+                                    <td>{{ $data->department->name }}</td>
+                                    <td>{{ $data->level }}</td>
+                                    <td>{{ $data->jobtitle }}</td>
+                                    <td><a href="{{ url($data->file) }}">file</a></td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -323,7 +334,7 @@ Employee details | {{ $employee->name }}
         </div>
 
         <div class="card shadow mb-3">
-            <a href="#pnr-card" class="d-block card-header bg-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+            <a href="#pnr-card" class="d-block card-header bg-gradient-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Punishment & Reward</h6>
             </a>
 
@@ -358,7 +369,7 @@ Employee details | {{ $employee->name }}
         </div>
 
         <div class="card shadow mb-3">
-            <a href="#leave-card" class="d-block card-header bg-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+            <a href="#leave-card" class="d-block card-header bg-gradient-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Leaves History</h6>
             </a>
 
@@ -465,7 +476,7 @@ Employee details | {{ $employee->name }}
         </div>
 
         <div class="card shadow mb-3">
-            <a href="#inventory-card" class="d-block card-header bg-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+            <a href="#inventory-card" class="d-block card-header bg-gradient-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Inventory</h6>
             </a>
 
@@ -500,7 +511,7 @@ Employee details | {{ $employee->name }}
         </div>
 
         <div class="card shadow mb-3">
-            <a href="#training-card" class="d-block card-header bg-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+            <a href="#training-card" class="d-block card-header bg-gradient-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Training</h6>
             </a>
 
@@ -535,7 +546,7 @@ Employee details | {{ $employee->name }}
         </div>
 
         <div class="card shadow mb-3">
-            <a href="#attendance-card" class="d-block card-header bg-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+            <a href="#attendance-card" class="d-block card-header bg-gradient-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Attendance</h6>
             </a>
 
@@ -570,7 +581,7 @@ Employee details | {{ $employee->name }}
         </div>
 
         <div class="card shadow mb-3">
-            <a href="#log-card" class="d-block card-header bg-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+            <a href="#log-card" class="d-block card-header bg-gradient-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Log</h6>
             </a>
 

@@ -1,5 +1,33 @@
 @extends('layouts.app')
 
+@section('css')
+<!--  -->
+@endsection
+
+@section('js')
+<script>
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+
+    $("#employee").select2({
+        theme: 'bootstrap'
+    });
+
+    $("#department").select2({
+        theme: 'bootstrap'
+    });
+
+    $(document).ready(function() {
+        $('#employee-table').DataTable({
+            responsive: true
+        });
+    });
+</script>
+@endsection
+
 @section('content')
 <h1 class="h3 text-gray-800">Contract Management</h1>
 <nav aria-label="breadcrumb">
@@ -12,7 +40,7 @@
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-4">
         <div class="card mb-2 shadow">
-            <div class="card-header bg-primary text-light py-3">
+            <div class="card-header bg-gradient-primary text-light py-3">
                 <h6 class="m-0 font-weight-bold">New Contract</h6>
             </div>
             <div class="card-body">
@@ -81,7 +109,7 @@
 
     <div class="col-sm-12 col-md-12 col-lg-8">
         <div class="card mb-2 shadow">
-            <div class="card-header bg-primary text-light py-3">
+            <div class="card-header bg-gradient-primary text-light py-3">
                 <h6 class="m-0 font-weight-bold">Contract</h6>
             </div>
             <div class="card-body">
@@ -119,32 +147,4 @@
         </div>
     </div>
 </div>
-@endsection
-
-@section('css')
-{{-- --}}
-@endsection
-
-@section('js')
-<script>
-    // Add the following code if you want the name of the file appear on select
-    $(".custom-file-input").on("change", function() {
-        var fileName = $(this).val().split("\\").pop();
-        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-    });
-
-    $("#employee").select2({
-        theme: 'bootstrap'
-    });
-
-    $("#department").select2({
-        theme: 'bootstrap'
-    });
-
-    $(document).ready(function() {
-        $('#employee-table').DataTable({
-            responsive: true
-        });
-    });
-</script>
 @endsection

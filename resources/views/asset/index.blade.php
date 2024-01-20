@@ -26,8 +26,8 @@
 </div>
 
 <div class="card mt-3">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Asset List</h6>
+    <div class="card-header py-3 bg-gradient-primary text-light">
+        <h6 class="m-0 font-weight-bold">Asset List</h6>
     </div>
     <div class="card-body">
         <table class="table" id="employee-table" style="width: 100%;">

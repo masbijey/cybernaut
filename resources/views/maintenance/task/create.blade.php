@@ -15,10 +15,10 @@
     @csrf
 
     <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-8">
+        <div class="col-sm-12 col-md-12 col-lg-4">
             <div class="card mt-3 shadow-sm">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Task Information</h6>
+                <div class="card-header py-3 bg-gradient-primary text-light">
+                    <h6 class="m-0 font-weight-bold">Task Information</h6>
                 </div>
                 <div class="card-body">
                     <table class="table table-borderless table-sm">
@@ -87,8 +87,8 @@
 
         <div class="col-sm-12 col-md-12 col-lg-4">
             <div class="card mt-3 shadow-sm">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Related</h6>
+                <div class="card-header py-3 bg-gradient-primary text-light">
+                    <h6 class="m-0 font-weight-bold">Related</h6>
                 </div>
                 <div class="card-body">
                     <table class="table table-borderless table-sm">
@@ -125,8 +125,8 @@
             </div>
 
             <div class="card mt-3 shadow-sm">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Vendor Information</h6>
+                <div class="card-header py-3  bg-gradient-primary text-light">
+                    <h6 class="m-0 font-weight-bold">Vendor Information</h6>
                 </div>
                 <div class="card-body">
                     <table class="table table-borderless table-sm">
@@ -149,10 +149,12 @@
                     </table>
                 </div>
             </div>
+        </div>
 
+        <div class="col-sm-12 col-md-12 col-lg-4">
             <div class="card mt-3 shadow-sm">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Documents</h6>
+                <div class="card-header py-3 bg-gradient-primary text-light">
+                    <h6 class="m-0 font-weight-bold">Documents</h6>
                 </div>
                 <div class="card-body">
                     <div class="form-group">

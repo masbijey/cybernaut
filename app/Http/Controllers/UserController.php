@@ -35,6 +35,7 @@ class UserController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|unique:users|max:255',
             'password' => 'required|min:6',
+            'joindate' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -46,12 +47,11 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
+            'joinDate' => $request->joindate
         ]);
 
         Employee::create([
             'user_id' => $newuser->id,
-            'name' => $request->name,
-            'email' => $request->email,
         ]);
 
         Userrole::create([
@@ -68,7 +68,6 @@ class UserController extends Controller
             'leave' => '0',
         ]);
         
-
         alert()->success('Berhasil.','User berhasil dibuat');
         return redirect('/user');
     }

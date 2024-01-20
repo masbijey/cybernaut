@@ -111,7 +111,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
+                                        <div class="icon-circle bg-gradient-primary">
                                             <i class="fas fa-file-alt text-white"></i>
                                         </div>
                                     </div>

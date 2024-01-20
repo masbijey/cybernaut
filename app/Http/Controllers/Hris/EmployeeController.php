@@ -126,7 +126,7 @@ class EmployeeController extends Controller
             ->where('type', '=', 'sick_off')
             ->count();
 
-        $contract = DB::table('employeecontracts')
+        $contract = Employeecontract::with('department')
             ->where('user_id', '=', $id)
             ->get();
 
