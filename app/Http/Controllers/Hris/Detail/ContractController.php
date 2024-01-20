@@ -14,7 +14,6 @@ use App\Models\Employee;
 use App\Models\User;
 use App\Models\Employeecontract;
 
-
 class ContractController extends Controller
 {
     public function index()

@@ -1,7 +1,25 @@
 @extends('layouts.app')
 
 @section('css')
+<!--  -->
+@endsection
 
+@section('js')
+<script>
+    $(document).ready(function() {
+        $('#education-table').DataTable({
+            responsive: true
+        });
+
+    });
+
+    $(document).ready(function() {
+        $('#experience-table').DataTable({
+            responsive: true
+        });
+
+    });
+</script>
 @endsection
 
 @section('title')
@@ -43,27 +61,27 @@ Employee details | {{ $employee->name }}
                                 <td>{{ $employee->nik}}</td>
                             </tr>
                             <tr>
-                                <td class="font-weight-bolder">Name</td>
+                                <td class="font-weight-bolder">NAME</td>
                                 <td>{{ $employee->name}}</td>
                             </tr>
                             <tr>
-                                <td class="font-weight-bolder">Born</td>
+                                <td class="font-weight-bolder">BORN</td>
                                 <td>{{ $employee->bornplace}}, {{ $employee->borndate}}</td>
                             </tr>
                             <tr>
-                                <td class="font-weight-bolder">Address</td>
+                                <td class="font-weight-bolder">ADDRESS</td>
                                 <td>{{ $employee->address}}</td>
                             </tr>
                             <tr>
-                                <td class="font-weight-bolder">Religion</td>
+                                <td class="font-weight-bolder">RELIGION</td>
                                 <td>{{ $employee->religion}}</td>
                             </tr>
                             <tr>
-                                <td class="font-weight-bolder">Phone</td>
+                                <td class="font-weight-bolder">PHONE</td>
                                 <td>{{ $employee->phone}}</td>
                             </tr>
                             <tr>
-                                <td class="font-weight-bolder">Email</td>
+                                <td class="font-weight-bolder">EMAIL</td>
                                 <td>{{ $employee->email }}</td>
                             </tr>
                             <tr>
@@ -94,27 +112,27 @@ Employee details | {{ $employee->name }}
                                 <td>{{ $employee->nik}}</td>
                             </tr>
                             <tr>
-                                <td class="font-weight-bolder">Name</td>
+                                <td class="font-weight-bolder">NAME</td>
                                 <td>{{ $employee->name}}</td>
                             </tr>
                             <tr>
-                                <td class="font-weight-bolder">Born</td>
+                                <td class="font-weight-bolder">BORN</td>
                                 <td>{{ $employee->bornplace}}, {{ $employee->borndate}}</td>
                             </tr>
                             <tr>
-                                <td class="font-weight-bolder">Address</td>
+                                <td class="font-weight-bolder">ADDRESS</td>
                                 <td>{{ $employee->address}}</td>
                             </tr>
                             <tr>
-                                <td class="font-weight-bolder">Religion</td>
+                                <td class="font-weight-bolder">RELIGION</td>
                                 <td>{{ $employee->religion}}</td>
                             </tr>
                             <tr>
-                                <td class="font-weight-bolder">Phone</td>
+                                <td class="font-weight-bolder">PHONE</td>
                                 <td>{{ $employee->phone}}</td>
                             </tr>
                             <tr>
-                                <td class="font-weight-bolder">Email</td>
+                                <td class="font-weight-bolder">EMAIL</td>
                                 <td>{{ $employee->email }}</td>
                             </tr>
                             <tr>
@@ -137,15 +155,15 @@ Employee details | {{ $employee->name }}
             <div class="collapse" id="education-card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table" id="detail-table" style="width: 100%;">
-                            <thead class="text-nowrap">
+                        <table class="table nowrap" id="education-table" style="width: 100%;">
+                            <thead>
                                 <tr>
-                                    <th>Created At</th>
-                                    <th>Institution</th>
-                                    <th>Category</th>
-                                    <th>Periode</th>
-                                    <th>Description</th>
-                                    <th>File</th>
+                                    <th>CREATED AT</th>
+                                    <th>INSTITUTION</th>
+                                    <th>CATEGORY</th>
+                                    <th>PERIOD</th>
+                                    <th>REMARK</th>
+                                    <th>FILE</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -172,8 +190,8 @@ Employee details | {{ $employee->name }}
             <div class="collapse" id="experience-card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table" id="detail-experience" style="width: 100%;">
-                            <thead class="text-nowrap">
+                        <table class="table nowrap" id="experience-table" style="width: 100%;">
+                            <thead>
                                 <tr>
                                     <th>Created At</th>
                                     <th>Institution</th>
@@ -208,7 +226,7 @@ Employee details | {{ $employee->name }}
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table">
-                            <thead class="text-nowrap">
+                            <thead>
                                 <tr>
                                     <th>Created At</th>
                                     <th>Institution</th>
@@ -243,7 +261,7 @@ Employee details | {{ $employee->name }}
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table">
-                            <thead class="text-nowrap">
+                            <thead>
                                 <tr>
                                     <th>Created At</th>
                                     <th>Institution</th>
@@ -277,26 +295,26 @@ Employee details | {{ $employee->name }}
             <div class="collapse" id="contract-card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table">
-                            <thead class="text-nowrap">
+                        <table class="table nowrap">
+                            <thead>
                                 <tr>
-                                    <th>Created At</th>
-                                    <th>Institution</th>
-                                    <th>Category</th>
-                                    <th>Periode</th>
-                                    <th>Description</th>
-                                    <th>File</th>
+                                    <th>CREATED AT</th>
+                                    <th>START</th>
+                                    <th>END</th>
+                                    <th>DEPARTMENT</th>
+                                    <th>LEVEL</th>
+                                    <th>JOB TITLE</th>
+                                    <th>FILE</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($contract as $contract)
                                 <tr>
-                                    <td>test test test tes tes tes tes</td>
-                                    <td>Test</td>
-                                    <td>Test</td>
-                                    <td>Test</td>
-                                    <td>Test</td>
-                                    <td>Test</td>
+                                    <td>{{ $contract->created_at }}</td>
+                                    <td>{{ $contract->start }}</td>
+                                    <td>{{ $contract->end }}</td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -586,27 +604,4 @@ Employee details | {{ $employee->name }}
             </div>
         </div>
     </div>
-    @endsection
-
-    @section('css')
-
-    @endsection
-
-    @section('js')
-    <script>
-        $(document).ready(function() {
-            $('#detail-table').DataTable({
-                responsive: true
-            });
-
-        });
-
-        $(document).ready(function() {
-            $('#detail-experience').DataTable({
-                responsive: true
-            });
-
-        });
-    </script>
-
     @endsection

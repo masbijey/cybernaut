@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Hris;
+
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
@@ -47,8 +48,8 @@ class EmployeeController extends Controller
             'file' => 'required'
         ]);
 
-        if($validator->fails()) {
-            alert()->error('Gagal.','pastikan mengisi data dengan benar');
+        if ($validator->fails()) {
+            alert()->error('Gagal.', 'pastikan mengisi data dengan benar');
             return redirect('/employee');
         }
 
@@ -68,58 +69,82 @@ class EmployeeController extends Controller
             'photo' => $request->file
         ]);
 
-        alert()->success('Berhasil.','Data berhasil dibuat');
+        alert()->success('Berhasil.', 'Data berhasil dibuat');
         return redirect('/employee');
     }
 
     public function show($id)
     {
         $employee = User::findOrFail($id);
+
         $role = DB::table('employeecontracts')
-                ->where('user_id', '=', $id)
-                ->latest()
-                ->first();
+            ->where('user_id', '=', $id)
+            ->latest()
+            ->first();
 
         $entitleEo = DB::table('employeeleaves')
-                ->where('user_id', '=', $id)
-                ->where('type', '=', 'extra_off')
-                ->count();
+            ->where('user_id', '=', $id)
+            ->where('type', '=', 'extra_off')
+            ->count();
+
         $takenEo = DB::table('employeeleaves')
-                ->where('user_id', '=', $id)
-                ->where('type', '=', 'extra_off')
-                ->whereNotNull('pick_date')                
-                ->count();
+            ->where('user_id', '=', $id)
+            ->where('type', '=', 'extra_off')
+            ->whereNotNull('pick_date')
+            ->count();
+
         $balanceEo = $entitleEo - $takenEo;
 
         $entitlePh = DB::table('employeeleaves')
-                ->where('user_id', '=', $id)
-                ->where('type', '=', 'public_holiday')
-                ->count();
+            ->where('user_id', '=', $id)
+            ->where('type', '=', 'public_holiday')
+            ->count();
+
         $takenPh = DB::table('employeeleaves')
-                ->where('user_id', '=', $id)
-                ->where('type', '=', 'public_holiday')
-                ->whereNotNull('pick_date')                
-                ->count();
+            ->where('user_id', '=', $id)
+            ->where('type', '=', 'public_holiday')
+            ->whereNotNull('pick_date')
+            ->count();
+
         $balancePh = $entitlePh - $takenPh;
 
         $entitleAl = DB::table('employeeleaves')
-                ->where('user_id', '=', $id)
-                ->where('type', '=', 'annual_leave')
-                ->count();
+            ->where('user_id', '=', $id)
+            ->where('type', '=', 'annual_leave')
+            ->count();
+
         $takenAl = DB::table('employeeleaves')
-                ->where('user_id', '=', $id)
-                ->where('type', '=', 'annual_leave')
-                ->whereNotNull('pick_date')
-                ->count();
+            ->where('user_id', '=', $id)
+            ->where('type', '=', 'annual_leave')
+            ->whereNotNull('pick_date')
+            ->count();
 
         $balanceAl = $entitleAl - $takenAl;
 
         $totalSick = DB::table('employeeleaves')
-                ->where('user_id', '=', $id)
-                ->where('type', '=', 'sick_off')
-                ->count();
+            ->where('user_id', '=', $id)
+            ->where('type', '=', 'sick_off')
+            ->count();
 
-        return view('hris.employee.show', compact('employee', 'role', 'entitleEo', 'takenEo', 'balanceEo', 'entitlePh', 'takenPh', 'balancePh', 'entitleAl', 'takenAl', 'balanceAl', 'totalSick')); 
+        $contract = DB::table('employeecontracts')
+            ->where('user_id', '=', $id)
+            ->get();
+
+        return view('hris.employee.show', compact(
+            'contract',
+            'employee',
+            'role',
+            'entitleEo',
+            'takenEo',
+            'balanceEo',
+            'entitlePh',
+            'takenPh',
+            'balancePh',
+            'entitleAl',
+            'takenAl',
+            'balanceAl',
+            'totalSick'
+        ));
     }
 
     public function edit($id)
@@ -138,8 +163,8 @@ class EmployeeController extends Controller
         $employee->status = 'non-active';
         $employee->save();
 
-        alert()->success('Berhasil.','User berhasil dihapus');
-        return redirect ('/employee');
+        alert()->success('Berhasil.', 'User berhasil dihapus');
+        return redirect('/employee');
     }
 
     public function restore($id)
@@ -148,16 +173,16 @@ class EmployeeController extends Controller
         $employee->status = 'active';
         $employee->save();
 
-        alert()->success('Berhasil.','User berhasil dikembalikan');
-        return redirect ('/employee');
+        alert()->success('Berhasil.', 'User berhasil dikembalikan');
+        return redirect('/employee');
     }
 
     public function birthdays()
     {
         $birthdays = DB::table('employees')
-                ->whereRaw('MONTH(birthdate) = MONTH(NOW())')
-                ->get();
-        
+            ->whereRaw('MONTH(birthdate) = MONTH(NOW())')
+            ->get();
+
         return view('home', compact('birthdays'));
     }
 }
