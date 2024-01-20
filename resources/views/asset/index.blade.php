@@ -26,11 +26,11 @@
 </div>
 
 <div class="card mt-3">
-    <div class="card-header py-3 bg-gradient-primary text-light">
-        <h6 class="m-0 font-weight-bold">Asset List</h6>
+    <div class="card-header py-2 bg-gradient-primary text-light">
+        <h5 class="m-0 font-weight-bold">Asset List</h5>
     </div>
     <div class="card-body">
-        <table class="table" id="employee-table" style="width: 100%;">
+        <table class="table nowrap" id="employee-table" style="width: 100%;">
             <thead class="thead-light">
                 <tr>
                     <th>Asset No.</th>
@@ -48,7 +48,7 @@
             <tbody>
                 @foreach($asset as $data)
                 <tr>
-                    <td></td>
+                    <td>YJMB-IT-001</td>
                     <td>
                         <a href="/asset/detail/{{ $data->token }}" class="" data-placement="top" title="Tampilkan">
                             {{ $data->name }}</a>
@@ -95,7 +95,7 @@
                                 @endif
                     </td>
                     <td>
-                        <a href="{{ $data->file }}"><img class="img-thumbnail" src="{{ $data->file }}" alt="Thumbnail image"></a>
+                        <a href="{{ $data->file }}"><img class="img-thumbnail" src="{{ $data->file }}" alt="Thumbnail image" width="200px"></a>
                     </td>
                 </tr>
                 @endforeach

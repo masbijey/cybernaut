@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="d-sm-flex align-items-center justify-content-between">
-    <h1 class="h3 text-gray-800">Asset Informations</h1>
+    <h1 class="h3 text-gray-800">Asset Information</h1>
 </div>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -14,9 +14,9 @@
 
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-4">
-        <div class="card shadow mt-2">
-            <div class="card-header py-3 bg-gradient-primary text-light">
-                <h6 class="m-0 font-weight-bold">Information</h6>
+        <div class="card shadow mb-3">
+            <div class="card-header bg-gradient-primary text-light py-2">
+                <h5 class="m-0 font-weight-bold">Information</h5>
             </div>
             <div class="card-body">
                 <div class="mb-3 text-center">
@@ -25,89 +25,88 @@
 
                 <table class="table table-sm">
                     <tr>
-                        <td><label for="name" class="font-weight-bold">CREATED AT</label></td>
+                        <td><label for="name" class="font-weight-bold">Created At</label></td>
                         <td>{{ $data->created_at }}</td>
                     </tr>
                     <tr>
-                        <td><label for="name" class="font-weight-bold">NAME</label></td>
+                        <td><label for="name" class="font-weight-bold">Name</label></td>
                         <td>{{ $data->name }}</td>
                     </tr>
                     <tr>
-                        <td><label for="category" class="font-weight-bold">CATEGORY</label></td>
+                        <td><label for="category" class="font-weight-bold">Category</label></td>
                         <td>{{ $data->category->name }}</td>
                     </tr>
                     <tr>
-                        <td><label for="merk" class="font-weight-bold">MERK</label></td>
+                        <td><label for="merk" class="font-weight-bold">Merk</label></td>
                         <td>{{ $data->merk }}</td>
                     </tr>
                     <tr>
-                        <td><label for="type" class="font-weight-bold">TYPE</label></td>
+                        <td><label for="type" class="font-weight-bold">Type</label></td>
                         <td>{{ $data->type }}</td>
                     </tr>
                     <tr>
-                        <td><label for="serialNumber" class="font-weight-bold">SERIAL NUMBER</label></td>
+                        <td><label for="serialNumber" class="font-weight-bold">Serial Number</label></td>
                         <td>{{ $data->serialNumber }}</td>
                     </tr>
                     <tr>
-                        <td><label for="vendorName" class="font-weight-bold">VENDOR NAME</label></td>
+                        <td><label for="vendorName" class="font-weight-bold">Vendor Name</label></td>
                         <td>{{ $data->vendorName }}</td>
                     </tr>
                     <tr>
-                        <td><label for="vendorPhone" class="font-weight-bold">VENDOR PHONE</label></td>
+                        <td><label for="vendorPhone" class="font-weight-bold">Vendor Phone</label></td>
                         <td>{{ $data->vendorPhone }}</td>
                     </tr>
                     <tr>
-                        <td><label for="vendorAddress" class="font-weight-bold">VENDOR ADDRESS</label></td>
+                        <td><label for="vendorAddress" class="font-weight-bold">Vendor Address</label></td>
                         <td>{{ $data->vendorAddress }}</td>
                     </tr>
                     <tr>
-                        <td><label for="buyDate" class="font-weight-bold">PURCHASE DATE</label></td>
+                        <td><label for="buyDate" class="font-weight-bold">Purchase Date</label></td>
                         <td>{{ $data->buyDate }}</td>
                     </tr>
                     <tr>
-                        <td><label for="buyPrice" class="font-weight-bold">PRICE</label></td>
+                        <td><label for="buyPrice" class="font-weight-bold">Purchase Price</label></td>
                         <td>
                             IDR {{ number_format($data->buyPrice, 2, ',', '.') }}
                         </td>
                     </tr>
                     <tr>
-                        <td><label for="status" class="font-weight-bold">PURCHASE CONDITION</label></td>
+                        <td><label for="status" class="font-weight-bold">Purchase Condition</label></td>
                         <td>
                             <span class="badge badge-success">{{ $data->buyCond }}</span>
                         </td>
                     </tr>
                     <tr>
-                        <td><label for="remark" class="font-weight-bold">REMARK</label></td>
+                        <td><label for="remark" class="font-weight-bold">Remark</label></td>
                         <td>{{ $data->remark }}</td>
                     </tr>
-
                 </table>
             </div>
         </div>
     </div>
 
     <div class="col-sm-12 col-md-12 col-lg-8">
-        <div class="card shadow mt-2">
-            <div class="card-header py-3 bg-gradient-primary text-light">
-                <h6 class="m-0 font-weight-bold">Task</h6>
+        <div class="card shadow mb-3">
+            <div class="card-header bg-gradient-primary text-light py-2">
+                <h5 class="m-0 font-weight-bold">Task</h5>
             </div>
             <div class="card-body">
 
             </div>
         </div>
 
-        <div class="card shadow mt-2">
-            <div class="card-header py-3 bg-gradient-primary text-light">
-                <h6 class="m-0 font-weight-bold">Work Order</h6>
+        <div class="card shadow mb-3">
+            <div class="card-header bg-gradient-primary text-light py-2">
+                <h5 class="m-0 font-weight-bold">Work Order</h5>
             </div>
             <div class="card-body">
 
             </div>
         </div>
 
-        <div class="card shadow mt-2">
-            <div class="card-header py-3 bg-gradient-primary text-light">
-                <h6 class="m-0 font-weight-bold">Allocation</h6>
+        <div class="card shadow mb-3">
+            <div class="card-header bg-gradient-primary text-light py-2">
+                <h5 class="m-0 font-weight-bold">Allocation</h5>
             </div>
             <div class="card-body">
                 <table class="table table-hover" id="table-allocation">
