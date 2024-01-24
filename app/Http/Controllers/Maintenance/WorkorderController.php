@@ -90,7 +90,7 @@ class WorkorderController extends Controller
             $update_by = Auth::user()->id;
             $description = 'Before';
             Workordercomment::create([
-                'user_id' => $update_by,
+                'created_by' => $update_by,
                 'workorder_id' => $workorder->id,
                 'file' => $url,
                 'comment' => $description,

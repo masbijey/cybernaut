@@ -13,9 +13,9 @@
 <button type="button" class="btn d-inline-block">UPDATE : </button>
 <a href="{{ route('task.create') }}" class="btn btn-primary btn-sm"><i class='fas fa-plus'></i> New Task</a>
 
-<div class="card shadow-sm mt-3">
-    <div class="card-header py-3 bg-gradient-primary text-light">
-        <h6 class="m-0 font-weight-bold">Task List</h6>
+<div class="card mt-3 shadow">
+    <div class="card-header bg-gradient-primary text-light">
+        <h5 class="m-0 font-weight-bold">Task List</h5>
     </div>
     <div class="card-body">
         <div class="">

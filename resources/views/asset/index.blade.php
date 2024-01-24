@@ -26,7 +26,7 @@
 </div>
 
 <div class="card mt-3">
-    <div class="card-header py-2 bg-gradient-primary text-light">
+    <div class="card-header bg-gradient-primary text-light">
         <h5 class="m-0 font-weight-bold">Asset List</h5>
     </div>
     <div class="card-body">

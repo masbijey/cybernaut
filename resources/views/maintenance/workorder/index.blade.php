@@ -13,8 +13,8 @@
 <button type="button" class="btn d-inline-block">UPDATE : </button>
 <a href="{{ route('workorder.create') }}" class="btn btn-primary btn-sm"><i class='fas fa-plus'></i> New Work Order</a>
 
-<div class="card mt-3 shadow-sm">
-    <div class="card-header py-2 bg-gradient-primary text-light">
+<div class="card mt-3 shadow">
+    <div class="card-header bg-gradient-primary text-light">
         <h5 class="m-0 font-weight-bold">Work Order List</h5>
     </div>
     <div class="card-body">

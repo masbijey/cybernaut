@@ -1,13 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-<h1 class="h3 mb-2 text-gray-800">Employee Management</h1>
+<h1 class="h3 text-gray-800">Employee Management</h1>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Employee Management</li>
+    </ol>
+</nav>
 
 <div class="mt-3">
     <button type="button" class="btn mr-0 mb-0 d-inline-block">UPDATE : </button>
 
     <div class="btn-group shadow">
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal3">
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#" disabled>
             <i class='fas fa-plus'></i> New Employee
         </button>
         <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -112,9 +119,9 @@
     </div>
 </div>
 
-<div class="card mt-3">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Employee List</h6>
+<div class="card mt-3 shadow">
+<div class="card-header bg-gradient-primary text-light">
+        <h5 class="m-0 font-weight-bold">Employee List</h5>
     </div>
     <div class="card-body">
         <table class="table table-hover nowrap table-sm" id="employee-table">

@@ -39,8 +39,8 @@
 
 <div class="col-6">
     <div class="card mt-3">
-        <div class="card-header">
-            <h6 class="m-0 font-weight-bold text-primary">Depatment List</h6>
+        <div class="card-header bg-gradient-primary text-light">
+            <h6 class="m-0 font-weight-bold">Depatment List</h6>
         </div>
         <div class="card-body">
             <table class="table table-hover table-responsive-lg nowrap" id="pegawai-table">

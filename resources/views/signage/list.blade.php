@@ -10,8 +10,8 @@ S C L B L E | Signage Management
 
 <div class="col-sm-12 col-md-12 col-lg-6">
     <div class="card shadow">
-        <div class="card-header">
-            <h6 class="font-weight-bold text-primary">Signage Meeting Room</h6>
+        <div class="card-header bg-gradient-primary text-light">
+            <h6 class="font-weight-bold">Signage Meeting Room</h6>
         </div>
 
         <div class="card-body">
