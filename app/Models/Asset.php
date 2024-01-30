@@ -54,7 +54,7 @@ class Asset extends Model
 
     public function maintenance()
     {
-        return $this->hasMany(Tasktag::class, 'asset_id')->latest('created_at');
+        return $this->hasMany(Tasktag::class, 'asset_id');
     }
 
 

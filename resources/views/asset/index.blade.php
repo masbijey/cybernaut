@@ -33,37 +33,26 @@
         <table class="table nowrap" id="employee-table" style="width: 100%;">
             <thead class="thead-light">
                 <tr>
+                    <th>No.</th>
                     <th>Name</th>
-                    <th>Last Check</th>
-                    <th>Last Maintenance</th>
                     <th>Category</th>
                     <th>Merk</th>
                     <th>Type</th>
                     <th>Status</th>
                     <th>Location</th>
+                    <th>Last Activity</th>
                     <th>File</th>
-                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($asset as $data)
                 <tr>
                     <td>
-                        {{ $data->name }}
+                        asset number
                     </td>
                     <td>
-                        @if (!empty($data->maintenance->last()))
-                        <a href="/maintenance/detail/{{ $data->maintenance->last()->id }}">{{ $data->maintenance->last()->maintenance_date }}</a>
-                        @else
-                        <span class="badge badge-danger">null<span>
-                                @endif
-                    </td>
-                    <td>
-                        @if (!empty($data->maintenance->last()))
-                        <a href="/maintenance/detail/{{ $data->maintenance->last()->id }}">{{ $data->maintenance->last()->maintenance_date }}</a>
-                        @else
-                        <span class="badge badge-danger">null<span>
-                                @endif
+                        <a href="/asset/detail/{{ $data->token }}" data-placement="top" title="Tampilkan">
+                            {{ $data->name }}</a>
                     </td>
                     <td>
                         {{ $data->category->name }}
@@ -93,11 +82,14 @@
                                 @endif
                     </td>
                     <td>
-                        <a href="{{ $data->file }}"><img class="img-thumbnail" src="{{ $data->file }}" alt="Thumbnail image" width="150"></a>
+                        @if (!empty($data->maintenance->last()))
+                        <a href="/task/detail/{{ $data->maintenance->last()->task_id }}">{{ $data->maintenance->last()->created_at }}</a>
+                        @else
+                        <span class="badge badge-danger">null<span>
+                                @endif
                     </td>
                     <td>
-                        <a href="/asset/detail/{{ $data->token }}" class="btn btn-sm btn-outline-primary" data-placement="top" title="Tampilkan">
-                            Detail</a>
+                        <a href="{{ $data->file }}"><img class="img-thumbnail" src="{{ $data->file }}" alt="Thumbnail image" width="150"></a>
                     </td>
                 </tr>
                 @endforeach
