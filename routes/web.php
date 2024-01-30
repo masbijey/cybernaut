@@ -125,11 +125,11 @@ Route::controller(TaskController::class)->middleware('auth')->group(function () 
     Route::put('task/update/{id}', 'update')->name('task.update');
     Route::delete('task/{id}', 'destroy')->name('task.destroy');
     Route::get('task/{id}/edit', 'edit')->name('task.edit');
-
     Route::post('task/addfile', 'addfile')->name('task.addfile');
-
     Route::get('task/done/{id}', 'taskdone')->name('task.done');
     Route::get('task/undone/{id}', 'taskundone')->name('task.undone');
+    Route::post('task/addcomment', 'addcomment')->name('task.addcomment');
+
 });
 
 Route::controller(WorkorderController::class)->middleware('auth')->group(function () {

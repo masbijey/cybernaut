@@ -14,7 +14,7 @@ use App\Models\User;
 use App\Models\Assetallocation;
 use App\Models\Asset;
 use App\Models\File;
-
+use App\Models\Taskcomment;
 use Carbon\Carbon;
 use Auth;
 use Illuminate\Http\Request;
@@ -99,7 +99,7 @@ class TaskController extends Controller
         foreach ($members as $member) {
             Taskmember::create([
                 'task_id' => $task->id,
-                'employee_id' => $member
+                'user_id' => $member
             ]);
         }
 
@@ -177,7 +177,7 @@ class TaskController extends Controller
             foreach ($members as $member) {
                 Taskmember::create([
                     'task_id' => $id,
-                    'employee_id' => $member,
+                    'user_id' => $member,
                 ]);
             }
         }
@@ -238,4 +238,40 @@ class TaskController extends Controller
 
         return redirect()->back();
     }
+
+    public function addcomment(Request $request)
+    {
+        if (in_array(Auth::user()->role->task, ['1', '2', '3', '4'])) {
+            $validator = Validator::make($request->all(), [
+                'file' => 'required|mimes:jpeg,jpg,png,pdf',
+                'description' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                alert()->error('Gagal.', 'pastikan mengisi data dengan benar');
+                return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+
+            $path = $request->file->store('public/task_comment');
+            $url = Storage::url($path);
+
+            $update_by = Auth::user()->id;
+
+            Taskcomment::create([
+                'created_by' => $update_by,
+                'task_id' => $request->id,
+                'file' => $url,
+                'comment' => $request->description,
+            ]);
+
+            alert()->success('Berhasil.', 'Data berhasil ditambahkan');
+            return redirect()->back();
+        } else {
+            alert()->error('Stop.', 'Access Forbidden !');
+            return redirect()->back();
+        }
+    }
+
 }

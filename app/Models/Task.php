@@ -66,4 +66,9 @@ class Task extends Model
         return $this->hasMany(Tasktag::class, 'task_id');
     }
 
+    public function commentMany()
+    {
+        return $this->hasMany(Taskcomment::class, 'task_id');
+    }
+
 }

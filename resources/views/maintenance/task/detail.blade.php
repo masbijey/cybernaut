@@ -50,7 +50,7 @@
                         <td class="font-weight-bold"><label for="task_priority">Priority</label></td>
                         <td>
                             @if($task->task_priority == 'Low')
-                            <span class="badge badge-success">Low</span>
+                            <a class="btn btn-outline-success btn-sm" href="#">Low</a>
                             @elseif($task->task_priority == 'Medium')
                             <span class="badge badge-warning">Medium</span>
                             @else
@@ -61,7 +61,7 @@
                     <tr>
                         <td class="font-weight-bold"><label for="type">Type</label></td>
                         <td>
-                            <span class="badge badge-info">{{ $task->task_type }}</span>
+                            <a class="btn btn-outline-info btn-sm" href="#">{{ $task->task_type }}</a>
                         </td>
                     </tr>
                     <tr>
@@ -136,7 +136,7 @@
                         <td class="font-weight-bold"><label for="">Documents</label></td>
                         <td>
                             @if($task->task_status != 'Done')
-                            <table class="table table-borderless tanle-sm">
+                            <table class="table table-borderless table-sm">
                                 <tbody>
                                     @foreach($task->file as $file)
                                     <tr>
@@ -170,11 +170,11 @@
                                 </form>
                             </div>
                             @else
-                            <table class="table table-sm">
+                            <table class="table table-borderless table-sm">
                                 <tbody>
                                     @foreach($task->file as $file)
                                     <tr>
-                                        <td><a href="{{ $file->file }}" target="_blank">{{ $file->remark }}</a><br></td>
+                                        <td><a class="btn btn-sm btn-outline-secondary" href="{{ $file->file }}" target="_blank">{{ $file->remark }}</a><br></td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -232,9 +232,7 @@
                                     </div>
                                 </form>
                             </div>
-
                             @else
-
                             <table class="table table-sm table-borderless">
                                 <tbody>
                                     @if($task->assetMany == null)
@@ -244,7 +242,7 @@
                                     @foreach($task->assetMany as $asset)
                                     @if($asset->asset !== null)
                                     <tr>
-                                        <td><a href="#">{{ $asset->asset->name }}</a></td>
+                                        <td><a class="btn btn-sm btn-outline-secondary" href="#">{{ $asset->asset->name }}</a></td>
                                     </tr>
                                     @endif
                                     @endforeach
@@ -275,6 +273,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+
                             <small class="">
                                 <a class="btn btn-sm btn-link mb-2" href="#collapseAddLocation" data-toggle="collapse"><i class='fas fa-edit'></i> add crews</a><br>
                             </small>
@@ -314,7 +313,7 @@
                                     @foreach($task->locationMany as $location)
                                     @if($location->location !== null)
                                     <tr>
-                                        <td><a href="#">{{ $location->location->name }}</a></td>
+                                        <td><a class="btn btn-sm btn-outline-secondary" href="#">{{ $location->location->name }}</a></td>
                                     </tr>
                                     @endif
                                     @endforeach
@@ -363,12 +362,12 @@
                                 </form>
                             </div>
                             @else
-                            <table class="table table-sm">
+                            <table class="table table-sm table-borderless">
                                 <tbody>
                                     @foreach($task->member as $member)
                                     <tr>
                                         <td>
-                                            <a href="#">{{ $member->user->name }}</a>
+                                            <a class="btn btn-sm btn-outline-secondary" href="#">{{ $member->user->name }}</a>
                                         </td>
                                         @endforeach
                                     </tr>
@@ -389,23 +388,30 @@
                 <h6 class="m-0 font-weight-bold">Comments</h6>
             </div>
             <div class="card-body">
-                <div class="media">
-                    <img class="d-flex mr-3" data-src="holder.js/64x64?theme=sky" alt="64x64" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2264%22%20height%3D%2264%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18c87c0112a%20text%20%7B%20fill%3A%23FFFFFF%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18c87c0112a%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%230D8FDB%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2213.17521858215332%22%20y%3D%2236.55999994277954%22%3E64x64%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" style="width: 64px; height: 64px;">
+                @foreach ($task->commentMany as $comment)
+
+                <div class="media mb-2">
+                    <img class="d-flex mr-3" alt="64x64" src="{{ $comment->file }}" data-holder-rendered="true" style="width: 64px; height: 64px;">
                     <div class="media-body">
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                        <small class="text-info">{{ $comment->user->name }} | {{ $comment->created_at }} </small>
+                        <p>{!! nl2br(e($comment->comment)) !!}</p>
                     </div>
                 </div>
 
-                <br>
+                @endforeach
                 <small class="">
                     <a class="btn btn-sm btn-link mb-2" href="#collapseAddComments" data-toggle="collapse"><i class='fas fa-edit'></i> add comments</a><br>
                 </small>
 
                 <div class="collapse" id="collapseAddComments">
-                    <form action="">
+                    <form method="POST" action="{{ route('task.addcomment') }}" enctype="multipart/form-data">
+                        @csrf
+
+                        <input type="hidden" name="id" value="{{ $task->id }}">
+
                         <div class="form-group">
                             <label for="" class="font-weight-bold">Insert Image</label>
-                            <input type="file" class="form-control-file" name="">
+                            <input type="file" class="form-control-file" name="file">
                             <small class="text-info">image only</small>
                         </div>
                         <div class="form-group">

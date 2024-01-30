@@ -11,12 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('taskmembers', function (Blueprint $table) {
+        Schema::create('taskcomments', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->softDeletes();
             $table->integer('task_id');
-            $table->integer('user_id');
+            $table->string('file');
+            $table->text('comment');
+            
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
         });
     }
 
@@ -25,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('taskmembers');
+        Schema::dropIfExists('taskcomments');
     }
 };
