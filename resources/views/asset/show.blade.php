@@ -15,8 +15,8 @@
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-4">
         <div class="card shadow mb-3">
-            <div class="card-header bg-gradient-primary text-light py-2">
-                <h5 class="m-0 font-weight-bold">Information</h5>
+            <div class="card-header bg-gradient-primary text-light">
+                <h6 class="m-0 font-weight-bold">Information</h6>
             </div>
             <div class="card-body">
                 <div class="mb-3 text-center">
@@ -87,8 +87,8 @@
 
     <div class="col-sm-12 col-md-12 col-lg-8">
         <div class="card shadow mb-3">
-            <div class="card-header bg-gradient-primary text-light py-2">
-                <h5 class="m-0 font-weight-bold">Task</h5>
+            <div class="card-header bg-gradient-primary text-light">
+                <h6 class="m-0 font-weight-bold">Task</h6>
             </div>
             <div class="card-body">
 
@@ -96,8 +96,8 @@
         </div>
 
         <div class="card shadow mb-3">
-            <div class="card-header bg-gradient-primary text-light py-2">
-                <h5 class="m-0 font-weight-bold">Work Order</h5>
+            <div class="card-header bg-gradient-primary text-light">
+                <h6 class="m-0 font-weight-bold">Work Order</h6>
             </div>
             <div class="card-body">
 
@@ -105,8 +105,8 @@
         </div>
 
         <div class="card shadow mb-3">
-            <div class="card-header bg-gradient-primary text-light py-2">
-                <h5 class="m-0 font-weight-bold">Allocation</h5>
+            <div class="card-header bg-gradient-primary text-light">
+                <h6 class="m-0 font-weight-bold">Allocation</h6>
             </div>
             <div class="card-body">
                 <table class="table table-hover" id="table-allocation">

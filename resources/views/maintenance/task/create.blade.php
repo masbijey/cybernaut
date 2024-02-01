@@ -17,7 +17,7 @@
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-4">
             <div class="card mt-3 shadow-sm">
-                <div class="card-header py-3 bg-gradient-primary text-light">
+                <div class="card-header bg-gradient-primary text-light">
                     <h6 class="m-0 font-weight-bold">Task Information</h6>
                 </div>
                 <div class="card-body">
@@ -87,7 +87,7 @@
 
         <div class="col-sm-12 col-md-12 col-lg-4">
             <div class="card mt-3 shadow-sm">
-                <div class="card-header py-3 bg-gradient-primary text-light">
+                <div class="card-header bg-gradient-primary text-light">
                     <h6 class="m-0 font-weight-bold">Related</h6>
                 </div>
                 <div class="card-body">
@@ -125,7 +125,7 @@
             </div>
 
             <div class="card mt-3 shadow-sm">
-                <div class="card-header py-3  bg-gradient-primary text-light">
+                <div class="card-header bg-gradient-primary text-light">
                     <h6 class="m-0 font-weight-bold">Vendor Information</h6>
                 </div>
                 <div class="card-body">
@@ -153,7 +153,7 @@
 
         <div class="col-sm-12 col-md-12 col-lg-4">
             <div class="card mt-3 shadow-sm">
-                <div class="card-header py-3 bg-gradient-primary text-light">
+                <div class="card-header bg-gradient-primary text-light">
                     <h6 class="m-0 font-weight-bold">Documents</h6>
                 </div>
                 <div class="card-body">

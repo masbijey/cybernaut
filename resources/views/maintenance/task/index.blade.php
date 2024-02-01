@@ -15,7 +15,7 @@
 
 <div class="card mt-3 shadow">
     <div class="card-header bg-gradient-primary text-light">
-        <h5 class="m-0 font-weight-bold">Task List</h5>
+        <h6 class="m-0 font-weight-bold">Task List</h6>
     </div>
     <div class="card-body">
         <div class="">

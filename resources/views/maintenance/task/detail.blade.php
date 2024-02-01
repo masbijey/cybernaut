@@ -13,7 +13,7 @@
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-4">
         <div class="card mt-2 mb-2 shadow-sm">
-            <div class="card-header py-3 text-light bg-gradient-primary">
+            <div class="card-header text-light bg-gradient-primary">
                 <h6 class="m-0 font-weight-bold">Task Information</h6>
             </div>
             <div class="card-body">
@@ -127,7 +127,7 @@
 
     <div class="col-sm-12 col-md-12 col-lg-3">
         <div class="card mt-2 mb-2 shadow-sm">
-            <div class="card-header py-3 text-light bg-gradient-primary">
+            <div class="card-header text-light bg-gradient-primary">
                 <h6 class="m-0 font-weight-bold">Related Information</h6>
             </div>
             <div class="card-body">
@@ -384,7 +384,7 @@
 
     <div class="col-sm-12 col-md-12 col-lg-5">
         <div class="card mt-2 mb-2 shadow-sm">
-            <div class="card-header py-3 text-light bg-gradient-primary">
+            <div class="card-header text-light bg-gradient-primary">
                 <h6 class="m-0 font-weight-bold">Comments</h6>
             </div>
             <div class="card-body">

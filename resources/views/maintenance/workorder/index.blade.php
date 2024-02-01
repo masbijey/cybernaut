@@ -15,10 +15,10 @@
 
 <div class="card mt-3 shadow">
     <div class="card-header bg-gradient-primary text-light">
-        <h5 class="m-0 font-weight-bold">Work Order List</h5>
+        <h6 class="m-0 font-weight-bold">Work Order List</h6>
     </div>
     <div class="card-body">
-        <table class="table nowrap table-sm" id="employee-table">
+        <table class="table table-sm" id="employee-table">
             <thead class="thead-light">
                 <tr>
                     <th>Due Date</th>
@@ -59,14 +59,26 @@
                         <span class="badge badge-danger">High</span>
                         @endif
                     </td>
-                    <td>
-                        <i>null</i>
+                    <td class="text-wrap">
+                        @foreach ($data->departmentMany as $deptMany)
+                        @if ($deptMany !== null && $deptMany->department !== null)
+                        <a href="#">{{ $deptMany->department->name }}</a> <br>
+                        @endif
+                        @endforeach
                     </td>
                     <td>
-                        <i>null</i>
+                        @foreach ($data->assetMany as $assMany)
+                        @if ($assMany !== null && $assMany->asset !== null)
+                        <a href="#">{{ $assMany->asset->name }}</a> <br>
+                        @endif
+                        @endforeach
                     </td>
                     <td>
-                        <i>null</i>
+                        @foreach ($data->LocationMany as $locMany)
+                        @if ($locMany !== null && $locMany->location !== null)
+                        <a href="#">{{ $locMany->location->name }}</a> <br>
+                        @endif
+                        @endforeach
                     </td>
                 </tr>
                 @endforeach

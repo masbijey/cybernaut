@@ -27,7 +27,7 @@
 
 <div class="card mt-3">
     <div class="card-header bg-gradient-primary text-light">
-        <h5 class="m-0 font-weight-bold">Asset List</h5>
+        <h6 class="m-0 font-weight-bold">Asset List</h6>
     </div>
     <div class="card-body">
         <table class="table nowrap" id="employee-table" style="width: 100%;">
@@ -98,11 +98,10 @@
 
     </div>
 </div>
-
 @endsection
 
 @section('css')
-{{-- --}}
+
 @endsection
 
 @section('js')
