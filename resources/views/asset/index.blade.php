@@ -33,15 +33,15 @@
         <table class="table nowrap" id="employee-table" style="width: 100%;">
             <thead class="thead-light">
                 <tr>
-                    <th>No.</th>
+                    <th>No. Asset</th>
                     <th>Name</th>
                     <th>Category</th>
                     <th>Merk</th>
                     <th>Type</th>
+                    <th>Serial Number</th>
                     <th>Status</th>
                     <th>Location</th>
                     <th>Last Activity</th>
-                    <th>File</th>
                 </tr>
             </thead>
             <tbody>
@@ -63,6 +63,7 @@
                     <td>
                         {{ $data->type }}
                     </td>
+                    <td>{{ $data->serialNumber }}</td>
                     <td>
                         @if (!empty($data->allocation->last()))
                         @if ($data->allocation->last()->condition == 'Good')
@@ -87,9 +88,6 @@
                         @else
                         <span class="badge badge-danger">null<span>
                                 @endif
-                    </td>
-                    <td>
-                        <a href="{{ $data->file }}"><img class="img-thumbnail" src="{{ $data->file }}" alt="Thumbnail image" width="150"></a>
                     </td>
                 </tr>
                 @endforeach
