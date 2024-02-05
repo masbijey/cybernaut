@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h1 class="h3 text-gray-800">Asset Management</h1>
+<h1 class="h3 text-gray-800">ASSET MANAGEMENT</h1>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -67,27 +67,27 @@
                     <td>
                         @if (!empty($data->allocation->last()))
                         @if ($data->allocation->last()->condition == 'Good')
-                        <span class="badge badge-success">{{ $data->allocation->last()->condition }}</span>
+                        <button class="btn btn-sm btn-outline-success">{{ $data->allocation->last()->condition }}</button>
                         @else
-                        <span class="badge badge-danger">Broken</span>
+                        <button class="btn btn-sm btn-outline-success">Broken</button>
                         @endif
                         @else
-                        <span class="badge badge-danger">null<span>
-                                @endif
+                        <button class="btn btn-sm btn-outline-success">Null</button>
+                        @endif
                     </td>
                     <td>
                         @if (!empty($data->allocation->last()))
                         <a href="/location/detail/{{ $data->allocation->last()->location->id }}">{{ $data->allocation->last()->location->name }}</a>
                         @else
-                        <span class="badge badge-danger">null<span>
+                        <span class="badge badge-danger">Null<span>
                                 @endif
                     </td>
                     <td>
                         @if (!empty($data->maintenance->last()))
                         <a href="/task/detail/{{ $data->maintenance->last()->task_id }}">{{ $data->maintenance->last()->created_at }}</a>
                         @else
-                        <span class="badge badge-danger">null<span>
-                                @endif
+                        <button class="btn btn-sm btn-outline-danger">null</button>
+                        @endif
                     </td>
                 </tr>
                 @endforeach

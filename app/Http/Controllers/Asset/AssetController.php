@@ -65,22 +65,23 @@ class AssetController extends Controller
             'employee' => 'required'
         ]);
 
-        if($validator->fails()) {
-            alert()->error('Gagal.','pastikan mengisi data dengan benar');
+        if ($validator->fails()) {
+            alert()->error('Gagal.', 'pastikan mengisi data dengan benar');
             return redirect('/asset');
         }
 
         $path = $request->file->store('public/asset');
         $url = Storage::url($path);
-        $updateBy = Auth::user()->id;
 
+        $updateBy = Auth::user()->id;
         $token = Str::random(32);
+
         while (Asset::where('token', $token)->exists()) {
             $token = Str::random(32);
         }
 
-        while (Asset::where('serialNumber', $request->serialNumber)->exists()){
-            alert()->error('Gagal.','Aset dgn SN tersebut sudah ada');
+        while (Asset::where('serialNumber', $request->serialNumber)->exists()) {
+            alert()->error('Gagal.', 'Aset dgn SN tersebut sudah ada');
             return redirect('/asset');
         }
 
@@ -112,9 +113,8 @@ class AssetController extends Controller
             'created_by' => $updateBy
         ]);
 
-        alert()->success('Berhasil.','Data berhasil dibuat');
+        alert()->success('Berhasil.', 'Data berhasil dibuat');
         return redirect('/asset');
-
     }
 
     public function show($token)
@@ -140,7 +140,7 @@ class AssetController extends Controller
         $data = Asset::where('token', $token)->firstOrFail();
         $data->delete();
 
-        alert()->success('Berhasil.','Data berhasil dihapus');
-        return redirect ('/asset');
+        alert()->success('Berhasil.', 'Data berhasil dihapus');
+        return redirect('/asset');
     }
 }
