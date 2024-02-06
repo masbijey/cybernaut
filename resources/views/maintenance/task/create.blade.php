@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h1 class="h3 text-gray-800">New Task</h1>
+<h1 class="h3 text-gray-800">CREATE NEW TASK</h1>
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">

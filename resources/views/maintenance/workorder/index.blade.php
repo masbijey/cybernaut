@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h1 class="h3 text-gray-800">Work Order Management</h1>
+<h1 class="h3 text-gray-800">WORK ORDER MANAGEMENT</h1>
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -19,7 +19,7 @@
     </div>
     <div class="card-body">
         <table class="table table-sm" id="employee-table">
-            <thead class="thead-light">
+            <thead>
                 <tr>
                     <th>Due Date</th>
                     <th>No. WO</th>

@@ -5,7 +5,7 @@ Workoder detail | {{ $workorder->title }}
 @endsection
 
 @section('content')
-<h3 class="h3 text-gray-800">Work Order Details</h3>
+<h3 class="h3 text-gray-800">WORK ORDER DETAIL</h3>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>

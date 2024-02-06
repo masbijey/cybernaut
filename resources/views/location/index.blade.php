@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h1 class="h3 mb-2 text-gray-800">Location</h1>
+<h1 class="h3 mb-2 text-gray-800">LOCATION</h1>
 
 <div class="col-6 mt-3">
     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal3">
