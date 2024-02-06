@@ -16,9 +16,9 @@ class Workordermember extends Model
         'user_id'
     ];
 
-    public function employee()
+    public function user()
     {
-        return $this->belongsTo(Employee::class, 'employee_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
 }

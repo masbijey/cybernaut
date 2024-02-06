@@ -11,12 +11,9 @@
 </nav>
 
 <button type="button" class="btn d-inline-block">UPDATE : </button>
-<a href="{{ route('workorder.create') }}" class="btn btn-primary btn-sm"><i class='fas fa-plus'></i> New Work Order</a>
+<a href="{{ route('workorder.create') }}" class="btn btn-outline-secondary btn-sm"><i class='fas fa-plus'></i> New Work Order</a>
 
 <div class="card mt-3 shadow">
-    <div class="card-header bg-gradient-primary text-light">
-        <h6 class="m-0 font-weight-bold">Work Order List</h6>
-    </div>
     <div class="card-body">
         <table class="table table-sm" id="employee-table">
             <thead>
@@ -45,18 +42,18 @@
                     </td>
                     <td>
                         @if($data->status !== 'Done')
-                        <span class="badge badge-danger">Open</span>
+                        <button class="btn btn-sm btn-outline-danger">Open</button>
                         @else
-                        <span class="badge badge-success">Done</span>
+                        <button class="btn btn-sm btn-outline-success">Done</button>
                         @endif
                     </td>
                     <td>
                         @if($data->priority == 'Low')
-                        <span class="badge badge-success">Low</span>
+                        <button class="btn btn-sm btn-outline-success">Low</button>
                         @elseif($data->priority == 'Medium')
-                        <span class="badge badge-warning">Medium</span>
+                        <button class="btn btn-sm btn-outline-warning">Medium</button>
                         @else
-                        <span class="badge badge-danger">High</span>
+                        <button class="btn btn-sm btn-outline-danger">High</button>
                         @endif
                     </td>
                     <td class="text-wrap">

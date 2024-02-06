@@ -13,8 +13,8 @@
     <button type="button" class="btn mr-0 mb-0 d-inline-block">UPDATE : </button>
 
     <div class="btn-group shadow">
-        <a href="{{ route('asset.create') }}" class="btn btn-primary btn-sm"><i class='fas fa-plus'></i> New Asset</a>
-        <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a href="{{ route('asset.create') }}" class="btn btn-outline-secondary btn-sm"><i class='fas fa-plus'></i> New Asset</a>
+        <button type="button" class="btn btn-outline-secondary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="sr-only">Toggle Dropdown</span>
         </button>
         <div class="dropdown-menu">
@@ -25,13 +25,10 @@
     </div>
 </div>
 
-<div class="card mt-3">
-    <div class="card-header bg-gradient-primary text-light">
-        <h6 class="m-0 font-weight-bold">Asset List</h6>
-    </div>
+<div class="card mt-3 shadow-sm">
     <div class="card-body">
         <table class="table nowrap" id="employee-table" style="width: 100%;">
-            <thead class="thead-light">
+            <thead>
                 <tr>
                     <th>No. Asset</th>
                     <th>Name</th>
@@ -77,7 +74,7 @@
                     </td>
                     <td>
                         @if (!empty($data->allocation->last()))
-                        <a href="/location/detail/{{ $data->allocation->last()->location->id }}">{{ $data->allocation->last()->location->name }}</a>
+                        <a class="btn btn-sm btn-outline-secondary" href="/location/detail/{{ $data->allocation->last()->location->id }}">{{ $data->allocation->last()->location->name }}</a>
                         @else
                         <span class="badge badge-danger">Null<span>
                                 @endif

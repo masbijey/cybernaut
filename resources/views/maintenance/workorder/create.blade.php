@@ -13,8 +13,8 @@
 
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-6">
-        <div class="card shadow mt-3">
-            <div class="card-header bg-gradient-primary text-light">
+        <div class="card shadow-sm mt-3">
+            <div class="card-header bg-gradient-primary text-light py-3">
                 <h6 class="m-0 font-weight-bold">Work Order Information</h6>
             </div>
             <div class="card-body">

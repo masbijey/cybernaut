@@ -16,8 +16,8 @@ Workoder detail | {{ $workorder->title }}
 
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-4">
-        <div class="card mb-2 shadow">
-            <div class="card-header bg-gradient-primary text-light">
+        <div class="card mb-2 shadow-sm">
+            <div class="card-header bg-gradient-primary text-light py-3">
                 <h6 class="m-0 font-weight-bold">Work Order Information</h6>
             </div>
             <div class="card-body">
@@ -51,11 +51,11 @@ Workoder detail | {{ $workorder->title }}
                         <td class="font-weight-bold">Prioriy</td>
                         <td>
                             @if($workorder->prioriy == 'Low')
-                            <span class="badge badge-success">Low</span>
+                            <button class="btn btn-sm btn-outline-success">Low</button>
                             @elseif($workorder->priority == 'medium')
-                            <span class="badge badge-warning">Medium</span>
+                            <button class="btn btn-sm btn-outline-warning">Medium</button>
                             @else
-                            <span class="badge badge-danger">High</span>
+                            <button class="btn btn-sm btn-outline-danger">High</button>
                             @endif
                         </td>
                     </tr>
@@ -63,7 +63,7 @@ Workoder detail | {{ $workorder->title }}
                         <td class="font-weight-bold">Progress</td>
                         <td>
                             @if ($workorder->status == 'Open')
-                            <button type="button" class="btn btn-danger shadow btn-sm" data-toggle="modal" data-target="#openModal">
+                            <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#openModal">
                                 Open
                             </button>
 
@@ -99,9 +99,8 @@ Workoder detail | {{ $workorder->title }}
                                 </div>
                             </div>
 
-
                             @elseif ($workorder->status == 'On Progress')
-                            <button type="button" class="btn btn-warning shadow-sm btn-sm" data-toggle="modal" data-target="#onProgressModal">
+                            <button type="button" class="btn btn-outline-warning btn-sm" data-toggle="modal" data-target="#onProgressModal">
                                 On Progress
                             </button>
 
@@ -147,7 +146,7 @@ Workoder detail | {{ $workorder->title }}
                             </div>
 
                             @else ($workorder->status == 'Done')
-                            <a href="#" class="btn btn-success btn-sm">Done</a>
+                            <a href="#" class="btn btn-outline-success btn-sm">Done</a>
                             @endif
 
                             <small class="">
@@ -160,7 +159,7 @@ Workoder detail | {{ $workorder->title }}
 
                             <div class="collapse" id="collapseExample">
                                 <div class="card card-body">
-                                    <small class="text-info">
+                                    <small>
                                         created by <b>{{ $workorder->createdBy->name }}</b> at <b>{{ $workorder->created_at }}</b> <br>
 
                                         @if ($workorder->receivedBy !== null)
@@ -244,8 +243,8 @@ Workoder detail | {{ $workorder->title }}
     </div>
 
     <div class="col-sm-12 col-md-12 col-lg-4">
-        <div class="card mb-2 shadow">
-            <div class="card-header bg-gradient-primary text-light">
+        <div class="card mb-2 shadow-sm">
+            <div class="card-header bg-gradient-primary text-light py-3">
                 <h6 class="m-0 font-weight-bold">Related Information</h6>
             </div>
             <div class="card-body">
@@ -307,7 +306,7 @@ Workoder detail | {{ $workorder->title }}
                                     @foreach($workorder->locationMany as $location)
                                     @if($location->location !== null)
                                     <tr>
-                                        <td><a href="#">{{ $location->location->name }}</a></td>
+                                        <td><a class="btn btn-sm btn-outline-secondary" href="#">{{ $location->location->name }}</a></td>
                                     </tr>
                                     @endif
                                     @endforeach
@@ -325,9 +324,9 @@ Workoder detail | {{ $workorder->title }}
                                     @foreach($workorder->assetMany as $asset)
                                     @if($asset->asset !== null)
                                     <tr>
-                                        <td>{{ $asset->asset->name }}</td>
+                                        <td><a href="#">{{ $asset->asset->name }}</a></td>
                                         <td class="text-right">
-                                            <a href="" class="btn btn-sm" data-placement="top" title="Hapus"><i class='fas fa-trash'></i></a>
+                                            <a href="#" class="btn btn-sm" data-placement="top" title="Hapus"><i class='fas fa-trash'></i></a>
                                         </td>
                                     </tr>
                                     @endif
@@ -370,7 +369,7 @@ Workoder detail | {{ $workorder->title }}
                                     @foreach($workorder->assetMany as $asset)
                                     @if($asset->asset !== null)
                                     <tr>
-                                        <td><a href="#">{{ $asset->asset->name }}</a></td>
+                                        <td><a class="btn btn-sm btn-outline-secondary" href="#">{{ $asset->asset->name }}</a></td>
                                     </tr>
                                     @endif
                                     @endforeach
@@ -380,23 +379,66 @@ Workoder detail | {{ $workorder->title }}
                         </td>
                     </tr>
                     <tr>
-                        @if ($workorder->status !== 'Done')
-                        @else
                         <td class="font-weight-bold">Finished by</td>
                         <td>
-                            <table class="table table-sm table-borderless">
+                            @if ($workorder->status !== 'Done')
+                            <!-- <table class="table table-sm table-borderless">
                                 <tbody>
                                     @foreach($workorder->memberMany as $member)
-                                    @if($member->employee !== null)
+                                    @if($member->user !== null)
                                     <tr>
-                                        <td><a href="#">{{ $member->employee->name }}</a></td>
+                                        <td><a href="#">{{ $member->user->name }}</a></td>
+                                        <td class="text-right">
+                                            <a href="#" class="btn btn-sm" data-placement="top" title="Hapus"><i class='fas fa-trash'></i></a>
+                                        </td>
                                     </tr>
                                     @endif
                                     @endforeach
                                 </tbody>
                             </table>
+
+                            <small class="">
+                                <a href="#collapseAddMember" data-toggle="collapse"><i class='fas fa-edit'></i> add assets</a><br>
+                            </small>
+
+                            <div class="collapse" id="collapseAddMember">
+                                <div class="card card-body">
+                                    <form method="POST" action="{{ route('workorder.addrelation') }}" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $workorder->id }}">
+                                        <div class="form-group">
+                                            <select class="js-example-basic-multiple custom-select" id="select-member-add" name="member_ids[]" multiple="multiple" required style="width: 100%;">
+                                                @if(!isset($workorder->memberMany))
+                                                @foreach($workorder->memberMany as $data)
+                                                <option value="{{ $data->member->id }}" selected>{{ $data->member->name }}</option>
+                                                @endforeach
+                                                @endif
+
+                                                @foreach($userlist as $data)
+                                                <option value="{{ $data->id }}">{{ $data->name }}
+                                                </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary shadow btn-sm">Save</button>
+                                    </form>
+                                </div>
+                            </div> -->
+
+                            @else
+                            <table class="table table-sm table-borderless">
+                            <tbody>
+                                    @foreach($workorder->memberMany as $member)
+                                    @if($member->user !== null)
+                                    <tr>
+                                        <td><a class="btn btn-sm btn-outline-secondary" href="#">{{ $member->user->name }}</a></td>
+                                    </tr>
+                                    @endif
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            @endif
                         </td>
-                        @endif
                     </tr>
                 </table>
             </div>
@@ -404,8 +446,8 @@ Workoder detail | {{ $workorder->title }}
     </div>
 
     <div class="col-sm-12 col-md-12 col-lg-4">
-        <div class="card mb-2 shadow">
-            <div class="card-header bg-gradient-primary text-light">
+        <div class="card mb-2 shadow-sm">
+            <div class="card-header bg-gradient-primary text-light py-3">
                 <h6 class="m-0 font-weight-bold">Comments</h6>
             </div>
             <div class="card-body">
@@ -482,6 +524,11 @@ Workoder detail | {{ $workorder->title }}
     $("#select-location-add").select2({
         theme: 'bootstrap',
         placeholder: "Select location"
+    });
+
+    $("#select-member-add").select2({
+        theme: 'bootstrap',
+        placeholder: "Select member"
     });
 
     $("#select-asset-add").select2({

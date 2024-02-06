@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-4">
             <div class="card mt-1 ">
-                <div class="card-header bg-gradient-primary text-light">
+                <div class="card-header bg-gradient-primary text-light py-3">
                     <h6 class="m-0 font-weight-bold">Asset Information</h6>
                 </div>
                 <div class="card-body">
@@ -64,7 +64,7 @@
 
         <div class="col-sm-12 col-md-12 col-lg-4">
             <div class="card mt-1 ">
-                <div class="card-header bg-gradient-primary text-light">
+                <div class="card-header bg-gradient-primary text-light py-3">
                     <h6 class="m-0 font-weight-bold">Purchase Information</h6>
                 </div>
                 <div class="card-body">
@@ -115,7 +115,7 @@
 
         <div class="col-sm-12 col-md-12 col-lg-4">
             <div class="card mt-1 ">
-                <div class="card-header  bg-gradient-primary text-light">
+                <div class="card-header  bg-gradient-primary text-light py-3">
                     <h6 class="m-0 font-weight-bold">Asset Allocation</h6>
                 </div>
                 <div class="card-body">

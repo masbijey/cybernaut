@@ -219,6 +219,16 @@ class WorkorderController extends Controller
                 }
             }
 
+            if (isset($request->member_ids)) {
+                $abc = $request->member_ids;
+                foreach ($abc as $member) {
+                    Workordermember::create([
+                        'workorder_id' => $request->id,
+                        'user_id' => $member,
+                    ]);
+                }
+            }
+
             return redirect()->back();
         } else {
             alert()->error('Stop.', 'Access Forbidden !');
