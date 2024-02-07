@@ -17,7 +17,7 @@ Workoder detail | {{ $workorder->title }}
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-4">
         <div class="card mb-2 shadow-sm">
-            <div class="card-header bg-gradient-primary text-light py-3">
+            <div class="card-header">
                 <h6 class="m-0 font-weight-bold">Work Order Information</h6>
             </div>
             <div class="card-body">
@@ -228,7 +228,7 @@ Workoder detail | {{ $workorder->title }}
                                     @foreach($workorder->departmentMany as $department)
                                     @if($department->department !== null)
                                     <tr>
-                                        <td><a href="#">{{ $department->department->name }}</a></td>
+                                        <td><a class="btn btn-sm btn-outline-secondary" href="#">{{ $department->department->name }}</a></td>
                                     </tr>
                                     @endif
                                     @endforeach
@@ -244,7 +244,7 @@ Workoder detail | {{ $workorder->title }}
 
     <div class="col-sm-12 col-md-12 col-lg-4">
         <div class="card mb-2 shadow-sm">
-            <div class="card-header bg-gradient-primary text-light py-3">
+            <div class="card-header">
                 <h6 class="m-0 font-weight-bold">Related Information</h6>
             </div>
             <div class="card-body">
@@ -427,7 +427,7 @@ Workoder detail | {{ $workorder->title }}
 
                             @else
                             <table class="table table-sm table-borderless">
-                            <tbody>
+                                <tbody>
                                     @foreach($workorder->memberMany as $member)
                                     @if($member->user !== null)
                                     <tr>
@@ -447,7 +447,7 @@ Workoder detail | {{ $workorder->title }}
 
     <div class="col-sm-12 col-md-12 col-lg-4">
         <div class="card mb-2 shadow-sm">
-            <div class="card-header bg-gradient-primary text-light py-3">
+            <div class="card-header">
                 <h6 class="m-0 font-weight-bold">Comments</h6>
             </div>
             <div class="card-body">
