@@ -15,15 +15,11 @@ User Details | {{ $data->name }}
 </nav>
 <div class="col-sm-12 col-md-12 col-lg-4">
     <div class="card shadow mt-4 mb-4">
-        <div class="card-header py-3 bg-gradient-primary">
-            <h6 class="m-0 font-weight-bold text-light">{{ $data->name}}</h6>
+        <div class="card-header py-3">
+            <h5 class="m-0 font-weight-bold text-danger"> User= {{ $data->name}}</h5>
         </div>
 
         <div class="card-body">
-            <p>Rules : </p>
-            <p>0 = no access, <br> 1 = read only, <br> 2 = read, write, <br> 3 = read, write, approved, <br> 4 = full access</p>
-            <small> Last Update : {{ $data->updated_at }}</small>
-
             <form method="POST" action="{{ route('user.update', $id) }}">
                 @csrf
                 @method('PUT')
@@ -51,7 +47,13 @@ User Details | {{ $data->name }}
                             </td>
                         </tr>
                         <tr>
-                            <td><label for="">Workorder</label></td>
+                            <td><label for="">Workorder</label> <br>
+                                <small>
+                                    1 = view, create, & add comment | Staff<br>
+                                    2 = change status | SPV<br>
+                                    3 = reject | HOD
+                                </small>
+                            </td>
                             <td class="text-center">
                                 <input type="number" min="0" max="4" maxlength="1" required class="form-control bg-warning text-dark font-weight-bold text-center" value="{{ $data->role->workorder }}" name="workorder">
                             </td>
@@ -100,7 +102,7 @@ User Details | {{ $data->name }}
                         </tr>
                     </tbody>
                 </table>
-                
+
                 <button class="btn btn-primary shadow" type="submit">Save</button>
             </form>
         </div>

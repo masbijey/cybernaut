@@ -16,16 +16,13 @@ Workoder detail | {{ $workorder->title }}
 
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-4">
-        <div class="card mb-2 shadow-sm">
-            <div class="card-header">
-                <h6 class="m-0 font-weight-bold">Work Order Information</h6>
-            </div>
+        <div class="card mb-3 shadow-sm">
             <div class="card-body">
                 <table class="table table-sm">
                     <tr>
                         <td class="font-weight-bold">No. Work Order</td>
                         <td>
-                            <p class="text-danger font-weight-bold">{{ $workorder->order_no }}</p>
+                            <p class="text-danger font-weight-bold">#{{ $workorder->order_no }}</p>
                         </td>
                     </tr>
                     <tr>
@@ -48,7 +45,7 @@ Workoder detail | {{ $workorder->title }}
                         </td>
                     </tr>
                     <tr>
-                        <td class="font-weight-bold">Prioriy</td>
+                        <td class="font-weight-bold">Priority</td>
                         <td>
                             @if($workorder->prioriy == 'Low')
                             <button class="btn btn-sm btn-outline-success">Low</button>
@@ -243,10 +240,7 @@ Workoder detail | {{ $workorder->title }}
     </div>
 
     <div class="col-sm-12 col-md-12 col-lg-4">
-        <div class="card mb-2 shadow-sm">
-            <div class="card-header">
-                <h6 class="m-0 font-weight-bold">Related Information</h6>
-            </div>
+        <div class="card mb-3 shadow-sm">
             <div class="card-body">
                 <table class="table table-sm">
                     <tr>
@@ -446,10 +440,7 @@ Workoder detail | {{ $workorder->title }}
     </div>
 
     <div class="col-sm-12 col-md-12 col-lg-4">
-        <div class="card mb-2 shadow-sm">
-            <div class="card-header">
-                <h6 class="m-0 font-weight-bold">Comments</h6>
-            </div>
+        <div class="card mb-3 shadow-sm">
             <div class="card-body">
                 @foreach($workorder->commentMany as $comment)
                 <div class="media mb-0">

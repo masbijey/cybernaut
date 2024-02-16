@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h1 class="h3 text-gray-800">CREATE WORK ORDER</h1>
+<h1 class="h3 text-gray-800">NEW WORK ORDER</h1>
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -13,10 +13,7 @@
 
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-6">
-        <div class="card shadow-sm mt-3">
-            <div class="card-header bg-gradient-primary text-light py-3">
-                <h6 class="m-0 font-weight-bold">Work Order Information</h6>
-            </div>
+        <div class="card shadow-sm my-2">
             <div class="card-body">
                 <form method="POST" action="{{ route('workorder.store') }}" enctype="multipart/form-data">
                     @csrf

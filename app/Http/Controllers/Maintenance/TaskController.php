@@ -28,103 +28,120 @@ class TaskController extends Controller
 {
     public function index()
     {
-        $task = Task::all();
+        if (in_array(Auth::user()->role->task, ['1', '2', '3', '4'])) {
+            $task = Task::all();
 
-        return view('maintenance.task.index', compact('task'));
+            return view('maintenance.task.index', compact('task'));
+        } else {
+            alert()->error('Stop.', 'Access Forbidden !');
+            return redirect('home');
+        }
     }
 
     public function create()
     {
-        $user = User::all();
-        $asset = Asset::all();
-        $location = Location::all();
-        return view('maintenance.task.create', compact('user', 'asset', 'location'));
+        if (in_array(Auth::user()->role->task, ['1', '2', '3', '4'])) {
+            $user = User::all();
+            $asset = Asset::all();
+            $location = Location::all();
+
+            return view('maintenance.task.create', compact('user', 'asset', 'location'));
+        } else {
+            alert()->error('Stop.', 'Access Forbidden !');
+            return redirect()->back();
+        }
     }
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'task_date' => 'required|date',
-            'task_title' => 'required',
-            'task_desc' => 'required',
-            'task_status' => 'nullable',
-            'task_priority' => 'required',
-            'task_type' => 'required',
-            'task_price' => 'numeric|nullable',
-            'task_remark' => 'nullable',
+        if (in_array(Auth::user()->role->task, ['1', '2', '3', '4'])) {
 
-            'asset_ids' => 'nullable|array',
-            'location_ids' => 'nullable|array',
-            'member_ids' => 'required|array',
+            $validator = Validator::make($request->all(), [
+                'task_date' => 'required|date',
+                'task_title' => 'required',
+                'task_desc' => 'required',
+                'task_status' => 'nullable',
+                'task_priority' => 'required',
+                'task_type' => 'required',
+                'task_price' => 'numeric|nullable',
+                'task_remark' => 'nullable',
 
-            'task_vendor' => 'nullable',
-            'task_vendor_phone' => 'nullable',
+                'asset_ids' => 'nullable|array',
+                'location_ids' => 'nullable|array',
+                'member_ids' => 'required|array',
 
-            'file' => 'required|mimes:jpeg,jpg,png',
-            'file_remark' => 'required|nullable',
-        ]);
+                'task_vendor' => 'nullable',
+                'task_vendor_phone' => 'nullable',
 
-        if ($validator->fails()) {
-            alert()->error('Gagal.', 'pastikan mengisi data dengan benar');
-            return redirect('/task/create')
-                ->withErrors($validator)
-                ->withInput();
-        }
-
-        $created_by = Auth::user()->id;
-        $task = Task::create([
-            'user_id' => $created_by,
-            'task_title' => $request->task_title,
-            'task_desc' => $request->task_desc,
-            'task_status' => $request->task_status,
-            'task_type' => $request->task_type,
-            'task_date' => $request->task_date,
-            'task_price' => $request->task_price,
-            'task_remark' => $request->task_remark,
-            'task_priority' => $request->task_priority,
-            'task_vendor' => $request->task_vendor,
-            'task_vendor_phone' => $request->task_vendor_phone,
-        ]);
-
-        $path = $request->file->store('public/task');
-        $url = Storage::url($path);
-
-        File::create([
-            'task_id' => $task->id,
-            'file' => $url,
-            'remark' => $request->file_remark,
-        ]);
-
-        $members = $request->member_ids;
-        foreach ($members as $member) {
-            Taskmember::create([
-                'task_id' => $task->id,
-                'user_id' => $member
+                'file' => 'required|mimes:jpeg,jpg,png',
+                'file_remark' => 'required|nullable',
             ]);
-        }
 
-        if (isset($request->asset_ids)) {
-            $assets = $request->asset_ids;
-            foreach ($assets as $asset) {
-                Tasktag::create([
+            if ($validator->fails()) {
+                alert()->error('Gagal.', 'pastikan mengisi data dengan benar');
+                return redirect('/task/create')
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+
+            $created_by = Auth::user()->id;
+            $task = Task::create([
+                'user_id' => $created_by,
+                'task_title' => $request->task_title,
+                'task_desc' => $request->task_desc,
+                'task_status' => $request->task_status,
+                'task_type' => $request->task_type,
+                'task_date' => $request->task_date,
+                'task_price' => $request->task_price,
+                'task_remark' => $request->task_remark,
+                'task_priority' => $request->task_priority,
+                'task_vendor' => $request->task_vendor,
+                'task_vendor_phone' => $request->task_vendor_phone,
+            ]);
+
+            $path = $request->file->store('public/task');
+            $url = Storage::url($path);
+
+            File::create([
+                'task_id' => $task->id,
+                'file' => $url,
+                'remark' => $request->file_remark,
+            ]);
+
+            $members = $request->member_ids;
+            foreach ($members as $member) {
+                Taskmember::create([
                     'task_id' => $task->id,
-                    'asset_id' => $asset,
+                    'user_id' => $member
                 ]);
             }
-        }
 
-        if (isset($request->location_ids)) {
-            $locations = $request->location_ids;
-            foreach ($locations as $location) {
-                Tasktag::create([
-                    'task_id' => $task->id,
-                    'location_id' => $location,
-                ]);
+            if (isset($request->asset_ids)) {
+                $assets = $request->asset_ids;
+                foreach ($assets as $asset) {
+                    Tasktag::create([
+                        'task_id' => $task->id,
+                        'asset_id' => $asset,
+                    ]);
+                }
             }
-        }
 
-        alert()->success('Berhasil.', 'Data berhasil ditambahkan');
-        return redirect('/task/detail/' . $task->id);
+            if (isset($request->location_ids)) {
+                $locations = $request->location_ids;
+                foreach ($locations as $location) {
+                    Tasktag::create([
+                        'task_id' => $task->id,
+                        'location_id' => $location,
+                    ]);
+                }
+            }
+
+            alert()->success('Berhasil.', 'Data berhasil ditambahkan');
+            return redirect('/task/detail/' . $task->id);
+        } else {
+            alert()->error('Stop.', 'Access Forbidden !');
+            return redirect()->back();
+        }
     }
 
     public function show($id)
@@ -144,12 +161,12 @@ class TaskController extends Controller
             $data->task_price = $request->input('task_price');
             $data->task_remark = $request->input('task_remark');
             $data->task_status = $request->input('task_status');
-            $data->save();    
+            $data->save();
         } else {
             $data = Task::find($id);
             $data->task_vendor = $request->input('task_vendor');
             $data->task_vendor_phone = $request->input('task_vendor_phone');
-            $data->save();    
+            $data->save();
         }
 
         if (isset($request->asset_ids)) {
@@ -215,28 +232,38 @@ class TaskController extends Controller
 
     public function taskdone($id)
     {
-        $update_by = Auth::user()->id;
+        if (in_array(Auth::user()->role->task, ['2', '3', '4'])) {
+            $update_by = Auth::user()->id;
 
-        $task = Task::findOrFail($id);
-        $task->task_status = 'Done';
-        $task->employee_id = $update_by;
-        $task->updated_at = now();
-        $task->save();
+            $task = Task::findOrFail($id);
+            $task->task_status = 'Done';
+            $task->employee_id = $update_by;
+            $task->updated_at = now();
+            $task->save();
 
-        return redirect()->back();
+            return redirect()->back();
+        } else {
+            alert()->error('Stop.', 'Access Forbidden !');
+            return redirect()->back();
+        }
     }
 
     public function taskundone($id)
     {
-        $update_by = Auth::user()->id;
+        if (in_array(Auth::user()->role->task, ['2', '3', '4'])) {
+            $update_by = Auth::user()->id;
 
-        $task = Task::findOrFail($id);
-        $task->task_status = 'On Progress';
-        $task->employee_id = $update_by;
-        $task->updated_at = now();
-        $task->save();
+            $task = Task::findOrFail($id);
+            $task->task_status = 'On Progress';
+            $task->employee_id = $update_by;
+            $task->updated_at = now();
+            $task->save();
 
-        return redirect()->back();
+            return redirect()->back();
+        } else {
+            alert()->error('Stop.', 'Access Forbidden !');
+            return redirect()->back();
+        }
     }
 
     public function addcomment(Request $request)
@@ -273,5 +300,4 @@ class TaskController extends Controller
             return redirect()->back();
         }
     }
-
 }

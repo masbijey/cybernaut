@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h1 class="h3 text-gray-800">DETAIL OF TASK</h1>
+<h1 class="h3 text-gray-800">TASK INFORMATION</h1>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -12,10 +12,7 @@
 
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-4">
-        <div class="card mt-2 mb-2 shadow-sm">
-            <div class="card-header text-light bg-gradient-primary py-3">
-                <h6 class="m-0 font-weight-bold">Task Information</h6>
-            </div>
+        <div class="card my-2 shadow-sm">
             <div class="card-body">
                 <table class="table table-borderless table-sm">
                     <tr>
@@ -42,7 +39,7 @@
                             @endif <br>
 
                             @if ($task->user_id !== null)
-                            <small class="text-info">Updated by : {{ $task->user->name }} <br> {{ $task->updated_at }}</small>
+                            <small class="text-info">Updated by : {{ $task->employee->name }} <br> {{ $task->updated_at }}</small>
                             @endif
                         </td>
                     </tr>
@@ -54,7 +51,7 @@
 
                             @elseif($task->task_priority == 'Medium')
                             <button class="btn btn-sm btn-outline-warning">Medium</button>
-                            
+
                             @else
                             <button class="btn btn-sm btn-outline-danger">High</button>
                             @endif
@@ -128,10 +125,7 @@
     </div>
 
     <div class="col-sm-12 col-md-12 col-lg-3">
-        <div class="card mt-2 mb-2 shadow-sm">
-            <div class="card-header text-light bg-gradient-primary py-3">
-                <h6 class="m-0 font-weight-bold">Related Information</h6>
-            </div>
+        <div class="card my-2 shadow-sm">
             <div class="card-body">
                 <table class="table table-sm">
                     <tr>
@@ -384,10 +378,7 @@
     </div>
 
     <div class="col-sm-12 col-md-12 col-lg-5">
-        <div class="card mt-2 mb-2 shadow-sm">
-            <div class="card-header text-light bg-gradient-primary py-3">
-                <h6 class="m-0 font-weight-bold">Comments</h6>
-            </div>
+        <div class="card my-2 shadow-sm">
             <div class="card-body">
                 @foreach ($task->commentMany as $comment)
 

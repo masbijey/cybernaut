@@ -35,7 +35,7 @@
                         {{ $data->due_date }}
                     </td>
                     <td>
-                        <a href="/workorder/detail/{{ $data->order_no }}">{{ $data->order_no }}</a>
+                        <a class="text-danger" href="/workorder/detail/{{ $data->order_no }}"><b>#{{ $data->order_no }}</b></a>
                     </td>
                     <td>
                         {{ $data->title }}

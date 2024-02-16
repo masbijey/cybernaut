@@ -17,9 +17,6 @@
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-4">
             <div class="card mt-3 shadow-sm">
-                <div class="card-header bg-gradient-primary text-light">
-                    <h6 class="m-0 font-weight-bold">Task Information</h6>
-                </div>
                 <div class="card-body">
                     <table class="table table-borderless table-sm">
                         <tr>
@@ -87,12 +84,9 @@
 
         <div class="col-sm-12 col-md-12 col-lg-4">
             <div class="card mt-3 shadow-sm">
-                <div class="card-header bg-gradient-primary text-light">
-                    <h6 class="m-0 font-weight-bold">Related</h6>
-                </div>
                 <div class="card-body">
                     <table class="table table-borderless table-sm">
-                        <td><label for="asset">Asset</label></td>
+                        <td><label for="asset">Assets</label></td>
                         <td>
                             <select class="js-example-basic-multiple custom-select form-control form-control-sm" id="tag-asset" name="asset_ids[]" multiple="multiple">
                                 @foreach ($asset as $data)
@@ -102,7 +96,7 @@
                         </td>
                         </tr>
                         <tr>
-                            <td><label for="location">Location <small class="text-danger">*</small></label></td>
+                            <td><label for="location">Locations<small class="text-danger">*</small></label></td>
                             <td>
                                 <select class="js-example-basic-multiple custom-select form-control form-control-sm" id="tag-location" name="location_ids[]" multiple="multiple" required>
                                     @foreach ($location as $data) <option value="{{ $data->id }}">{{ $data->name }}</option>
@@ -125,9 +119,6 @@
             </div>
 
             <div class="card mt-3 shadow-sm">
-                <div class="card-header bg-gradient-primary text-light">
-                    <h6 class="m-0 font-weight-bold">Vendor Information</h6>
-                </div>
                 <div class="card-body">
                     <table class="table table-borderless table-sm">
                         <tr>
@@ -153,9 +144,6 @@
 
         <div class="col-sm-12 col-md-12 col-lg-4">
             <div class="card mt-3 shadow-sm">
-                <div class="card-header bg-gradient-primary text-light">
-                    <h6 class="m-0 font-weight-bold">Documents</h6>
-                </div>
                 <div class="card-body">
                     <div class="form-group">
                         <label for="file_desc">File Name / Description <small class="text-danger">*</small></label>

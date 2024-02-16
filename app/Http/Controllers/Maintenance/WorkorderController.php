@@ -52,7 +52,7 @@ class WorkorderController extends Controller
 
     public function store(Request $request)
     {
-        if (in_array(Auth::user()->role->workorder, ['2', '3', '4'])) {
+        if (in_array(Auth::user()->role->workorder, ['1', '2', '3', '4'])) {
             $validator = Validator::make($request->all(), [
                 'department_ids' => 'required',
                 'asset_ids' => 'nullable',
@@ -73,7 +73,7 @@ class WorkorderController extends Controller
 
             $createdBy = Auth::user()->id;
             $status = "Open";
-            $order_no = 'WO-' . date('Ymd') . '-' . sprintf('%04d', (WorkOrder::count() + 1));
+            $order_no = 'WO'.date('Ymd').sprintf('%04d', (WorkOrder::count() + 1));
             $workorder = Workorder::create([
                 'order_no' => $order_no,
                 'created_by' => $createdBy,
@@ -239,7 +239,6 @@ class WorkorderController extends Controller
     public function wodone(Request $request)
     {
         if (in_array(Auth::user()->role->workorder, ['2', '3', '4'])) {
-
             $update_by = Auth::user()->id;
 
             $wo = workorder::where('id', $request->id)->firstOrFail();
@@ -257,7 +256,6 @@ class WorkorderController extends Controller
                     ]);
                 }
             }
-
 
             $validator = Validator::make($request->all(), [
                 'file' => 'required|mimes:jpeg,jpg,png,pdf',
