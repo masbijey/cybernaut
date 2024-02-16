@@ -18,7 +18,6 @@
         <table class="table table-sm" id="employee-table">
             <thead>
                 <tr>
-                    <th>Created at</th>
                     <th>Due Date</th>
                     <th>Title</th>
                     <th>Status</th>
@@ -31,8 +30,8 @@
             <tbody>
                 @foreach($task as $data)
                 <tr>
-                    <td>{{ \Carbon\Carbon::parse($data->created_at)->format('d/m/y') }}</td>
-                    <td>{{ \Carbon\Carbon::parse($data->task_date)->format('d/m/y') }}</td>
+                    <!-- <td>{{ \Carbon\Carbon::parse($data->created_at)->format('d/m/y') }}</td> -->
+                    <td>{{ $data->task_date }}</td>
                     <td><a href="/task/detail/{{ $data->id }}">{{ $data->task_title }}</a></td>
                     <td>
                         @if ($data->task_status == 'Done')
