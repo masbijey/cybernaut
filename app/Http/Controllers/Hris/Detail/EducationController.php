@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Employee;
+use App\Models\User;
 use App\Models\Employeeeducation;
 
 class EducationController extends Controller
@@ -14,7 +15,7 @@ class EducationController extends Controller
     public function index()
     {
         $education = Employeeeducation::withTrashed()->get();
-        $employee = Employee::withTrashed()->get();
+        $employee = User::withTrashed()->get();
         return view('hris.detail.education.index', compact('education', 'employee'));
     }
 
@@ -39,12 +40,12 @@ class EducationController extends Controller
         $url = Storage::url($path);
 
         Employeeeducation::create([
-            'employee_id' => $request->employee,
+            'user_id' => $request->employee,
             'institution' => $request->institution,
             'category' => $request->category,
             'start' => $request->start,
             'end' => $request->end,
-            'description' => $request->description,
+            'remark' => $request->description,
             'file' => $url
         ]);
 

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<!--  -->
+
 @endsection
 
 @section('js')
@@ -33,14 +33,15 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/employee">Employee List</a></li>
         <li class="breadcrumb-item active" aria-current="page">Contract Management</li>
     </ol>
 </nav>
 
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-4">
-        <div class="card mb-2 shadow">
-            <div class="card-header bg-gradient-primary text-light py-3">
+        <div class="card mb-2 shadow-sm">
+            <div class="card-header text-primary">
                 <h6 class="m-0 font-weight-bold">New Contract</h6>
             </div>
             <div class="card-body">
@@ -108,14 +109,14 @@
     </div>
 
     <div class="col-sm-12 col-md-12 col-lg-8">
-        <div class="card mb-2 shadow">
-            <div class="card-header bg-gradient-primary text-light py-3">
+        <div class="card mb-2 shadow-sm">
+            <div class="card-header text-primary">
                 <h6 class="m-0 font-weight-bold">Contract</h6>
             </div>
             <div class="card-body">
-                <table class="table table-hover nowrap" id="employee-table">
-                    <thead class="thead-light">
-                        <tr class="text-center">
+                <table class="table table-hover nowrap table-sm" id="employee-table">
+                    <thead>
+                        <tr>
                             <th>#</th>
                             <th>Employee</th>
                             <th>Start</th>
@@ -130,7 +131,7 @@
                     <tbody>
                         @foreach($contract as $contract)
                         <tr>
-                            <td class="text-center">{{ $loop->iteration }}</td>
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $contract->user->name }}</td>
                             <td>{{ \Carbon\Carbon::parse($contract->start)->format('d/m/y') }}</td>
                             <td>{{ \Carbon\Carbon::parse($contract->end)->format('d/m/y') }}</td>

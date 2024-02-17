@@ -18,6 +18,7 @@ use App\Models\Token;
 use App\Models\Employeecontract;
 use App\Models\Department;
 use App\Models\Attendance;
+use App\Models\Employeeeducation;
 use App\Models\Schedule;
 
 
@@ -130,10 +131,33 @@ class EmployeeController extends Controller
             ->where('user_id', '=', $id)
             ->get();
 
+        $education = DB::table('employeeeducations')
+            ->where('user_id', '=', $id)
+            ->get();
+
+        $experience = DB::table('employeeexperiences')
+            ->where('user_id', '=', $id)
+            ->get();
+
+        $family = DB::table('employeefamilies')
+            ->where('user_id', '=', $id)
+            ->get();
+
+        $sickness = DB::table('employeesicknesses')
+            ->where('user_id', '=', $id)
+            ->get();
+
+
         return view('hris.employee.show', compact(
+            'education',
+            'experience',
+            'family',
             'contract',
+            'sickness',
+
             'employee',
             'role',
+
             'entitleEo',
             'takenEo',
             'balanceEo',

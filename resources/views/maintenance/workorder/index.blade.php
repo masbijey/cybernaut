@@ -42,9 +42,9 @@
                     </td>
                     <td>
                         @if($data->status !== 'Done')
-                        <button class="btn btn-sm btn-outline-danger">Open</button>
+                        <a href="/workorder/detail/{{ $data->order_no }}" class="btn btn-sm btn-outline-danger">Open</a>
                         @else
-                        <button class="btn btn-sm btn-outline-success">Done</button>
+                        <a href="/workorder/detail/{{ $data->order_no }}" class="btn btn-sm btn-outline-success">Done</a>
                         @endif
                     </td>
                     <td>

@@ -14,10 +14,10 @@
     <button type="button" class="btn mr-0 mb-0 d-inline-block">UPDATE : </button>
 
     <div class="btn-group shadow">
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#" disabled>
+        <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#" disabled>
             <i class='fas fa-plus'></i> New Employee
         </button>
-        <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button type="button" class="btn btn-outline-secondary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="sr-only">Toggle Dropdown</span>
         </button>
         <div class="dropdown-menu">
@@ -119,77 +119,74 @@
     </div>
 </div>
 
-<div class="card mt-3 shadow">
-<div class="card-header bg-gradient-primary text-light">
-        <h5 class="m-0 font-weight-bold">Employee List</h5>
-    </div>
+<div class="card mt-3 shadow-sm">
     <div class="card-body">
         <table class="table table-hover nowrap table-sm" id="employee-table">
-            <thead class="thead-light text-center">
-                <tr class="text-center">
+            <thead>
+                <tr>
                     <th>#</th>
                     <th>Name</th>
-                    <th class="text-center">Department</th>
-                    <th class="text-center">Job Title</th>
-                    <th class="text-center">Level</th>
-                    <th class="text-center">Phone</th>
-                    <th class="text-center">Email</th>
-                    <th class="text-center">Status</th>
-                    <th class="text-center">Join date</th>
-                    <th class="text-center">Action</th>
+                    <th>Department</th>
+                    <th>Job Title</th>
+                    <th>Level</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Join date</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($user as $user)
                 <tr>
-                    <td class="text-center">
+                    <td>
                         {{ $loop->iteration }}
                     </td>
-                    <td><a href="/employee/detail/{{ $user->id }}" class="" data-placement="top" title="Tampilkan">{{
-                            $user->name }}</a></td>
-                    <td class="text-center">
+                    <td>
+                        <a href="/employee/detail/{{ $user->id }}" class="" data-placement="top" title="Tampilkan">{{$user->name }}</a>
+                    </td>
+                    <td>
                         @if (!empty($user->contract->last()))
                         {{ $user->contract->last()->department->name }}
                         @else
                         <p class="text-danger text-italic">belum kontrak</p>
                         @endif
                     </td>
-                    <td class="text-center">
+                    <td>
                         @if (!empty($user->contract->last()))
                         {{ $user->contract->last()->jobtitle }}
                         @else
                         <p class="text-danger text-italic">belum kontrak</p>
                         @endif
                     </td>
-                    <td class="text-center">
+                    <td>
                         @if (!empty($user->contract->last()))
                         {{ $user->contract->last()->level }}
                         @else
                         <p class="text-danger text-italic">belum kontrak</p>
                         @endif
                     </td>
-                    <td class="text-center">{{ $user->employee->phone }}</td>
-                    <td class="text-center">{{ $user->email  }}</td>
-                    <td class="text-center">
+                    <td>
+                        {{ $user->employee->phone }}
                     </td>
-                    <td class="text-center">{{ $user->joindate }}</td>
-                    <td class="text-center">
-
-                        <a href="/employee/detail/{{ $user->id }}" class="btn btn-primary btn-sm d-sm-inline" data-placement="top" title="Tampilkan"><i class='fas fa-eye'></i></a>
-
+                    <td>
+                        {{ $user->email  }}
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                        {{ $user->joindate }}
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
-
     </div>
 </div>
 
 @endsection
 
 @section('css')
-{{-- --}}
+
 @endsection
 
 @section('js')

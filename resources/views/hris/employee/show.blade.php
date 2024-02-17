@@ -10,21 +10,65 @@
         $('#education-table').DataTable({
             responsive: true
         });
-
     });
 
     $(document).ready(function() {
         $('#experience-table').DataTable({
             responsive: true
         });
+    });
 
+    $(document).ready(function() {
+        $('#family-table').DataTable({
+            responsive: true
+        });
+    });
+    $(document).ready(function() {
+        $('#sickness-table').DataTable({
+            responsive: true
+        });
     });
 
     $(document).ready(function() {
         $('#contract-table').DataTable({
             responsive: true
         });
+    });
 
+    $(document).ready(function() {
+        $('#punrew-table').DataTable({
+            responsive: true
+        });
+    });
+
+    $(document).ready(function() {
+        $('#leaves-table').DataTable({
+            responsive: true
+        });
+    });
+
+    $(document).ready(function() {
+        $('#inventory-table').DataTable({
+            responsive: true
+        });
+    });
+
+    $(document).ready(function() {
+        $('#training-table').DataTable({
+            responsive: true
+        });
+    });
+
+    $(document).ready(function() {
+        $('#attendance-table').DataTable({
+            responsive: true
+        });
+    });
+
+    $(document).ready(function() {
+        $('#log-table').DataTable({
+            responsive: true
+        });
     });
 </script>
 @endsection
@@ -40,6 +84,7 @@ Employee details | {{ $employee->name }}
 @else
 <p class="text-danger">belum kontrak</p>
 @endif
+
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -51,8 +96,8 @@ Employee details | {{ $employee->name }}
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
         <div class="d-block d-sm-none d-md-none">
-            <div class="card shadow mb-3">
-                <a href="#personal-card" class="d-block card-header bg-gradient-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+            <div class="card shadow-sm mb-3">
+                <a href="#personal-card" class="d-block card-header" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                     <h6 class="m-1 font-weight-bold">Personal Information</h6>
                 </a>
 
@@ -102,8 +147,8 @@ Employee details | {{ $employee->name }}
         </div>
 
         <div class="d-none d-sm-block">
-            <div class="card shadow mb-3">
-                <a href="#personal-card" class="d-block card-header bg-gradient-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+            <div class="card shadow-sm mb-3">
+                <a href="#personal-card" class="d-block card-header" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                     <h6 class="m-1 font-weight-bold">Personal Information</h6>
                 </a>
 
@@ -154,34 +199,36 @@ Employee details | {{ $employee->name }}
     </div>
 
     <div class="col-sm-12 col-md-12 col-lg-8">
-        <div class="card shadow mb-3">
-            <a href="#education-card" class="d-block card-header bg-gradient-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+        <div class="card shadow-sm mb-3">
+            <a href="#education-card" class="d-block card-header" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Educations</h6>
             </a>
 
             <div class="collapse" id="education-card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table nowrap" id="education-table" style="width: 100%;">
+                        <table class="table table-sm" id="education-table" style="width: 100%;">
                             <thead>
                                 <tr>
-                                    <th>CREATED AT</th>
-                                    <th>INSTITUTION</th>
-                                    <th>CATEGORY</th>
-                                    <th>PERIOD</th>
-                                    <th>REMARK</th>
-                                    <th>FILE</th>
+                                    <th>Created At</th>
+                                    <th>Institution</th>
+                                    <th>Skill</th>
+                                    <th>Period</th>
+                                    <th>Remark</th>
+                                    <th>File</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($education as $data)
                                 <tr>
-                                    <td>test test test tes tes tes tes</td>
-                                    <td>Test</td>
-                                    <td>Test</td>
-                                    <td>Test</td>
-                                    <td>Test</td>
-                                    <td>Test</td>
+                                    <td>{{ $data->created_at }}</td>
+                                    <td>{{ $data->institution }}</td>
+                                    <td>{{ $data->category }}</td>
+                                    <td>{{ $data->start }} - {{ $data->end }}</td>
+                                    <td>{{ $data->remark }}</td>
+                                    <td><a class="btn btn-sm btn-outline-secondary" href="{{ url($data->file) }}">file</a></td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -189,34 +236,36 @@ Employee details | {{ $employee->name }}
             </div>
         </div>
 
-        <div class="card shadow mb-3">
-            <a href="#experience-card" class="d-block card-header bg-gradient-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+        <div class="card shadow-sm mb-3">
+            <a href="#experience-card" class="d-block card-header" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Experience</h6>
             </a>
 
             <div class="collapse" id="experience-card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table nowrap" id="experience-table" style="width: 100%;">
+                        <table class="table table-sm" id="experience-table" style="width: 100%;">
                             <thead>
                                 <tr>
                                     <th>Created At</th>
-                                    <th>Institution</th>
-                                    <th>Category</th>
-                                    <th>Periode</th>
+                                    <th>Company</th>
+                                    <th>Position</th>
+                                    <th>Period</th>
                                     <th>Description</th>
                                     <th>File</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($experience as $data)
                                 <tr>
-                                    <td>test test test tes tes tes tes</td>
-                                    <td>Test</td>
-                                    <td>Test</td>
-                                    <td>Test</td>
-                                    <td>Test</td>
-                                    <td>Test</td>
+                                    <td>{{ $data->created_at }}</td>
+                                    <td>{{ $data->company }}</td>
+                                    <td>{{ $data->jobtitle }}</td>
+                                    <td>{{ $data->start }} - {{ $data->end }}</td>
+                                    <td>{{ $data->remark }}</td>
+                                    <td><a class="btn btn-sm btn-outline-secondary" href="{{ url($data->file) }}">file</a></td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -224,34 +273,36 @@ Employee details | {{ $employee->name }}
             </div>
         </div>
 
-        <div class="card shadow mb-3">
-            <a href="#family-card" class="d-block card-header bg-gradient-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+        <div class="card shadow-sm mb-3">
+            <a href="#family-card" class="d-block card-header" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Family</h6>
             </a>
 
             <div class="collapse" id="family-card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table table-sm" id="family-table" style="width: 100%;">
                             <thead>
                                 <tr>
                                     <th>Created At</th>
-                                    <th>Institution</th>
-                                    <th>Category</th>
-                                    <th>Periode</th>
-                                    <th>Description</th>
+                                    <th>Name</th>
+                                    <th>Relationship</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
                                     <th>File</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($family as $data)
                                 <tr>
-                                    <td>test test test tes tes tes tes</td>
-                                    <td>Test</td>
-                                    <td>Test</td>
-                                    <td>Test</td>
-                                    <td>Test</td>
-                                    <td>Test</td>
+                                    <td>{{ $data->created_at }}</td>
+                                    <td>{{ $data->name }}</td>
+                                    <td>{{ $data->relationship }}</td>
+                                    <td>{{ $data->phone }}}</td>
+                                    <td>{{ $data->address }}</td>
+                                    <td><a class="btn btn-sm btn-outline-secondary" href="{{ url($data->file) }}">file</a></td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -259,34 +310,34 @@ Employee details | {{ $employee->name }}
             </div>
         </div>
 
-        <div class="card shadow mb-3">
-            <a href="#sickness-card" class="d-block card-header bg-gradient-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
-                <h6 class="m-1 font-weight-bold">Sickness</h6>
+        <div class="card shadow-sm mb-3">
+            <a href="#sickness-card" class="d-block card-header" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+                <h6 class="m-1 font-weight-bold">Sickness History</h6>
             </a>
 
             <div class="collapse" id="sickness-card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table table-sm" id="sickness-table" style="width: 100%;">
                             <thead>
                                 <tr>
                                     <th>Created At</th>
-                                    <th>Institution</th>
-                                    <th>Category</th>
-                                    <th>Periode</th>
+                                    <th>Name of Dissease</th>
                                     <th>Description</th>
+                                    <th>Periode</th>
                                     <th>File</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($sickness as $data)
                                 <tr>
-                                    <td>test test test tes tes tes tes</td>
-                                    <td>Test</td>
-                                    <td>Test</td>
-                                    <td>Test</td>
-                                    <td>Test</td>
-                                    <td>Test</td>
+                                    <td>{{ $data->created_at }}</td>
+                                    <td>{{ $data->name_of_sick }}</td>
+                                    <td>{{ $data->description }}</td>
+                                    <td>{{ $data->start }} - {{ $data->end }}</td>
+                                    <td><a class="btn btn-sm btn-outline-secondary" href="{{ url($data->file) }}">file</a></td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -294,24 +345,24 @@ Employee details | {{ $employee->name }}
             </div>
         </div>
 
-        <div class="card shadow mb-3">
-            <a href="#contract-card" class="d-block card-header bg-gradient-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+        <div class="card shadow-sm mb-3">
+            <a href="#contract-card" class="d-block card-header" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Contract</h6>
             </a>
 
             <div class="collapse" id="contract-card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table nowrap" id="contract-table" style="width: 100%;">
+                        <table class="table table-sm" id="contract-table" style="width: 100%;">
                             <thead>
                                 <tr>
-                                    <th>CREATED AT</th>
-                                    <th>START</th>
-                                    <th>END</th>
-                                    <th>DEPARTMENT</th>
-                                    <th>LEVEL</th>
-                                    <th>JOB TITLE</th>
-                                    <th>FILE</th>
+                                    <th>Created At</th>
+                                    <th>Start</th>
+                                    <th>End</th>
+                                    <th>Department</th>
+                                    <th>Level</th>
+                                    <th>Position</th>
+                                    <th>File</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -323,7 +374,7 @@ Employee details | {{ $employee->name }}
                                     <td>{{ $data->department->name }}</td>
                                     <td>{{ $data->level }}</td>
                                     <td>{{ $data->jobtitle }}</td>
-                                    <td><a href="{{ url($data->file) }}">file</a></td>
+                                    <td><a class="btn btn-sm btn-outline-secondary" href="{{ url($data->file) }}">file</a></td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -333,16 +384,16 @@ Employee details | {{ $employee->name }}
             </div>
         </div>
 
-        <div class="card shadow mb-3">
-            <a href="#pnr-card" class="d-block card-header bg-gradient-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+        <div class="card shadow-sm mb-3">
+            <a href="#pnr-card" class="d-block card-header" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Punishment & Reward</h6>
             </a>
 
             <div class="collapse" id="pnr-card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table">
-                            <thead class="text-nowrap">
+                        <table class="table table-sm" id="punrew-table" style="width: 100%;">
+                            <thead>
                                 <tr>
                                     <th>Created At</th>
                                     <th>Institution</th>
@@ -368,8 +419,8 @@ Employee details | {{ $employee->name }}
             </div>
         </div>
 
-        <div class="card shadow mb-3">
-            <a href="#leave-card" class="d-block card-header bg-gradient-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+        <div class="card shadow-sm mb-3">
+            <a href="#leave-card" class="d-block card-header" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Leaves History</h6>
             </a>
 
@@ -427,8 +478,8 @@ Employee details | {{ $employee->name }}
 
                     <hr>
                     <div class="table-responsive">
-                        <table class="table">
-                            <thead class="text-nowrap">
+                        <table class="table table-sm" id="leaves-table" style="width: 100%;">
+                            <thead>
                                 <tr>
                                     <th>Created At</th>
                                     <th>Type</th>
@@ -475,16 +526,16 @@ Employee details | {{ $employee->name }}
             </div>
         </div>
 
-        <div class="card shadow mb-3">
-            <a href="#inventory-card" class="d-block card-header bg-gradient-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+        <div class="card shadow-sm mb-3">
+            <a href="#inventory-card" class="d-block card-header" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Inventory</h6>
             </a>
 
             <div class="collapse" id="inventory-card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table">
-                            <thead class="text-nowrap">
+                        <table class="table table-sm" id="inventory-table" style="width: 100%;">
+                            <thead>
                                 <tr>
                                     <th>Created At</th>
                                     <th>Institution</th>
@@ -510,16 +561,16 @@ Employee details | {{ $employee->name }}
             </div>
         </div>
 
-        <div class="card shadow mb-3">
-            <a href="#training-card" class="d-block card-header bg-gradient-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+        <div class="card shadow-sm mb-3">
+            <a href="#training-card" class="d-block card-header" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Training</h6>
             </a>
 
             <div class="collapse" id="training-card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table">
-                            <thead class="text-nowrap">
+                        <table class="table table-sm" id="training-table" style="width: 100%;">
+                            <thead>
                                 <tr>
                                     <th>Created At</th>
                                     <th>Institution</th>
@@ -545,16 +596,16 @@ Employee details | {{ $employee->name }}
             </div>
         </div>
 
-        <div class="card shadow mb-3">
-            <a href="#attendance-card" class="d-block card-header bg-gradient-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+        <div class="card shadow-sm mb-3">
+            <a href="#attendance-card" class="d-block card-header" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Attendance</h6>
             </a>
 
             <div class="collapse" id="attendance-card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table">
-                            <thead class="text-nowrap">
+                        <table class="table table-sm" id="attendance-table" style="width: 100%;">
+                            <thead>
                                 <tr>
                                     <th>Created At</th>
                                     <th>Institution</th>
@@ -580,16 +631,16 @@ Employee details | {{ $employee->name }}
             </div>
         </div>
 
-        <div class="card shadow mb-3">
-            <a href="#log-card" class="d-block card-header bg-gradient-primary text-light" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
+        <div class="card shadow-sm mb-3">
+            <a href="#log-card" class="d-block card-header" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Log</h6>
             </a>
 
             <div class="collapse" id="log-card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table">
-                            <thead class="text-nowrap">
+                        <table class="table table-sm" id="log-table" style="width: 100%;">
+                            <thead>
                                 <tr>
                                     <th>Created At</th>
                                     <th>Institution</th>

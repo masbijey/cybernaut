@@ -15,7 +15,7 @@ return new class extends Migration
             $table->integer('user_id');
 
             $table->string('institution');
-            $table->string('graduation');
+            $table->string('category');
             $table->string('start');
             $table->string('end');
             $table->string('remark')->nullable();
