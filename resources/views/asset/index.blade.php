@@ -9,7 +9,7 @@
     </ol>
 </nav>
 
-<div class="mt-3">
+<div class="mb-2">
     <button type="button" class="btn mr-0 mb-0 d-inline-block">UPDATE : </button>
 
     <div class="btn-group shadow">
@@ -25,9 +25,9 @@
     </div>
 </div>
 
-<div class="card mt-3 shadow-sm">
+<div class="card mb-2 shadow-sm">
     <div class="card-body">
-        <table class="table nowrap" id="employee-table" style="width: 100%;">
+        <table class="table nowrap table-sm" id="employee-table" style="width: 100%;">
             <thead>
                 <tr>
                     <th>No. Asset</th>

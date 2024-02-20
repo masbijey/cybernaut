@@ -1,13 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-<h1 class="h3 mb-2 text-gray-800">Experience</h1>
+<h1 class="h3 mb-2 text-gray-800">Experience Management</h1>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/employee">Employee List</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Experience Management</li>
+    </ol>
+</nav>
 
 <div class="row">
-    <div class="col-lg-4">
-        <div class="card mt-3">
+    <div class="col-sm-12 col-md-4 col-lg-4">
+        <div class="card mb-2">
             <div class="card-header">
-                <h6 class="font-weight-bold text-primary">New Experience</h6>
+                <h6 class="m-0 font-weight-bold text-primary">New Experience</h6>
             </div>
             <div class="card-body">
                 <form method="POST" action="{{ route('experience.store') }}" enctype="multipart/form-data">
@@ -49,8 +56,7 @@
                         <tr>
                             <td><label for="description">Description</label></td>
                             <td>
-                                <textarea name="description" id="description" cols="30" rows="3" class="form-control"
-                                    required></textarea>
+                                <textarea name="description" id="description" cols="30" rows="3" class="form-control" required></textarea>
                             </td>
                         </tr>
                         <tr>
@@ -71,15 +77,15 @@
         </div>
     </div>
 
-    <div class="col-lg-8">
-        <div class="card mt-3">
+    <div class="col-sm-12 col-md-8 col-lg-8">
+        <div class="card mb-2">
             <div class="card-header">
-                <h6 class="font-weight-bold text-primary">Experience</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Experience Data</h6>
             </div>
             <div class="card-body">
-                <table class="table table-hover nowrap" id="employee-table">
-                    <thead class="thead-light">
-                        <tr class="text-center">
+                <table class="table table-hover nowrap table-sm" id="employee-table">
+                    <thead>
+                        <tr>
                             <th>#</th>
                             <th>Name</th>
                             <th>Company</th>
@@ -93,7 +99,7 @@
                         @foreach($experience as $data)
                         @if(!empty($data->employee))
                         <tr>
-                            <td class="text-center">
+                            <td>
                                 {{ $loop->iteration }}
                             </td>
                             <td>{{ $data->employee->name }}</td>
@@ -115,7 +121,7 @@
 @endsection
 
 @section('css')
-{{--  --}}
+{{-- --}}
 @endsection
 
 @section('js')
@@ -124,12 +130,10 @@
         theme: 'bootstrap'
     });
 
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('#employee-table').DataTable({
             responsive: true
         });
     });
-
-
 </script>
 @endsection

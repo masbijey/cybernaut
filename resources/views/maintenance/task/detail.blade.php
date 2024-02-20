@@ -129,7 +129,7 @@
             <div class="card-body">
                 <table class="table table-sm">
                     <tr>
-                        <td class="font-weight-bold"><label for="">Documents</label></td>
+                        <td class="font-weight-bold"><label for="">Files</label></td>
                         <td>
                             @if($task->task_status != 'Done')
                             <table class="table table-borderless table-sm">
