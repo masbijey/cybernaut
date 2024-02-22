@@ -16,7 +16,7 @@
 
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-4">
-            <div class="card mt-3 shadow-sm">
+            <div class="card mb-2 shadow-sm">
                 <div class="card-body">
                     <table class="table table-borderless table-sm">
                         <tr>
@@ -83,7 +83,7 @@
         </div>
 
         <div class="col-sm-12 col-md-12 col-lg-4">
-            <div class="card mt-3 shadow-sm">
+            <div class="card mb-2 shadow-sm">
                 <div class="card-body">
                     <table class="table table-borderless table-sm">
                         <td><label for="asset">Assets</label></td>
@@ -118,7 +118,7 @@
                 </div>
             </div>
 
-            <div class="card mt-3 shadow-sm">
+            <div class="card mb-2 shadow-sm">
                 <div class="card-body">
                     <table class="table table-borderless table-sm">
                         <tr>
@@ -143,7 +143,7 @@
         </div>
 
         <div class="col-sm-12 col-md-12 col-lg-4">
-            <div class="card mt-3 shadow-sm">
+            <div class="card mb-2 shadow-sm">
                 <div class="card-body">
                     <div class="form-group">
                         <label for="file_desc">File Name / Description <small class="text-danger">*</small></label>

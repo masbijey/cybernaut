@@ -39,7 +39,7 @@
                             @endif <br>
 
                             @if ($task->user_id !== null)
-                            <small class="text-info">Updated by : {{ $task->employee->name }} <br> {{ $task->updated_at }}</small>
+                            <small class="text-info">Updated by : {{ $task->user->name }} <br> {{ $task->updated_at }}</small>
                             @endif
                         </td>
                     </tr>

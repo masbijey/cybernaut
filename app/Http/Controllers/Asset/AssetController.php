@@ -11,6 +11,8 @@ use App\Models\User;
 use App\Models\Department;
 use App\Models\Location;
 use App\Models\Assetallocation;
+use App\Models\Tasktag;
+use App\Models\Task;
 
 use Carbon\Carbon;
 use Auth;
@@ -119,10 +121,14 @@ class AssetController extends Controller
 
     public function show($token)
     {
-
         $data = Asset::where('token', $token)->firstOrFail();
 
-        return view('asset.show', compact('data'));
+        $id = $data->id ;
+        $task = Tasktag::where('asset_id', $id)->with('task')->get();
+
+        $allocation = Assetallocation::where('asset_id', $id)->get();
+        
+        return view('asset.show', compact('data','task', 'allocation'));
     }
 
     public function edit($token)

@@ -52,6 +52,11 @@ class Asset extends Model
         return $this->hasMany(Assetallocation::class, 'asset_id')->latest('created_at');
     }
 
+    public function taskhistory()
+    {
+        return $this->hasMany(Tasktag::class, 'asset_id');
+    }
+
     public function maintenance()
     {
         return $this->hasMany(Tasktag::class, 'asset_id');

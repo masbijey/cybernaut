@@ -14,7 +14,7 @@
 
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-4">
-        <div class="card shadow mb-3">
+        <div class="card shadow-sm mb-2">
             <div class="card-body">
                 <div class="mb-3 text-center">
                     <img src="{{ $data->file }}" class="img-fluid" alt="Responsive image" width="200px">
@@ -64,7 +64,7 @@
                     <tr>
                         <td><label for="buyPrice" class="font-weight-bold">Purchase Price</label></td>
                         <td>
-                            IDR {{ number_format($data->buyPrice, 2, ',', '.') }}
+                            IDR {{ number_format($data->buyPrice, 0, ',', '.') }}
                         </td>
                     </tr>
                     <tr>
@@ -83,29 +83,87 @@
     </div>
 
     <div class="col-sm-12 col-md-12 col-lg-8">
-        <div class="card shadow mb-3">
-            <div class="card-header text-primary py-3">
-                <h6 class="m-0 font-weight-bold">Task History</h6>
+        <div class="card shadow-sm mb-2">
+            <div class="card-header text-primary">
+                <h6 class="m-0 font-weight-bold">Task <small class="text-secondary">History</small></h6>
             </div>
             <div class="card-body">
+                <a href="/task/create" class="btn btn-sm btn-outline-secondary shadow-sm mb-3">+ New Task</a>
 
+                <table class="table table-hover table-sm" id="table-task-history">
+                    <thead>
+                        <tr>
+                            <th>Created at</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Budget</th>
+                            <th>Vendor</th>
+                            <th>Finished By</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($task as $data)
+                        <tr>
+                            <td>{{ $data->created_at }}</td>
+                            <td><a href="/task/detail/{{ $data->task->id }}">{{ $data->task->task_title }}</a></td>
+                            <td>{{ $data->task->task_desc }}</td>
+                            <td>
+                                @if ($data->task->task_status == 'Done')
+                                <a href="#" class="btn btn-sm btn-outline-success">{{ $data->task->task_status }}</a>
+                                @else
+                                <a href="#" class="btn btn-sm btn-outline-secondary">On Progress</a>
+                                @endif
+                            </td>
+                            <td>
+                                IDR {{ number_format($data->task->task_price, 0, ',', '.') }}
+                            </td>
+                            <td>{{ $data->task->task_vendor }}</td>
+                            <td>
+                                @foreach ($data->task->member as $member)
+                                <a href="/employee/detail/{{ $member->user->id }}">{{ Str::words($member->user->name, 1, '') }}</a>,
+                                @endforeach
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
 
-        <div class="card shadow mb-3">
-            <div class="card-header text-primary py-3">
-                <h6 class="m-0 font-weight-bold">Work Order History</h6>
+        <div class="card shadow-sm mb-2">
+            <div class="card-header text-primary">
+                <h6 class="m-0 font-weight-bold">Workorder <small class="text-secondary">History</small></h6>
             </div>
             <div class="card-body">
+                <a href="/workorder/create" class="btn btn-sm btn-outline-secondary shadow-sm mb-3">+ New Workorder</a>
 
+                <table class="table table-hover table-sm" id="table-workorder">
+                    <thead>
+                        <tr>
+                            <th>Created at</th>
+                            <th>No. Workorder</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+                            <th>Finished by</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
             </div>
         </div>
 
-        <div class="card shadow mb-3">
-            <div class="card-header text-primary py-3">
-                <h6 class="m-0 font-weight-bold">Allocation History</h6>
+        <div class="card shadow-sm mb-2">
+            <div class="card-header text-primary">
+                <h6 class="m-0 font-weight-bold">Allocation <small class="text-secondary">History</small></h6>
             </div>
             <div class="card-body">
+                <a class="btn btn-sm btn-outline-secondary shadow-sm mb-3">+ New Allocation</a>
+
                 <table class="table table-hover table-sm" id="table-allocation">
                     <thead>
                         <tr>
@@ -115,24 +173,25 @@
                             <th>Location</th>
                             <th>Condition</th>
                             <th>Remark</th>
-                            <th>Photo</th>
+                            <th>File</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data->allocation as $dalloc)
+                        @foreach ($allocation as $data)
                         <tr>
-                            <td>{{ $dalloc->created_at }}</td>
-                            <td><a href="/employee/detail/{{ $dalloc->created_by }}">{{ $dalloc->user->name }}</a>
-                            </td>
-                            <td><a href="/department/detail/{{ $dalloc->department_id }}">{{ $dalloc->department->name }}</a></td>
-                            <td><a href="/location/detail/{{ $dalloc->location_id}}">{{ $dalloc->location->name }}</a></td>
+                            <td>{{ $data->created_at }}</td>
+                            <td><a href="/employee/detail/{{ $data->employee->id }}">{{ Str::words($data->employee->name, 1, '') }}</a></td>
+                            <td>{{ $data->department->name }}</td>
+                            <td>{{ $data->location->name }}</td>
                             <td>
-                                @if ($dalloc->condition == 'Good')
-                                <span class="badge badge-success">{{ $dalloc->condition }}</span>
+                                @if ($data->condition == 'Good')
+                                <button class="btn btn-sm btn-outline-success">{{ $data->condition }}</button>
+                                @else
+                                <button class="btn btn-sm btn-outline-secondary">{{ $data->condition }}</button>
                                 @endif
                             </td>
-                            <td>{{ $dalloc->remark }}</td>
-                            <td><a href="{{ $dalloc->file }}" target="_blank"><img class="img-thumbnail" src="{{ $dalloc->file }}" alt="Thumbnail image" width="100"></a></td>
+                            <td>{{ $data->remark }}</td>
+                            <td><a href="{{ $data->file }}" class="btn btn-sm btn-outline-secondary">File</a></td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -164,6 +223,18 @@
 
     $(document).ready(function() {
         $('#table-allocation').DataTable({
+            responsive: true,
+        });
+    });
+
+    $(document).ready(function() {
+        $('#table-workorder').DataTable({
+            responsive: true,
+        });
+    });
+
+    $(document).ready(function() {
+        $('#table-task-history').DataTable({
             responsive: true,
         });
     });

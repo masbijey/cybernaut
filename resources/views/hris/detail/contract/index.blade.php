@@ -29,7 +29,7 @@
 @endsection
 
 @section('content')
-<h1 class="h3 text-gray-800">Contract Management</h1>
+<h1 class="h3 text-gray-800">CONTRACT MANAGEMENT</h1>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -124,7 +124,7 @@
                             <th>Department</th>
                             <th>Jobtitle</th>
                             <th>Level</th>
-                            <th>Description</th>
+                            <th>Remark</th>
                             <th>File</th>
                         </tr>
                     </thead>
@@ -132,14 +132,14 @@
                         @foreach($contract as $contract)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $contract->user->name }}</td>
+                            <td><a href="\employee\detail\{{ $contract->user_id }}">{{ $contract->user->name }}</a></td>
                             <td>{{ \Carbon\Carbon::parse($contract->start)->format('d/m/y') }}</td>
                             <td>{{ \Carbon\Carbon::parse($contract->end)->format('d/m/y') }}</td>
                             <td>{{ $contract->department->name }}</td>
                             <td>{{ $contract->jobtitle }}</td>
                             <td>{{ $contract->level }}</td>
                             <td>{{ $contract->description }}</td>
-                            <td><a href="{{ $data->file }}" class="btn btn-primary btn-sm">File</a></td>
+                            <td><a href="{{ $data->file }}" class="btn btn-outline-secondary btn-sm">File</a></td>
                         </tr>
                         @endforeach
                     </tbody>

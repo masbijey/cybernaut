@@ -147,7 +147,6 @@ class EmployeeController extends Controller
             ->where('user_id', '=', $id)
             ->get();
 
-
         return view('hris.employee.show', compact(
             'education',
             'experience',
