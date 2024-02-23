@@ -33,5 +33,9 @@ class Workordertag extends Model
         return $this->belongsTo(Department::class, 'department_id');
     }
 
+    public function workorder()
+    {
+        return $this->belongsTo(Workorder::class, 'workorder_id');
+    }
 
 }

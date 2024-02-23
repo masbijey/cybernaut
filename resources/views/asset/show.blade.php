@@ -151,7 +151,33 @@
                         </tr>
                     </thead>
                     <tbody>
-
+                        @foreach ($workorder as $data)
+                        <tr>
+                            <td>{{ $data->created_at }}</td>
+                            <td><a href="/workorder/detail/{{ $data->workorder->order_no }}">#{{ $data->workorder->order_no }}</a></td>
+                            <td>{{ $data->workorder->title }}</td>
+                            <td>{{ $data->workorder->description }}</td>
+                            <td>
+                                @if ($data->workorder->priority == 'High')
+                                <button class="btn btn-sm btn-outline-danger">{{ $data->workorder->priority }}</button>
+                                @else
+                                <button class="btn btn-sm btn-outline-secondary">{{ $data->workorder->priority }}</button>
+                                @endif
+                            </td>
+                            <td>
+                                @if ($data->workorder->status == 'Done')
+                                <button class="btn btn-sm btn-outline-success">{{ $data->workorder->status }}</button>
+                                @else
+                                <button class="btn btn-sm btn-outline-secondary">{{ $data->workorder->status }}</button>
+                                @endif
+                            </td>
+                            <td>
+                                @foreach ($data->workorder->memberMany as $member)
+                                <a href="/employee/detail/{{ $member->user->id }}">{{ Str::words($member->user->name, 1, '') }}</a>,
+                                @endforeach
+                            </td>
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
