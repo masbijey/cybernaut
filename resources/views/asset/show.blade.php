@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+S C L B L E | Asset Information
+@endsection
+
 @section('content')
 <div class="d-sm-flex align-items-center justify-content-between">
     <h1 class="h3 text-gray-800">ASSET INFORMATION</h1>
@@ -14,7 +18,7 @@
 
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-4">
-        <div class="card shadow-sm mb-2">
+        <div class="card shadow-sm mb-3">
             <div class="card-body">
                 <div class="mb-3 text-center">
                     <img src="{{ $data->file }}" class="img-fluid" alt="Responsive image" width="200px">
@@ -83,7 +87,7 @@
     </div>
 
     <div class="col-sm-12 col-md-12 col-lg-8">
-        <div class="card shadow-sm mb-2">
+        <div class="card shadow-sm mb-3">
             <div class="card-header text-primary">
                 <h6 class="m-0 font-weight-bold">Task <small class="text-secondary">History</small></h6>
             </div>
@@ -131,7 +135,7 @@
             </div>
         </div>
 
-        <div class="card shadow-sm mb-2">
+        <div class="card shadow-sm mb-3">
             <div class="card-header text-primary">
                 <h6 class="m-0 font-weight-bold">Workorder <small class="text-secondary">History</small></h6>
             </div>
@@ -183,7 +187,7 @@
             </div>
         </div>
 
-        <div class="card shadow-sm mb-2">
+        <div class="card shadow-sm mb-3">
             <div class="card-header text-primary">
                 <h6 class="m-0 font-weight-bold">Allocation <small class="text-secondary">History</small></h6>
             </div>

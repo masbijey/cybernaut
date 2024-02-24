@@ -15,7 +15,6 @@ use App\Models\Asset;
 use App\Models\File;
 use App\Models\User;
 
-
 use Carbon\Carbon;
 use Auth;
 use Illuminate\Http\Request;
@@ -30,14 +29,19 @@ class WorkorderController extends Controller
 {
     public function index()
     {
-        $workorder = Workorder::all();
+        if (in_array(Auth::user()->role->workorder, ['1','2','3','4'])) {
+            $workorder = Workorder::all();
 
-        return view('maintenance.workorder.index', compact('workorder'));
+            return view('maintenance.workorder.index', compact('workorder'));
+        } else {
+            alert()->error('Stop.', 'Access Forbidden !');
+            return redirect()->back();
+        }
     }
 
     public function create()
     {
-        if (in_array(Auth::user()->role->workorder, ['1', '2', '3', '4'])) {
+        if (in_array(Auth::user()->role->workorder, ['1','2','3','4'])) {
             $employee = Employee::all();
             $asset = Asset::all();
             $location = Location::all();
@@ -52,7 +56,7 @@ class WorkorderController extends Controller
 
     public function store(Request $request)
     {
-        if (in_array(Auth::user()->role->workorder, ['1', '2', '3', '4'])) {
+        if (in_array(Auth::user()->role->workorder, ['1','2','3','4'])) {
             $validator = Validator::make($request->all(), [
                 'department_ids' => 'required',
                 'asset_ids' => 'nullable',
@@ -73,7 +77,7 @@ class WorkorderController extends Controller
 
             $createdBy = Auth::user()->id;
             $status = "Open";
-            $order_no = 'WO'.date('Ymd').sprintf('%04d', (WorkOrder::count() + 1));
+            $order_no = 'WO' . date('Ymd') . sprintf('%04d', (WorkOrder::count() + 1));
             $workorder = Workorder::create([
                 'order_no' => $order_no,
                 'created_by' => $createdBy,
@@ -136,7 +140,7 @@ class WorkorderController extends Controller
 
     public function show($orderNumber)
     {
-        if (in_array(Auth::user()->role->workorder, ['1', '2', '3', '4'])) {
+        if (in_array(Auth::user()->role->workorder, ['1','2','3','4'])) {
             $workorder = WorkOrder::where('order_no', $orderNumber)->with('user')->firstOrFail();
             $locationlist = Location::all();
             $assetlist = Asset::all();
@@ -152,7 +156,7 @@ class WorkorderController extends Controller
 
     public function addcomment(Request $request)
     {
-        if (in_array(Auth::user()->role->workorder, ['1', '2', '3', '4'])) {
+        if (in_array(Auth::user()->role->workorder, ['1','2','3','4'])) {
             $validator = Validator::make($request->all(), [
                 'file' => 'required|mimes:jpeg,jpg,png,pdf',
                 'description' => 'required',
@@ -187,7 +191,7 @@ class WorkorderController extends Controller
 
     public function addrelation(Request $request)
     {
-        if (in_array(Auth::user()->role->workorder, ['2', '3', '4'])) {
+        if (in_array(Auth::user()->role->workorder, ['2','3','4'])) {
 
             if (isset($request->asset_ids)) {
                 $assets = $request->asset_ids;
@@ -238,7 +242,7 @@ class WorkorderController extends Controller
 
     public function wodone(Request $request)
     {
-        if (in_array(Auth::user()->role->workorder, ['2', '3', '4'])) {
+        if (in_array(Auth::user()->role->workorder, ['2','3','4'])) {
             $update_by = Auth::user()->id;
 
             $wo = workorder::where('id', $request->id)->firstOrFail();
@@ -290,7 +294,7 @@ class WorkorderController extends Controller
 
     public function woreceived(Request $request)
     {
-        if (in_array(Auth::user()->role->workorder, ['2', '3', '4'])) {
+        if (in_array(Auth::user()->role->workorder, ['2','3','4'])) {
 
             $update_by = Auth::user()->id;
 
