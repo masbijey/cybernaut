@@ -129,7 +129,6 @@ Route::controller(TaskController::class)->middleware('auth')->group(function () 
     Route::get('task/done/{id}', 'taskdone')->name('task.done');
     Route::get('task/undone/{id}', 'taskundone')->name('task.undone');
     Route::post('task/addcomment', 'addcomment')->name('task.addcomment');
-
 });
 
 Route::controller(WorkorderController::class)->middleware('auth')->group(function () {
@@ -166,13 +165,13 @@ Route::controller(AssetController::class)->middleware('auth')->group(function ()
     Route::delete('asset/{id}', 'destroy')->name('asset.destroy');
     Route::get('asset/{id}/edit', 'edit')->name('asset.edit');
 
-    Route::get('allocation', 'allocation')->name('allocation.index');
+    Route::get('asset/allocation', 'allocation')->name('allocation.index');
     Route::post('allocation/store', 'allocationstr')->name('allocation.store');
 
-    Route::get('location', 'location')->name('location.index');
+    Route::get('asset/location', 'location')->name('location.index');
     Route::post('location/store', 'locationstr')->name('location.store');
 
-    Route::get('category', 'category')->name('category.index');
+    Route::get('asset/category', 'category')->name('category.index');
     Route::post('category/store', 'categorystr')->name('category.store');
 
     Route::get('vendor', 'vendor')->name('vendor.index');
@@ -181,6 +180,7 @@ Route::controller(AssetController::class)->middleware('auth')->group(function ()
     Route::get('checklist', 'checklist')->name('checklist.index');
     Route::post('checklist', 'checkliststr')->name('checklist.store');
 });
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

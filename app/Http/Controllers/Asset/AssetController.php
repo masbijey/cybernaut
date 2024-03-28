@@ -31,7 +31,6 @@ class AssetController extends Controller
     {
         if (in_array(Auth::user()->role->asset, ['1', '2', '3', '4'])) {
             $asset = Asset::all();
-
             return view('asset.index', compact('asset'));
         } else {
             alert()->error('Stop.', 'Access Forbidden !');
@@ -138,7 +137,7 @@ class AssetController extends Controller
 
     public function show($token)
     {
-        if (in_array(Auth::user()->role->asset, ['1','2','3','4'])) {
+        if (in_array(Auth::user()->role->asset, ['1', '2', '3', '4'])) {
             $data = Asset::where('token', $token)->firstOrFail();
 
             $id = $data->id;
@@ -172,5 +171,56 @@ class AssetController extends Controller
 
         // alert()->success('Berhasil.', 'Data berhasil dihapus');
         // return redirect('/asset');
+    }
+
+    public function category()
+    {
+        $assetcat = Assetcat::withTrashed()->get();
+
+        return view('asset.category.index', compact('assetcat'));
+    }
+
+    public function categorystr(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            alert()->error('Gagal.', 'pastikan mengisi data dengan benar');
+            return redirect()->back();
+        }
+
+        Assetcat::create([
+            'name' => $request->name
+        ]);
+
+        alert()->success('Berhasil.', 'Category baru berhasil di tambahkan.');
+        return redirect('/asset/category');
+    }
+
+    public function location()
+    {
+        $location = Location::withTrashed()->get();
+        return view('location.index', compact('location'));
+    }
+
+    public function locationstr(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            alert()->error('Gagal.', 'pastikan mengisi data dengan benar');
+            return redirect('/asset/location');
+        }
+
+        Location::create([
+            'name' => $request->name
+        ]);
+
+        alert()->success('Berhasil.', 'Location baru berhasil di tambahkan.');
+        return redirect('/asset/location');
     }
 }

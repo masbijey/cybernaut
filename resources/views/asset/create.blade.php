@@ -108,6 +108,12 @@
                                 </div>
                             </td>
                         </tr>
+                        <tr>
+                            <td><label for="remark">Asset Remark</label></td>
+                            <td>
+                                <textarea name="asset_remark" id="remark" class="form-control form-control-sm"></textarea>
+                            </td>
+                        </tr>
                     </table>
                 </div>
             </div>
@@ -172,7 +178,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><label for="remark">Remark</label></td>
+                            <td><label for="remark">Allocation Remark</label></td>
                             <td>
                                 <textarea name="remark" id="remark" class="form-control form-control-sm"></textarea>
                             </td>

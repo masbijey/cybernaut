@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-S C L B L E | Asset Information
+Asset Information
 @endsection
 
 @section('content')

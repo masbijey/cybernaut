@@ -30,7 +30,7 @@
         <table class="table nowrap table-sm" id="employee-table" style="width: 100%;">
             <thead>
                 <tr>
-                    <th>No. Asset</th>
+                    <th>No.</th>
                     <th>Name</th>
                     <th>Category</th>
                     <th>Merk</th>
@@ -44,8 +44,8 @@
             <tbody>
                 @foreach($asset as $data)
                 <tr>
-                    <td>
-                        asset number
+                    <td class="text-center">
+                        {{ $loop->iteration }}
                     </td>
                     <td>
                         <a href="/asset/detail/{{ $data->token }}" data-placement="top" title="Tampilkan">

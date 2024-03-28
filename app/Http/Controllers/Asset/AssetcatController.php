@@ -23,7 +23,6 @@ class AssetcatController extends Controller
         $assetcat = Assetcat::withTrashed()->get();
 
         return view('asset.category.index', compact('assetcat'));
-
     }
 
     public function store(Request $request)

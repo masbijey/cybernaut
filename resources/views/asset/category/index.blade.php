@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
 @section('title')
-Location Management
+Asset Category Management
 @endsection
 
 @section('content')
-<h1 class="h3 text-gray-800">LOCATION MANAGEMENT</h1>
+<h1 class="h3 text-gray-800">ASSET CATEGORY MANAGEMENT</h1>
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Location Management</li>
+        <li class="breadcrumb-item active" aria-current="page">Asset Category Management</li>
     </ol>
 </nav>
 
@@ -18,15 +18,15 @@ Location Management
     <div class="col-sm-12 col-md-4 col-lg-4">
         <div class="card mb-2 shadow-sm">
             <div class="card-header text-primary py-3">
-                <h6 class="m-0 font-weight-bold text-primary">New Location</h6>
+                <h6 class="m-0 font-weight-bold text-primary">New Asset Category</h6>
             </div>
             <div class="card-body">
-                <form method="POST" action="{{ route('location.store') }}">
+                <form method="POST" action="{{ route('category.store') }}">
                     @csrf
 
                     <table class="table table-borderless">
-                        <td><label for="name">Location name</label></td>
-                        <td><input type="text" name="name" id="name" class="form-control form-control-sm"></td>
+                        <td><label for="name">Category Name</label></td>
+                        <td><input type="text" name="name" id="name" class="form-control form-control-sm" required></td>
                     </table>
 
                     <button class="btn btn-primary shadow-sm" type="submit">Save</button>
@@ -39,18 +39,18 @@ Location Management
     <div class="col-sm-12 col-md-4 col-lg-5">
         <div class="card mb-2 shadow-sm">
             <div class="card-header text-primary py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Location List</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Category List</h6>
             </div>
             <div class="card-body">
                 <table class="table table-sm table-hover" id="location-table">
                     <thead>
                         <tr class="text-center">
                             <th>#</th>
-                            <th>Location Name</th>
+                            <th>Category Name</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($location as $data)
+                        @foreach($assetcat as $data)
                         <tr>
                             <td class="text-center">
                                 {{ $loop->iteration }}

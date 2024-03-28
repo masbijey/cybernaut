@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>
-        @yield('title')
+        S C B L E - @yield('title')
     </title>
     <link href="{{ url('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ url('css/sb-admin-2.min.css') }}" rel="stylesheet">
@@ -106,7 +106,7 @@
                         @endif
 
                         @if(in_array(Auth::user()->role->admin, ['1', '2', '3', '4']))
-                        <a class="collapse-item" href="/location">Location List</a>
+                        <a class="collapse-item" href="/asset/location">Location List</a>
                         @endif
 
                         @if(in_array(Auth::user()->role->admin, ['1', '2', '3', '4']))

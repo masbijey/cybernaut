@@ -90,7 +90,7 @@
                         <td>
                             <select class="js-example-basic-multiple custom-select form-control form-control-sm" id="tag-asset" name="asset_ids[]" multiple="multiple">
                                 @foreach ($asset as $data)
-                                <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                <option value="{{ $data->id }}">{{ $data->name }} {{ $data->serialNumber }}</option>
                                 @endforeach
                             </select>
                         </td>
