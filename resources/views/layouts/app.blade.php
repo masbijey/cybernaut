@@ -8,30 +8,31 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>
-        S C B L E - @yield('title')
+        KAIZEN - @yield('title')
     </title>
-    <link href="{{ url('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ url('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ url('/public/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url('/public/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url('vendor/select2/select2-bootstrap.css')}}">
-    <link href="{{ url('vendor/select2/select2-bootstrap4.min.css')}}" rel="stylesheet">
-    <link href="{{ url('vendor/select2/select2.min.css')}}" rel="stylesheet" />
-    <link href="{{ url('vendor/datepicker/gijgo.min.css')}}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('vendor/datatables/responsive.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{ url('/public/vendor/select2/select2-bootstrap.css')}}">
+    <link href="{{ url('/public/vendor/select2/select2-bootstrap4.min.css')}}" rel="stylesheet">
+    <link href="{{ url('/public/vendor/select2/select2.min.css')}}" rel="stylesheet" />
+    <link href="{{ url('/public/vendor/datepicker/gijgo.min.css')}}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('/public/vendor/datatables/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('/public/vendor/datatables/responsive.bootstrap4.min.css')}}">
+    <!-- <link rel="stylesheet" href="{{ url('/public/css/style.css') }}"> -->
     @yield('css')
 </head>
 
 <body id="page-top">
     <div id="wrapper">
-        <!-- <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar"> -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
+        <!-- <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"> -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-chart-line"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">
-                    s c l b l e
+                    K A I Z E N
                     <sup></sup>
                 </div>
             </a>
@@ -46,20 +47,28 @@
             <div class="sidebar-heading">
                 Interface
             </div>
+
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="charts.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Employee Management</span></a>
+            </li> -->
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-users"></i>
-                    <span>HRIS</span>
+                    <span>Employee Management</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Components:</h6>
 
-                        @if(in_array(Auth::user()->role->hris, ['1', '2', '3' , '4']))
-                        <a class="collapse-item" href="{{ route('employee.index')}}">Employee List</a>
+                        @if(in_array(Auth::user()->role->hris, ['3' , '4']))
+                        <a class="collapse-item" href="{{ route('employee.index') }}">Employee Data</a>
                         @endif
 
-                        <a class="collapse-item" href="#" disable>Leave form</a>
+                        <a class="collapse-item" href="{{ route('leave.index') }}" disable>Leave Management</a>
+                        <a class="collapse-item" href="{{ route('leave.index') }}" disable>Approval Management</a>
                     </div>
                 </div>
             </li>
@@ -67,7 +76,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#asset" aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-toolbox"></i>
-                    <span>ASSET</span>
+                    <span>Asset Management</span>
                 </a>
                 <div id="asset" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -88,7 +97,42 @@
                         @if(in_array(Auth::user()->role->signage, ['1', '2', '3', '4']))
                         <a class="collapse-item" href="{{ route('signage.index') }}">TV Signage</a>
                         @endif
+                    </div>
+                </div>
+            </li>
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#roommanage" aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-toolbox"></i>
+                    <span>Room Management</span>
+                </a>
+                <div id="roommanage" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Components:</h6>
+
+                        @if(in_array(Auth::user()->role->asset, ['1', '2', '3', '4']))
+                        <a class="collapse-item" href="{{ route('asset.index')}}">Room Status</a>
+                        @endif
+
+                        @if(in_array(Auth::user()->role->asset, ['1', '2', '3', '4']))
+                        <a class="collapse-item" href="{{ route('asset.index')}}">VCU Check</a>
+                        @endif
+
+                        @if(in_array(Auth::user()->role->asset, ['1', '2', '3', '4']))
+                        <a class="collapse-item" href="{{ route('asset.index')}}">C/O Check</a>
+                        @endif
+
+                        @if(in_array(Auth::user()->role->asset, ['1', '2', '3', '4']))
+                        <a class="collapse-item" href="{{ route('asset.index')}}">RA Cleaning</a>
+                        @endif
+
+                        @if(in_array(Auth::user()->role->asset, ['1', '2', '3', '4']))
+                        <a class="collapse-item" href="{{ route('asset.index')}}">RPM Project</a>
+                        @endif
+
+                        @if(in_array(Auth::user()->role->asset, ['1', '2', '3', '4']))
+                        <a class="collapse-item" href="{{ route('asset.index')}}">Room Administration</a>
+                        @endif
                     </div>
                 </div>
             </li>
@@ -96,21 +140,21 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>GENERAL</span>
+                    <span>Administration</span>
                 </a>
                 <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Master:</h6>
                         @if(in_array(Auth::user()->role->admin, ['1', '2', '3', '4']))
-                        <a class="collapse-item" href="/department">Department List</a>
+                        <a class="collapse-item" href="{{ url('/department') }}">Department List</a>
                         @endif
 
                         @if(in_array(Auth::user()->role->admin, ['1', '2', '3', '4']))
-                        <a class="collapse-item" href="/asset/location">Location List</a>
+                        <a class="collapse-item" href="{{ url('/asset/location') }}">Location List</a>
                         @endif
 
                         @if(in_array(Auth::user()->role->admin, ['1', '2', '3', '4']))
-                        <a class="collapse-item" href="/user">User Admninistration</a>
+                        <a class="collapse-item" href="{{ url('/user') }}">User Admninistration</a>
                         @endif
                     </div>
                 </div>
@@ -215,7 +259,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{ url('img/undraw_profile_1.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="{{ url('/public/img/undraw_profile_1.svg') }}" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -226,7 +270,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{ url('img/undraw_profile_2.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="{{ url('/public/img/undraw_profile_2.svg') }}" alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -237,7 +281,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{ url('img/undraw_profile_3.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="{{ url('/public/img/undraw_profile_3.svg') }}" alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -248,7 +292,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="...">
+                                        <img class="rounded-circle" src="{{ url('/public/img/undraw_profile_3.svg') }}" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div>
@@ -272,21 +316,21 @@
                                     null
                                     @endif
                                 </span>
-                                <img class="img-profile rounded-circle" src="{{ url('/img/undraw_profile.svg') }}">
+                                <img class="img-profile rounded-circle" src="{{ url('public/img/undraw_profile.svg') }}">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ url('employee/detail/'. Auth::user()->id ) }} ">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <!-- <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Activity Log
-                                </a>
+                                </a> -->
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -337,18 +381,38 @@
         </div>
     </div>
 
+    <script src="{{ url('/public/vendor/sweetalert/sweetalert.all.js') }}"></script>
+    <script src="{{ url('/public/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url('/public/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url('/public/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ url('/public/js/sb-admin-2.min.js') }}"></script>
+    <script src="{{ asset('/public/vendor/select2/select2.min.js')}}"></script>
+    <script src="{{ asset('/public/vendor/datepicker/gijgo.min.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('/public/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ asset('/public/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{ asset('/public/vendor/datatables/dataTables.responsive.min.js')}}"></script>
+    <script src="{{ asset('/public/vendor/datatables/responsive.bootstrap4.min.js')}}"></script>
     @include('sweetalert::alert')
-    <script src="{{ url('vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ url('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ url('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-    <script src="{{ url('js/sb-admin-2.min.js') }}"></script>
-    <script src="{{ asset('vendor/select2/select2.min.js')}}"></script>
-    <script src="{{ asset('vendor/datepicker/gijgo.min.js')}}" type="text/javascript"></script>
-    <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
-    <script src="{{ asset('vendor/datatables/dataTables.responsive.min.js')}}"></script>
-    <script src="{{ asset('vendor/datatables/responsive.bootstrap4.min.js')}}"></script>
     @yield('js')
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            function toggleSidebar() {
+                const sidebar = document.getElementById("accordionSidebar");
+                if (window.innerWidth <= 768) { // Deteksi jika layar lebih kecil dari atau sama dengan 768px (ukuran tablet ke bawah)
+                    sidebar.classList.add("toggled");
+                } else {
+                    sidebar.classList.remove("toggled");
+                }
+            }
+
+            // Panggil fungsi saat halaman dimuat
+            toggleSidebar();
+
+            // Panggil fungsi saat ukuran layar berubah
+            window.addEventListener("resize", toggleSidebar);
+        });
+    </script>
 
 </body>
 

@@ -104,10 +104,10 @@ Employee details | {{ $employee->name }}
                 <div class="collapse" id="personal-card">
                     <div class="card-body">
                         <div class="mb-3 text-center">
-                            <img src="https://source.unsplash.com/K4mSJ7kc0As/600x800" class="img-fluid" alt="Responsive image" width="200px">
+                            <img src="https://yjmb.xjambi.com/kaizen/public//storage/asset/JjhsqBJeny50OqFolc20h9Vj5JrOzy7gJjSAymMz.jpg" class="img-fluid" alt="Responsive image" width="200px">
                         </div>
 
-                        <table class="table table-sm">
+                        <table class="table ">
                             <tr>
                                 <td class="font-weight-bolder">NIK</td>
                                 <td>{{ $employee->nik}}</td>
@@ -155,7 +155,7 @@ Employee details | {{ $employee->name }}
                 <div class="collapse show" id="personal-card">
                     <div class="card-body">
                         <div class="mb-3 text-center">
-                            <img src="https://source.unsplash.com/K4mSJ7kc0As/600x800" class="img-fluid" alt="Responsive image" width="200px">
+                            <img src="https://yjmb.xjambi.com/kaizen/public//storage/asset/JjhsqBJeny50OqFolc20h9Vj5JrOzy7gJjSAymMz.jpg" class="img-fluid" alt="Responsive image" width="200px">
                         </div>
 
                         <table class="table table-sm">
@@ -207,7 +207,7 @@ Employee details | {{ $employee->name }}
             <div class="collapse" id="education-card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-sm" id="education-table" style="width: 100%;">
+                        <table class="table" id="education-table" style="width: 100%;">
                             <thead>
                                 <tr>
                                     <th>Created At</th>
@@ -244,7 +244,7 @@ Employee details | {{ $employee->name }}
             <div class="collapse" id="experience-card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-sm" id="experience-table" style="width: 100%;">
+                        <table class="table" id="experience-table" style="width: 100%;">
                             <thead>
                                 <tr>
                                     <th>Created At</th>
@@ -281,7 +281,7 @@ Employee details | {{ $employee->name }}
             <div class="collapse" id="family-card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-sm" id="family-table" style="width: 100%;">
+                        <table class="table" id="family-table" style="width: 100%;">
                             <thead>
                                 <tr>
                                     <th>Created At</th>
@@ -289,7 +289,7 @@ Employee details | {{ $employee->name }}
                                     <th>Relationship</th>
                                     <th>Phone</th>
                                     <th>Address</th>
-                                    <th>File</th>
+                                    <!-- <th>File</th> -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -298,9 +298,9 @@ Employee details | {{ $employee->name }}
                                     <td>{{ $data->created_at }}</td>
                                     <td>{{ $data->name }}</td>
                                     <td>{{ $data->relationship }}</td>
-                                    <td>{{ $data->phone }}}</td>
+                                    <td>{{ $data->phone }}</td>
                                     <td>{{ $data->address }}</td>
-                                    <td><a class="btn btn-sm btn-outline-secondary" href="{{ url($data->file) }}">file</a></td>
+                                    <!-- <td><a class="btn btn-sm btn-outline-secondary" href="{{ url('public/'.$data->file) }}">file</a></td> -->
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -318,7 +318,7 @@ Employee details | {{ $employee->name }}
             <div class="collapse" id="sickness-card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-sm" id="sickness-table" style="width: 100%;">
+                        <table class="table" id="sickness-table" style="width: 100%;">
                             <thead>
                                 <tr>
                                     <th>Created At</th>
@@ -353,7 +353,7 @@ Employee details | {{ $employee->name }}
             <div class="collapse" id="contract-card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-sm" id="contract-table" style="width: 100%;">
+                        <table class="table" id="contract-table" style="width: 100%;">
                             <thead>
                                 <tr>
                                     <th>Created At</th>
@@ -392,7 +392,7 @@ Employee details | {{ $employee->name }}
             <div class="collapse" id="pnr-card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-sm" id="punrew-table" style="width: 100%;">
+                        <table class="table" id="punrew-table" style="width: 100%;">
                             <thead>
                                 <tr>
                                     <th>Created At</th>
@@ -426,7 +426,7 @@ Employee details | {{ $employee->name }}
 
             <div class="collapse" id="leave-card">
                 <div class="card-body">
-                    <table class="table table-sm table-bordered" style="width: 30%;">
+                    <table class="table table-bordered" style="width: 30%;">
                         <thead>
                             <tr>
                                 <th>Description</th>
@@ -478,16 +478,14 @@ Employee details | {{ $employee->name }}
 
                     <hr>
                     <div class="table-responsive">
-                        <table class="table table-sm" id="leaves-table" style="width: 100%;">
+                        <table class="table" id="leaves-table" style="width: 100%;">
                             <thead>
                                 <tr>
                                     <th>Created At</th>
                                     <th>Type</th>
                                     <th>Valid date</th>
                                     <th>Pick date</th>
-                                    <th>Description</th>
-                                    <th>Leader Approved</th>
-                                    <th>HR Approved</th>
+                                    <th>Remark</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -505,18 +503,15 @@ Employee details | {{ $employee->name }}
                                         <button class="btn btn-sm btn-danger">SICK</button>
                                         @endif
                                     </td>
-                                    <td>{{ \Carbon\Carbon::parse($data->valid_until)->format('d/m/y') }}</td>
+                                    <td>{{ $data->valid_until }}</td>
                                     <td>
                                         @if ($data->pick_date == null)
                                         <span class="badge badge-success badge-sm">belum diambil</span>
                                         @else
-                                        <span class="badge badge-danger badge-sm">{{
-                                \Carbon\Carbon::parse($data->pick_date)->format('d/m/y') }}</span>
+                                        <span class="badge badge-danger badge-sm">{{ $data->pick_date }}</span>
                                         @endif
                                     </td>
                                     <td>{{ $data->description }}</td>
-                                    <td>null</td>
-                                    <td>null</td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -534,26 +529,37 @@ Employee details | {{ $employee->name }}
             <div class="collapse" id="inventory-card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-sm" id="inventory-table" style="width: 100%;">
+                        <table class="table" id="inventory-table" style="width: 100%;">
                             <thead>
                                 <tr>
                                     <th>Created At</th>
-                                    <th>Institution</th>
-                                    <th>Category</th>
-                                    <th>Periode</th>
-                                    <th>Description</th>
-                                    <th>File</th>
+                                    <th>Asset</th>
+                                    <th>Condition</th>
+                                    <th>Remark</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($inventory as $data)
                                 <tr>
-                                    <td>test test test tes tes tes tes</td>
-                                    <td>Test</td>
-                                    <td>Test</td>
-                                    <td>Test</td>
-                                    <td>Test</td>
-                                    <td>Test</td>
+                                    <td>{{ $data->created_at }}</td>
+                                    <td><a href="{{ url('asset/detail/'. $data->asset->token) }}">{{ $data->asset->name }} {{ $data->asset->serialNumber }}</a></td>
+                                    <td>@if ($data->condition == 'Good')
+                                        <span class="badge badge-success">{{ $data->condition }}</span>
+                                        @else
+                                        <span class="badge badge-danger">{{ $data->condition }}</span>
+                                        @endif
+                                    </td>
+                                    <td>{{ $data->remark }}</td>
+                                    <td>{{ $data->end }}
+                                        @if ($data->return_date === null)
+                                        <a href="{{ url('asset/allocation/'.$data->asset->token) }}" class="btn btn-sm btn-primary">Move Now</a>
+                                        @else
+                                        <a href="#" class="btn btn-sm btn-primary disabled">Moved: {{ $data->return_date }}</a>
+                                        @endif
+                                    </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -569,7 +575,7 @@ Employee details | {{ $employee->name }}
             <div class="collapse" id="training-card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-sm" id="training-table" style="width: 100%;">
+                        <table class="table" id="training-table" style="width: 100%;">
                             <thead>
                                 <tr>
                                     <th>Created At</th>
@@ -604,7 +610,7 @@ Employee details | {{ $employee->name }}
             <div class="collapse" id="attendance-card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-sm" id="attendance-table" style="width: 100%;">
+                        <table class="table" id="attendance-table" style="width: 100%;">
                             <thead>
                                 <tr>
                                     <th>Created At</th>
@@ -639,7 +645,7 @@ Employee details | {{ $employee->name }}
             <div class="collapse" id="log-card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-sm" id="log-table" style="width: 100%;">
+                        <table class="table" id="log-table" style="width: 100%;">
                             <thead>
                                 <tr>
                                     <th>Created At</th>

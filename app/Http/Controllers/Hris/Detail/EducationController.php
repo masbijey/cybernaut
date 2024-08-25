@@ -16,6 +16,7 @@ class EducationController extends Controller
     {
         $education = Employeeeducation::withTrashed()->get();
         $employee = User::withTrashed()->get();
+        
         return view('hris.detail.education.index', compact('education', 'employee'));
     }
 

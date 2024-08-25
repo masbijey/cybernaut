@@ -104,6 +104,7 @@ User Details | {{ $data->name }}
                 </table>
 
                 <button class="btn btn-primary shadow" type="submit">Save</button>
+                <button class="btn btn-secondary shadow" type="reset">Cancel</button>
             </form>
         </div>
     </div>

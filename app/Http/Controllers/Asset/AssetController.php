@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Asset;
 use App\Models\Assetcat;
 use App\Models\Employee;
+use App\Models\Employeeinventory;
 use App\Models\User;
 use App\Models\Department;
 use App\Models\Location;
@@ -222,5 +223,65 @@ class AssetController extends Controller
 
         alert()->success('Berhasil.', 'Location baru berhasil di tambahkan.');
         return redirect('/asset/location');
+    }
+
+    public function allocation($token)
+    {
+        $inventory = Employeeinventory::all();
+        $employee = User::all();
+        $department = Department::all();
+        $asset = Asset::all();
+        $location = Location::all();
+
+        $detail_assets = Asset::where('token', $token)->get();
+
+        return view('asset.allocation.index', compact('inventory', 'employee', 'department', 'asset', 'location', 'detail_assets'));
+    }
+
+    public function allocationstr(Request $request)
+    {
+        if (in_array(Auth::user()->role->asset, ['2', '3', '4'])) {
+            $validator = Validator::make($request->all(), [
+                'description' => 'nullable',
+                'location' => 'required',
+                'department' => 'required',
+                'employee' => 'required',
+                'token' => 'required',
+                'condition' => 'required',
+                'file' => 'required'
+            ]);
+
+            if ($validator->fails()) {
+                alert()->error('Gagal.', 'pastikan mengisi data dengan benar');
+                return redirect('/asset');
+            }
+
+            $path = $request->file->store('public/asset');
+            $url = Storage::url($path);
+            $updateBy = Auth::user()->id;
+
+            $getId = Asset::where('token', $request->token)->first();
+
+            $lastAssetAllocation = AssetAllocation::latest('id')->first();
+            $lastAssetAllocation->return_date = now();
+            $lastAssetAllocation->save();
+
+            Assetallocation::create([
+                'asset_id' => $getId->id,
+                'employee_id' => $request->employee,
+                'location_id' => $request->location,
+                'department_id' => $request->department,
+                'file' => $url,
+                'condition' => $request->condition,
+                'remark' => $request->description,
+                'created_by' => $updateBy
+            ]);
+
+            alert()->success('Berhasil.', 'Data berhasil dibuat');
+            return redirect('employee/detail/'.$request->employee);
+        } else {
+            alert()->error('Stop.', 'Access Forbidden !');
+            return redirect()->back();
+        }
     }
 }

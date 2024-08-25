@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Auth;
 use App\Models\Employee;
+use App\Models\User;
 use App\Models\Employeefamily;
 
 class FamilyController extends Controller
@@ -17,7 +18,7 @@ class FamilyController extends Controller
     public function index()
     {
         $family = Employeefamily::withTrashed()->get();
-        $employee = Employee::withTrashed()->get();
+        $employee = User::withTrashed()->get();
         
         return view('hris.detail.family.index', compact('family', 'employee'));
     }
@@ -38,9 +39,9 @@ class FamilyController extends Controller
         }
 
         Employeefamily::create([
-            'employee_id' => $request->employee,
+            'user_id' => $request->employee,
             'name' => $request->name,
-            'status' => $request->status,
+            'relationship' => $request->status,
             'phone' => $request->phone,
             'address' => $request->address
         ]);

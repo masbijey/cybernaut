@@ -13,9 +13,9 @@ class Employeefamily extends Model
     use softDeletes;
 
     protected $fillable = [
-        'employee_id',
+        'user_id',
         'name',
-        'status',
+        'relationship',
         'phone',
         'address',
     ];
@@ -24,4 +24,10 @@ class Employeefamily extends Model
     {
         return $this->belongsTo(Employee::class, 'employee_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
 }

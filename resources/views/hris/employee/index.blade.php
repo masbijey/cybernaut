@@ -25,7 +25,6 @@
             <a class="dropdown-item" href="{{ route('education.index') }}">» Education</a>
             <a class="dropdown-item" href="{{ route('experience.index') }}">» Experience</a>
             <a class="dropdown-item" href="{{ route('family.index') }}">» Family</a>
-            <a class="dropdown-item" href="{{ route('inventory.index') }}">» Inventory</a>
             <a class="dropdown-item" href="{{ route('leave.index') }}">» Leave</a>
             <a class="dropdown-item" href="{{ route('rewpun.index') }}">» P&R</a>
             <a class="dropdown-item" href="{{ route('sickness.index') }}">» Sickness</a>
@@ -121,13 +120,13 @@
 
 <div class="card mt-3 shadow-sm">
     <div class="card-body">
-        <table class="table table-hover nowrap table-sm" id="employee-table">
+        <table class="table table-hover nowrap" id="employee-table">
             <thead>
                 <tr>
                     <th>#</th>
                     <th>Name</th>
                     <th>Department</th>
-                    <th>Job Title</th>
+                    <th>Role</th>
                     <th>Level</th>
                     <th>Phone</th>
                     <th>Email</th>
@@ -142,7 +141,7 @@
                         {{ $loop->iteration }}
                     </td>
                     <td>
-                        <a href="/employee/detail/{{ $user->id }}" class="" data-placement="top" title="Tampilkan">{{$user->name }}</a>
+                        <a href="{{ url('/employee/detail/'.$user->id) }}" class="" data-placement="top" title="Tampilkan">{{$user->name }}</a>
                     </td>
                     <td>
                         @if (!empty($user->contract->last()))

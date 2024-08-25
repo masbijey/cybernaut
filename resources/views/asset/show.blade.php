@@ -18,13 +18,13 @@ Asset Information
 
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-4">
-        <div class="card shadow-sm mb-3">
+        <div class="card shadow mb-3">
             <div class="card-body">
                 <div class="mb-3 text-center">
-                    <img src="{{ $data->file }}" class="img-fluid" alt="Responsive image" width="200px">
+                    <img src="{{ url('public'.$data->file) }}" class="img-fluid" alt="Responsive image" width="200px">
                 </div>
 
-                <table class="table table-sm table-hover">
+                <table class="table table-hover">
                     <tr>
                         <td><label for="name" class="font-weight-bold">Created At</label></td>
                         <td>{{ $data->created_at }}</td>
@@ -87,14 +87,14 @@ Asset Information
     </div>
 
     <div class="col-sm-12 col-md-12 col-lg-8">
-        <div class="card shadow-sm mb-3">
+        <div class="card shadow mb-3">
             <div class="card-header text-primary">
                 <h6 class="m-0 font-weight-bold">Task <small class="text-secondary">History</small></h6>
             </div>
             <div class="card-body">
-                <a href="/task/create" class="btn btn-sm btn-outline-secondary shadow-sm mb-3">+ New Task</a>
+                <a href="{{ url('/task/create') }}" class="btn btn-sm btn-outline-primary shadow mb-3">+ New Task</a>
 
-                <table class="table table-hover table-sm" id="table-task-history">
+                <table class="table table-hover " id="table-task-history">
                     <thead>
                         <tr>
                             <th>Created at</th>
@@ -116,7 +116,7 @@ Asset Information
                                 @if ($data->task->task_status == 'Done')
                                 <a href="#" class="btn btn-sm btn-outline-success">{{ $data->task->task_status }}</a>
                                 @else
-                                <a href="#" class="btn btn-sm btn-outline-secondary">On Progress</a>
+                                <a href="#" class="btn btn-sm btn-outline-primary">On Progress</a>
                                 @endif
                             </td>
                             <td>
@@ -135,14 +135,14 @@ Asset Information
             </div>
         </div>
 
-        <div class="card shadow-sm mb-3">
+        <div class="card shadow mb-3">
             <div class="card-header text-primary">
                 <h6 class="m-0 font-weight-bold">Workorder <small class="text-secondary">History</small></h6>
             </div>
             <div class="card-body">
-                <a href="/workorder/create" class="btn btn-sm btn-outline-secondary shadow-sm mb-3">+ New Workorder</a>
+                <a href="{{ url('/workorder/create') }}" class="btn btn-sm btn-outline-primary shadow mb-3">+ New Workorder</a>
 
-                <table class="table table-hover table-sm" id="table-workorder">
+                <table class="table table-hover " id="table-workorder">
                     <thead>
                         <tr>
                             <th>Created at</th>
@@ -165,14 +165,14 @@ Asset Information
                                 @if ($data->workorder->priority == 'High')
                                 <button class="btn btn-sm btn-outline-danger">{{ $data->workorder->priority }}</button>
                                 @else
-                                <button class="btn btn-sm btn-outline-secondary">{{ $data->workorder->priority }}</button>
+                                <button class="btn btn-sm btn-outline-primary">{{ $data->workorder->priority }}</button>
                                 @endif
                             </td>
                             <td>
                                 @if ($data->workorder->status == 'Done')
                                 <button class="btn btn-sm btn-outline-success">{{ $data->workorder->status }}</button>
                                 @else
-                                <button class="btn btn-sm btn-outline-secondary">{{ $data->workorder->status }}</button>
+                                <button class="btn btn-sm btn-outline-primary">{{ $data->workorder->status }}</button>
                                 @endif
                             </td>
                             <td>
@@ -187,14 +187,14 @@ Asset Information
             </div>
         </div>
 
-        <div class="card shadow-sm mb-3">
+        <div class="card shadow mb-3">
             <div class="card-header text-primary">
                 <h6 class="m-0 font-weight-bold">Allocation <small class="text-secondary">History</small></h6>
             </div>
             <div class="card-body">
-                <a class="btn btn-sm btn-outline-secondary shadow-sm mb-3">+ New Allocation</a>
+                <a class="btn btn-sm btn-outline-primary shadow mb-3 disabled">+ New Allocation</a>
 
-                <table class="table table-hover table-sm" id="table-allocation">
+                <table class="table table-hover " id="table-allocation">
                     <thead>
                         <tr>
                             <th>Created</th>
@@ -210,18 +210,18 @@ Asset Information
                         @foreach ($allocation as $data)
                         <tr>
                             <td>{{ $data->created_at }}</td>
-                            <td><a href="/employee/detail/{{ $data->employee->id }}">{{ Str::words($data->employee->name, 1, '') }}</a></td>
+                            <td><a href="{{ url('employee/detail/'. $data->employee->id) }}">{{ Str::words($data->employee->name, 1, '') }}</a></td>
                             <td>{{ $data->department->name }}</td>
                             <td>{{ $data->location->name }}</td>
                             <td>
                                 @if ($data->condition == 'Good')
                                 <button class="btn btn-sm btn-outline-success">{{ $data->condition }}</button>
                                 @else
-                                <button class="btn btn-sm btn-outline-secondary">{{ $data->condition }}</button>
+                                <button class="btn btn-sm btn-outline-primary">{{ $data->condition }}</button>
                                 @endif
                             </td>
                             <td>{{ $data->remark }}</td>
-                            <td><a href="{{ $data->file }}" class="btn btn-sm btn-outline-secondary">File</a></td>
+                            <td><a href="{{ url('public/'.$data->file) }}" class="btn btn-sm btn-outline-primary">File</a></td>
                         </tr>
                         @endforeach
                     </tbody>

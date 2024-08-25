@@ -16,14 +16,20 @@
         theme: 'bootstrap'
     });
 
-    $("#department").select2({
-        theme: 'bootstrap'
-    });
+    // $("#department").select2({
+    //     theme: 'bootstrap'
+    // });
 
     $(document).ready(function() {
         $('#employee-table').DataTable({
             responsive: true
         });
+    });
+
+    document.querySelector('.custom-file-input').addEventListener('change', function(e) {
+        var fileName = e.target.files[0].name;
+        var nextSibling = e.target.nextElementSibling;
+        nextSibling.innerText = fileName;
     });
 </script>
 @endsection
@@ -32,8 +38,8 @@
 <h1 class="h3 text-gray-800">CONTRACT MANAGEMENT</h1>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item"><a href="/employee">Employee List</a></li>
+        <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ url('employee') }}">Employee List</a></li>
         <li class="breadcrumb-item active" aria-current="page">Contract Management</li>
     </ol>
 </nav>
@@ -51,7 +57,7 @@
                     <div class="form-group">
                         <label for="name" class="font-weight-bolder">Employee</label>
                         <select class="custom-select" id="employee" name="employee" required>
-                            <option value="" selected>-- select employee --</option>
+                            <option value="" selected>Select a employee:</option>
                             @foreach ($employee as $data)
                             <option value="{{ $data->id }}">{{ $data->name }}</option>
                             @endforeach
@@ -71,7 +77,7 @@
                     <div class="form-group">
                         <label for="department" class="font-weight-bolder">Department</label>
                         <select class="custom-select" id="department" name="department" required>
-                            <option value="" selected>-- select department --</option>
+                            <option value="" selected> Select a department:</option>
                             @foreach ($department as $data)
                             <option value="{{ $data->id }}">{{ $data->name }}</option>
                             @endforeach
@@ -79,13 +85,21 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="jobtitle" class="font-weight-bolder">Job Title</label>
+                        <label for="jobtitle" class="font-weight-bolder">Role</label>
                         <input type="text" name="jobtitle" id="jobtitle" class="form-control" required>
                     </div>
 
                     <div class="form-group">
                         <label for="level" class="font-weight-bolder">Level</label>
-                        <input type="text" name="level" id="level" class="form-control" required>
+                        <select class="custom-select" name="level" id="level">
+                            <option value="" selected>Select a level:</option>
+                            <option value="Senior Manager">Senior Manager</option>
+                            <option value="Manager">Manager</option>
+                            <option value="Supervisor">Supervisor</option>
+                            <option value="Staff">Staff</option>
+                            <option value="Daily Worker">Daily Worker</option>
+                            <option value="Outsourcing">Outsourcing</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
@@ -94,12 +108,15 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="customFile" class="font-weight-bolder">Upload File</label>
-                        <div class="custom-file mb-3">
-                            <input type="file" class="custom-file-input" id="customFile" name="file" required>
-                            <label class="custom-file-label" for="customFile">Choose file</label>
+                        <label for="file" class="font-weight-bolder">Upload File</label>
+
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="file" name="file" accept="application/pdf" required>
+                            <label class="custom-file-label" for="file">Choose file</label>
                         </div>
+                        <small>*pdf only</small>
                     </div>
+
 
                     <button class="btn btn-primary" type="submit">Save</button>
                     <button class="btn btn-secondary" type="reset">Reset</button>
@@ -114,7 +131,7 @@
                 <h6 class="m-0 font-weight-bold">Contract</h6>
             </div>
             <div class="card-body">
-                <table class="table table-hover nowrap table-sm" id="employee-table">
+                <table class="table table-hover" id="employee-table">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -122,7 +139,7 @@
                             <th>Start</th>
                             <th>End</th>
                             <th>Department</th>
-                            <th>Jobtitle</th>
+                            <th>Role</th>
                             <th>Level</th>
                             <th>Remark</th>
                             <th>File</th>
@@ -132,7 +149,7 @@
                         @foreach($contract as $contract)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td><a href="\employee\detail\{{ $contract->user_id }}">{{ $contract->user->name }}</a></td>
+                            <td><a href="{{ url('employee/detail/'.$contract->user_id) }}">{{ $contract->user->name }}</a></td>
                             <td>{{ \Carbon\Carbon::parse($contract->start)->format('d/m/y') }}</td>
                             <td>{{ \Carbon\Carbon::parse($contract->end)->format('d/m/y') }}</td>
                             <td>{{ $contract->department->name }}</td>

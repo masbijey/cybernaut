@@ -20,7 +20,8 @@ class Assetallocation extends Model
         'file',
         'condition',
         'remark',
-        'created_by'
+        'created_by',
+        'return_date'
     ];
 
     public function location()
@@ -38,6 +39,11 @@ class Assetallocation extends Model
         return $this->belongsTo(User::class, 'employee_id');
     }
 
+    public function asset()
+    {
+        return $this->belongsTo(Asset::class, 'asset_id');
+    }
+
     public function department()
     {
         return $this->belongsTo(Department::class, 'department_id');
@@ -47,6 +53,5 @@ class Assetallocation extends Model
     {
         return $this->belongsTo(User::class, 'created_by');
     }
-
 
 }

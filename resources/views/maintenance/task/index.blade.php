@@ -11,11 +11,11 @@
 </nav>
 
 <button type="button" class="btn d-inline-block">UPDATE : </button>
-<a href="{{ route('task.create') }}" class="btn btn-outline-secondary btn-sm shadow-sm"><i class='fas fa-plus'></i> New Task</a>
+<a href="{{ route('task.create') }}" class="btn btn-outline-primary btn-sm shadow"><i class='fas fa-plus'></i> New Task</a>
 
-<div class="card mt-2 shadow-sm">
+<div class="card mt-2 shadow">
     <div class="card-body">
-        <table class="table table-sm" id="employee-table">
+        <table class="table" id="employee-table">
             <thead>
                 <tr>
                     <th>Due Date</th>
@@ -32,7 +32,7 @@
                 <tr>
                     <!-- <td>{{ \Carbon\Carbon::parse($data->created_at)->format('d/m/y') }}</td> -->
                     <td>{{ $data->task_date }}</td>
-                    <td><a href="/task/detail/{{ $data->id }}">{{ $data->task_title }}</a></td>
+                    <td><a href="{{ url('/task/detail/'.$data->id) }}">{{ $data->task_title }}</a></td>
                     <td>
                         @if ($data->task_status == 'Done')
                         <button class="btn btn-sm btn-success"><b>Done</b></button>

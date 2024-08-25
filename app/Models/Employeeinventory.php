@@ -12,16 +12,17 @@ class Employeeinventory extends Model
     use softDeletes;
 
     protected $fillable = [
-        'employee_id',
+        'user_id',
         'start',
         'end',
         'description',
-        'file'
+        'file',
+        'asset_id'
     ];
 
     public function employee()
     {
-        return $this->belongsTo(Employee::class, 'employee_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
 }

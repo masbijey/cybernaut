@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('file');
             $table->string('condition');
             $table->string('remark')->nullable();
+            $table->string('return_date')->nullable();
 
             $table->integer('created_by')->nullable();
 

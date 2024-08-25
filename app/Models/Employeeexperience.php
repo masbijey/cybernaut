@@ -13,7 +13,7 @@ class Employeeexperience extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'employee_id',
+        'user_id',
         'company',
         'jobtitle',
         'start',
@@ -26,6 +26,12 @@ class Employeeexperience extends Model
     {
         return $this->belongsTo(Employee::class, 'employee_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
 
     public function department()
     {

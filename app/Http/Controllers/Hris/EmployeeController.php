@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -20,6 +20,8 @@ use App\Models\Department;
 use App\Models\Attendance;
 use App\Models\Employeeeducation;
 use App\Models\Schedule;
+use App\Models\Assetallocation;
+use App\Models\Employeeleaveapproval;
 
 
 class EmployeeController extends Controller
@@ -75,99 +77,332 @@ class EmployeeController extends Controller
     }
 
     public function show($id)
+    // {
+    //     if (in_array(Auth::user()->role->hris, ['3', '4'])) {
+
+    //         $employee = User::findOrFail($id);
+
+    //         $role = DB::table('employeecontracts')
+    //             ->where('user_id', '=', $id)
+    //             ->latest()
+    //             ->first();
+
+    //         $entitleEo = DB::table('employeeleaves')
+    //             ->where('user_id', '=', $id)
+    //             ->where('type', '=', 'extra_off')
+    //             ->count();
+
+    //         $takenEo = DB::table('employeeleaves')
+    //             ->where('user_id', '=', $id)
+    //             ->where('type', '=', 'extra_off')
+    //             ->whereNotNull('pick_date')
+    //             ->count();
+
+    //         $balanceEo = $entitleEo - $takenEo;
+
+    //         $entitlePh = DB::table('employeeleaves')
+    //             ->where('user_id', '=', $id)
+    //             ->where('type', '=', 'public_holiday')
+    //             ->count();
+
+    //         $takenPh = DB::table('employeeleaves')
+    //             ->where('user_id', '=', $id)
+    //             ->where('type', '=', 'public_holiday')
+    //             ->whereNotNull('pick_date')
+    //             ->count();
+
+    //         $balancePh = $entitlePh - $takenPh;
+
+    //         $entitleAl = DB::table('employeeleaves')
+    //             ->where('user_id', '=', $id)
+    //             ->where('type', '=', 'annual_leave')
+    //             ->count();
+
+    //         $takenAl = DB::table('employeeleaves')
+    //             ->where('user_id', '=', $id)
+    //             ->where('type', '=', 'annual_leave')
+    //             ->whereNotNull('pick_date')
+    //             ->count();
+
+    //         $balanceAl = $entitleAl - $takenAl;
+
+    //         $totalSick = DB::table('employeeleaves')
+    //             ->where('user_id', '=', $id)
+    //             ->where('type', '=', 'sick_off')
+    //             ->count();
+
+    //         $contract = Employeecontract::with('department')
+    //             ->where('user_id', '=', $id)
+    //             ->get();
+
+    //         $education = DB::table('employeeeducations')
+    //             ->where('user_id', '=', $id)
+    //             ->get();
+
+    //         $experience = DB::table('employeeexperiences')
+    //             ->where('user_id', '=', $id)
+    //             ->get();
+
+    //         $family = DB::table('employeefamilies')
+    //             ->where('user_id', '=', $id)
+    //             ->get();
+
+    //         $sickness = DB::table('employeesicknesses')
+    //             ->where('user_id', '=', $id)
+    //             ->get();
+
+    //         $inventory =  Assetallocation::with('asset')
+    //             ->where('employee_id', $id)
+    //             ->get();
+
+    //         return view('hris.employee.show', compact(
+    //             'education',
+    //             'experience',
+    //             'family',
+    //             'contract',
+    //             'sickness',
+    //             'inventory',
+
+    //             'employee',
+    //             'role',
+
+    //             'entitleEo',
+    //             'takenEo',
+    //             'balanceEo',
+    //             'entitlePh',
+    //             'takenPh',
+    //             'balancePh',
+    //             'entitleAl',
+    //             'takenAl',
+    //             'balanceAl',
+    //             'totalSick'
+    //         ));
+    //     } else {
+    //         alert()->error('Stop.', 'Access Forbidden !');
+    //         return redirect()->back();
+    //     }
+    // }
     {
-        $employee = User::findOrFail($id);
+        $loggedInUserId = Auth::id();
+        $userRole = Auth::user()->role->hris;
 
-        $role = DB::table('employeecontracts')
-            ->where('user_id', '=', $id)
-            ->latest()
-            ->first();
+        $user = User::find($id);
 
-        $entitleEo = DB::table('employeeleaves')
-            ->where('user_id', '=', $id)
-            ->where('type', '=', 'extra_off')
-            ->count();
+        if ($userRole == '1') {
+            if ($loggedInUserId == $id) {
+                if ($user) {
+                    $employee = User::findOrFail($id);
 
-        $takenEo = DB::table('employeeleaves')
-            ->where('user_id', '=', $id)
-            ->where('type', '=', 'extra_off')
-            ->whereNotNull('pick_date')
-            ->count();
+                    $role = DB::table('employeecontracts')
+                        ->where('user_id', '=', $id)
+                        ->latest()
+                        ->first();
 
-        $balanceEo = $entitleEo - $takenEo;
+                    $entitleEo = DB::table('employeeleaves')
+                        ->where('user_id', '=', $id)
+                        ->where('type', '=', 'extra_off')
+                        ->count();
 
-        $entitlePh = DB::table('employeeleaves')
-            ->where('user_id', '=', $id)
-            ->where('type', '=', 'public_holiday')
-            ->count();
+                    $takenEo = DB::table('employeeleaves')
+                        ->where('user_id', '=', $id)
+                        ->where('type', '=', 'extra_off')
+                        ->whereNotNull('pick_date')
+                        ->count();
 
-        $takenPh = DB::table('employeeleaves')
-            ->where('user_id', '=', $id)
-            ->where('type', '=', 'public_holiday')
-            ->whereNotNull('pick_date')
-            ->count();
+                    $balanceEo = $entitleEo - $takenEo;
 
-        $balancePh = $entitlePh - $takenPh;
+                    $entitlePh = DB::table('employeeleaves')
+                        ->where('user_id', '=', $id)
+                        ->where('type', '=', 'public_holiday')
+                        ->count();
 
-        $entitleAl = DB::table('employeeleaves')
-            ->where('user_id', '=', $id)
-            ->where('type', '=', 'annual_leave')
-            ->count();
+                    $takenPh = DB::table('employeeleaves')
+                        ->where('user_id', '=', $id)
+                        ->where('type', '=', 'public_holiday')
+                        ->whereNotNull('pick_date')
+                        ->count();
 
-        $takenAl = DB::table('employeeleaves')
-            ->where('user_id', '=', $id)
-            ->where('type', '=', 'annual_leave')
-            ->whereNotNull('pick_date')
-            ->count();
+                    $balancePh = $entitlePh - $takenPh;
 
-        $balanceAl = $entitleAl - $takenAl;
+                    $entitleAl = DB::table('employeeleaves')
+                        ->where('user_id', '=', $id)
+                        ->where('type', '=', 'annual_leave')
+                        ->count();
 
-        $totalSick = DB::table('employeeleaves')
-            ->where('user_id', '=', $id)
-            ->where('type', '=', 'sick_off')
-            ->count();
+                    $takenAl = DB::table('employeeleaves')
+                        ->where('user_id', '=', $id)
+                        ->where('type', '=', 'annual_leave')
+                        ->whereNotNull('pick_date')
+                        ->count();
 
-        $contract = Employeecontract::with('department')
-            ->where('user_id', '=', $id)
-            ->get();
+                    $balanceAl = $entitleAl - $takenAl;
 
-        $education = DB::table('employeeeducations')
-            ->where('user_id', '=', $id)
-            ->get();
+                    $totalSick = DB::table('employeeleaves')
+                        ->where('user_id', '=', $id)
+                        ->where('type', '=', 'sick_off')
+                        ->count();
 
-        $experience = DB::table('employeeexperiences')
-            ->where('user_id', '=', $id)
-            ->get();
+                    $contract = Employeecontract::with('department')
+                        ->where('user_id', '=', $id)
+                        ->get();
 
-        $family = DB::table('employeefamilies')
-            ->where('user_id', '=', $id)
-            ->get();
+                    $education = DB::table('employeeeducations')
+                        ->where('user_id', '=', $id)
+                        ->get();
 
-        $sickness = DB::table('employeesicknesses')
-            ->where('user_id', '=', $id)
-            ->get();
+                    $experience = DB::table('employeeexperiences')
+                        ->where('user_id', '=', $id)
+                        ->get();
 
-        return view('hris.employee.show', compact(
-            'education',
-            'experience',
-            'family',
-            'contract',
-            'sickness',
+                    $family = DB::table('employeefamilies')
+                        ->where('user_id', '=', $id)
+                        ->get();
 
-            'employee',
-            'role',
+                    $sickness = DB::table('employeesicknesses')
+                        ->where('user_id', '=', $id)
+                        ->get();
 
-            'entitleEo',
-            'takenEo',
-            'balanceEo',
-            'entitlePh',
-            'takenPh',
-            'balancePh',
-            'entitleAl',
-            'takenAl',
-            'balanceAl',
-            'totalSick'
-        ));
+                    $inventory =  Assetallocation::with('asset')
+                        ->where('employee_id', $id)
+                        ->get();
+
+                    return view('hris.employee.show', compact(
+                        'education',
+                        'experience',
+                        'family',
+                        'contract',
+                        'sickness',
+                        'inventory',
+
+                        'employee',
+                        'role',
+
+                        'entitleEo',
+                        'takenEo',
+                        'balanceEo',
+                        'entitlePh',
+                        'takenPh',
+                        'balancePh',
+                        'entitleAl',
+                        'takenAl',
+                        'balanceAl',
+                        'totalSick'
+                    ));
+                } else {
+                    alert()->error('Stop.', 'Access Forbidden !');
+                    return redirect()->back();
+                }
+            } else {
+                alert()->error('Stop.', 'Access Forbidden !');
+                return redirect()->back();
+            }
+        } elseif (in_array($userRole, ['2', '3'])) {
+            if ($user) {
+                $employee = User::findOrFail($id);
+
+                $role = DB::table('employeecontracts')
+                    ->where('user_id', '=', $id)
+                    ->latest()
+                    ->first();
+
+                $entitleEo = DB::table('employeeleaves')
+                    ->where('user_id', '=', $id)
+                    ->where('type', '=', 'extra_off')
+                    ->count();
+
+                $takenEo = DB::table('employeeleaves')
+                    ->where('user_id', '=', $id)
+                    ->where('type', '=', 'extra_off')
+                    ->whereNotNull('pick_date')
+                    ->count();
+
+                $balanceEo = $entitleEo - $takenEo;
+
+                $entitlePh = DB::table('employeeleaves')
+                    ->where('user_id', '=', $id)
+                    ->where('type', '=', 'public_holiday')
+                    ->count();
+
+                $takenPh = DB::table('employeeleaves')
+                    ->where('user_id', '=', $id)
+                    ->where('type', '=', 'public_holiday')
+                    ->whereNotNull('pick_date')
+                    ->count();
+
+                $balancePh = $entitlePh - $takenPh;
+
+                $entitleAl = DB::table('employeeleaves')
+                    ->where('user_id', '=', $id)
+                    ->where('type', '=', 'annual_leave')
+                    ->count();
+
+                $takenAl = DB::table('employeeleaves')
+                    ->where('user_id', '=', $id)
+                    ->where('type', '=', 'annual_leave')
+                    ->whereNotNull('pick_date')
+                    ->count();
+
+                $balanceAl = $entitleAl - $takenAl;
+
+                $totalSick = DB::table('employeeleaves')
+                    ->where('user_id', '=', $id)
+                    ->where('type', '=', 'sick_off')
+                    ->count();
+
+                $contract = Employeecontract::with('department')
+                    ->where('user_id', '=', $id)
+                    ->get();
+
+                $education = DB::table('employeeeducations')
+                    ->where('user_id', '=', $id)
+                    ->get();
+
+                $experience = DB::table('employeeexperiences')
+                    ->where('user_id', '=', $id)
+                    ->get();
+
+                $family = DB::table('employeefamilies')
+                    ->where('user_id', '=', $id)
+                    ->get();
+
+                $sickness = DB::table('employeesicknesses')
+                    ->where('user_id', '=', $id)
+                    ->get();
+
+                $inventory =  Assetallocation::with('asset')
+                    ->where('employee_id', $id)
+                    ->get();
+
+                return view('hris.employee.show', compact(
+                    'education',
+                    'experience',
+                    'family',
+                    'contract',
+                    'sickness',
+                    'inventory',
+
+                    'employee',
+                    'role',
+
+                    'entitleEo',
+                    'takenEo',
+                    'balanceEo',
+                    'entitlePh',
+                    'takenPh',
+                    'balancePh',
+                    'entitleAl',
+                    'takenAl',
+                    'balanceAl',
+                    'totalSick'
+                ));
+            } else {
+                alert()->error('Stop.', 'Access Forbidden !');
+                return redirect()->back();
+            }
+        } else {
+            alert()->error('Stop.', 'Access Forbidden !');
+            return redirect()->back();
+        }
     }
 
     public function edit($id)

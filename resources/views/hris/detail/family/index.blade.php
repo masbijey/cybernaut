@@ -5,94 +5,83 @@
 
 <div class="row">
     <div class="col-lg-4">
-        <div class="card mt-3">
-            <div class="card-header">
-                <h6 class="font-weight-bold text-primary">New Family</h6>
+        <div class="card shadow mb-2">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">
+                    New Family
+                </h6>
             </div>
             <div class="card-body">
                 <form method="POST" action="{{ route('family.store') }}" enctype="multipart/form-data">
                     @csrf
-
-                    <table class="table table-borderless">
-                        <tr>
-                            <td><label for="name">Employee</label></td>
-                            <td>
-                                <select class="form-control" id="employee" name="employee">
-                                    <option value="" selected>-- select employee --</option>
-                                    @foreach ($employee as $data)
-                                    <option value="{{ $data->id }}">{{ $data->name }}</option>
-                                    @endforeach
-                                </select>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td><label for="name">Name</label></td>
-                            <td><input type="text" name="name" id="name" class="form-control"></td>
-                        </tr>
-
-                        <tr>
-                            <td><label for="status">Status</label></td>
-                            <td>
-                                <select class="form-control" id="status" name="status">
-                                    <option value="" selected>-- select status --</option>
-                                    <option value="Suami">Suami</option>
-                                    <option value="Istri">Istri</option>
-                                    <option value="Orang tua">Istri tua</option>
-                                    <option value="Anak">Anak</option>
-                                    <option value="Keluarga lain">Keluarga lain</option>
-                                </select>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td><label for="phone">Phone</label></td>
-                            <td><input type="number" name="phone" id="phone" class="form-control" required></td>
-                        </tr>
-
-                        <tr>
-                            <td><label for="address">Address</label></td>
-                            <td><input type="text" name="address" id="address" class="form-control" required></td>
-                        </tr>
-
-                    </table>
-
-                    <button class="btn btn-primary btn-sm" type="submit">Save</button>
-                    <button class="btn btn-secondary btn-sm" type="reset">Reset</button>
+                    <div class="form-group">
+                        <label for="name">Employee</label>
+                        <select class="form-control" id="employee" name="employee">
+                            <option value="" selected>-- select employee --</option>
+                            @foreach ($employee as $data)
+                            <option value="{{ $data->id }}">{{ $data->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select class="custom-select" id="status" name="status">
+                            <option value="" selected>Select a Status:</option>
+                            <option value="Suami">Suami</option>
+                            <option value="Istri">Istri</option>
+                            <option value="Orang tua">Orang tua</option>
+                            <option value="Anak">Anak</option>
+                            <option value="Keluarga lain">Keluarga lain</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="number" name="phone" id="phone" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" name="address" id="address" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Save</button>
+                        <button class="btn btn-secondary" type="reset">Reset</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 
     <div class="col-lg-8">
-        <div class="card mt-3">
-            <div class="card-header">
-                <h6 class="font-weight-bold text-primary">Family</h6>
+        <div class="card shadow mb-2">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">
+                    Family
+                </h6>
             </div>
             <div class="card-body">
-                <table class="table table-hover nowrap" id="employee-table">
-                    <thead class="thead-light">
-                        <tr class="text-center">
-                            <th>#</th>
-                            <th>Nama</th>
-                            <th>Status</th>
-                            <th>Phone</th>
-                            <th>Address</th>
-                            <th>Description</th>
-                        </tr>
+                <table class="table table-hover" id="employee-table">
+                    <thead>
+                        <th>#</th>
+                        <th>Employee</th>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Phone</th>
+                        <th>Address</th>
                     </thead>
                     <tbody>
-                        @foreach($family as $data)
+                        @foreach($family as $family)
                         @if(!empty($data->employee))
                         <tr>
-                            <td class="text-center">
-                                {{ $loop->iteration }}
-                            </td>
-                            <td>{{ $data->employee->name }}</td>
-                            <td>{{ $data->name }}</td>
-                            <td>{{ $data->status }}</td>
-                            <td>{{ $data->phone }}</td>
-                            <td>{{ $data->address }}</td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td><a href="{{ url('employee/detail/'. $family->user_id) }}">{{ $family->user->name }}</a></td>
+                            <td>{{ $family->name }}</td>
+                            <td>{{ $family->relationship }}</td>
+                            <td>{{ $family->phone }}</td>
+                            <td>{{ $family->address }}</td>
                         </tr>
                         @endif
                         @endforeach
@@ -106,7 +95,7 @@
 @endsection
 
 @section('css')
-{{--  --}}
+{{-- --}}
 @endsection
 
 @section('js')
@@ -119,12 +108,10 @@
         theme: 'bootstrap'
     });
 
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('#employee-table').DataTable({
             responsive: true
         });
     });
-
-
 </script>
 @endsection

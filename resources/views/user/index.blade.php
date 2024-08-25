@@ -12,7 +12,7 @@
 
 <div class="col-sm-12 col-md-12 col-lg-6">
 
-    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal3">
+    <button type="button" class="btn btn-primary shadow mb-3" data-toggle="modal" data-target="#exampleModal3">
         <i class='fas fa-plus'></i> New User
     </button>
 
@@ -60,13 +60,13 @@
         </div>
     </div>
 
-    <div class="card mt-3">
-        <div class="card-header bg-gradient-primary text-light">
-            <h6 class="m-0 font-weight-bold">User List</h6>
+    <div class="card shadow mb-3">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">User List</h6>
         </div>
         <div class="card-body">
             <table class="table table-hover nowrap" id="pegawai-table">
-                <thead class="thead-light">
+                <thead>
                     <tr>
                         <th>#</th>
                         <th>Name</th>
@@ -93,12 +93,12 @@
                             @endif
                         </td>
                         <td>
-                            <a href="/user/show/{{ $user->id }}" class="btn btn-sm" data-placement="top" title="Tampilkan"><i class='fas fa-eye'></i></a>
+                            <a href="{{ url('/user/show/'.$user->id) }}" class="btn btn-sm" data-placement="top" title="Tampilkan"><i class='fas fa-eye'></i></a>
 
                             @if ($user->deleted_at == null)
-                            <a href="/user/delete/{{ $user->id }}" class="btn btn-sm" data-placement="top" title="Hapus"><i class='fas fa-trash'></i></a>
+                            <a href="{{ url('/user/delete/'.$user->id) }}" class="btn btn-sm" data-placement="top" title="Hapus"><i class='fas fa-trash'></i></a>
                             @else
-                            <a href="/user/restore/{{ $user->id }}" class="btn btn-sm" data-placement="top" title="aktifkan"><i class='fas fa-check'></i></a>
+                            <a href="{{ url('/user/restore/'.$user->id) }}" class="btn btn-sm" data-placement="top" title="aktifkan"><i class='fas fa-check'></i></a>
                             @endif
                         </td>
                         </td>

@@ -136,7 +136,7 @@
                                 <tbody>
                                     @foreach($task->file as $file)
                                     <tr>
-                                        <td><a href="{{ $file->file }}" target="_blank">{{ $file->remark }}</a><br></td>
+                                        <td><a href="{{ url('/public/'.$file->file) }}" target="_blank">{{ $file->remark }}</a><br></td>
                                         <td class="text-right"> <a href="" class="btn btn-sm" data-placement="top" title="Hapus"><i class='fas fa-trash'></i></a></td>
                                     </tr>
                                     @endforeach
@@ -170,7 +170,7 @@
                                 <tbody>
                                     @foreach($task->file as $file)
                                     <tr>
-                                        <td><a class="btn btn-sm btn-outline-secondary" href="{{ $file->file }}" target="_blank">{{ $file->remark }}</a><br></td>
+                                        <td><a class="btn btn-sm btn-outline-secondary" href="{{ url('/public/'.$file->file) }}" target="_blank">{{ $file->remark }}</a><br></td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -191,9 +191,9 @@
                                     @foreach($task->assetMany as $asset)
                                     @if($asset->asset !== null)
                                     <tr>
-                                        <td><a href="#">{{ $asset->asset->name }}</a></td>
+                                        <td><a href="{{ url('/asset/detail/'.$asset->asset->token) }}">{{ $asset->asset->name }}</a></td>
                                         <td class="text-right">
-                                            <a href="" class="btn btn-sm" data-placement="top" title="Hapus"><i class='fas fa-trash'></i></a>
+                                            <a href="#" class="btn btn-sm" data-placement="top" title="Hapus"><i class='fas fa-trash'></i></a>
                                         </td>
                                     </tr>
                                     @endif
@@ -238,7 +238,7 @@
                                     @foreach($task->assetMany as $asset)
                                     @if($asset->asset !== null)
                                     <tr>
-                                        <td><a class="btn btn-sm btn-outline-secondary" href="#">{{ $asset->asset->name }}</a></td>
+                                        <td><a class="btn btn-sm btn-outline-secondary" href="{{ url('/asset/detail/'.$asset->asset->token) }}">{{ $asset->asset->name }}</a></td>
                                     </tr>
                                     @endif
                                     @endforeach

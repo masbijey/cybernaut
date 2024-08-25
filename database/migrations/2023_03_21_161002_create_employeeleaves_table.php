@@ -16,16 +16,10 @@ return new class extends Migration
             $table->integer('user_id');
             $table->string('type');
             $table->date('valid_until'); 
-            $table->date('pick_date')->nullable(); 
+            $table->string('pick_date')->nullable(); 
             $table->text('description')->nullable();
+            $table->integer('leaveapproval_id')->nullable();
             
-            $table->integer('approved_1_by')->nullable();
-            $table->timestamp('approved_1_at')->nullable();
-            $table->integer('approved_2_by')->nullable();
-            $table->timestamp('approved_2_at')->nullable();
-            $table->integer('approved_3_by')->nullable();
-            $table->timestamp('approved_3_at')->nullable();
-
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
         });

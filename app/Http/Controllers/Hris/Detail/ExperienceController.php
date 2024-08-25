@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Auth;
 use App\Models\Employee;
+use App\Models\User;
 use App\Models\Employeeexperience;
 
 class ExperienceController extends Controller
@@ -17,7 +18,7 @@ class ExperienceController extends Controller
     public function index()
     {
         $experience = Employeeexperience::withTrashed()->get();
-        $employee = Employee::withTrashed()->get();
+        $employee = User::withTrashed()->get();
         
         return view('hris.detail.experience.index', compact('experience', 'employee'));
     }
@@ -43,12 +44,12 @@ class ExperienceController extends Controller
         $url = Storage::url($path);
 
         Employeeexperience::create([
-            'employee_id' => $request->employee,
+            'user_id' => $request->employee,
             'start' => $request->start,
             'end' => $request->end,
             'company' => $request->company,
             'jobtitle' => $request->jobtitle,
-            'description' => $request->description,
+            'remark' => $request->description,
             'file' => $url
         ]);
 

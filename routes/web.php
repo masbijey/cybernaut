@@ -18,11 +18,10 @@ use App\Http\Controllers\Hris\Detail\InventoryController;
 use App\Http\Controllers\Hris\Detail\RewpunController;
 use App\Http\Controllers\Hris\Detail\TrainingController;
 use App\Http\Controllers\Hris\Attendance\LeaveController;
-
-
+use Illuminate\Support\Facades\Auth;
 // Auth::routes(['register' => true]);
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 
 Route::controller(SignageController::class)->middleware('auth')->group(function () {
     Route::get('signage', 'index')->name('signage.index');
@@ -65,8 +64,8 @@ Route::controller(EmployeeController::class)->middleware('auth')->group(function
     Route::get('training', 'training')->name('training.index');
     Route::post('training/store', 'trainingstr')->name('training.store');
 
-    Route::get('leave', 'leave')->name('leave.index');
-    Route::post('leave/store', 'leavestr')->name('leave.store');
+    // Route::get('leave', 'leave')->name('leave.index');
+    // Route::post('leave/store', 'leavestr')->name('leave.store');
 
     Route::get('role', 'role')->name('role.index');
     Route::post('role/store', 'rolestr')->name('role.store');
@@ -97,10 +96,10 @@ Route::controller(SicknessController::class)->middleware('auth')->group(function
     Route::post('sickness/store', 'store')->name('sickness.store');
 });
 
-Route::controller(InventoryController::class)->middleware('auth')->group(function () {
-    Route::get('inventory', 'index')->name('inventory.index');
-    Route::post('inventory/store', 'store')->name('inventory.store');
-});
+// Route::controller(InventoryController::class)->middleware('auth')->group(function () {
+//     Route::get('inventory', 'index')->name('inventory.index');
+//     Route::post('inventory/store', 'store')->name('inventory.store');
+// });
 
 Route::controller(RewpunController::class)->middleware('auth')->group(function () {
     Route::get('rewpun', 'index')->name('rewpun.index');
@@ -115,6 +114,9 @@ Route::controller(TrainingController::class)->middleware('auth')->group(function
 Route::controller(LeaveController::class)->middleware('auth')->group(function () {
     Route::get('leave', 'index')->name('leave.index');
     Route::post('leave/store', 'store')->name('leave.store');
+
+    Route::get('leaveapproval', 'leaveapproval')->name('leaveapproval.index');
+    Route::post('leaveapproval/store', 'leaveapprovalstr')->name('leaveapproval.store');
 });
 
 Route::controller(TaskController::class)->middleware('auth')->group(function () {
@@ -165,7 +167,7 @@ Route::controller(AssetController::class)->middleware('auth')->group(function ()
     Route::delete('asset/{id}', 'destroy')->name('asset.destroy');
     Route::get('asset/{id}/edit', 'edit')->name('asset.edit');
 
-    Route::get('asset/allocation', 'allocation')->name('allocation.index');
+    Route::get('asset/allocation/{token}', 'allocation')->name('allocation.index');
     Route::post('allocation/store', 'allocationstr')->name('allocation.store');
 
     Route::get('asset/location', 'location')->name('location.index');

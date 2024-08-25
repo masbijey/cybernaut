@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+Asset List
+@endsection
+
 @section('content')
 <h1 class="h3 text-gray-800">ASSET MANAGEMENT</h1>
 <nav aria-label="breadcrumb">
@@ -13,14 +17,14 @@
     <button type="button" class="btn mr-0 mb-0 d-inline-block">UPDATE : </button>
 
     <div class="btn-group shadow">
-        <a href="{{ route('asset.create') }}" class="btn btn-outline-secondary btn-sm"><i class='fas fa-plus'></i> New Asset</a>
-        <button type="button" class="btn btn-outline-secondary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a href="{{ route('asset.create') }}" class="btn btn-outline-primary btn-sm"><i class='fas fa-plus'></i> New Asset</a>
+        <button type="button" class="btn btn-outline-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="sr-only">Toggle Dropdown</span>
         </button>
         <div class="dropdown-menu">
             <a class="dropdown-item" href="{{ route('task.index') }}">» Task</a>
-            <a class="dropdown-item" href="{{ route('checklist.index') }}">» Checklist</a>
-            <a class="dropdown-item" href="{{ route('allocation.index') }}">» Allocation</a>
+            <a class="dropdown-item" href="{{ route('category.index') }}">» Category</a>
+            <a class="dropdown-item" href="{{ route('location.index') }}">» Location</a>
         </div>
     </div>
 </div>
@@ -48,7 +52,7 @@
                         {{ $loop->iteration }}
                     </td>
                     <td>
-                        <a href="/asset/detail/{{ $data->token }}" data-placement="top" title="Tampilkan">
+                        <a href="{{ url('/asset/detail/'.$data->token) }}" data-placement="top" title="Tampilkan">
                             {{ $data->name }}</a>
                     </td>
                     <td>
@@ -74,7 +78,7 @@
                     </td>
                     <td>
                         @if (!empty($data->allocation->last()))
-                        <a class="btn btn-sm btn-outline-secondary" href="/location/detail/{{ $data->allocation->last()->location->id }}">{{ $data->allocation->last()->location->name }}</a>
+                        <a class="btn btn-sm btn-outline-secondary" href="{{ url('/location/detail/'.$data->allocation->last()->location->id) }}">{{ $data->allocation->last()->location->name }}</a>
                         @else
                         <span class="badge badge-danger">Null<span>
                                 @endif

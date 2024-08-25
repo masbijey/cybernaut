@@ -1,132 +1,185 @@
 @extends('layouts.app')
 
 @section('content')
-<h1 class="h3 mb-2 text-gray-800">Asset Management</h1>
+<div class="d-sm-flex align-items-center justify-content-between">
+    <h1 class="h3 text-gray-800">ASSET TRANSFER</h1>
+</div>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('asset.index') }}">Assets List</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Asset transfer</li>
+    </ol>
+</nav>
 
-<div class="mt-3">
-    <button type="button" class="btn mr-0 mb-0 d-inline-block">UPDATE : </button>
 
-    <div class="btn-group shadow">
-        <a href="{{ route('asset.create') }}" class="btn btn-primary btn-sm"><i class='fas fa-plus'></i> New Asset</a>
-        <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="sr-only">Toggle Dropdown</span>
-        </button>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="{{ route('task.index') }}">» Maintenance</a>
-            <a class="dropdown-item" href="{{ route('checklist.index') }}">» Checklist</a>
-            <a class="dropdown-item" href="{{ route('allocation.index') }}">» Allocation</a>
+<div class="row">
+    <div class="col-lg-4">
+        <div class="card shadow mb-2">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Asset details</h6>
+            </div>
+            <div class="card-body">
+                @foreach ($detail_assets as $detail_assets)
+                <div class="mb-3 text-center">
+                    <img src="{{ url('public'.$detail_assets->file) }}" class="img-fluid" alt="Responsive image" width="200px">
+                </div>
+                <table class="table table-sm table-hover">
+
+                    <tr>
+                        <td><label for="name" class="font-weight-bold">Created At</label></td>
+                        <td>{{ $detail_assets->created_at }}</td>
+                    </tr>
+                    <tr>
+                        <td><label for="name" class="font-weight-bold">Name</label></td>
+                        <td>{{ $detail_assets->name }}</td>
+                    </tr>
+                    <tr>
+                        <td><label for="category" class="font-weight-bold">Category</label></td>
+                        <td>{{ $detail_assets->category->name }}</td>
+                    </tr>
+                    <tr>
+                        <td><label for="merk" class="font-weight-bold">Merk</label></td>
+                        <td>{{ $detail_assets->merk }}</td>
+                    </tr>
+                    <tr>
+                        <td><label for="type" class="font-weight-bold">Type</label></td>
+                        <td>{{ $detail_assets->type }}</td>
+                    </tr>
+                    <tr>
+                        <td><label for="serialNumber" class="font-weight-bold">Serial Number</label></td>
+                        <td>{{ $detail_assets->serialNumber }}</td>
+                    </tr>
+                    <tr>
+                        <td><label for="buyDate" class="font-weight-bold">Purchase Date</label></td>
+                        <td>{{ $detail_assets->buyDate }}</td>
+                    </tr>
+                    <tr>
+                        <td><label for="buyPrice" class="font-weight-bold">Purchase Price</label></td>
+                        <td>
+                            IDR {{ number_format($detail_assets->buyPrice, 0, ',', '.') }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="status" class="font-weight-bold">Last Condition</label></td>
+                        <td>
+                            <span class="badge badge-success">{{ $detail_assets->buyCond }}</span>
+                        </td>
+                    </tr>
+                </table>
+                @endforeach
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card shadow mb-2">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Move to Employee</h6>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ route('allocation.store') }}" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="token" value="{{ $detail_assets->token }}"  autocomplete="off">
+                    <div class="form-group">
+                        <label for="employee">Employee</label>
+                        <select class="custom-select" id="employee" name="employee" style="width: 100%;" required>
+                            <option value="" selected>Select a employee:</option>
+                            @foreach ($employee as $data)
+                            <option value="{{ $data->id }}">{{ $data->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location" class="">Location</label>
+                        <select class="custom-select form-control" id="select2-location" name="location" required style="width: 100%;">
+                            <option value="" selected>Select a location:</option>
+                            @foreach ($location as $data)
+                            <option value="{{ $data->id }}">{{ $data->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="department" class="">Department</label>
+                        <select class="custom-select form-control" id="select2-department" name="department" required style="width: 100%;">
+                            <option value="" selected>Select a department:</option>
+                            @foreach ($department as $data)
+                            <option value="{{ $data->id }}">{{ $data->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status" class="">Condition</label>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="good_condition" name="condition" class="custom-control-input" value="Good" required>
+                            <label class="custom-control-label" for="good_condition">Good</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="broken_condition" name="condition" class="custom-control-input" value="Broken" required>
+                            <label class="custom-control-label" for="broken_condition">Broken</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="file">Upload Photo</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="file" name="file" accept="image/*" capture="environment" required>
+                            <label class="custom-file-label" for="file">Choose file</label>
+                            <small>take picture of employee with inventory items </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Remark</label>
+                        <input type="text" name="description" id="description" class="form-control" required placeholder="reason example : broke, resign, etc">
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Save</button>
+                        <button class="btn btn-secondary" type="reset">Reset</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
-
-<div class="card mt-3">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Asset List</h6>
-    </div>
-    <div class="card-body">
-        <table class="table table-hover table-sm" id="employee-table">
-            <thead class="thead-light text-center">
-                <tr class="text-center">
-                    <th>#</th>
-                    <th>Name</th>
-                    <th class="text-center">Category</th>
-                    <th class="text-center">Merk</th>
-                    <th class="text-center">Type</th>
-                    <th class="text-center">Status</th>
-                    <th class="text-center">Location</th>
-                    <th class="text-center">Last Check</th>
-                    <th class="text-center">Last Maintenance</th>
-                    <th class="text-center">File</th>
-                    <th class="text-center">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($asset as $data)
-                <tr>
-                    <td class="text-center">
-                        {{ $loop->iteration }}
-                    </td>
-                    <td>
-                        <a href="/asset/detail/{{ $data->token }}" class="" data-placement="top" title="Tampilkan">
-                        {{ $data->name }}</a>
-                    </td>
-                    <td class="text-center">
-                        {{ $data->category->name }}
-                    </td>
-                    <td class="text-center">
-                        {{ $data->merk }}
-                    </td>
-                    <td class="text-center">
-                        {{ $data->type }}
-                    </td>          
-                    <td class="text-center">
-                        @if (!empty($data->allocation->last()))
-                            @if ($data->allocation->last()->condition == 'Good')
-                                <span class="badge badge-success">{{ $data->allocation->last()->condition }}</span>
-                            @else
-                            <span class="badge badge-danger">Broken</span>
-                            @endif
-                        @else
-                            <span class="badge badge-danger">null<span>
-                        @endif
-                    </td>
-                    <td class="text-center">
-                        @if (!empty($data->allocation->last()))
-                            <button class="btn btn-sm btn-info">{{ $data->allocation->last()->location->name }}</button>
-                        @else
-                            <span class="badge badge-danger">null<span>
-                        @endif                    
-                    </td>
-                    <td class="text-center">
-                        -- null --
-                    </td>
-                    <td class="text-center">
-                        -- null --
-                    </td>
-                    <td class="text-center">
-                        <a href="{{ $data->file }}" class="btn btn-sm btn-primary">file</a>
-                    </td>
-                    <td class="text-center">
-                        <a href="/asset/detail/{{ $data->token }}" class="btn btn-sm btn-primary text-center" data-placement="top" title="Show"><i class='fas fa-eye'></i></a>
-                        <a href="#" class="btn btn-sm btn-danger text-center" data-placement="top" title="Edit"><i class='fas fa-edit'></i></a>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-
-    </div>
-</div>
-
 @endsection
 
 @section('css')
-{{-- --}}
+<!--  -->
 @endsection
 
 @section('js')
 <script>
-    $(document).ready(function () {
-        $('#employee-table').DataTable({
+    $(document).ready(function() {
+        $('#inventory-table').DataTable({
             responsive: true
-        }); 
+        });
     });
 
     $("#employee").select2({
         theme: 'bootstrap'
     });
 
-    $("#category").select2({
+    $("#select2-asset").select2({
         theme: 'bootstrap'
     });
 
-    $("#location").select2({
+    $("#select2-location").select2({
         theme: 'bootstrap'
     });
 
+    $("#select2-department").select2({
+        theme: 'bootstrap'
+    });
 
-
-
+    document.querySelector('.custom-file-input').addEventListener('change', function(e) {
+        var fileName = e.target.files[0].name;
+        var nextSibling = e.target.nextElementSibling;
+        nextSibling.innerText = fileName;
+    });
 </script>
 @endsection
