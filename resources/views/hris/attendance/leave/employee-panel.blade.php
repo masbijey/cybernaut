@@ -50,7 +50,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="" class="font-weight-bold">Your leave:</label>
+                            <label class="font-weight-bold">Your leave:</label>
                             <table class="table table-hover table-sm">
                                 <thead class="table-dark">
                                     <th class="text-center">Check</th>

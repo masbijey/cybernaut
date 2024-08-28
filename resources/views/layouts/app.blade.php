@@ -10,16 +10,16 @@
     <title>
         KAIZEN - @yield('title')
     </title>
-    <link href="{{ url('/public/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ url('/public/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ url('/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url('/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url('/public/vendor/select2/select2-bootstrap.css')}}">
-    <link href="{{ url('/public/vendor/select2/select2-bootstrap4.min.css')}}" rel="stylesheet">
-    <link href="{{ url('/public/vendor/select2/select2.min.css')}}" rel="stylesheet" />
-    <link href="{{ url('/public/vendor/datepicker/gijgo.min.css')}}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="{{ asset('/public/vendor/datatables/dataTables.bootstrap4.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('/public/vendor/datatables/responsive.bootstrap4.min.css')}}">
-    <!-- <link rel="stylesheet" href="{{ url('/public/css/style.css') }}"> -->
+    <link rel="stylesheet" href="{{ url('/vendor/select2/select2-bootstrap.css')}}">
+    <link href="{{ url('/vendor/select2/select2-bootstrap4.min.css')}}" rel="stylesheet">
+    <link href="{{ url('/vendor/select2/select2.min.css')}}" rel="stylesheet" />
+    <link href="{{ url('/vendor/datepicker/gijgo.min.css')}}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('/vendor/datatables/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('/vendor/datatables/responsive.bootstrap4.min.css')}}">
+    <!-- <link rel="stylesheet" href="{{ url('/css/style.css') }}"> -->
     @yield('css')
 </head>
 
@@ -259,7 +259,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{ url('/public/img/undraw_profile_1.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="{{ url('/img/undraw_profile_1.svg') }}" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -270,7 +270,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{ url('/public/img/undraw_profile_2.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="{{ url('/img/undraw_profile_2.svg') }}" alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -281,7 +281,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{ url('/public/img/undraw_profile_3.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="{{ url('/img/undraw_profile_3.svg') }}" alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -292,7 +292,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{ url('/public/img/undraw_profile_3.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="{{ url('/img/undraw_profile_3.svg') }}" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div>
@@ -316,7 +316,7 @@
                                     null
                                     @endif
                                 </span>
-                                <img class="img-profile rounded-circle" src="{{ url('public/img/undraw_profile.svg') }}">
+                                <img class="img-profile rounded-circle" src="{{ url('img/undraw_profile.svg') }}">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="{{ url('employee/detail/'. Auth::user()->id ) }} ">
@@ -381,17 +381,17 @@
         </div>
     </div>
 
-    <script src="{{ url('/public/vendor/sweetalert/sweetalert.all.js') }}"></script>
-    <script src="{{ url('/public/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ url('/public/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ url('/public/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-    <script src="{{ url('/public/js/sb-admin-2.min.js') }}"></script>
-    <script src="{{ asset('/public/vendor/select2/select2.min.js')}}"></script>
-    <script src="{{ asset('/public/vendor/datepicker/gijgo.min.js')}}" type="text/javascript"></script>
-    <script src="{{ asset('/public/vendor/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{ asset('/public/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
-    <script src="{{ asset('/public/vendor/datatables/dataTables.responsive.min.js')}}"></script>
-    <script src="{{ asset('/public/vendor/datatables/responsive.bootstrap4.min.js')}}"></script>
+    <script src="{{ url('/vendor/sweetalert/sweetalert.all.js') }}"></script>
+    <script src="{{ url('/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url('/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url('/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ url('/js/sb-admin-2.min.js') }}"></script>
+    <script src="{{ asset('/vendor/select2/select2.min.js')}}"></script>
+    <script src="{{ asset('/vendor/datepicker/gijgo.min.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ asset('/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{ asset('/vendor/datatables/dataTables.responsive.min.js')}}"></script>
+    <script src="{{ asset('/vendor/datatables/responsive.bootstrap4.min.js')}}"></script>
     @include('sweetalert::alert')
     @yield('js')
 
