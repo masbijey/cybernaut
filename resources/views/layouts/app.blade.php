@@ -68,7 +68,7 @@
                         @endif
 
                         <a class="collapse-item" href="{{ route('leave.index') }}" disable>Leave Management</a>
-                        <a class="collapse-item" href="{{ route('leave.index') }}" disable>Approval Management</a>
+                        <a class="collapse-item" href="{{ route('leaveapproval.index') }}" disable>Approval Management</a>
                     </div>
                 </div>
             </li>

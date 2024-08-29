@@ -1,84 +1,21 @@
 @extends('layouts.app')
 
+@section('title')
+Leave Management 
+@endsection
+
 @section('content')
-<h1 class="h3 mb-2 text-gray-800">Leave Management</h1>
+<h1 class="h3 text-gray-800">Employee Leave Data</h1>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ url('leave') }}">Leave Management</a></li>
+        <li class="breadcrumb-item">Employee Leave Data</li>
+    </ol>
+</nav>
 
 <div class="row">
-    <div class="col-lg-4">
-        <div class="card mb-2 shadow">
-            <div class="card-header py-3 ">
-                <h6 class="m-0 font-weight-bold text-primary">Add New Leave</h6>
-            </div>
-            <div class="card-body">
-                <form method="POST" action="{{ route('leave.store') }}" enctype="multipart/form-data">
-                    @csrf
-
-                    <div class="form-group">
-                        <label for="name">Employee</label>
-                        <select class="custom-select" id="employee" name="employee">
-                            <option value="" selected>Select a employee:</option>
-                            @foreach ($employee as $data)
-                            <option value="{{ $data->id }}">{{ $data->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="type">Type</label>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadio1" name="type" class="custom-control-input"
-                                value="annual_leave">
-                            <label class="custom-control-label" for="customRadio1">annual leave</label>
-                        </div>
-
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadio2" name="type" class="custom-control-input"
-                                value="public_holiday">
-                            <label class="custom-control-label" for="customRadio2">day payment</label>
-                        </div>
-
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadio3" name="type" class="custom-control-input"
-                                value="extra_off">
-                            <label class="custom-control-label" for="customRadio3">extra off</label>
-                        </div>
-
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadio4" name="type" class="custom-control-input"
-                                value="sick_off">
-                            <label class="custom-control-label" for="customRadio4">sick off</label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="entitled">Entitled</label>
-                        <input type="number" name="entitled" id="entitled" class="form-control" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="valid_until">Valid until</label>
-                        <input type="date" name="valid_until" id="valid_until" class="form-control" required>
-                    </div>
-
-                    <!-- 
-                        
-                            <label for="pick_date">Pick Date</label>
-                            <input type="date" name="pick_date" id="pick_date" class="form-control">
-                         -->
-
-                    <div class="form-group">
-                        <label for="description">Remark</label>
-                        <input type="text" name="description" id="description" class="form-control" required>
-                    </div>
-
-                    <button class="btn btn-primary" type="submit">Save</button>
-                    <button class="btn btn-secondary" type="reset">Reset</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-lg-8">
+    <div class="col-lg-12">
         <div class="card mb-3 shadow">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Leave Data</h6>

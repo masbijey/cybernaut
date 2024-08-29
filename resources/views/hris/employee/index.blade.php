@@ -25,7 +25,7 @@
             <a class="dropdown-item" href="{{ route('education.index') }}">» Education</a>
             <a class="dropdown-item" href="{{ route('experience.index') }}">» Experience</a>
             <a class="dropdown-item" href="{{ route('family.index') }}">» Family</a>
-            <a class="dropdown-item" href="{{ route('leave.index') }}">» Leave</a>
+            <a class="dropdown-item" href="{{ route('hrleaveman.index') }}">» Leave Manager</a>
             <a class="dropdown-item" href="{{ route('rewpun.index') }}">» P&R</a>
             <a class="dropdown-item" href="{{ route('sickness.index') }}">» Sickness</a>
             <a class="dropdown-item" href="{{ route('training.index') }}">» Training</a>

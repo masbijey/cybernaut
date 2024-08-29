@@ -112,11 +112,13 @@ Route::controller(TrainingController::class)->middleware('auth')->group(function
 });
 
 Route::controller(LeaveController::class)->middleware('auth')->group(function () {
-    Route::get('leave', 'index')->name('leave.index');
+    Route::get('leave', 'index')->name('leave.index'); // for employee
     Route::post('leave/store', 'store')->name('leave.store');
 
-    Route::get('leaveapproval', 'leaveapproval')->name('leaveapproval.index');
+    Route::get('hris/leaveapproval', 'leaveapproval')->name('leaveapproval.index');
     Route::post('leaveapproval/store', 'leaveapprovalstr')->name('leaveapproval.store');
+
+    Route::get('hris/hrleaveman', 'hrleaveman')->name('hrleaveman.index'); // for hrd
 });
 
 Route::controller(TaskController::class)->middleware('auth')->group(function () {

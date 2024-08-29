@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+Leave Management
+@endsection
+
 @section('content')
 <h1 class="h3 text-gray-800">Leave Management</h1>
 <nav aria-label="breadcrumb">
@@ -10,13 +14,18 @@
 </nav>
 
 <div class="mb-3">
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary shadow" data-toggle="modal" data-target="#exampleModal">
-        <i class='fas fa-plus'></i> Leave Form Request
+    @php
+    $userRole = Auth::user()->role->hris;
+    @endphp
+
+    <button type="button" class="btn btn-primary shadow btn-sm"
+        data-toggle="modal"
+        data-target="#leaveForm"
+        @if(!in_array($userRole, [2,3,4,5])) disabled @endif>
+        <i class='fas fa-plus'></i> Form Request
     </button>
 
-    <!-- Modal -->
-    <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal" id="leaveForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <form method="POST" action="{{ route('leaveapproval.store') }}" enctype="multipart/form-data">
@@ -99,6 +108,97 @@
             </div>
         </div>
     </div>
+
+    <button type="button" class="btn btn-primary shadow btn-sm"
+        data-toggle="modal"
+        data-target="#addleave"
+        @if(!in_array($userRole, [4,5])) disabled @endif>
+        <i class='fas fa-plus'></i> New Leave
+    </button>
+
+    <div class="modal" id="addleave" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form method="POST" action="{{ route('leave.store') }}" enctype="multipart/form-data">
+                    @csrf
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add New Leave - HR Only</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="name" class="font-weight-bolder">Employee</label>
+                            <select class="custom-select" id="select-employee" name="employee" style="width: 100%;">
+                                <option value="" selected>Select a employee:</option>
+                                @foreach ($employee as $data)
+                                <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="type" class="font-weight-bolder">Type</label>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="customRadio1" name="type" class="custom-control-input"
+                                    value="annual_leave">
+                                <label class="custom-control-label" for="customRadio1">annual leave</label>
+                            </div>
+
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="customRadio2" name="type" class="custom-control-input"
+                                    value="public_holiday">
+                                <label class="custom-control-label" for="customRadio2">day payment</label>
+                            </div>
+
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="customRadio3" name="type" class="custom-control-input"
+                                    value="extra_off">
+                                <label class="custom-control-label" for="customRadio3">extra off</label>
+                            </div>
+
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="customRadio4" name="type" class="custom-control-input"
+                                    value="sick_off">
+                                <label class="custom-control-label" for="customRadio4">sick off</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="entitled" class="font-weight-bolder">Entitled</label>
+                            <input type="number" name="entitled" id="entitled" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="valid_until" class="font-weight-bolder">Valid until</label>
+                            <input type="date" name="valid_until" id="valid_until" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description" class="font-weight-bolder">Remark</label>
+                            <input type="text" name="description" id="description" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="Reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <a href="{{ url('hris/hrleaveman') }}"
+        class="btn btn-primary btn-sm @if(!in_array($userRole, [3,4,5])) disabled @endif">
+        <i class='fas fa-list'></i> Leaves Data
+    </a>
+
+    <a href="{{ url('hris/leaveapproval') }}"
+        class="btn btn-primary btn-sm @if(!in_array($userRole, [3,4,5])) disabled @endif">
+        <i class='fas fa-sign'></i> Approval
+    </a>
 </div>
 
 
@@ -182,12 +282,11 @@
                 <h6 class="m-0 font-weight-bold text-primary">Leave Form History</h6>
             </div>
             <div class="card-body">
-                <table class="table table-hover" id="history-table" style="width: 100%;">
+                <table class="table table-hover table-sm" id="history-table" style="width: 100%;">
                     <thead>
-                        <th>No.</th>
-                        <th>Start date</th>
-                        <th>End date</th>
-                        <th>Work date</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Work Date</th>
                         <th>HR Approval</th>
                         <th>Leader Approval (1)</th>
                         <th>Leader Approval (2)</th>
@@ -196,10 +295,15 @@
                     <tbody>
                         @foreach ($history as $history)
                         <tr>
-                            <td>1</td>
-                            <td>{{ $history->start_date }}</td>
-                            <td>{{ $history->end_date }}</td>
-                            <td>{{ $history->work_date }}</td>
+                            <td>
+                                {{ \Carbon\Carbon::parse($history->start_date)->format('d/m/y') }}
+                            </td>
+                            <td>
+                                {{ \Carbon\Carbon::parse($history->end_date)->format('d/m/y') }}
+                            </td>
+                            <td>
+                                {{ \Carbon\Carbon::parse($history->work_date)->format('d/m/y') }}
+                            </td>
                             <td class="text-center"><span class="badge badge-warning">Waiting</span></td>
                             <td class="text-center"><span class="badge badge-warning">Waiting</span></td>
                             <td class="text-center"><span class="badge badge-warning">Waiting</span></td>
@@ -220,7 +324,7 @@
                 <h6 class="m-0 font-weight-bold text-primary">Leave Data</h6>
             </div>
             <div class="card-body">
-                <table class="table table-hover" id="employee-table" style="width: 100%;">
+                <table class="table table-hover table-sm" id="employee-table" style="width: 100%;">
                     <thead>
                         <th>Created At</th>
                         <th>Type</th>
@@ -290,6 +394,11 @@
     $("#employee").select2({
         theme: 'bootstrap'
     });
+
+    $("#select-employee").select2({
+        theme: 'bootstrap'
+    });
+
 
     $("#department").select2({
         theme: 'bootstrap'

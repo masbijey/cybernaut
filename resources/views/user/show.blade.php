@@ -86,6 +86,9 @@ User Details | {{ $data->name }}
                             <td><label for="">HRIS</label></td>
                             <td class="text-center">
                                 <input type="number" min="0" max="4" maxlength="1" required class="form-control bg-warning text-dark font-weight-bold text-center" value="{{ $data->role->hris }}" name="hris">
+                                <small>
+                                    1 staff view only, 2 staff read write, 3 hod approval, 4 hr admin, 5 hr manager
+                                </small>
                             </td>
                         </tr>
                         <tr>

@@ -21,7 +21,27 @@ class LeaveController extends Controller
 {
     public function index()
     {
-        if (in_array(Auth::user()->role->hris, ['3', '4'])) {
+        $now = Carbon::now();
+        $cek_leave = Employeeleave::where('valid_until', '<', $now)
+            ->update(['pick_date' => 'expired']);
+
+        $user_login = Auth::user();
+        $leave = Employeeleave::where('user_id', $user_login->id)->get();
+        $leave_data = Employeeleave::where('user_id', $user_login->id)
+            ->whereNull('pick_date')
+            ->get();
+
+        $history = Employeeleaveapproval::where('user_id', $user_login->id)
+            ->get();
+
+        $employee = User::all();
+
+        return view('hris.attendance.leave.employee-panel', compact('employee', 'leave', 'leave_data', 'history'));
+    }
+
+    public function hrleaveman()
+    {
+        if (in_array(Auth::user()->role->hris, ['3','4','5'])) {
             $now = Carbon::now();
             $cek_leave = Employeeleave::where('valid_until', '<', $now)
                 ->update(['pick_date' => 'expired']);
@@ -32,51 +52,53 @@ class LeaveController extends Controller
 
             return view('hris.attendance.leave.index', compact('leave', 'employee', 'department'));
         } else {
-            $now = Carbon::now();
-            $cek_leave = Employeeleave::where('valid_until', '<', $now)
-                ->update(['pick_date' => 'expired']);
-
-            $user_login = Auth::user();
-            $leave = Employeeleave::where('user_id', $user_login->id)->get();
-            $leave_data = Employeeleave::where('user_id', $user_login->id)
-                ->whereNull('pick_date')
-                ->get();
-
-            $history = Employeeleaveapproval::where('user_id', $user_login->id)
-                ->get();
-
-            return view('hris.attendance.leave.employee-panel', compact('leave', 'leave_data', 'history'));
+            alert()->error('Stop!', 'Access Denied');
+            return redirect()->back();
         }
     }
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'employee'  => 'required|numeric',
-            'type' => 'required',
-            'valid_until' => 'required',
-            'description' => 'required',
-            'entitled' => 'required'
-        ]);
+        if (in_array(Auth::user()->role->hris, ['4','5'])) {
 
-        if ($validator->fails()) {
-            alert()->error('Gagal.', 'pastikan mengisi data dengan benar');
-            return redirect('/leave');
-        }
-
-        $entitled = $request->entitled;
-
-        for ($i = 0; $i < $entitled; $i++) {
-            EmployeeLeave::create([
-                'user_id' => $request->employee,
-                'type' => $request->type,
-                'valid_until' => $request->valid_until,
-                'description' => $request->description
+            $validator = Validator::make($request->all(), [
+                'employee'  => 'required|numeric',
+                'type' => 'required',
+                'valid_until' => 'required',
+                'description' => 'required',
+                'entitled' => 'required'
             ]);
-        }
 
-        alert()->success('Berhasil.', 'Data berhasil dibuat');
-        return redirect('/leave');
+            if ($validator->fails()) {
+                alert()->error('Gagal.', 'pastikan mengisi data dengan benar');
+                return redirect('/leave');
+            }
+
+            $entitled = $request->entitled;
+
+            for ($i = 0; $i < $entitled; $i++) {
+                EmployeeLeave::create([
+                    'user_id' => $request->employee,
+                    'type' => $request->type,
+                    'valid_until' => $request->valid_until,
+                    'description' => $request->description
+                ]);
+            }
+
+            alert()->success('Berhasil.', 'Data berhasil dibuat');
+            return redirect('/leave');
+        } else {
+            alert()->error('Stop!', 'Access Denied');
+            return redirect()->back();
+        }
+    }
+
+    public function leaveapproval()
+    {
+        $data = Employeeleaveapproval::all();
+
+        return view('hris.attendance.leave.approval', compact('data'));
+
     }
 
     public function leaveapprovalstr(Request $request)
