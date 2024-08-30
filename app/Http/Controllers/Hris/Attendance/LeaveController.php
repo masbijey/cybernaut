@@ -39,7 +39,7 @@ class LeaveController extends Controller
         return view('hris.attendance.leave.employee-panel', compact('employee', 'leave', 'leave_data', 'history'));
     }
 
-    public function hrleaveman()
+    public function leavedata()
     {
         if (in_array(Auth::user()->role->hris, ['3','4','5'])) {
             $now = Carbon::now();

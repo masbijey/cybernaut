@@ -144,25 +144,19 @@ Leave Management
                             <div class="custom-control custom-radio">
                                 <input type="radio" id="customRadio1" name="type" class="custom-control-input"
                                     value="annual_leave">
-                                <label class="custom-control-label" for="customRadio1">annual leave</label>
+                                <label class="custom-control-label" for="customRadio1">Annual Leave</label>
                             </div>
 
                             <div class="custom-control custom-radio">
                                 <input type="radio" id="customRadio2" name="type" class="custom-control-input"
                                     value="public_holiday">
-                                <label class="custom-control-label" for="customRadio2">day payment</label>
+                                <label class="custom-control-label" for="customRadio2">Day Payment</label>
                             </div>
 
                             <div class="custom-control custom-radio">
                                 <input type="radio" id="customRadio3" name="type" class="custom-control-input"
                                     value="extra_off">
-                                <label class="custom-control-label" for="customRadio3">extra off</label>
-                            </div>
-
-                            <div class="custom-control custom-radio">
-                                <input type="radio" id="customRadio4" name="type" class="custom-control-input"
-                                    value="sick_off">
-                                <label class="custom-control-label" for="customRadio4">sick off</label>
+                                <label class="custom-control-label" for="customRadio3">Extra Off</label>
                             </div>
                         </div>
 
@@ -190,7 +184,7 @@ Leave Management
         </div>
     </div>
 
-    <a href="{{ url('hris/hrleaveman') }}"
+    <a href="{{ url('hris/leavedata') }}"
         class="btn btn-primary btn-sm @if(!in_array($userRole, [3,4,5])) disabled @endif">
         <i class='fas fa-list'></i> Leaves Data
     </a>
@@ -200,7 +194,6 @@ Leave Management
         <i class='fas fa-sign'></i> Approval
     </a>
 </div>
-
 
 <div class="row">
     <div class="col-xl-3 col-md-6 mb-4">
@@ -296,13 +289,13 @@ Leave Management
                         @foreach ($history as $history)
                         <tr>
                             <td>
-                                {{ \Carbon\Carbon::parse($history->start_date)->format('d/m/y') }}
+                                {{ \Carbon\Carbon::parse($history->start_date)->format('d-m-Y') }}
                             </td>
                             <td>
-                                {{ \Carbon\Carbon::parse($history->end_date)->format('d/m/y') }}
+                                {{ \Carbon\Carbon::parse($history->end_date)->format('d-m-Y') }}
                             </td>
                             <td>
-                                {{ \Carbon\Carbon::parse($history->work_date)->format('d/m/y') }}
+                                {{ \Carbon\Carbon::parse($history->work_date)->format('d-m-Y') }}
                             </td>
                             <td class="text-center"><span class="badge badge-warning">Waiting</span></td>
                             <td class="text-center"><span class="badge badge-warning">Waiting</span></td>

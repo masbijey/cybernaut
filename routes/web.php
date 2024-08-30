@@ -118,7 +118,7 @@ Route::controller(LeaveController::class)->middleware('auth')->group(function ()
     Route::get('hris/leaveapproval', 'leaveapproval')->name('leaveapproval.index');
     Route::post('leaveapproval/store', 'leaveapprovalstr')->name('leaveapproval.store');
 
-    Route::get('hris/hrleaveman', 'hrleaveman')->name('hrleaveman.index'); // for hrd
+    Route::get('hris/leavedata', 'leavedata')->name('leavedata.index'); // for hrd
 });
 
 Route::controller(TaskController::class)->middleware('auth')->group(function () {
