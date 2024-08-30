@@ -130,8 +130,8 @@ Employee Leave Form
         @endforeach
     </div>
 
-    <div class="d-none d-sm-block">
-        <div class="col-lg-12">
+    <div class="d-none d-sm-block w-100">
+        <div class="col-12">
             <div class="card mb-3 shadow">
                 <div class="card-body">
                     <table class="table table-hover" id="employee-table" style="width: 100%;">
@@ -217,7 +217,7 @@ Employee Leave Form
 @endsection
 
 @section('css')
-{{-- --}}
+
 @endsection
 
 @section('js')
@@ -234,13 +234,11 @@ Employee Leave Form
         theme: 'bootstrap'
     });
 
-    $(document).ready(function() {
-        $('#employee-table').DataTable({
-            responsive: false,
-            "order": [
-                [0, 'desc']
-            ]
-        });
+    $('#employee-table').DataTable({
+        responsive: true,
+        "order": [
+            [0, 'desc']
+        ]
     });
 </script>
 @endsection
