@@ -9,7 +9,7 @@ Leave Management
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ url('leave') }}">Leave Management</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('leave.index') }}">Leave Management</a></li>
         <li class="breadcrumb-item">Employee Leave Data</li>
     </ol>
 </nav>

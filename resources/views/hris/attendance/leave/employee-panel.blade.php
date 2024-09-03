@@ -184,12 +184,12 @@ Leave Management
         </div>
     </div>
 
-    <a href="{{ url('hris/leavedata') }}"
+    <a href="{{ route('leavedata.index') }}"
         class="btn btn-primary btn-sm @if(!in_array($userRole, [3,4,5])) disabled @endif">
         <i class='fas fa-list'></i> Leaves Data
     </a>
 
-    <a href="{{ url('hris/leaveapproval') }}"
+    <a href="{{ route('leaveapproval.index') }}"
         class="btn btn-primary btn-sm @if(!in_array($userRole, [3,4,5])) disabled @endif">
         <i class='fas fa-sign'></i> Approval
     </a>
@@ -297,10 +297,28 @@ Leave Management
                             <td>
                                 {{ \Carbon\Carbon::parse($history->work_date)->format('d-m-Y') }}
                             </td>
-                            <td class="text-center"><span class="badge badge-warning">Waiting</span></td>
-                            <td class="text-center"><span class="badge badge-warning">Waiting</span></td>
-                            <td class="text-center"><span class="badge badge-warning">Waiting</span></td>
-                            <td><a href="#" class="btn btn-sm btn-outline-primary">Detail</a></td>
+                            <td class="text-center">
+                                @if ($history->approved_1_by == null )
+                                <span class="badge badge-warning">waiting</span>
+                                @else
+                                <span class="badge badge-success">{{ $history->approved_1_by }}</span>
+                                @endif
+                            </td>
+                            <td class="text-center">
+                                @if ($history->approved_2_by == null )
+                                <span class="badge badge-warning">waiting</span>
+                                @else
+                                <span class="badge badge-success">{{ $history->approved_2_by }}</span>
+                                @endif
+                            </td>
+                            <td class="text-center">
+                                @if ($history->approved_2_by == null )
+                                <span class="badge badge-warning">waiting</span>
+                                @else
+                                <span class="badge badge-success">{{ $history->approved_2_by }}</span>
+                                @endif
+                            </td>
+                            <td><a href="{{ url('hris/leave/approval/'.$history->id) }}" class="btn btn-sm btn-outline-primary">Detail</a></td>
                         </tr>
                         @endforeach
                     </tbody>

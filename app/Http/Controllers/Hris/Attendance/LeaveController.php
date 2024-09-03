@@ -147,4 +147,13 @@ class LeaveController extends Controller
         alert()->error('Gagal.', 'pastikan mengisi data dengan benar');
         return redirect('/leave');
     }
+
+    public function leaveapprovaldetail($id)
+    {
+        $approval_detail = Employeeleaveapproval::findOrFail($id);
+
+        dd($approval_detail);
+
+        return view('hris.attendance.leave.approval_detail', compact('approval_detail'));
+    }
 }
