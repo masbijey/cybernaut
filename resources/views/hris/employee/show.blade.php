@@ -672,4 +672,5 @@ Employee details | {{ $employee->name }}
             </div>
         </div>
     </div>
-    @endsection
+</div>  
+@endsection

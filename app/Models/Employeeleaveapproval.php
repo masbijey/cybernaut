@@ -26,7 +26,22 @@ class Employeeleaveapproval extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function approval()
+    public function approval1()
+    {
+        return $this->belongsTo(User::class, 'approved_1_by');
+    }
+
+    public function approval2()
+    {
+        return $this->belongsTo(User::class, 'approved_2_by');
+    }
+
+    public function approval3()
+    {
+        return $this->belongsTo(User::class, 'approved_3_by');
+    }
+
+    public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }

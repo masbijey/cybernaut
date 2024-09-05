@@ -71,7 +71,7 @@ class LeaveController extends Controller
 
             if ($validator->fails()) {
                 alert()->error('Gagal.', 'pastikan mengisi data dengan benar');
-                return redirect('/leave');
+                return redirect('/hris/leave');
             }
 
             $entitled = $request->entitled;
@@ -86,7 +86,7 @@ class LeaveController extends Controller
             }
 
             alert()->success('Berhasil.', 'Data berhasil dibuat');
-            return redirect('/leave');
+            return redirect('/hris/leave/');
         } else {
             alert()->error('Stop!', 'Access Denied');
             return redirect()->back();
@@ -113,7 +113,7 @@ class LeaveController extends Controller
 
         if ($validator->fails()) {
             alert()->error('Gagal.', 'pastikan mengisi data dengan benar');
-            return redirect('/leave');
+            return redirect('/hris/leave');
         }
 
         $startDate = \Carbon\Carbon::parse($request->start_date);
@@ -125,7 +125,7 @@ class LeaveController extends Controller
         $now = Carbon::now();
 
         if ($totalDays === $totalLeaves) {
-            Employeeleaveapproval::create([
+            $approval = Employeeleaveapproval::create([
                 'user_id' => $user,
                 'start_date' => $request->start_date,
                 'end_date' => $request->end_date,
@@ -137,23 +137,25 @@ class LeaveController extends Controller
             foreach ($leaves as $data) {
                 DB::table('employeeleaves')
                     ->where('id', $data)
-                    ->update(['pick_date' => $now]);
+                    ->update([
+                        'pick_date' => $now,
+                        'leaveapproval_id' => $approval->id
+                    ]);
             }
 
             alert()->success('Berhasil.', 'Data berhasil dibuat');
-            return redirect('/leave');
+            return redirect('/hris/leave/');
         }
 
         alert()->error('Gagal.', 'pastikan mengisi data dengan benar');
-        return redirect('/leave');
+        return redirect('/hris/leave/');
     }
 
     public function leaveapprovaldetail($id)
     {
-        $approval_detail = Employeeleaveapproval::findOrFail($id);
-
-        dd($approval_detail);
-
-        return view('hris.attendance.leave.approval_detail', compact('approval_detail'));
+        $data = Employeeleaveapproval::findOrFail($id);
+        $leaves = Employeeleave::where('leaveapproval_id', $id)->get();
+        
+        return view('hris.attendance.leave.approval_detail', compact('data','leaves'));
     }
 }
