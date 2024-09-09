@@ -52,9 +52,9 @@ Employee Leave Form
                             <th>Start Date</th>
                             <th>End Date</th>
                             <th>Work Date</th>
-                            <th>HR Approval</th>
                             <th>Leader Approval (1)</th>
                             <th>Leader Approval (2)</th>
+                            <th>HR Approval</th>
                             <th>Action</th>
                         </thead>
                         <tbody>
@@ -70,11 +70,35 @@ Employee Leave Form
                                 <td>
                                     {{ \Carbon\Carbon::parse($history->work_date)->format('d-m-Y') }}
                                 </td>
-                                <td><span class="badge badge-warning">Waiting</span></td>
-                                <td><span class="badge badge-warning">Waiting</span></td>
-                                <td><span class="badge badge-warning">Waiting</span></td>
+                                <td class="text-center">
+                                    @if ($history->approved_1_by == null )
+                                    <span class="badge badge-warning">waiting</span>
+                                    @elseif ($history->approved_1_status == 'approved')
+                                    <span class="badge badge-success">{{ $history->approved_1_status }}</span>
+                                    @else ($history->approved_1_status == 'rejected')
+                                    <span class="badge badge-danger">{{ $history->approved_1_status }}</span>
+                                    @endif
+                                </td>
+                                <td class="text-center">
+                                    @if ($history->approved_2_by == null )
+                                    <span class="badge badge-warning">waiting</span>
+                                    @elseif ($history->approved_2_status == 'approved')
+                                    <span class="badge badge-success">{{ $history->approved_2_status }}</span>
+                                    @else ($history->approved_2_status == 'rejected')
+                                    <span class="badge badge-danger">{{ $history->approved_2_status }}</span>
+                                    @endif
+                                </td>
+                                <td class="text-center">
+                                    @if ($history->approved_3_by == null )
+                                    <span class="badge badge-warning">waiting</span>
+                                    @elseif ($history->approved_3_status == 'approved')
+                                    <span class="badge badge-success">{{ $history->approved_3_status }}</span>
+                                    @else ($history->approved_3_status == 'rejected')
+                                    <span class="badge badge-danger">{{ $history->approved_3_status }}</span>
+                                    @endif
+                                </td>
                                 <td>
-                                    <a href="{{ url('hris/leave/approval/'.$history->id) }}" class="btn btn-primary shadow btn-sm">detail</a>
+                                    <a href="{{ url('hris/leave/approval/'.$history->id) }}" class="btn btn-primary shadow">DETAIL</a>
                                 </td>
                             </tr>
                             @endforeach

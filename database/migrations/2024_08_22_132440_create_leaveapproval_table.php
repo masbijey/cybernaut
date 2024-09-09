@@ -22,10 +22,13 @@ return new class extends Migration
             $table->string('remark');
             $table->integer('approved_1_by')->nullable();
             $table->timestamp('approved_1_at')->nullable();
+            $table->string('approved_1_status')->nullable();
             $table->integer('approved_2_by')->nullable();
             $table->timestamp('approved_2_at')->nullable();
+            $table->string('approved_2_status')->nullable();
             $table->integer('approved_3_by')->nullable();
             $table->timestamp('approved_3_at')->nullable();
+            $table->string('approved_3_status')->nullable();
         });
     }
 

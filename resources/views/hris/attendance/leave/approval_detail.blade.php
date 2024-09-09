@@ -99,52 +99,63 @@ Employee Leave Form
                 <h6 class="m-0 font-weight-bold">Approval</h6>
             </div>
             <div class="card-body">
-                <form action="">
+                <form method="POST" action="{{ route('leaveapprovalsigned.store', $data->id) }}" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+
                     <div class="form-group">
                         <label for="test" class="font-weight-bold">Leader 1</label>
-                        @if ($data->approved_2_by == null)
+                        @if ($data->approved_1_status === 'approved')
+                        <input type="text" class="form-control text-success" disabled value="Approved by {{ $data->approval1->name }} {{ $data->approved_1_at }}">
+                        @elseif ($data->approved_1_status === 'rejected')
+                        <input type="text" class="form-control text-danger" disabled value="Rejected by {{ $data->approval1->name }} {{ $data->approved_1_at }}">
+                        @else
                         <select class="custom-select" name="leader1_status">
                             <option selected="" disabled>select type:</option>
                             <option value="1">Approved</option>
                             <option value="2">Rejected</option>
                         </select>
                         <small>supervisor / hod</small>
-                        @else
-                        <input type="text" class="form-control" disabled value="Approved by {{ $data->approval2->name }} {{ $data->approved_2_at }}">
                         @endif
                     </div>
 
                     <div class="form-group">
                         <label for="test" class="font-weight-bold">Leader 2</label>
-                        @if ($data->approved_3_by == null)
+                        @if ($data->approved_2_status === 'approved')
+                        <input type="text" class="form-control text-success" disabled value="Approved by {{ $data->approval2->name }} {{ $data->approved_2_at }}">
+                        @elseif ($data->approved_2_status === 'rejected')
+                        <input type="text" class="form-control text-danger" disabled value="Rejected by {{ $data->approval2->name }} {{ $data->approved_2_at }}">
+                        @else
                         <select class="custom-select" name="leader2_status">
                             <option selected="" disabled>select type:</option>
                             <option value="1">Approved</option>
                             <option value="2">Rejected</option>
                         </select>
                         <small>hod / general manager</small>
-                        @else
-                        <input type="text" class="form-control" disabled value="Approved by {{ $data->approval3->name }} {{ $data->approved_3_at }}">
                         @endif
                     </div>
 
                     <div class="form-group">
                         <label for="test" class="font-weight-bold">HR Approval</label>
-                        @if ($data->approved_1_by == null)
-                        <select class="custom-select" name="hr_status">
+                        @if ($data->approved_3_status === 'approved')
+                        <input type="text" class="form-control text-success" disabled value="Approved by {{ $data->approval3->name }} {{ $data->approved_3_at }}">
+                        @elseif ($data->approved_3_status === 'rejected')
+                        <input type="text" class="form-control text-danger" disabled value="Rejected by {{ $data->approval3->name }} {{ $data->approved_3_at }}">
+                        @else
+                        <select class="custom-select" name="leader3_status">
                             <option selected="" disabled>select type:</option>
                             <option value="1">Approved</option>
                             <option value="2">Rejected</option>
                         </select>
                         <small>hr manager / hr admin</small>
-                        @else
-                        <input type="text" class="form-control" disabled value="Approved by {{ $data->approval1->name }} {{ $data->approved_1_at }}">
                         @endif
                     </div>
 
+                    @if ($data->approved_3_status  === null)
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary shadow">Save</button>
                     </div>
+                    @endif
                 </form>
             </div>
         </div>
