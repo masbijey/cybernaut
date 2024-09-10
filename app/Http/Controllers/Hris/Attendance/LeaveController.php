@@ -36,7 +36,27 @@ class LeaveController extends Controller
 
         $employee = User::all();
 
-        return view('hris.attendance.leave.employee-panel', compact('employee', 'leave', 'leave_data', 'history'));
+        $al = Employeeleave::where('user_id', $user_login->id)
+            ->where('type', 'annual_leave')
+            ->where('pick_date', null)
+            ->count();
+
+        $eo = Employeeleave::where('user_id', $user_login->id)
+            ->where('type', 'extra_off')
+            ->where('pick_date', null)
+            ->count();
+
+        $dp = Employeeleave::where('user_id', $user_login->id)
+            ->where('type', 'day_payment')
+            ->where('pick_date', null)
+            ->count();
+
+        // dd($al);
+
+        return view('hris.attendance.leave.employee-panel', compact(
+            'employee', 'leave', 'leave_data', 'history',
+            'al', 'eo', 'dp'
+        ));
     }
 
     public function leavedata()
@@ -141,12 +161,10 @@ class LeaveController extends Controller
                         'leaveapproval_id' => $approval->id
                     ]);
             }
-
             alert()->success('Berhasil.', 'Data berhasil dibuat');
             return redirect('/hris/leave/');
         }
-
-        alert()->error('Gagal.', 'pastikan mengisi data dengan benar');
+        alert()->error('Try Again.', 'Pastikan mengisi data dengan benar');
         return redirect('/hris/leave/');
     }
 
@@ -160,60 +178,65 @@ class LeaveController extends Controller
 
     public function signaleaveapprovalstr(Request $request, $id)
     {
-        $form = Employeeleaveapproval::findOrFail($id);
-        $now = now();
-        $user = Auth::user()->id;
+        if (in_array(Auth::user()->role->hris, ['3', '4', '5'])) {
+            $form = Employeeleaveapproval::findOrFail($id);
+            $now = now();
+            $user = Auth::user()->id;
 
-        if (isset($request->leader1_status)) {
-            if ($request->leader1_status === '1') {
-                $form->approved_1_by = $user;
-                $form->approved_1_at = $now;
-                $form->approved_1_status = 'approved';
-                $form->save();
-            } else {
-                $form->approved_1_by = $user;
-                $form->approved_1_at = $now;
-                $form->approved_1_status = 'rejected';
-                $form->save();
-            }
-        }
-
-        if (isset($request->leader2_status)) {
-            if ($request->leader2_status === '1') {
-                $form->approved_2_by = $user;
-                $form->approved_2_at = $now;
-                $form->approved_2_status = 'approved';
-                $form->save();
-            } else {
-                $form->approved_2_by = $user;
-                $form->approved_2_at = $now;
-                $form->approved_2_status = 'rejected';
-                $form->save();
-            }
-        }
-
-        if (isset($request->leader3_status)) {
-            if ($request->leader3_status === '1') {
-                $form->approved_3_by = $user;
-                $form->approved_3_at = $now;
-                $form->approved_3_status = 'approved';
-                $form->save();
-            } else {
-                $form->approved_3_by = $user;
-                $form->approved_3_at = $now;
-                $form->approved_3_status = 'rejected';
-                $form->save();
-
-                $leaves = Employeeleave::where('leaveapproval_id', $id)->get();
-                foreach ($leaves as $leave) {
-                    $leave->leaveapproval_id = null;
-                    $leave->pick_date = null;
-                    $leave->save();
+            if (isset($request->leader1_status)) {
+                if ($request->leader1_status === '1') {
+                    $form->approved_1_by = $user;
+                    $form->approved_1_at = $now;
+                    $form->approved_1_status = 'approved';
+                    $form->save();
+                } else {
+                    $form->approved_1_by = $user;
+                    $form->approved_1_at = $now;
+                    $form->approved_1_status = 'rejected';
+                    $form->save();
                 }
             }
-        }
 
-        alert()->success('Berhasil.', 'Data berhasil diperbarui');
-        return redirect()->back();
+            if (isset($request->leader2_status)) {
+                if ($request->leader2_status === '1') {
+                    $form->approved_2_by = $user;
+                    $form->approved_2_at = $now;
+                    $form->approved_2_status = 'approved';
+                    $form->save();
+                } else {
+                    $form->approved_2_by = $user;
+                    $form->approved_2_at = $now;
+                    $form->approved_2_status = 'rejected';
+                    $form->save();
+                }
+            }
+
+            if (isset($request->leader3_status)) {
+                if ($request->leader3_status === '1') {
+                    $form->approved_3_by = $user;
+                    $form->approved_3_at = $now;
+                    $form->approved_3_status = 'approved';
+                    $form->save();
+                } else {
+                    $form->approved_3_by = $user;
+                    $form->approved_3_at = $now;
+                    $form->approved_3_status = 'rejected';
+                    $form->save();
+
+                    $leaves = Employeeleave::where('leaveapproval_id', $id)->get();
+                    foreach ($leaves as $leave) {
+                        $leave->leaveapproval_id = null;
+                        $leave->pick_date = null;
+                        $leave->save();
+                    }
+                }
+            }
+
+            alert()->success('Success.');
+            return redirect()->back();
+        } else {
+            alert()->error('Access Denied.');
+            return redirect()->back();
+        }
     }
 }

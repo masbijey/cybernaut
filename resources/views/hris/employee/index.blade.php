@@ -21,7 +21,7 @@
             <span class="sr-only">Toggle Dropdown</span>
         </button>
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="{{ route('agreement.index') }}">» Contract</a>
+            <a class="dropdown-item" href="{{ route('contract.index') }}">» Contract</a>
             <a class="dropdown-item" href="{{ route('education.index') }}">» Education</a>
             <a class="dropdown-item" href="{{ route('experience.index') }}">» Experience</a>
             <a class="dropdown-item" href="{{ route('family.index') }}">» Family</a>

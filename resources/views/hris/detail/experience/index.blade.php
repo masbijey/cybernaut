@@ -1,17 +1,21 @@
 @extends('layouts.app')
 
+@section('title')
+Employee Experience Data
+@endsection
+
 @section('content')
-<h1 class="h3 mb-2 text-gray-800">Experience Management</h1>
+<h1 class="h3 mb-2 text-gray-800">Employee Experience Data</h1>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ url('') }}">Home</a></li>
         <li class="breadcrumb-item"><a href="{{ url('employee') }}">Employee List</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Experience Management</li>
+        <li class="breadcrumb-item active" aria-current="page">Employee Experience Data</li>
     </ol>
 </nav>
 
 <div class="row">
-    <div class="col-sm-12 col-md-4 col-lg-4">
+    <!-- <div class="col-sm-12 col-md-4 col-lg-4">
         <div class="card shadow mb-2">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">New Experience</h6>
@@ -68,13 +72,82 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
 
-    <div class="col-sm-12 col-md-8 col-lg-8">
-        <div class="card mb-2 shadow">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Experience</h6>
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <div class="mb-3">
+            <button type="button" class="btn btn-primary shadow" data-toggle="modal" data-target="#exampleModalScrollable">
+                Add Data
+            </button>
+
+            <div class="modal" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                    <div class="modal-content">
+                        <form method="POST" action="{{ route('experience.store') }}" enctype="multipart/form-data">
+                            @csrf
+
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalCenteredLabel">Add Experience</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="name" class="font-weight-bolder">Employee</label>
+                                    <select class="form-control w-100" id="employee" name="employee" style="width: 100%;">
+                                        <option value="" selected>-- select employee --</option>
+                                        @foreach ($employee as $data)
+                                        <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="company" class="font-weight-bolder">Company</label>
+                                    <input type="text" name="company" id="institution" class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="jobtitle" class="font-weight-bolder">Role</label>
+                                    <input type="text" name="jobtitle" id="category" class="form-control" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="start" class="font-weight-bolder">Start</label>
+                                    <input type="month" name="start" id="start" class="form-control" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="end" class="font-weight-bolder">End</label>
+                                    <input type="month" name="end" id="end" class="form-control" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="description" class="font-weight-bolder">Description</label>
+                                    <textarea name="description" id="description" cols="30" rows="3" class="form-control" required></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="file" class="font-weight-bolder">File</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="file" name="file" accept="application/pdf" required>
+                                        <label class="custom-file-label" for="file">Choose file</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
+        </div>
+
+
+        <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <table class="table table-hover" id="employee-table">
                     <thead>

@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('css')
-
-@endsection
-
 @section('js')
 <script>
     // Add the following code if you want the name of the file appear on select
@@ -51,7 +47,7 @@
                 <h6 class="m-0 font-weight-bold">New Contract</h6>
             </div>
             <div class="card-body">
-                <form method="POST" action="{{ route('agreement.store') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('contract.store') }}" enctype="multipart/form-data">
                     @csrf
 
                     <div class="form-group">

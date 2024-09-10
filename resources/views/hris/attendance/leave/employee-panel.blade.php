@@ -204,7 +204,7 @@ Leave Management
                         <div class="text-sm font-weight-bold text-primary text-uppercase mb-1">
                             Annual Leave
                         </div>
-                        <div class="h4 mb-0 font-weight-bold text-gray-800">4</div>
+                        <div class="h3 mb-0 font-weight-bold text-gray-800">{{ $al }}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
@@ -222,7 +222,7 @@ Leave Management
                         <div class="text-sm font-weight-bold text-success text-uppercase mb-1">
                             Extra Off
                         </div>
-                        <div class="h4 mb-0 font-weight-bold text-gray-800">4</div>
+                        <div class="h3 mb-0 font-weight-bold text-gray-800">{{ $eo }}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
@@ -240,7 +240,7 @@ Leave Management
                         <div class="text-sm font-weight-bold text-info text-uppercase mb-1">
                             Day Payment
                         </div>
-                        <div class="h4 mb-0 font-weight-bold text-gray-800">4</div>
+                        <div class="h3 mb-0 font-weight-bold text-gray-800">{{ $dp }}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
@@ -256,9 +256,9 @@ Leave Management
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-sm font-weight-bold text-warning text-uppercase mb-1">
-                            Requestition</div>
-                        <div class="h4 mb-0 font-weight-bold text-gray-800">4</div>
-                    </div>
+                            Total Off Day</div>
+                            <div class="h3 mb-0 font-weight-bold text-gray-800">{{ $al }} / {{ $al }}</div>
+                            </div>
                     <div class="col-auto">
                         <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                     </div>

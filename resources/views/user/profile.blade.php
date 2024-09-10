@@ -1,74 +1,5 @@
 @extends('layouts.app')
 
-@section('js')
-<script>
-    $(document).ready(function() {
-        $('#education-table').DataTable({
-            responsive: true
-        });
-    });
-
-    $(document).ready(function() {
-        $('#experience-table').DataTable({
-            responsive: true
-        });
-    });
-
-    $(document).ready(function() {
-        $('#family-table').DataTable({
-            responsive: true
-        });
-    });
-    $(document).ready(function() {
-        $('#sickness-table').DataTable({
-            responsive: true
-        });
-    });
-
-    $(document).ready(function() {
-        $('#contract-table').DataTable({
-            responsive: true
-        });
-    });
-
-    $(document).ready(function() {
-        $('#punrew-table').DataTable({
-            responsive: true
-        });
-    });
-
-    $(document).ready(function() {
-        $('#leaves-table').DataTable({
-            responsive: true
-        });
-    });
-
-    $(document).ready(function() {
-        $('#inventory-table').DataTable({
-            responsive: true
-        });
-    });
-
-    $(document).ready(function() {
-        $('#training-table').DataTable({
-            responsive: true
-        });
-    });
-
-    $(document).ready(function() {
-        $('#attendance-table').DataTable({
-            responsive: true
-        });
-    });
-
-    $(document).ready(function() {
-        $('#log-table').DataTable({
-            responsive: true
-        });
-    });
-</script>
-@endsection
-
 @section('title')
 Employee details | {{ $employee->name }}
 @endsection
@@ -84,13 +15,287 @@ Employee details | {{ $employee->name }}
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('employee.index') }}">Employee List</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('employee.index') }}">Employee</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{ $employee->name }}</li>
     </ol>
 </nav>
 
 <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
+    <div class="col">
+        <div class="mb-3">
+            <button class="btn btn-primary">Summary</button>
+            <button class="btn btn-outline-primary">Experience</button>
+            <button class="btn btn-outline-primary">Education</button>
+            <button class="btn btn-outline-primary">Family</button>
+            <button class="btn btn-outline-primary">Contract</button>
+            <button class="btn btn-outline-primary">Training</button>
+            <button class="btn btn-outline-primary">Attendance</button>
+            <button class="btn btn-outline-primary">Punishment & Reward</button>
+            <button class="btn btn-outline-primary">Log</button>
+            <button class="btn btn-outline-primary">Leaves</button>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-header">
+                <h6 class="m-1 font-weight-bold">Education</h6>
+            </div>
+            <div class="card-body">
+                <table class="table table-sm">
+                    <tbody>
+                        @foreach ($education as $data)
+                        <tr>
+                            <td>{{ $data->institution }}</td>
+                            <td>{{ $data->category }}</td>
+                            <td>{{ $data->start }} - {{ $data->end }}</td>
+                            <td>{{ $data->remark }}</td>
+                            <td><a class="btn btn-sm btn-outline-secondary" href="{{ url($data->file) }}">file</a></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-header">
+                <h6 class="m-1 font-weight-bold">Experience</h6>
+            </div>
+            <div class="card-body">
+                <table class="table table-sm">
+                    <tbody>
+                        @foreach ($experience as $data)
+                        <tr>
+                            <td>{{ $data->company }}</td>
+                            <td>{{ $data->jobtitle }}</td>
+                            <td>{{ $data->start }} - {{ $data->end }}</td>
+                            <td>{{ $data->remark }}</td>
+                            <td><a class="btn btn-sm btn-outline-secondary" href="{{ url($data->file) }}">file</a></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-header">
+                <h6 class="m-1 font-weight-bold">Family</h6>
+            </div>
+            <div class="card-body">
+                <table class="table table-sm">
+                    <tbody>
+                        @foreach ($family as $data)
+                        <tr>
+                            <td>{{ $data->name }}</td>
+                            <td>{{ $data->relationship }}</td>
+                            <td>{{ $data->phone }}</td>
+                            <td>{{ $data->address }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-header">
+                <h6 class="m-1 font-weight-bold">Sickness</h6>
+            </div>
+            <div class="card-body">
+                <table class="table table-sm">
+                    <tbody>
+                        @foreach ($sickness as $data)
+                        <tr>
+                            <td>{{ $data->name_of_sick }}</td>
+                            <td>{{ $data->description }}</td>
+                            <td>{{ $data->start }} - {{ $data->end }}</td>
+                            <td><a class="btn btn-sm btn-outline-secondary" href="{{ url($data->file) }}">file</a></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-header">
+                <h6 class="m-1 font-weight-bold">Contract</h6>
+            </div>
+            <div class="card-body">
+                <table class="table table-sm">
+                    <tbody>
+                        @foreach ($contract as $data)
+                        <tr>
+                            <td>{{ $data->start }}</td>
+                            <td>{{ $data->end }}</td>
+                            <td>{{ $data->department->name }}</td>
+                            <td>{{ $data->level }}</td>
+                            <td>{{ $data->jobtitle }}</td>
+                            <td><a class="btn btn-sm btn-outline-secondary" href="{{ url($data->file) }}">file</a></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-header">
+                <h6 class="m-1 font-weight-bold">Punishment & Reward</h6>
+            </div>
+            <div class="card-body">
+                <table class="table table-sm">
+                    <tbody>
+                        <tr>
+                            <td>test test test tes tes tes tes</td>
+                            <td>Test</td>
+                            <td>Test</td>
+                            <td>Test</td>
+                            <td>Test</td>
+                            <td>Test</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-header">
+                <h6 class="m-1 font-weight-bold">Leaves History</h6>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered" style="width: 30%;">
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Entitle</th>
+                            <th>Taken</th>
+                            <th>Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody class="nowrap">
+                        <tr>
+                            <td>Annual Leave</td>
+                            <td>{{ $entitleAl }}</td>
+                            <td>{{ $takenAl }}</td>
+                            <td>
+                                @if ($balanceAl == '0')
+                                <h3 class="text-danger">{{ $balanceAl }}</h3>
+                                <p class="text-danger font-weight-bold"></p>
+                                @else
+                                <p class="text-success font-weight-bold">{{ $balanceAl }}</p>
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Extra Off</td>
+                            <td>{{ $entitleEo }}</td>
+                            <td>{{ $takenEo }}</td>
+                            <td>
+                                @if ($balanceEo == '0')
+                                <p class="text-danger font-weight-bold">{{ $balanceEo }}</p>
+                                @else
+                                <p class="text-success font-weight-bold">{{ $balanceEo }}</p>
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Day Payment</td>
+                            <td>{{ $entitlePh }}</td>
+                            <td>{{ $takenPh }}</td>
+                            <td>
+                                @if ($balancePh == '0')
+                                <p class="text-danger font-weight-bold">{{ $balancePh }}</p>
+                                @else
+                                <p class="text-success font-weight-bold">{{ $balancePh }}</p>
+                                @endif
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr>
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Created At</th>
+                                <th>Type</th>
+                                <th>Valid date</th>
+                                <th>Pick date</th>
+                                <th>Remark</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($employee->leave as $data)
+                            <tr>
+                                <td>{{ $data->created_at }}</td>
+                                <td>
+                                    @if ($data->type == 'public_holiday')
+                                    <button class="btn btn-sm btn-success">PH</button>
+                                    @elseif ($data->type == 'extra_off')
+                                    <button class="btn btn-sm btn-success">EO</button>
+                                    @elseif ($data->type == 'annual_leave')
+                                    <button class="btn btn-sm btn-success">AL</button>
+                                    @elseif ($data->type == 'sick_off')
+                                    <button class="btn btn-sm btn-danger">SICK</button>
+                                    @endif
+                                </td>
+                                <td>{{ $data->valid_until }}</td>
+                                <td>
+                                    @if ($data->pick_date == null)
+                                    <span class="badge badge-success badge-sm">belum diambil</span>
+                                    @else
+                                    <span class="badge badge-danger badge-sm">{{ $data->pick_date }}</span>
+                                    @endif
+                                </td>
+                                <td>{{ $data->description }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-header">
+                <h6 class="m-1 font-weight-bold">Inventory</h6>
+            </div>
+            <div class="card-body">
+                <table class="table table-sm">
+                    <tbody>
+                        @foreach($inventory as $data)
+                        <tr>
+                            <td>{{ $data->created_at }}</td>
+                            <td><a href="{{ url('asset/detail/'. $data->asset->token) }}">{{ $data->asset->name }} {{ $data->asset->serialNumber }}</a></td>
+                            <td>@if ($data->condition == 'Good')
+                                <span class="badge badge-success">{{ $data->condition }}</span>
+                                @else
+                                <span class="badge badge-danger">{{ $data->condition }}</span>
+                                @endif
+                            </td>
+                            <td>{{ $data->remark }}</td>
+                            <td>{{ $data->end }}
+                                @if ($data->return_date === null)
+                                <a href="{{ url('asset/allocation/'.$data->asset->token) }}" class="btn btn-sm btn-primary">Move Now</a>
+                                @else
+                                <a href="#" class="btn btn-sm btn-primary disabled">Moved: {{ $data->return_date }}</a>
+                                @endif
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
         <div class="d-block d-sm-none d-md-none">
             <div class="card shadow-sm mb-3">
                 <a href="#personal-card" class="d-block card-header" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
@@ -192,9 +397,9 @@ Employee details | {{ $employee->name }}
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
-    <div class="col-sm-12 col-md-12 col-lg-8">
+    <!-- <div class="col-sm-12 col-md-12 col-lg-8">
         <div class="card shadow-sm mb-3">
             <a href="#education-card" class="d-block card-header" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Educations</h6>
@@ -285,7 +490,6 @@ Employee details | {{ $employee->name }}
                                     <th>Relationship</th>
                                     <th>Phone</th>
                                     <th>Address</th>
-                                    <!-- <th>File</th> -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -296,7 +500,6 @@ Employee details | {{ $employee->name }}
                                     <td>{{ $data->relationship }}</td>
                                     <td>{{ $data->phone }}</td>
                                     <td>{{ $data->address }}</td>
-                                    <!-- <td><a class="btn btn-sm btn-outline-secondary" href="{{ url('public/'.$data->file) }}">file</a></td> -->
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -667,6 +870,75 @@ Employee details | {{ $employee->name }}
                 </div>
             </div>
         </div>
-    </div>
-</div>  
+    </div> -->
+</div>
+@endsection
+
+@section('js')
+<script>
+    $(document).ready(function() {
+        $('#education-table').DataTable({
+            responsive: true
+        });
+    });
+
+    $(document).ready(function() {
+        $('#experience-table').DataTable({
+            responsive: true
+        });
+    });
+
+    $(document).ready(function() {
+        $('#family-table').DataTable({
+            responsive: true
+        });
+    });
+    $(document).ready(function() {
+        $('#sickness-table').DataTable({
+            responsive: true
+        });
+    });
+
+    $(document).ready(function() {
+        $('#contract-table').DataTable({
+            responsive: true
+        });
+    });
+
+    $(document).ready(function() {
+        $('#punrew-table').DataTable({
+            responsive: true
+        });
+    });
+
+    $(document).ready(function() {
+        $('#leaves-table').DataTable({
+            responsive: true
+        });
+    });
+
+    $(document).ready(function() {
+        $('#inventory-table').DataTable({
+            responsive: true
+        });
+    });
+
+    $(document).ready(function() {
+        $('#training-table').DataTable({
+            responsive: true
+        });
+    });
+
+    $(document).ready(function() {
+        $('#attendance-table').DataTable({
+            responsive: true
+        });
+    });
+
+    $(document).ready(function() {
+        $('#log-table').DataTable({
+            responsive: true
+        });
+    });
+</script>
 @endsection

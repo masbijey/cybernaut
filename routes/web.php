@@ -35,12 +35,22 @@ Route::controller(SignageController::class)->middleware('auth')->group(function 
 Route::controller(UserController::class)->middleware('auth')->group(function () {
     Route::get('user', 'index')->name('user.index');
     Route::post('user', 'store')->name('user.store');
-    Route::get('user/create', 'create')->name('user.create');
     Route::get('user/show/{id}', 'show')->name('user.show');
     Route::put('user/update/{id}', 'update')->name('user.update');
     Route::get('user/delete/{id}', 'destroy')->name('user.destroy');
     Route::get('user/restore/{id}', 'restore')->name('user.restore');
     Route::get('user/{id}/edit', 'edit')->name('user.edit');
+
+    Route::get('user/profile', 'profile')->name('profile.index');
+    Route::get('user/profile/experience', 'profile')->name('profile.experience');
+    Route::get('user/profile/education', 'profile')->name('profile.education');
+    Route::get('user/profile/family', 'profile')->name('profile.family');
+    Route::get('user/profile/contract', 'profile')->name('profile.contract');
+    Route::get('user/profile/training', 'profile')->name('profile.training');
+    Route::get('user/profile/attendace', 'profile')->name('profile.attendace');
+    Route::get('user/profile/punrew', 'profile')->name('profile.punrew');
+    Route::get('user/profile/log', 'profile')->name('profile.log');
+    Route::get('user/profile/leaves', 'profile')->name('profile.leaves');
 
     Route::post('role/store', 'rolestr')->name('role.store');
 });
@@ -58,42 +68,42 @@ Route::controller(EmployeeController::class)->middleware('auth')->group(function
     Route::get('employee/restore/{id}', 'restore')->name('employee.restore');
     Route::get('employee/{id}/edit', 'edit')->name('employee.edit');
 
-    Route::get('document', 'document')->name('document.index');
-    Route::post('document/store', 'documentstr')->name('document.store');
+    Route::get('employee/document', 'document')->name('document.index');
+    Route::post('employee/document/store', 'documentstr')->name('document.store');
 
-    Route::get('training', 'training')->name('training.index');
-    Route::post('training/store', 'trainingstr')->name('training.store');
+    Route::get('employee/training', 'training')->name('training.index');
+    Route::post('employee/training/store', 'trainingstr')->name('training.store');
 
     // Route::get('leave', 'leave')->name('leave.index');
     // Route::post('leave/store', 'leavestr')->name('leave.store');
 
-    Route::get('role', 'role')->name('role.index');
-    Route::post('role/store', 'rolestr')->name('role.store');
+    Route::get('employee/role', 'role')->name('role.index');
+    Route::post('employee/role/store', 'rolestr')->name('role.store');
 });
 
 Route::controller(EducationController::class)->middleware('auth')->group(function () {
-    Route::get('education', 'index')->name('education.index');
-    Route::post('education/store', 'store')->name('education.store');
+    Route::get('employee/education', 'index')->name('education.index');
+    Route::post('employee/education/store', 'store')->name('education.store');
 });
 
 Route::controller(ContractController::class)->middleware('auth')->group(function () {
-    Route::get('agreement', 'index')->name('agreement.index');
-    Route::post('agreement/store', 'store')->name('agreement.store');
+    Route::get('employee/contract', 'index')->name('contract.index');
+    Route::post('employee/contract/store', 'store')->name('contract.store');
 });
 
 Route::controller(ExperienceController::class)->middleware('auth')->group(function () {
-    Route::get('experience', 'index')->name('experience.index');
-    Route::post('experience/store', 'store')->name('experience.store');
+    Route::get('employee/experience', 'index')->name('experience.index');
+    Route::post('employee/experience/store', 'store')->name('experience.store');
 });
 
 Route::controller(FamilyController::class)->middleware('auth')->group(function () {
-    Route::get('family', 'index')->name('family.index');
-    Route::post('family/store', 'store')->name('family.store');
+    Route::get('employee/family', 'index')->name('family.index');
+    Route::post('employee/family/store', 'store')->name('family.store');
 });
 
 Route::controller(SicknessController::class)->middleware('auth')->group(function () {
-    Route::get('sickness', 'index')->name('sickness.index');
-    Route::post('sickness/store', 'store')->name('sickness.store');
+    Route::get('employee/sickness', 'index')->name('sickness.index');
+    Route::post('employee/sickness/store', 'store')->name('sickness.store');
 });
 
 // Route::controller(InventoryController::class)->middleware('auth')->group(function () {
@@ -102,13 +112,13 @@ Route::controller(SicknessController::class)->middleware('auth')->group(function
 // });
 
 Route::controller(RewpunController::class)->middleware('auth')->group(function () {
-    Route::get('rewpun', 'index')->name('rewpun.index');
-    Route::post('rewpun/store', 'store')->name('rewpun.store');
+    Route::get('employee/rewpun', 'index')->name('rewpun.index');
+    Route::post('employee/rewpun/store', 'store')->name('rewpun.store');
 });
 
 Route::controller(TrainingController::class)->middleware('auth')->group(function () {
-    Route::get('training', 'index')->name('training.index');
-    Route::post('training/store', 'store')->name('training.store');
+    Route::get('employee/training', 'index')->name('training.index');
+    Route::post('employee/training/store', 'store')->name('training.store');
 });
 
 Route::controller(LeaveController::class)->middleware('auth')->group(function () {
