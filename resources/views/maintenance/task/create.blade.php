@@ -19,22 +19,22 @@
             <div class="card mb-3 shadow">
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="date">Due Date <small class="text-danger">*</small></label>
+                        <label for="date" class=" font-weight-bold">Due Date <small class="text-danger font-weight-bolder">*</small></label>
                         <input type="date" class="form-control" id="date" name="task_date" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="task_title">Title <small class="text-danger">*</small></label>
+                        <label for="task_title" class=" font-weight-bold">Title <small class="text-danger font-weight-bolder">*</small></label>
                         <input type="text" class="form-control" id="name" name="task_title" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="task_desc">Description <small class="text-danger">*</small></label>
-                        <textarea name="task_desc" id="task_desc" class="form-control" required></textarea>
+                        <label for="task_desc" class=" font-weight-bold">Description <small class="text-danger font-weight-bolder">*</small></label>
+                        <textarea name="task_desc" id="task_desc" class="form-control" rows="5" required></textarea>
                     </div>
 
                     <div class="form-group">
-                        <label for="task_priority">Priority <small class="text-danger">*</small></label>
+                        <label for="task_priority" class=" font-weight-bold">Priority <small class="text-danger">*</small></label>
                         <div class="custom-control custom-radio text-success font-weight-bold">
                             <input type="radio" id="Low" name="task_priority" class="custom-control-input" value="Low" required>
                             <label class="custom-control-label " for="Low">Low</label>
@@ -52,7 +52,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="type">Type <small class="text-danger">*</small></label>
+                        <label for="type" class=" font-weight-bold">Type <small class="text-danger font-weight-bolder">*</small></label>
                         <div class="custom-control custom-radio">
                             <input type="radio" id="customRadio11" name="task_type" class="custom-control-input" value="Corrective" required>
                             <label class="custom-control-label" for="customRadio11">Corrective</label>
@@ -64,12 +64,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="price">Price</label>
+                        <label for="price" class="font-weight-bolder">Price</label>
                         <input type="number" class="form-control" id="price" name="task_price">
                     </div>
 
                     <div class="form-group">
-                        <label for="remark">Remark</label>
+                        <label for="remark" class="font-weight-bolder">Remark</label>
                         <textarea name="task_remark" id="remark" class="form-control"></textarea>
                     </div>
                     </table>
@@ -81,7 +81,7 @@
             <div class="card mb-3 shadow">
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="asset">Assets tag</label>
+                        <label for="asset" class=" font-weight-bold">Assets tag</label>
                         <select class="js-example-basic-multiple custom-select form-control" id="tag-asset" name="asset_ids[]" multiple="multiple" style="width: 100%;">
                             @foreach ($asset as $data)
                             <option value="{{ $data->id }}">{{ $data->name }} {{ $data->serialNumber }}</option>
@@ -89,7 +89,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="location">Locations tag<small class="text-danger">*</small></label>
+                        <label for="location" class=" font-weight-bold">Locations tag<small class="text-danger"> *</small></label>
                         <select class="js-example-basic-multiple custom-select form-control" id="tag-location" name="location_ids[]" multiple="multiple" required style="width: 100%;">
                             @foreach ($location as $data)
                             <option value=" {{ $data->id }}">{{ $data->name }}</option>
@@ -97,7 +97,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="members">Assign to <small class="text-danger">*</small></label>
+                        <label for="members" class=" font-weight-bold">Assign to <small class="text-danger">*</small></label>
                         <select class="js-example-basic-multiple custom-select form-control" id="tag-employee" name="member_ids[]" multiple="multiple" required style="width: 100%;">
                             @foreach ($user as $data)
                             <option value=" {{ $data->id }}">{{ $data->name }}</option>
@@ -110,12 +110,12 @@
             <div class="card mb-3 shadow">
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="task_vendor">Vendor name</label>
+                        <label for="task_vendor" class=" font-weight-bold">Vendor name</label>
                         <input type="text" class="form-control" id="task_vendor" name="task_vendor">
                     </div>
 
                     <div class="form-group">
-                        <label for="task_vendor_phone">Vendor phone</label>
+                        <label for="task_vendor_phone" class=" font-weight-bolder">Vendor phone</label>
                         <input type="number" class="form-control" id="task_vendor_phone" name="task_vendor_phone">
                     </div>
 
@@ -127,13 +127,13 @@
             <div class="card mb-3 shadow">
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="file_desc">File Name / Description <small class="text-danger">*</small></label>
+                        <label for="file_desc" class=" font-weight-bold">File Name / Description <small class="text-danger">*</small></label>
                         <input type="text" class="form-control" id="file_remark" name="file_remark" required>
                         <small class="text-info">example: after/before, contract, invoice, etc.</small>
                     </div>
 
                     <div class="form-group">
-                        <label for="file" class="">Upload Image</label>
+                        <label for="file" class=" font-weight-bold">Upload Image</label>
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="file" name="file" accept="image/*" capture="environment" required>
                             <label class="custom-file-label" for="file">Choose file</label>

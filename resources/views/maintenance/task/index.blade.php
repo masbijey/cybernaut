@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+Task Management
+@endsection
+
 @section('content')
 <h1 class="h3 text-gray-800">TASK MANAGEMENT</h1>
 
@@ -11,7 +15,7 @@
 </nav>
 
 <button type="button" class="btn d-inline-block">UPDATE : </button>
-<a href="{{ route('task.create') }}" class="btn btn-outline-primary btn-sm shadow"><i class='fas fa-plus'></i> New Task</a>
+<a href="{{ route('task.create') }}" class="btn btn-primary btn-sm shadow"><i class='fas fa-plus'></i> New Task</a>
 
 <div class="card mt-2 shadow">
     <div class="card-body">

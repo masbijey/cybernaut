@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+Work Order Management
+@endsection
+
 @section('content')
 <h1 class="h3 text-gray-800">WORK ORDER MANAGEMENT</h1>
 
@@ -11,11 +15,11 @@
 </nav>
 
 <button type="button" class="btn d-inline-block">UPDATE : </button>
-<a href="{{ route('workorder.create') }}" class="btn btn-outline-secondary btn-sm"><i class='fas fa-plus'></i> New Work Order</a>
+<a href="{{ route('workorder.create') }}" class="btn btn-primary shadow btn-sm"><i class='fas fa-plus'></i> New Work Order</a>
 
-<div class="card mt-3 shadow">
+<div class="card mt-2 shadow">
     <div class="card-body">
-        <table class="table table-sm" id="employee-table">
+        <table class="table table-hover" id="employee-table">
             <thead>
                 <tr>
                     <th>Due Date</th>

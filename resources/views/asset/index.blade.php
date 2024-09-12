@@ -17,7 +17,7 @@ Asset List
     <button type="button" class="btn mr-0 mb-0 d-inline-block">UPDATE : </button>
 
     <div class="btn-group shadow">
-        <a href="{{ route('asset.create') }}" class="btn btn-outline-primary btn-sm"><i class='fas fa-plus'></i> New Asset</a>
+        <a href="{{ route('asset.create') }}" class="btn btn-primary btn-sm shadow"><i class='fas fa-plus'></i> New Asset</a>
         <button type="button" class="btn btn-outline-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="sr-only">Toggle Dropdown</span>
         </button>
@@ -31,7 +31,7 @@ Asset List
 
 <div class="card mb-2 shadow-sm">
     <div class="card-body">
-        <table class="table nowrap table-sm" id="employee-table" style="width: 100%;">
+        <table class="table nowrap table-hover" id="employee-table" style="width: 100%;">
             <thead>
                 <tr>
                     <th>No.</th>

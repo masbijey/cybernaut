@@ -24,11 +24,11 @@ Add new asset
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="name" class="">Asset name</label>
+                        <label for="name" class="font-weight-bolder">Asset name</label>
                         <input type="text" class="form-control" id="name" name="name" required>
                     </div>
                     <div class="form-group">
-                        <label for="category" class="">Category</label>
+                        <label for="category" class="font-weight-bolder">Category</label>
                         <select class="custom-select form-control" id="category" name="category" required style="width: 100%;">
                             <option value="" selected>-- select category --</option>
                             @foreach ($assetcat as $data)
@@ -37,19 +37,19 @@ Add new asset
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="merk" class="">Merk</label>
+                        <label for="merk" class="font-weight-bolder">Merk</label>
                         <input type="text" class="form-control" id="merk" name="merk" required>
                     </div>
                     <div class="form-group">
-                        <label for="type" class="">Type / Model</label>
+                        <label for="type" class="font-weight-bolder">Type / Model</label>
                         <input type="text" class="form-control" id="type" name="type" required>
                     </div>
                     <div class="form-group">
-                        <label for="serialNumber" class="">Serial number</label>
+                        <label for="serialNumber" class="font-weight-bolder">Serial number</label>
                         <input type="text" class="form-control" id="serialNumber" name="serialNumber" required>
                     </div>
                     <div class="form-group">
-                        <label for="file" class="">Asset photo</label>
+                        <label for="file" class="font-weight-bolder">Asset photo</label>
 
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="file" name="file" accept="image/*" capture="environment" required>
@@ -67,27 +67,27 @@ Add new asset
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="vendorName" class="">Vendor name</label>
+                        <label for="vendorName" class="font-weight-bolder">Vendor name</label>
                         <input type="text" class="form-control" id="vendorName" name="vendorName" required>
                     </div>
                     <div class="form-group">
-                        <label for="vendorPhone" class="">Vendor phone</label>
+                        <label for="vendorPhone" class="font-weight-bolder">Vendor phone</label>
                         <input type="number" class="form-control" id="vendorPhone" name="vendorPhone" required>
                     </div>
                     <div class="form-group">
-                        <label for="vendorAddress" class="">Vendor address</label>
+                        <label for="vendorAddress" class="font-weight-bolder">Vendor address</label>
                         <textarea name="vendorAddress" id="vendorAddress" class="form-control" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="buyDate" class="">Buy date</label>
+                        <label for="buyDate" class="font-weight-bolder">Buy date</label>
                         <input type="date" class="form-control" id="buyDate" name="buyDate" required>
                     </div>
                     <div class="form-group">
-                        <label for="buyPrice" class="">Buy price</label>
+                        <label for="buyPrice" class="font-weight-bolder">Buy price</label>
                         <input type="text" class="form-control" id="buyPrice" name="buyPrice" required>
                     </div>
                     <div class="form-group">
-                        <label for="status" class="">Buy condition</label>
+                        <label for="status" class="font-weight-bolder">Buy condition</label>
                         <div class="custom-control custom-radio">
                             <input type="radio" id="customRadio11" name="buycond" class="custom-control-input" value="Good" required>
                             <label class="custom-control-label" for="customRadio11">New</label>
@@ -98,7 +98,7 @@ Add new asset
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="remark" class="">Asset remark</label>
+                        <label for="remark" class="font-weight-bolder">Asset remark</label>
                         <textarea name="asset_remark" id="remark" class="form-control"></textarea>
                     </div>
                 </div>
@@ -113,7 +113,7 @@ Add new asset
                 <div class="card-body">
 
                     <div class="form-group">
-                        <label for="location" class="">Location</label>
+                        <label for="location" class="font-weight-bolder">Location</label>
                         <select class="custom-select form-control" id="location" name="location" required style="width: 100%;">
                             <option value="" selected>-- select location --</option>
                             @foreach ($location as $data)
@@ -122,7 +122,7 @@ Add new asset
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="employee" class="">Employee</label>
+                        <label for="employee" class="font-weight-bolder">Employee</label>
                         <select class="custom-select form-control" id="employee" name="employee" required style="width: 100%;">
                             <option value="" selected>-- select employee --</option>
                             @foreach ($employee as $data)
@@ -131,7 +131,7 @@ Add new asset
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="department" class="">Department</label>
+                        <label for="department" class="font-weight-bolder">Department</label>
                         <select class="custom-select form-control" id="department" name="department" required style="width: 100%;">
                             <option value="" selected>-- select department --</option>
                             @foreach ($department as $data)
@@ -140,7 +140,7 @@ Add new asset
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="status" class="">Condition</label>
+                        <label for="status" class="font-weight-bolder">Condition</label>
                         <div class="custom-control custom-radio">
                             <input type="radio" id="good_condition" name="condition" class="custom-control-input" value="Good" required>
                             <label class="custom-control-label" for="good_condition">Good</label>
@@ -151,12 +151,12 @@ Add new asset
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="remark" class="">Allocation remark</label>
+                        <label for="remark" class="font-weight-bolder">Allocation remark</label>
                         <textarea name="remark" id="remark" class="form-control"></textarea>
                     </div>
                     <div class="form-group">
                         <button class="btn btn-primary shadow" type="submit">Save</button>
-                        <a href="/asset" class="btn btn-secondary shadow">Cancel</a>
+                        <a href="{{ route('asset.index') }}" class="btn btn-secondary shadow">Cancel</a>
                     </div>
                 </div>
             </div>
