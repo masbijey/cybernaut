@@ -13,12 +13,12 @@ Leave Management
     </ol>
 </nav>
 
-<div class="mb-3">
+<div class="mb-3 d-flex overflow-auto" style="white-space: nowrap; display:none">
     @php
     $userRole = Auth::user()->role->hris;
     @endphp
 
-    <button type="button" class="btn btn-primary shadow btn-sm"
+    <button type="button" class="btn btn-primary shadow btn-sm btn-sm mr-2"
         data-toggle="modal"
         data-target="#leaveForm"
         @if(!in_array($userRole, [2,3,4,5])) disabled @endif>
@@ -109,7 +109,7 @@ Leave Management
         </div>
     </div>
 
-    <button type="button" class="btn btn-primary shadow btn-sm"
+    <button type="button" class="btn btn-primary shadow btn-sm btn-sm mr-2"
         data-toggle="modal"
         data-target="#addleave"
         @if(!in_array($userRole, [4,5])) disabled @endif>
@@ -185,12 +185,12 @@ Leave Management
     </div>
 
     <a href="{{ route('leavedata.index') }}"
-        class="btn btn-primary btn-sm @if(!in_array($userRole, [3,4,5])) disabled @endif">
+        class="btn btn-primary btn-sm @if(!in_array($userRole, [3,4,5])) disabled @endif btn-sm mr-2">
         <i class='fas fa-list'></i> Leaves Data
     </a>
 
     <a href="{{ route('leaveapproval.index') }}"
-        class="btn btn-primary btn-sm @if(!in_array($userRole, [3,4,5])) disabled @endif">
+        class="btn btn-primary btn-sm @if(!in_array($userRole, [3,4,5])) disabled @endif btn-sm mr-2">
         <i class='fas fa-sign'></i> Approval
     </a>
 </div>
@@ -257,8 +257,8 @@ Leave Management
                     <div class="col mr-2">
                         <div class="text-sm font-weight-bold text-warning text-uppercase mb-1">
                             Total Off Day</div>
-                            <div class="h3 mb-0 font-weight-bold text-gray-800">{{ $al }} / {{ $al }}</div>
-                            </div>
+                        <div class="h3 mb-0 font-weight-bold text-gray-800">{{ $al }} / {{ $al }}</div>
+                    </div>
                     <div class="col-auto">
                         <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                     </div>

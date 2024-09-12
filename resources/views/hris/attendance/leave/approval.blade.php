@@ -36,7 +36,13 @@ Employee Leave Form
                         </tr>
                     </tbody>
                 </table>
-                <a href="{{ url('hris/leave/approval/'.$history->id) }}" class="btn btn-primary btn-sm shadow">detail</a>
+                @if ($history->approved_3_status === 'approved')
+                <a href="{{ url('hris/leave/approval/'.$history->id) }}" class="btn btn-success shadow-sm">Approved</a>
+                @elseif ($history->approved_3_status === 'rejected')
+                <a href="{{ url('hris/leave/approval/'.$history->id) }}" class="btn btn-danger shadow-sm">Rejected</a>
+                @else
+                <a href="{{ url('hris/leave/approval/'.$history->id) }}" class="btn btn-warning shadow-sm">approve now</a>
+                @endif
             </div>
         </div>
         @endforeach

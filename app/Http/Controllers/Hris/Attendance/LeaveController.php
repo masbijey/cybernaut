@@ -54,8 +54,13 @@ class LeaveController extends Controller
         // dd($al);
 
         return view('hris.attendance.leave.employee-panel', compact(
-            'employee', 'leave', 'leave_data', 'history',
-            'al', 'eo', 'dp'
+            'employee',
+            'leave',
+            'leave_data',
+            'history',
+            'al',
+            'eo',
+            'dp'
         ));
     }
 
@@ -115,7 +120,7 @@ class LeaveController extends Controller
 
     public function leaveapproval()
     {
-        $data = Employeeleaveapproval::all();
+        $data = Employeeleaveapproval::orderBy('created_at', 'desc')->get();
 
         return view('hris.attendance.leave.approval', compact('data'));
     }
@@ -171,7 +176,8 @@ class LeaveController extends Controller
     public function leaveapprovaldetail($id)
     {
         $data = Employeeleaveapproval::findOrFail($id);
-        $leaves = Employeeleave::where('leaveapproval_id', $id)->get();
+        $leaves = Employeeleave::where('leaveapproval_id', $id)
+            ->get();
 
         return view('hris.attendance.leave.approval_detail', compact('data', 'leaves'));
     }

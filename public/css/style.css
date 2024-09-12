@@ -145,3 +145,13 @@ body {
         font-size: 3.5rem;
     }
 }
+
+.mb-3-menu {
+    overflow-x: auto;
+    -ms-overflow-style: none;  /* Internet Explorer and Edge */
+    scrollbar-width: none;     /* Firefox */
+}
+
+.mb-3-menu::-webkit-scrollbar { 
+    display: none;  /* Chrome, Safari, and Opera */
+}

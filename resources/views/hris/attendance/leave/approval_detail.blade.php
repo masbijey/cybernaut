@@ -24,6 +24,10 @@ Employee Leave Form
                 <table class="table table-borderless">
                     <tbody>
                         <tr>
+                            <td>Created at</td>
+                            <td>: {{ $data->created_at }}</td>
+                        </tr>
+                        <tr>
                             <td>Name</td>
                             <td>: <b>{{ $data->user->name }}</b></td>
                         </tr>
@@ -58,34 +62,32 @@ Employee Leave Form
                         </tr>
                         <tr>
                             <td>Leaves</td>
-                            <td>
-                                <table class="table table-hover table-sm table-bordered">
-                                    <thead class="thead-light">
-                                        <th>Expired</th>
-                                        <th>Type</th>
-                                        <th>Remark</th>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($leaves as $leave)
-                                        <tr>
-                                            <td>{{ \Carbon\Carbon::parse($leave->valid_until)->format('d-m-Y') }}</td>
-                                            <td>
-                                                @if ($leave->type == 'public_holiday')
-                                                <span class="badge badge-success">PH</span>
-                                                @elseif ($leave->type == 'extra_off')
-                                                <span class="badge badge-success">EO</span>
-                                                @elseif ($leave->type == 'annual_leave')
-                                                <span class="badge badge-success">AL</span>
-                                                @elseif ($leave->type == 'sick_off')
-                                                <span class="badge badge-danger">SICK</span>
-                                                @endif
-                                            </td>
-                                            <td>{{ $leave->description }}</td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </td>
+                            <table class="table table-hover table-sm table-bordered">
+                                <thead class="thead-light">
+                                    <th>Expired</th>
+                                    <th>Type</th>
+                                    <th>Remark</th>
+                                </thead>
+                                <tbody>
+                                    @foreach ($leaves as $leave)
+                                    <tr>
+                                        <td>{{ \Carbon\Carbon::parse($leave->valid_until)->format('d-m-Y') }}</td>
+                                        <td>
+                                            @if ($leave->type == 'public_holiday')
+                                            <span class="badge badge-success">PH</span>
+                                            @elseif ($leave->type == 'extra_off')
+                                            <span class="badge badge-success">EO</span>
+                                            @elseif ($leave->type == 'annual_leave')
+                                            <span class="badge badge-success">AL</span>
+                                            @elseif ($leave->type == 'sick_off')
+                                            <span class="badge badge-danger">SICK</span>
+                                            @endif
+                                        </td>
+                                        <td>{{ $leave->description }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </tr>
                     </tbody>
                 </table>
@@ -151,7 +153,7 @@ Employee Leave Form
                         @endif
                     </div>
 
-                    @if ($data->approved_3_status  === null)
+                    @if ($data->approved_3_status === null)
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary shadow">Save</button>
                     </div>
