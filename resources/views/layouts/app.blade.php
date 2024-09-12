@@ -49,15 +49,9 @@
             </div>
 
             <!-- <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Employee Management</span></a>
-            </li> -->
-
-            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-users"></i>
-                    <span>Employee Management</span>
+                    <span>Employee</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -65,50 +59,140 @@
 
                         @if(in_array(Auth::user()->role->hris, ['3' , '4']))
                         <a class="collapse-item" href="{{ route('employee.index') }}">Employee Data</a>
+                        <a class="collapse-item" href="{{ route('employee.index') }}">Contract</a>
+                        <a class="collapse-item" href="{{ route('employee.index') }}">Training</a>
+                        <a class="collapse-item" href="{{ route('employee.index') }}">PunRew</a>
+                        <a class="collapse-item" href="{{ route('employee.index') }}">Internal Memo</a>
+                        <a class="collapse-item" href="{{ route('employee.index') }}">Recruitment</a>
                         @endif
-
-                        <a class="collapse-item" href="{{ route('leave.index') }}" disable>Leave Management</a>
-                        <a class="collapse-item" href="{{ route('leaveapproval.index') }}" disable>Approval Management</a>
                     </div>
                 </div>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#asset" aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-toolbox"></i>
-                    <span>Asset Management</span>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsethree" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-user-clock"></i>
+                    <span>Attendance</span>
                 </a>
-                <div id="asset" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div id="collapsethree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Components:</h6>
+                        <a class="collapse-item" href="{{ route('leave.index') }}">Employee Leave</a>
+                        <a class="collapse-item" href="{{ route('leave.index') }}">Shift Manager</a>
+                    </div>
+                </div>
+            </li> -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#ems_menu" aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-tools"></i>
+                    <span>Employee</span>
+                </a>
+                <div id="ems_menu" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Employee:</h6>
+
+                        <a class="collapse-item collapsed" href="#" data-toggle="collapse" data-target="#ems_sub_menu" aria-expanded="false" aria-controls="ems_sub_menu">Employee</a>
+                        <div id="ems_sub_menu" class="collapse">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Employee Options:</h6>
+                                @if(in_array(Auth::user()->role->hris, ['3' , '4']))
+                                <a class="collapse-item" href="{{ route('employee.index') }}">Employee Data</a>
+                                <a class="collapse-item" href="{{ route('employee.index') }}">Contract</a>
+                                <a class="collapse-item" href="{{ route('employee.index') }}">Training</a>
+                                <a class="collapse-item" href="{{ route('employee.index') }}">PunRew</a>
+                                <a class="collapse-item" href="{{ route('employee.index') }}">Internal Memo</a>
+                                <a class="collapse-item" href="{{ route('employee.index') }}">Recruitment</a>
+                                @endif
+                            </div>
+                        </div>
+
+                        <a class="collapse-item collapsed" href="#" data-toggle="collapse" data-target="#att_sub_menu" aria-expanded="false" aria-controls="att_sub_menu">Attendance</a>
+                        <div id="att_sub_menu" class="collapse">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Attendance Options:</h6>
+                                <a class="collapse-item" href="{{ route('leave.index') }}">Employee Leave</a>
+                                <a class="collapse-item" href="{{ route('leave.index') }}">Shift Manager</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#assetMenu" aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>Asset</span>
+                </a>
+                <div id="assetMenu" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Components:</h6>
 
                         @if(in_array(Auth::user()->role->asset, ['1', '2', '3', '4']))
-                        <a class="collapse-item" href="{{ route('asset.index')}}">Asset Management</a>
+                        <a class="collapse-item" href="{{ route('asset.index')}}">Asset Data</a>
                         @endif
 
-                        @if(in_array(Auth::user()->role->workorder, ['1', '2', '3', '4']))
-                        <a class="collapse-item" href="{{ route('workorder.index')}}">Workorder Management</a>
+                        @if(in_array(Auth::user()->role->asset, ['1', '2', '3', '4']))
+                        <a class="collapse-item" href="{{ route('asset.create')}}">Add New Asset</a>
                         @endif
 
-                        @if(in_array(Auth::user()->role->task, ['1', '2', '3', '4']))
-                        <a class="collapse-item" href="{{ route('task.index')}}">Task Management</a>
+                        @if(in_array(Auth::user()->role->asset, ['1', '2', '3', '4']))
+                        <a class="collapse-item" href="{{ route('category.index')}}">Asset Category</a>
                         @endif
+                    </div>
+                </div>
+            </li>
 
-                        @if(in_array(Auth::user()->role->signage, ['1', '2', '3', '4']))
-                        <a class="collapse-item" href="{{ route('signage.index') }}">TV Signage</a>
-                        @endif
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#maintenanceMenu" aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-tools"></i>
+                    <span>Maintenance</span>
+                </a>
+                <div id="maintenanceMenu" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Maintenance:</h6>
+
+                        <a class="collapse-item collapsed" href="#" data-toggle="collapse" data-target="#woSubMenu" aria-expanded="false" aria-controls="woSubMenu">Work Order</a>
+                        <div id="woSubMenu" class="collapse">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Work Order Options:</h6>
+                                <a class="collapse-item" href="{{ route('workorder.index')}}">WO Summary</a>
+                                <a class="collapse-item" href="{{ route('workorder.index')}}">Create New WO</a>
+                                <a class="collapse-item" href="{{ route('workorder.index')}}">On Progress</a>
+                                <a class="collapse-item" href="{{ route('workorder.index')}}">Finished</a>
+                            </div>
+                        </div>
+
+                        <a class="collapse-item collapsed" href="#" data-toggle="collapse" data-target="#taskSubMenu" aria-expanded="false" aria-controls="taskSubMenu">Task</a>
+                        <div id="taskSubMenu" class="collapse">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Task Options:</h6>
+                                <a class="collapse-item" href="{{ route('task.index')}}">Task Summary</a>
+                                <a class="collapse-item" href="{{ route('task.index')}}">Create New Task</a>
+                                <a class="collapse-item" href="{{ route('task.index')}}">On Progress</a>
+                                <a class="collapse-item" href="{{ route('task.index')}}">Finished</a>
+                            </div>
+                        </div>
+
+                        <a class="collapse-item" href="{{ route('signage.index') }}">Signage Manager</a>
+
                     </div>
                 </div>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#roommanage" aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-toolbox"></i>
-                    <span>Room Management</span>
+                    <i class="fas fa-hand-sparkles"></i>
+                    <span>Room</span>
                 </a>
                 <div id="roommanage" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Components:</h6>
+
+                        @if(in_array(Auth::user()->role->asset, ['1', '2', '3', '4']))
+                        <a class="collapse-item" href="{{ route('asset.index')}}">Room Summary</a>
+                        @endif
 
                         @if(in_array(Auth::user()->role->asset, ['1', '2', '3', '4']))
                         <a class="collapse-item" href="{{ route('asset.index')}}">Room Status</a>

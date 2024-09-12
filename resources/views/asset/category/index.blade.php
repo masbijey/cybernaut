@@ -26,7 +26,7 @@ Asset Category Management
 
                     <table class="table table-borderless">
                         <td><label for="name">Category Name</label></td>
-                        <td><input type="text" name="name" id="name" class="form-control form-control-sm" required></td>
+                        <td><input type="text" name="name" id="name" class="form-control" required></td>
                     </table>
 
                     <button class="btn btn-primary shadow-sm" type="submit">Save</button>
@@ -42,7 +42,7 @@ Asset Category Management
                 <h6 class="m-0 font-weight-bold text-primary">Category List</h6>
             </div>
             <div class="card-body">
-                <table class="table table-sm table-hover" id="location-table">
+                <table class="table table-hover" id="location-table">
                     <thead>
                         <tr class="text-center">
                             <th>#</th>
