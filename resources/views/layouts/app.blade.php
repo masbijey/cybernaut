@@ -98,11 +98,11 @@
                                 <h6 class="collapse-header">Employee Options:</h6>
                                 @if(in_array(Auth::user()->role->hris, ['3' , '4']))
                                 <a class="collapse-item" href="{{ route('employee.index') }}">Employee Data</a>
-                                <a class="collapse-item" href="{{ route('employee.index') }}">Contract</a>
-                                <a class="collapse-item" href="{{ route('employee.index') }}">Training</a>
-                                <a class="collapse-item" href="{{ route('employee.index') }}">PunRew</a>
-                                <a class="collapse-item" href="{{ route('employee.index') }}">Internal Memo</a>
-                                <a class="collapse-item" href="{{ route('employee.index') }}">Recruitment</a>
+                                <a class="collapse-item" href="{{ route('contract.index') }}">Contract</a>
+                                <a class="collapse-item" href="{{ route('training.index') }}">Training</a>
+                                <a class="collapse-item" href="{{ route('rewpun.index') }}">PunRew</a>
+                                <a class="collapse-item" href="#">Internal Memo</a>
+                                <a class="collapse-item" href="#">Recruitment</a>
                                 @endif
                             </div>
                         </div>
@@ -111,7 +111,8 @@
                         <div id="att_sub_menu" class="collapse">
                             <div class="bg-white py-2 collapse-inner rounded">
                                 <h6 class="collapse-header">Attendance Options:</h6>
-                                <a class="collapse-item" href="{{ route('leave.index') }}">Employee Leave</a>
+                                <a class="collapse-item" href="{{ route('leave.index') }}">Employee Leaves</a>
+                                <a class="collapse-item" href="{{ route('leaveapproval.index') }}">Leave Approvals</a>
                                 <a class="collapse-item" href="{{ route('leave.index') }}">Shift Manager</a>
                             </div>
                         </div>

@@ -52,8 +52,8 @@ Employee Leave Form
         <div class="col-12">
             <div class="card mb-3 shadow">
                 <div class="card-body">
-                    <table class="table table-hover" id="employee-table" style="width: 100%;">
-                        <thead>
+                    <table class="table table-hover table-striped table-bordered" id="employee-table" style="width: 100%;">
+                        <thead class="thead-light">
                             <th>Employee Name</th>
                             <th>Start Date</th>
                             <th>End Date</th>
@@ -66,15 +66,15 @@ Employee Leave Form
                         <tbody>
                             @foreach ($data as $history)
                             <tr>
-                                <td>{{ $history->employee->name }}</td>
+                                <td><a href="#">{{ $history->employee->name }}</a></td>
                                 <td>
-                                    {{ \Carbon\Carbon::parse($history->start_date)->format('d-m-Y') }}
+                                    <small>{{ \Carbon\Carbon::parse($history->start_date)->format('d-m-Y') }}</small>
                                 </td>
                                 <td>
-                                    {{ \Carbon\Carbon::parse($history->end_date)->format('d-m-Y') }}
+                                    <small>{{ \Carbon\Carbon::parse($history->end_date)->format('d-m-Y') }}</small>
                                 </td>
                                 <td>
-                                    {{ \Carbon\Carbon::parse($history->work_date)->format('d-m-Y') }}
+                                    <small>{{ \Carbon\Carbon::parse($history->work_date)->format('d-m-Y') }}</small>
                                 </td>
                                 <td class="text-center">
                                     @if ($history->approved_1_by == null )
@@ -104,7 +104,7 @@ Employee Leave Form
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ url('hris/leave/approval/'.$history->id) }}" class="btn btn-primary shadow">DETAIL</a>
+                                    <a href="{{ url('hris/leave/approval/'.$history->id) }}" class="btn btn-primary btn-sm shadow">DETAIL</a>
                                 </td>
                             </tr>
                             @endforeach

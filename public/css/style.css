@@ -148,10 +148,14 @@ body {
 
 .mb-3-menu {
     overflow-x: auto;
-    -ms-overflow-style: none;  /* Internet Explorer and Edge */
-    scrollbar-width: none;     /* Firefox */
+    -ms-overflow-style: none;
+    /* Internet Explorer and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
-.mb-3-menu::-webkit-scrollbar { 
-    display: none;  /* Chrome, Safari, and Opera */
+.mb-3-menu::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, and Opera */
 }
+

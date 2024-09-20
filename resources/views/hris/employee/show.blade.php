@@ -92,7 +92,7 @@ Employee details | {{ $employee->name }}
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
         <div class="d-block d-sm-none d-md-none">
-            <div class="card shadow-sm mb-3">
+            <div class="card shadow mb-3">
                 <a href="#personal-card" class="d-block card-header" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                     <h6 class="m-1 font-weight-bold">Personal Information</h6>
                 </a>
@@ -143,7 +143,7 @@ Employee details | {{ $employee->name }}
         </div>
 
         <div class="d-none d-sm-block">
-            <div class="card shadow-sm mb-3">
+            <div class="card shadow mb-3">
                 <a href="#personal-card" class="d-block card-header" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                     <h6 class="m-1 font-weight-bold">Personal Information</h6>
                 </a>
@@ -195,7 +195,7 @@ Employee details | {{ $employee->name }}
     </div>
 
     <div class="col-sm-12 col-md-12 col-lg-8">
-        <div class="card shadow-sm mb-3">
+        <div class="card shadow mb-3">
             <a href="#education-card" class="d-block card-header" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Educations</h6>
             </a>
@@ -232,7 +232,7 @@ Employee details | {{ $employee->name }}
             </div>
         </div>
 
-        <div class="card shadow-sm mb-3">
+        <div class="card shadow mb-3">
             <a href="#experience-card" class="d-block card-header" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Experience</h6>
             </a>
@@ -269,7 +269,7 @@ Employee details | {{ $employee->name }}
             </div>
         </div>
 
-        <div class="card shadow-sm mb-3">
+        <div class="card shadow mb-3">
             <a href="#family-card" class="d-block card-header" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Family</h6>
             </a>
@@ -306,7 +306,7 @@ Employee details | {{ $employee->name }}
             </div>
         </div>
 
-        <div class="card shadow-sm mb-3">
+        <div class="card shadow mb-3">
             <a href="#sickness-card" class="d-block card-header" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Sickness History</h6>
             </a>
@@ -341,7 +341,7 @@ Employee details | {{ $employee->name }}
             </div>
         </div>
 
-        <div class="card shadow-sm mb-3">
+        <div class="card shadow mb-3">
             <a href="#contract-card" class="d-block card-header" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Contract</h6>
             </a>
@@ -380,7 +380,7 @@ Employee details | {{ $employee->name }}
             </div>
         </div>
 
-        <div class="card shadow-sm mb-3">
+        <div class="card shadow mb-3">
             <a href="#pnr-card" class="d-block card-header" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Punishment & Reward</h6>
             </a>
@@ -415,7 +415,7 @@ Employee details | {{ $employee->name }}
             </div>
         </div>
 
-        <div class="card shadow-sm mb-3">
+        <div class="card shadow mb-3">
             <a href="#leave-card" class="d-block card-header" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Leaves History</h6>
             </a>
@@ -517,7 +517,7 @@ Employee details | {{ $employee->name }}
             </div>
         </div>
 
-        <div class="card shadow-sm mb-3">
+        <div class="card shadow mb-3">
             <a href="#inventory-card" class="d-block card-header" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Inventory</h6>
             </a>
@@ -563,7 +563,7 @@ Employee details | {{ $employee->name }}
             </div>
         </div>
 
-        <div class="card shadow-sm mb-3">
+        <div class="card shadow mb-3">
             <a href="#training-card" class="d-block card-header" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Training</h6>
             </a>
@@ -598,7 +598,7 @@ Employee details | {{ $employee->name }}
             </div>
         </div>
 
-        <div class="card shadow-sm mb-3">
+        <div class="card shadow mb-3">
             <a href="#attendance-card" class="d-block card-header" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Attendance</h6>
             </a>
@@ -633,7 +633,7 @@ Employee details | {{ $employee->name }}
             </div>
         </div>
 
-        <div class="card shadow-sm mb-3">
+        <div class="card shadow mb-3">
             <a href="#log-card" class="d-block card-header" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="maintenancelist">
                 <h6 class="m-1 font-weight-bold">Log</h6>
             </a>

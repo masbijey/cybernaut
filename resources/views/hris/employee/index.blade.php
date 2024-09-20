@@ -120,8 +120,8 @@
 
 <div class="card mt-3 shadow-sm">
     <div class="card-body">
-        <table class="table table-hover nowrap" id="employee-table">
-            <thead>
+        <table class="table table-hover table-bordered table-striped" id="employee-table">
+            <thead class="thead-light">
                 <tr>
                     <th>#</th>
                     <th>Name</th>

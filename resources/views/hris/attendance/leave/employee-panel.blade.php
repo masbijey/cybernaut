@@ -32,7 +32,7 @@ Leave Management
                     @csrf
 
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Leave Form Request</h5>
+                        <h5 class="modal-title m-0 font-weight-bold text-primary" id="exampleModalLabel">Leave Form Request</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
@@ -275,29 +275,24 @@ Leave Management
                 <h6 class="m-0 font-weight-bold text-primary">Leave Form History</h6>
             </div>
             <div class="card-body">
-                <table class="table table-hover table-sm" id="history-table" style="width: 100%;">
-                    <thead>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Work Date</th>
-                        <th>Leader Approval (1)</th>
-                        <th>Leader Approval (2)</th>
-                        <th>HR Approval</th>
+                <table class="table table-hover table-bordered table-striped" id="history-table" style="width: 100%;">
+                    <thead class="thead-light">
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>Work</th>
+                        <!-- <th>Leader Approval (1)</th>
+                        <th>Leader Approval (2)</th> -->
+                        <th>Status</th>
                         <th>Action</th>
                     </thead>
                     <tbody>
                         @foreach ($history as $history)
                         <tr>
-                            <td>
-                                {{ \Carbon\Carbon::parse($history->start_date)->format('d-m-Y') }}
-                            </td>
-                            <td>
-                                {{ \Carbon\Carbon::parse($history->end_date)->format('d-m-Y') }}
-                            </td>
-                            <td>
-                                {{ \Carbon\Carbon::parse($history->work_date)->format('d-m-Y') }}
-                            </td>
-                            <td class="text-center">
+                            <td>{{ \Carbon\Carbon::parse($history->start_date)->format('d/m/y') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($history->end_date)->format('d/m/y') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($history->work_date)->format('d/m/y') }}</td>
+
+                            <!-- <td class="text-center">
                                 @if ($history->approved_1_by == null )
                                 <span class="badge badge-warning">waiting</span>
                                 @elseif ($history->approved_1_status == 'approved')
@@ -314,7 +309,7 @@ Leave Management
                                 @else ($history->approved_2_status == 'rejected')
                                 <span class="badge badge-danger">{{ $history->approved_2_status }}</span>
                                 @endif
-                            </td>
+                            </td> -->
                             <td class="text-center">
                                 @if ($history->approved_3_by == null )
                                 <span class="badge badge-warning">waiting</span>
@@ -324,7 +319,7 @@ Leave Management
                                 <span class="badge badge-danger">{{ $history->approved_3_status }}</span>
                                 @endif
                             </td>
-                            <td><a href="{{ url('hris/leave/approval/'.$history->id) }}" class="btn btn-sm btn-outline-primary">Detail</a></td>
+                            <td class="text-center"><a href="{{ url('hris/leave/approval/'.$history->id) }}" class="btn btn-sm btn-primary shadow">Detail</a></td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -341,19 +336,19 @@ Leave Management
                 <h6 class="m-0 font-weight-bold text-primary">Leave Data</h6>
             </div>
             <div class="card-body">
-                <table class="table table-hover table-sm" id="employee-table" style="width: 100%;">
-                    <thead>
-                        <th>Created At</th>
+                <table class="table table-hover table-bordered table-striped" id="employee-table" style="width: 100%;">
+                    <thead class="thead-light">
+                        <th>Created</th>
                         <th>Type</th>
-                        <th>Valid Date</th>
-                        <th>Pick Date</th>
+                        <th>Expire</th>
+                        <th>Pick</th>
                         <th>Remark</th>
                     </thead>
                     <tbody>
                         @foreach($leave as $data)
                         <!-- @if(!empty($data->employee)) -->
                         <tr>
-                            <td>{{ \Carbon\Carbon::parse($data->created_at)->format('d/m/y H:i:s') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($data->created_at)->format('d/m/y') }}</td>
                             <td>
                                 @if ($data->type == 'public_holiday')
                                 <span class="badge badge-success">PH</span>

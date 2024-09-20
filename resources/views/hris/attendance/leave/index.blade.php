@@ -21,8 +21,8 @@ Leave Management
                 <h6 class="m-0 font-weight-bold text-primary">Leave Data</h6>
             </div>
             <div class="card-body">
-                <table class="table table-hover " id="employee-table">
-                    <thead>
+                <table class="table table-hover table-striped table-bordered" id="employee-table">
+                    <thead class="thead-light">
                         <th>Created At</th>
                         <th>Employee</th>
                         <th>Type</th>
