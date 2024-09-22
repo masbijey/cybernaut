@@ -16,7 +16,7 @@
         <div class="card shadow mb-3">
             <div class="card-body">
                 <div class="form-group">
-                    <label for="" class="font-weight-bolder">Project name :</label>
+                    <label for="" class="font-weight-bolder text-primary">Project name :</label>
                     <input type="text" class="form-control" value="{{ $detail_project->name }}" disabled>
                     <small class="text-info">Created by: {{ $detail_project->owner->name }} - {{ $detail_project->created_at }}</small>
                 </div>
@@ -101,38 +101,65 @@
 
     <div class="col-md-8 col-sm-12">
         <div class="card shadow mb-3">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Project tasks list</h6>
-            </div>
+            <!-- <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Project task manager</h6>
+            </div> -->
             <div class="card-body">
                 <div class="row">
-                    <div class="form-group w-50 mb-4 pl-3 pr-3">
-                        <label for="">Add task to project :</label>
-                        <select name="add_new_task" class="custom-select">
-                            <option value="test">select task :</option>
-                        </select>
-                        <small class="text-info">select from existing task</small> <br>
-                        <button class="btn btn-success btn-sm shadow">add</button>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="">Add task to project :</label>
+                            <select name="add_new_task" class="custom-select">
+                                <option value="test">select task :</option>
+                            </select>
+                            <small class="text-info">select from existing task</small> <br>
+                            <button class="btn btn-success shadow btn-sm">
+                                <i class="fas fa-plus"></i> Add Task
+                            </button>
+                        </div>
                     </div>
 
-                    <div class="form-group w-50 pr-3">
-                        <label for="">Task name :</label>
-                        <input type="text" class="form-control">
-                        <small class="text-info">for add new task</small><br>
-                        <button class="btn btn-primary btn-sm shadow">Add</button>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="">Task name :</label>
+                            <input type="text" class="form-control" placeholder="enter task name">
+                            <small class="text-info">for add new task</small><br>
+                            <button class="btn btn-primary shadow btn-sm">
+                                <i class="fas fa-plus"></i> Add Task
+                            </button>
+                        </div>
                     </div>
-
                 </div>
-                <table class="table">
-                    <thead class="thead-light">
-                        <th>Date</th>
+            </div>
+        </div>
+        <div class="card shadow mb-3">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Project Task List</h6>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover table-striped" id="table-task" style="width:100%">
+                    <thead>
+                        <th style="width: 15%;">Date</th>
                         <th>Task</th>
-                        <th>Status</th>
-                        <th>Score</th>
-                        <th>Detail</th>
+                        <th style="width: 10%;">Status</th>
+                        <th style="width: 10%;">Score</th>
+                        <th style="width: 10%;">Detail</th>
                     </thead>
                     <tbody>
-
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button class="btn btn-info btn-sm btn-circle shadow-sm" data-toggle="tooltip"
+                                data-placement="top" title="view task details">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                            <button class="btn btn-danger btn-sm btn-circle shadow-sm" data-toggle="tooltip"
+                                data-placement="top" title="remove task form this project">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
                     </tbody>
                 </table>
             </div>
@@ -142,44 +169,15 @@
 @endsection
 
 <!-- section css ready -->
+
 @section('js')
 <script>
-    ("#employee").select2({
-        theme: 'bootstrap'
-    });
+    // ("#employee").select2({
+    //     theme: 'bootstrap'
+    // });
 
-    ("#employee2").select2({
-        theme: 'bootstrap'
-    });
-
-    ("#assets").select2({
-        theme: 'bootstrap'
-    });
-
-    ("#locations").select2({
-        theme: 'bootstrap'
-    });
-
-    ("#assets2").select2({
-        theme: 'bootstrap'
-    });
-
-    ("#location2").select2({
-        theme: 'bootstrap'
-    });
-
-    (document).ready(function() {
-        ('js-example-basic-multiple').select2();
-    });
-
-    (document).ready(function() {
-        ('#task-table').DataTable({
-            responsive: true
-        });
-    });
-
-    (document).ready(function() {
-        ('#maintenance-table').DataTable({
+    $(document).ready(function() {
+        $('#table-task').DataTable({
             responsive: true
         });
     });
