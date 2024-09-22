@@ -91,7 +91,7 @@ class TaskController extends Controller
                 'task_desc' => $request->task_desc,
                 'task_status' => $request->task_status,
                 'task_type' => $request->task_type,
-                'task_date' => $request->task_date,
+                'due_date' => $request->task_date,
                 'task_price' => $request->task_price,
                 'task_remark' => $request->task_remark,
                 'task_priority' => $request->task_priority,

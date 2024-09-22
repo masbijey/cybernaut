@@ -6,7 +6,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href=" url('/') ">Home</a></li>
-        <li class="breadcrumb-item"><a href=" route('project.index') ">Project List</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('project.index') }}">Project List</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{ $detail_project->name }}</li>
     </ol>
 </nav>
@@ -28,7 +28,7 @@
 
                 <div class="form-group">
                     <label for="">Budget :</label>
-                    <input type="number" class="form-control" value="{{ $detail_project->budget }}">
+                    <input type="text" class="form-control" value="{{ $detail_project->budget }}">
                 </div>
             </div>
         </div>
@@ -39,27 +39,27 @@
                     Status :
                     @switch($detail_project->status)
                     @case('planning')
-                    <span class="badge badge-info">Planning</span>
+                    <button class="btn btn-info btn-sm">Planning</button>
                     @break
 
                     @case('ongoing')
-                    <span class="badge badge-primary">Ongoing</span>
+                    <button class="btn btn-primary btn-sm">Ongoing</button>
                     @break
 
                     @case('completed')
-                    <span class="badge badge-success">Completed</span>
+                    <button class="btn btn-success btn-sm">Completed</button>
                     @break
 
                     @case('on_hold')
-                    <span class="badge badge-warning">On Hold</span>
+                    <button class="btn btn-warning btn-sm">On Hold</button>
                     @break
 
                     @case('cancelled')
-                    <span class="badge badge-danger">Cancelled</span>
+                    <button class="btn btn-danger btn-sm">Cancelled</button>
                     @break
 
                     @default
-                    <span class="badge badge-secondary">Unknown</span>
+                    <button class="btn btn-secondary btn-sm">Unknown</button>
                     @endswitch
                 </div>
 

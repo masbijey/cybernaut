@@ -14,7 +14,7 @@
 <div class="mt-3">
     <button type="button" class="btn mr-0 mb-0 d-inline-block">UPDATE : </button>
 
-    <a href="{{ route('project.create') }}" class="btn btn-primary btn-sm"><i class='fas fa-plus'></i> New
+    <a href="{{ route('project.create') }}" class="btn btn-primary btn-sm shadow"><i class='fas fa-plus'></i> New
         Project</a>
 </div>
 
@@ -24,29 +24,49 @@
     </div>
     <div class="card-body">
         <table class="table table-hover table-bordered table-striped" id="employee-table">
-            <thead class="thead-light text-center">
-                <tr class="text-center">
-                    <th class="text-center">Project</th>
-                    <th class="text-center">Status</th>
-                    <th class="text-center">Start date</th>
-                    <th class="text-center">Due date</th>
-                    <th class="text-center">End date</th>
+            <thead class="thead-light">
+                <tr>
+                    <th>Project</th>
+                    <th>Status</th>
+                    <th>Start date</th>
+                    <th>Due date</th>
+                    <th>End date</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($data_project as $data)
-                <tr class="text-center">
+                <tr>
                     <td>
-                        {{ \Carbon\Carbon::parse($data->created_at)->format('d/m/y') }} <br>
-                        <a href="/project/detail/{{ $data->id }}">{{ $data->name }}</a> <br>
-                        {{ $data->desc }}
+                        <!-- {{ \Carbon\Carbon::parse($data->created_at)->format('d/m/y') }} <br> -->
+                        {{ $data->created_at }} <br>
+                        <a href="/project/detail/{{ $data->id }}" class="font-weight-bolder">{{ $data->name }}</a> <br>
+                        {{ $data->description }}
                     </td>
                     <td>
-                        @if ($data->status == 'Done')
-                        <span class="badge badge-success">Done</span>
-                        @else
-                        <span class="badge badge-danger">On Progress</span>
-                        @endif
+                        @switch($data->status)
+                        @case('planning')
+                        <button class="btn btn-info btn-sm">Planning</button>
+                        @break
+
+                        @case('ongoing')
+                        <button class="btn btn-primary btn-sm">Ongoing</button>
+                        @break
+
+                        @case('completed')
+                        <button class="btn btn-success btn-sm">Completed</button>
+                        @break
+
+                        @case('on_hold')
+                        <button class="btn btn-warning btn-sm">On Hold</button>
+                        @break
+
+                        @case('cancelled')
+                        <button class="btn btn-danger btn-sm">Cancelled</button>
+                        @break
+
+                        @default
+                        <button class="btn btn-secondary btn-sm">Unknown</button>
+                        @endswitch
                     </td>
                     <td>
                         {{ \Carbon\Carbon::parse($data->planStartDate)->format('d/m/y') }}

@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+Add new Task
+@endsection
+
 @section('content')
 <h1 class="h3 text-gray-800">ADD NEW TASK</h1>
 

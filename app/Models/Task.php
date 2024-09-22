@@ -17,12 +17,14 @@ class Task extends Model
         'task_desc',
         'task_status',
         'task_type',
-        'task_date',
+        'due_date',
         'task_price',
         'task_remark',
         'task_priority',
         'task_vendor',
-        'task_vendor_phone'
+        'task_vendor_phone',
+        'workorder_id',
+        'project_id'
     ];
 
     public function location()
