@@ -3,6 +3,14 @@
 @section('content')
 <h1 class="h3 mb-2 text-gray-800">Project Management</h1>
 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('project.index') }}">Project List</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Add New Project</li>
+    </ol>
+</nav>
+
 <div class="mt-3">
     <button type="button" class="btn mr-0 mb-0 d-inline-block">UPDATE : </button>
 
@@ -15,25 +23,23 @@
         <h6 class="m-0 font-weight-bold text-primary">Project List</h6>
     </div>
     <div class="card-body">
-        <table class="table table-hover table-sm table-bordered table-striped" id="employee-table">
+        <table class="table table-hover table-bordered table-striped" id="employee-table">
             <thead class="thead-light text-center">
                 <tr class="text-center">
-                    <th class="text-center">Create at</th>
-                    <th class="text-center">Description</th>
+                    <th class="text-center">Project</th>
                     <th class="text-center">Status</th>
-                    <th class="text-center">Plan start</th>
+                    <th class="text-center">Start date</th>
                     <th class="text-center">Due date</th>
                     <th class="text-center">End date</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($project as $data)
+                @foreach($data_project as $data)
                 <tr class="text-center">
                     <td>
-                        {{ \Carbon\Carbon::parse($data->created_at)->format('d/m/y') }}
-                    </td>
-                    <td>
-                        <a href="/project/detail/{{ $data->id }}">{{ $data->description }}</a>
+                        {{ \Carbon\Carbon::parse($data->created_at)->format('d/m/y') }} <br>
+                        <a href="/project/detail/{{ $data->id }}">{{ $data->name }}</a> <br>
+                        {{ $data->desc }}
                     </td>
                     <td>
                         @if ($data->status == 'Done')
@@ -67,10 +73,10 @@
 
 @section('js')
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('#employee-table').DataTable({
             responsive: true
-        }); 
+        });
     });
 
     $("#employee").select2({
@@ -84,9 +90,5 @@
     $("#location").select2({
         theme: 'bootstrap'
     });
-
-
-
-
 </script>
 @endsection

@@ -171,8 +171,21 @@
                                 <h6 class="collapse-header">Task Options:</h6>
                                 <a class="collapse-item" href="{{ route('task.index')}}">Task Summary</a>
                                 <a class="collapse-item" href="{{ route('task.index')}}">Create New Task</a>
+                                <a class="collapse-item" href="{{ route('task.index')}}">Planning</a>
                                 <a class="collapse-item" href="{{ route('task.index')}}">On Progress</a>
                                 <a class="collapse-item" href="{{ route('task.index')}}">Finished</a>
+                            </div>
+                        </div>
+
+                        <a class="collapse-item collapsed" href="#" data-toggle="collapse" data-target="#projectSubMenu" aria-expanded="false" aria-controls="projectSubMenu">Project</a>
+                        <div id="projectSubMenu" class="collapse">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Project Options:</h6>
+                                <a class="collapse-item" href="{{ route('project.index')}}">Project Summary</a>
+                                <a class="collapse-item" href="{{ route('project.index')}}">Create New Project</a>
+                                <a class="collapse-item" href="{{ route('project.index')}}">Planning</a>
+                                <a class="collapse-item" href="{{ route('project.index')}}">On Progress</a>
+                                <a class="collapse-item" href="{{ route('project.index')}}">Finished</a>
                             </div>
                         </div>
 

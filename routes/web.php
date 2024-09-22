@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\Project\ProjectController;
+use App\Http\Controllers\Maintenance\ProjectController;
 use App\Http\Controllers\General\DepartmentController;
 use App\Http\Controllers\Asset\AssetController;
 use App\Http\Controllers\Maintenance\TaskController;
@@ -145,6 +145,21 @@ Route::controller(TaskController::class)->middleware('auth')->group(function () 
     Route::get('task/undone/{id}', 'taskundone')->name('task.undone');
     Route::post('task/addcomment', 'addcomment')->name('task.addcomment');
 });
+
+Route::controller(ProjectController::class)->middleware('auth')->group(function () {
+    Route::get('project', 'index')->name('project.index');
+    Route::post('project/store', 'store')->name('project.store');
+    Route::get('project/create', 'create')->name('project.create');
+    Route::get('project/detail/{id}', 'show')->name('project.show');
+    Route::put('project/update/{id}', 'update')->name('project.update');
+    Route::delete('project/{id}', 'destroy')->name('project.destroy');
+    Route::get('project/{id}/edit', 'edit')->name('project.edit');
+    Route::post('project/addfile', 'addfile')->name('project.addfile');
+    Route::get('project/done/{id}', 'taskdone')->name('project.done');
+    Route::get('project/undone/{id}', 'taskundone')->name('project.undone');
+    Route::post('project/addcomment', 'addcomment')->name('project.addcomment');
+});
+
 
 Route::controller(WorkorderController::class)->middleware('auth')->group(function () {
     Route::get('workorder', 'index')->name('workorder.index');
