@@ -53,7 +53,7 @@ Employee Leave Form
             <div class="card mb-3 shadow">
                 <div class="card-body">
                     <table class="table table-hover table-striped table-bordered" id="employee-table" style="width: 100%;">
-                        <thead class="thead-light">
+                        <thead>
                             <th>Employee Name</th>
                             <th>Start Date</th>
                             <th>End Date</th>

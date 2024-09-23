@@ -63,7 +63,7 @@ Employee Leave Form
                         <tr>
                             <td>Leaves</td>
                             <table class="table table-hover table-sm table-bordered">
-                                <thead class="thead-light">
+                                <thead>
                                     <th>Expired</th>
                                     <th>Type</th>
                                     <th>Remark</th>

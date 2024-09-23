@@ -79,7 +79,7 @@
             </div>
             <div class="card-body">
                 <table class="table table-hover nowrap" id="employee-table">
-                    <thead class="thead-light">
+                    <thead>
                         <tr class="text-center">
                             <th>#</th>
                             <th>Employee</th>
@@ -121,7 +121,7 @@
             </div>
             <div class="card-body">
                 <table class="table table-hover nowrap" id="employee-table1">
-                    <thead class="thead-light">
+                    <thead>
                         <tr class="text-center">
                             <th>#</th>
                             <th>Employee</th>

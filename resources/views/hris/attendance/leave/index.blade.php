@@ -22,7 +22,7 @@ Leave Management
             </div>
             <div class="card-body">
                 <table class="table table-hover table-striped table-bordered" id="employee-table">
-                    <thead class="thead-light">
+                    <thead>
                         <th>Created At</th>
                         <th>Employee</th>
                         <th>Type</th>

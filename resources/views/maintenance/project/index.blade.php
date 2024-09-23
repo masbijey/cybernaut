@@ -3,6 +3,10 @@
 @section('content')
 <h1 class="h3 mb-2 text-gray-800">Project Management</h1>
 
+@section('title')
+Project Management
+@endsection
+
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
@@ -19,12 +23,9 @@
 </div>
 
 <div class="card mt-3">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Project List</h6>
-    </div>
     <div class="card-body">
         <table class="table table-hover table-bordered table-striped" id="employee-table">
-            <thead class="thead-light">
+            <thead>
                 <tr>
                     <th>Project</th>
                     <th>Status</th>

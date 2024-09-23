@@ -57,24 +57,8 @@ class TaskController extends Controller
         if (in_array(Auth::user()->role->task, ['1', '2', '3', '4'])) {
 
             $validator = Validator::make($request->all(), [
-                'task_date' => 'required|date',
                 'task_title' => 'required',
                 'task_desc' => 'required',
-                'task_status' => 'nullable',
-                'task_priority' => 'required',
-                'task_type' => 'required',
-                'task_price' => 'numeric|nullable',
-                'task_remark' => 'nullable',
-
-                'asset_ids' => 'nullable|array',
-                'location_ids' => 'nullable|array',
-                'member_ids' => 'required|array',
-
-                'task_vendor' => 'nullable',
-                'task_vendor_phone' => 'nullable',
-
-                'file' => 'required|mimes:jpeg,jpg,png',
-                'file_remark' => 'required|nullable',
             ]);
 
             if ($validator->fails()) {
@@ -89,52 +73,45 @@ class TaskController extends Controller
                 'user_id' => $created_by,
                 'task_title' => $request->task_title,
                 'task_desc' => $request->task_desc,
-                'task_status' => $request->task_status,
-                'task_type' => $request->task_type,
-                'due_date' => $request->task_date,
-                'task_price' => $request->task_price,
-                'task_remark' => $request->task_remark,
-                'task_priority' => $request->task_priority,
-                'task_vendor' => $request->task_vendor,
-                'task_vendor_phone' => $request->task_vendor_phone,
+                'due_date' => $request->due_date,
             ]);
 
-            $path = $request->file->store('public/task');
-            $url = Storage::url($path);
+            // $path = $request->file->store('public/task');
+            // $url = Storage::url($path);
 
-            File::create([
-                'task_id' => $task->id,
-                'file' => $url,
-                'remark' => $request->file_remark,
-            ]);
+            // File::create([
+            //     'task_id' => $task->id,
+            //     'file' => $url,
+            //     'remark' => $request->file_remark,
+            // ]);
 
-            $members = $request->member_ids;
-            foreach ($members as $member) {
-                Taskmember::create([
-                    'task_id' => $task->id,
-                    'user_id' => $member
-                ]);
-            }
+            // $members = $request->member_ids;
+            // foreach ($members as $member) {
+            //     Taskmember::create([
+            //         'task_id' => $task->id,
+            //         'user_id' => $member
+            //     ]);
+            // }
 
-            if (isset($request->asset_ids)) {
-                $assets = $request->asset_ids;
-                foreach ($assets as $asset) {
-                    Tasktag::create([
-                        'task_id' => $task->id,
-                        'asset_id' => $asset,
-                    ]);
-                }
-            }
+            // if (isset($request->asset_ids)) {
+            //     $assets = $request->asset_ids;
+            //     foreach ($assets as $asset) {
+            //         Tasktag::create([
+            //             'task_id' => $task->id,
+            //             'asset_id' => $asset,
+            //         ]);
+            //     }
+            // }
 
-            if (isset($request->location_ids)) {
-                $locations = $request->location_ids;
-                foreach ($locations as $location) {
-                    Tasktag::create([
-                        'task_id' => $task->id,
-                        'location_id' => $location,
-                    ]);
-                }
-            }
+            // if (isset($request->location_ids)) {
+            //     $locations = $request->location_ids;
+            //     foreach ($locations as $location) {
+            //         Tasktag::create([
+            //             'task_id' => $task->id,
+            //             'location_id' => $location,
+            //         ]);
+            //     }
+            // }
 
             alert()->success('Berhasil.', 'Data berhasil ditambahkan');
             return redirect('/task/detail/' . $task->id);

@@ -276,7 +276,7 @@ Leave Management
             </div>
             <div class="card-body">
                 <table class="table table-hover table-bordered table-striped" id="history-table" style="width: 100%;">
-                    <thead class="thead-light">
+                    <thead>
                         <th>Start</th>
                         <th>End</th>
                         <th>Work</th>
@@ -337,7 +337,7 @@ Leave Management
             </div>
             <div class="card-body">
                 <table class="table table-hover table-bordered table-striped" id="employee-table" style="width: 100%;">
-                    <thead class="thead-light">
+                    <thead>
                         <th>Created</th>
                         <th>Type</th>
                         <th>Expire</th>

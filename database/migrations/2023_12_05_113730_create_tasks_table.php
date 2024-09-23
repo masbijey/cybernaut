@@ -17,11 +17,11 @@ return new class extends Migration
             $table->string('task_title');
             $table->text('task_desc');
             $table->string('task_status')->nullable();
-            $table->string('task_type');
-            $table->date('due_date'); 
+            $table->string('task_type')->nullable();
+            $table->date('due_date')->nullable(); 
             $table->string('task_price')->nullable();
             $table->text('task_remark')->nullable();
-            $table->string('task_priority');
+            $table->string('task_priority')->nullable();
             $table->string('task_vendor')->nullable();
             $table->string('task_vendor_phone')->nullable();
             $table->integer('workorder_id')->nullable();

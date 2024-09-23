@@ -26,7 +26,7 @@ User Details | {{ $data->name }}
                     @method('PUT')
                     <div class="table-responsive">
                         <table class="table table-hover table-bordered w-100">
-                            <thead class="thead-light">
+                            <thead>
                                 <th style="width: 10%;">
                                     Feature
                                 </th>

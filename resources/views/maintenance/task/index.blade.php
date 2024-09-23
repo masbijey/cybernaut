@@ -19,60 +19,71 @@ Task Management
 
 <div class="card mt-2 shadow">
     <div class="card-body">
-        <table class="table" id="employee-table">
-            <thead>
+        <table class="table table-hover table-striped table-bordered" id="employee-table" style="width: 100%;">
+            <thead class="">
                 <tr>
-                    <th>Due Date</th>
-                    <th>Title</th>
-                    <th>Status</th>
-                    <th>Priority</th>
-                    <th>Type</th>
-                    <th>Asset</th>
-                    <th>Location</th>
+                    <th style="width: 10%;">Due Date</th>
+                    <th>Task information</th>
+                    <th style="width: 15%;">Status</th>
+                    <th style="width: 10%;">Priority</th>
+                    <th style="width: 10%;">Type</th>
+                    <th style="width: 10%;">Asset</th>
+                    <th style="width: 10%;">Location</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($task as $data)
                 <tr>
-                    <!-- <td>{{ \Carbon\Carbon::parse($data->created_at)->format('d/m/y') }}</td> -->
-                    <td>{{ $data->task_date }}</td>
-                    <td><a href="{{ url('/task/detail/'.$data->id) }}">{{ $data->task_title }}</a></td>
+                    <td>{{ \Carbon\Carbon::parse($data->due_date)->format('d/m/y') }}</td>
+                    <td>
+                        <small>Created by {{ $data->user->name }} {{ $data->created_at }}</small> <br>
+                        <a href="{{ url('/task/detail/'.$data->id) }}"><b>{{ $data->task_title }}</b></a> <br>
+                        {{ $data->task_desc }}
+                    </td>
                     <td>
                         @if ($data->task_status == 'Done')
-                        <button class="btn btn-sm btn-success"><b>Done</b></button>
+                        <button class="btn btn-sm btn-success shadow"><b>Done</b></button>
                         @else
-                        <button class="btn btn-sm btn-danger"><b>On Progress</b></button>
+                        <button class="btn btn-sm btn-danger shadow"><b>On Progress</b></button>
                         @endif
                     </td>
                     <td>
                         @if ($data->task_priority == 'Low')
-                        <button class="btn btn-sm btn-outline-success">Low</button>
+                        <button class="btn btn-sm btn-outline-success shadow">Low</button>
                         @elseif ($data->task_priority == 'Medium')
-                        <button class="btn btn-sm btn-outline-warning">Medium</button>
+                        <button class="btn btn-sm btn-outline-warning shadow">Medium</button>
                         @else
-                        <button class="btn btn-sm btn-outline-danger">High</button>
+                        <button class="btn btn-sm btn-outline-danger shadow">High</button>
                         @endif
                     </td>
                     <td>
+                        @if(isset($data->task_type))
                         <button class="btn btn-sm btn-outline-info">{{ $data->task_type }}</button>
-                    </td>
-                    <td class="text-wrap">
-                        <p>
-                            @foreach($data->assetMany as $asset)
-                            @if($asset->asset !== null)
-                            <button class="btn btn-sm btn-outline-secondary">{{ $asset->asset->name }}</button>
-                            @endif
-                            @endforeach
-                        </p>
+                        @else
+                        <span class="badge badge-secondary">not set</span>
+                        @endif
                     </td>
                     <td>
-                        <p>
-                            @foreach($data->locationMany as $location)
-                            @if($location->location !== null)
-                            <button class="btn btn-sm btn-outline-secondary">{{ $location->location->name }}</button>
+                        <ol>
+                            @foreach($data->assetMany as $asset)
+                            @if($asset->asset !== null)
+                            <li>
+                                <button class="btn btn-sm btn-outline-secondary">{{ $asset->asset->name }}</button>
+                            </li>
                             @endif
                             @endforeach
-                        </p>
+                        </ol>
+                    </td>
+                    <td>
+                        <ol>
+                            @foreach($data->locationMany as $location)
+                            @if($location->location !== null)
+                            <li>
+                                {{ $location->location->name }}
+                            </li>
+                            @endif
+                            @endforeach
+                        </ol>
                     </td>
                 </tr>
                 @endforeach

@@ -101,46 +101,50 @@
 
     <div class="col-md-8 col-sm-12">
         <div class="card shadow mb-3">
-            <!-- <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Project task manager</h6>
-            </div> -->
             <div class="card-body">
-                <div class="row">
+                <div class="row mb-3">
                     <div class="col-sm-12 col-md-6">
-                        <div class="form-group">
-                            <label for="">Add task to project :</label>
-                            <select name="add_new_task" class="custom-select">
-                                <option value="test">select task :</option>
-                            </select>
-                            <small class="text-info">select from existing task</small> <br>
-                            <button class="btn btn-success shadow btn-sm">
-                                <i class="fas fa-plus"></i> Add Task
-                            </button>
-                        </div>
-                    </div>
+                        <button class="btn btn-outline-success shadow-sm btn-sm">
+                            <i class="fas fa-folder-open"></i> Import existing task
+                        </button>
 
-                    <div class="col-sm-12 col-md-6">
-                        <div class="form-group">
-                            <label for="">Task name :</label>
-                            <input type="text" class="form-control" placeholder="enter task name">
-                            <small class="text-info">for add new task</small><br>
-                            <button class="btn btn-primary shadow btn-sm">
-                                <i class="fas fa-plus"></i> Add Task
-                            </button>
+                        <button class="btn btn-outline-primary shadow-sm btn-sm" type="button" data-toggle="modal" data-target="#exampleModalScrollable">
+                            <i class="fas fa-plus"></i> Add new task
+                        </button>
+
+                        <div class="modal" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-primary" id="exampleModalCenteredLabel">Create new task to this project</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="task_name" class="font-weight-bolder">Task name :</label>
+                                            <input type="text" class="form-control" name="task_name" placeholder="enter task name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="" class="font-weight-bolder">Task description :</label>
+                                            <textarea name="task_desc" id="task_desc" placeholder="enter task description" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="card shadow mb-3">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Project Task List</h6>
-            </div>
-            <div class="card-body">
                 <table class="table table-hover table-striped" id="table-task" style="width:100%">
                     <thead>
                         <th style="width: 15%;">Date</th>
-                        <th>Task</th>
+                        <th>Task information</th>
                         <th style="width: 10%;">Status</th>
                         <th style="width: 10%;">Score</th>
                         <th style="width: 10%;">Detail</th>

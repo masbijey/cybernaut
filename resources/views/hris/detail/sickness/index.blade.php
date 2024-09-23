@@ -54,7 +54,7 @@
             </div>
             <div class="card-body">
                 <table class="table table-hover table-responsive-lg nowrap" id="pegawai-table">
-                    <thead class="thead-light">
+                    <thead>
                         <tr class="text-center">
                             <th>#</th>
                             <th>Name</th>

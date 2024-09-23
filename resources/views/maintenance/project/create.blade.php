@@ -1,7 +1,12 @@
 @extends('layouts.app')
 
+@section('title')
+Create new project
+@endsection
+
 @section('content')
 <h1 class="h3 mb-2 text-gray-800">New Project</h1>
+
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -22,19 +27,19 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="project_name">Project Name</label>
+                        <label for="project_name">Project name :</label>
                         <input type="text" class="form-control" name="project_name" required>
                     </div>
                     <div class="form-group">
-                        <label for="project_desc">Project Description</label>
+                        <label for="project_desc">Project description :</label>
                         <textarea name="project_desc" class="form-control" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="project_start_date">Start date</label>
+                        <label for="project_start_date">Start date :</label>
                         <input type="date" class="form-control" name="project_start_date" required>
                     </div>
                     <div class="form-group">
-                        <label for="project_due_date">Due date</label>
+                        <label for="project_due_date">Due date :</label>
                         <input type="date" class="form-control" name="project_due_date" required>
                     </div>
                     <button type="submit" class="btn btn-primary shadow">Save</button>
