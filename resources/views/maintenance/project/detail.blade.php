@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+Project detail - {{ $detail_project->name }}
+@endsection
+
 @section('content')
 <h1 class="h3 mb-2 text-gray-800">Project Detail</h1>
 
@@ -17,18 +21,18 @@
             <div class="card-body">
                 <div class="form-group">
                     <label for="" class="font-weight-bolder text-primary">Project name :</label>
-                    <input type="text" class="form-control" value="{{ $detail_project->name }}" disabled>
+                    <input type="text" class="form-control " value="{{ $detail_project->name }}" disabled>
                     <small class="text-info">Created by: {{ $detail_project->owner->name }} - {{ $detail_project->created_at }}</small>
                 </div>
 
                 <div class="form-group">
                     <label for="">Project description :</label>
-                    <textarea class="form-control" cols="20" rows="5" disabled>{{ $detail_project->description }}</textarea>
+                    <textarea class="form-control " cols="20" rows="5" disabled>{{ $detail_project->description }}</textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="">Budget :</label>
-                    <input type="text" class="form-control" value="{{ $detail_project->budget }}">
+                    <input type="text" class="form-control " value="{{ $detail_project->budget }}">
                 </div>
             </div>
         </div>
@@ -124,11 +128,11 @@
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label for="task_name" class="font-weight-bolder">Task name :</label>
-                                            <input type="text" class="form-control" name="task_name" placeholder="enter task name">
+                                            <input type="text" class="form-control " name="task_name" placeholder="enter task name">
                                         </div>
                                         <div class="form-group">
                                             <label for="" class="font-weight-bolder">Task description :</label>
-                                            <textarea name="task_desc" id="task_desc" placeholder="enter task description" class="form-control"></textarea>
+                                            <textarea name="task_desc" id="task_desc" placeholder="enter task description" class="form-control "></textarea>
                                         </div>
                                     </div>
                                     <div class="modal-footer">

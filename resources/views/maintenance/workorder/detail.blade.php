@@ -1,67 +1,77 @@
 @extends('layouts.app')
 
 @section('title')
-Workoder detail | {{ $workorder->title }}
+Tickets detail | {{ $workorder->title }}
 @endsection
 
 @section('content')
-<h3 class="h3 text-gray-800">WORK ORDER DETAIL</h3>
+<h3 class="h3 text-gray-800">Tickets Detail</h3>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('workorder.index') }}">Work Order List</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('workorder.index') }}">Ticket List</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{ $workorder->title }}</li>
     </ol>
 </nav>
 
 <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-4">
-        <div class="card mb-3 shadow-sm">
+    <div class="col-sm-12 col-md-12 col-lg-8">
+        <div class="card mb-3 shadow">
             <div class="card-body">
-                <table class="table table-sm">
+                <table class="table table-hover" style="width: 100%;">
                     <tr>
-                        <td class="font-weight-bold">No. Work Order</td>
-                        <td>
-                            <p class="text-danger font-weight-bold">#{{ $workorder->order_no }}</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="font-weight-bold">Title</td>
-                        <td>
-                            {{ $workorder->title }}
+                        <td class="font-weight-bold">No. Ticket</td>
+                        <td class="font-weight-bold text-success">
+                            {{ $workorder->order_no }}
                         </td>
                     </tr>
                     <tr>
                         <td class="font-weight-bold">Due date</td>
                         <td>
-                            <p>{!! nl2br(e($workorder->due_date)) !!}</p>
+                            <input type="text" class="form-control" disabled value="{{ \Carbon\Carbon::parse($workorder->due_date)->format('d M Y') }}">
                         </td>
                     </tr>
                     <tr>
-                        <td class="font-weight-bold">Description</td>
+                        <td class="font-weight-bold">Subject</td>
                         <td>
-                            <p>{!! nl2br(e($workorder->description)) !!}</p>
-                            <br>
+                            <input type="text" disabled value="{{ $workorder->title }}" class="form-control font-weight-bolder">
                         </td>
                     </tr>
                     <tr>
-                        <td class="font-weight-bold">Priority</td>
+                        <td class="font-weight-bold" style="width: 20%;">Description</td>
                         <td>
-                            @if($workorder->prioriy == 'Low')
-                            <button class="btn btn-sm btn-outline-success">Low</button>
-                            @elseif($workorder->priority == 'medium')
-                            <button class="btn btn-sm btn-outline-warning">Medium</button>
-                            @else
-                            <button class="btn btn-sm btn-outline-danger">High</button>
-                            @endif
+                            <textarea disabled class="form-control">{{ $workorder->description }}</textarea>
                         </td>
                     </tr>
                     <tr>
-                        <td class="font-weight-bold">Progress</td>
+                        <td class="font-weight-bold">Priority </td>
+                        <td>
+                            @php
+                            $priorities = ['Low', 'Medium', 'High'];
+                            @endphp
+
+                            @foreach($priorities as $priority)
+                            <button class="btn btn-sm btn-{{ $workorder->priority == $priority ? 'success' : 'secondary' }} shadow"
+                                {{ $workorder->priority == $priority ? '' : 'disabled' }}>
+                                {{ $priority }}
+                            </button>
+                            @endforeach
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Progress </td>
                         <td>
                             @if ($workorder->status == 'Open')
-                            <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#openModal">
+                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#openModal">
                                 Open
+                            </button>
+
+                            <button type="button" class="btn btn-secondary btn-sm" disabled data-toggle="modal" data-target="#openModal">
+                                On Progress
+                            </button>
+
+                            <button type="button" class="btn btn-secondary btn-sm" disabled data-toggle="modal" data-target="#openModal">
+                                Done
                             </button>
 
                             <div class="modal" id="openModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -83,7 +93,7 @@ Workoder detail | {{ $workorder->title }}
 
                                                 <div class="form-group">
                                                     <input type="checkbox" id="checkbox" required>
-                                                    <label for="checkbox">I have received this work order. [{{ Auth::user()->name }}]</label>
+                                                    <label for="checkbox">I have received this tickets. [{{ Auth::user()->name }}]</label>
                                                 </div>
 
                                             </div>
@@ -97,8 +107,17 @@ Workoder detail | {{ $workorder->title }}
                             </div>
 
                             @elseif ($workorder->status == 'On Progress')
-                            <button type="button" class="btn btn-outline-warning btn-sm" data-toggle="modal" data-target="#onProgressModal">
+
+                            <button type="button" class="btn btn-secondary btn-sm" disabled data-toggle="modal" data-target="#onProgressModal">
+                                Open
+                            </button>
+
+                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#onProgressModal">
                                 On Progress
+                            </button>
+
+                            <button type="button" class="btn btn-secondary btn-sm" disabled data-toggle="modal" data-target="#onProgressModal">
+                                Done
                             </button>
 
                             <div class="modal" id="onProgressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -143,37 +162,48 @@ Workoder detail | {{ $workorder->title }}
                             </div>
 
                             @else ($workorder->status == 'Done')
-                            <a href="#" class="btn btn-outline-success btn-sm">Done</a>
+                            <button class="btn btn-secondary btn-sm shadow" disabled>Open</button>
+                            <button class="btn btn-secondary btn-sm shadow" disabled>On Progress</button>
+                            <button class="btn btn-success btn-sm shadow">Done</button>
                             @endif
 
-                            <small class="">
-                                <a href="#collapseExample" class="text-decoration-none" data-toggle="collapse"> <i class="fas fa-exclamation"></i> info</a><br>
-                            </small>
+                            <br>
 
-                            @if ($workorder->status !== 'Done')
-                            <small class="text-info">press button to change.</small>
-                            @endif
-
-                            <div class="collapse" id="collapseExample">
-                                <div class="card card-body">
-                                    <small>
-                                        created by <b>{{ $workorder->createdBy->name }}</b> at <b>{{ $workorder->created_at }}</b> <br>
-
+                            <small>
+                                Log File :
+                                <ol>
+                                    <li>
+                                        created by <b>{{ $workorder->createdBy->name }}</b> at <b>{{ $workorder->created_at }}</b>
+                                    </li>
+                                    <li>
                                         @if ($workorder->receivedBy !== null)
-                                        received by <b> {{ $workorder->receivedBy->name }}</b> at <b>{{ $workorder->received_date }}</b> <br>
+                                        received by <b> {{ $workorder->receivedBy->name }}</b> at <b>{{ $workorder->received_date }}</b>
+                                        @else
+                                        received by <i>null</i>
                                         @endif
-
+                                    </li>
+                                    <li>
                                         @if ($workorder->finishedBy !== null)
                                         finished by <b>{{ $workorder->finishedBy->name }}</b> at <b>{{ $workorder->finished_date }}</b>
+                                        @else
+                                        finished by <i>null</i>
                                         @endif
-
-                                    </small>
-                                </div>
-                            </div>
+                                    </li>
+                                </ol>
+                            </small>
                         </td>
                     </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-12 col-lg-4">
+        <div class="card mb-3 shadow">
+            <div class="card-body">
+                <table class="table table-sm">
                     <tr>
-                        <td class="font-weight-bold">To Departments</td>
+                        <td class="font-weight-bold">Departments :</td>
                         <td>
                             @if ($workorder->status !== 'Done')
                             <table class="table table-sm table-borderless table-hover">
@@ -234,17 +264,8 @@ Workoder detail | {{ $workorder->title }}
                             @endif
                         </td>
                     </tr>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-sm-12 col-md-12 col-lg-4">
-        <div class="card mb-3 shadow-sm">
-            <div class="card-body">
-                <table class="table table-sm">
                     <tr>
-                        <td class="font-weight-bold">Locations</td>
+                        <td class="font-weight-bold">Locations :</td>
                         <td>
                             @if ($workorder->status !== 'Done')
                             <table class="table table-borderless table-hover">
@@ -310,7 +331,7 @@ Workoder detail | {{ $workorder->title }}
                         </td>
                     </tr>
                     <tr>
-                        <td class="font-weight-bold">Assets</td>
+                        <td class="font-weight-bold">Assets :</td>
                         <td>
                             @if ($workorder->status !== 'Done')
                             <table class="table table-sm table-borderless">
@@ -373,10 +394,10 @@ Workoder detail | {{ $workorder->title }}
                         </td>
                     </tr>
                     <tr>
-                        <td class="font-weight-bold">Finished by</td>
+                        <td class="font-weight-bold">Finished by :</td>
                         <td>
                             @if ($workorder->status !== 'Done')
-                            <!-- <table class="table table-sm table-borderless">
+                            <table class="table table-sm table-borderless">
                                 <tbody>
                                     @foreach($workorder->memberMany as $member)
                                     @if($member->user !== null)
@@ -392,7 +413,7 @@ Workoder detail | {{ $workorder->title }}
                             </table>
 
                             <small class="">
-                                <a href="#collapseAddMember" data-toggle="collapse"><i class='fas fa-edit'></i> add assets</a><br>
+                                <a href="#collapseAddMember" data-toggle="collapse"><i class='fas fa-edit'></i> add people</a><br>
                             </small>
 
                             <div class="collapse" id="collapseAddMember">
@@ -417,16 +438,18 @@ Workoder detail | {{ $workorder->title }}
                                         <button type="submit" class="btn btn-primary shadow btn-sm">Save</button>
                                     </form>
                                 </div>
-                            </div> -->
+                            </div>
 
                             @else
                             <table class="table table-sm table-borderless">
                                 <tbody>
                                     @foreach($workorder->memberMany as $member)
                                     @if($member->user !== null)
-                                    <tr>
-                                        <td><a class="btn btn-sm btn-outline-secondary" href="#">{{ $member->user->name }}</a></td>
-                                    </tr>
+                                    <small>
+                                        <ol>
+                                            <li>{{ $member->user->name }}</li>
+                                        </ol>
+                                    </small>
                                     @endif
                                     @endforeach
                                 </tbody>
@@ -437,10 +460,9 @@ Workoder detail | {{ $workorder->title }}
                 </table>
             </div>
         </div>
-    </div>
 
-    <div class="col-sm-12 col-md-12 col-lg-4">
-        <div class="card mb-3 shadow-sm">
+        <div class="card mb-3 shadow">
+
             <div class="card-body">
                 @foreach($workorder->commentMany as $comment)
                 <div class="media mb-0">
@@ -479,6 +501,7 @@ Workoder detail | {{ $workorder->title }}
                         </form>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
