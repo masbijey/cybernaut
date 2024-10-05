@@ -25,16 +25,15 @@ Helpdesk Management
 <div class="modal" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollable" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-primary font-weight-bolder" id="exampleModalCenteredLabel">Create new Ticket</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form method="POST" action="{{ route('workorder.store') }}" enctype="multipart/form-data">
-                    @csrf
-
+            <form method="POST" action="{{ route('workorder.store') }}" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title text-primary font-weight-bolder" id="exampleModalCenteredLabel">Create new Ticket</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
                     <div class="form-group">
                         <label for="department" class="font-weight-bolder">To Department :</label>
                         <select class="js-example-basic-multiple custom-select form-control-sm" id="tag-department" name="department_ids[]" multiple="multiple" style="width: 100%;" required>
@@ -80,12 +79,12 @@ Helpdesk Management
                             <label class="custom-control-label text-danger font-weight-bolder" for="High">High</label>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
