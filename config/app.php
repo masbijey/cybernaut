@@ -11,7 +11,7 @@ return [
 
     'debug' => (bool) env('APP_DEBUG', false),
 
-    'url' => env('APP_URL', 'http://sclble.thinkhitech.com'),
+    'url' => env('APP_URL', 'localhost'),
 
     'asset_url' => env('ASSET_URL'),
 
