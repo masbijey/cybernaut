@@ -20,30 +20,27 @@ Create new project
     @csrf
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-12 col-xl-4 col-sm-12">
             <div class="card mb-3 shadow">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Project Information</h6>
-                </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="project_name">Project name :</label>
+                        <label for="project_name" class="font-weight-bold">Project name : <small class="text-danger">*</small></label>
                         <input type="text" class="form-control" name="project_name" required>
                     </div>
                     <div class="form-group">
-                        <label for="project_desc">Project description :</label>
+                        <label for="project_desc" class="font-weight-bold">Project description : <small class="text-danger">*</small></label>
                         <textarea name="project_desc" class="form-control" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="project_start_date">Start date :</label>
+                        <label for="project_start_date" class="font-weight-bold">Start date : <small class="text-danger">*</small></label>
                         <input type="date" class="form-control" name="project_start_date" required>
                     </div>
                     <div class="form-group">
-                        <label for="project_due_date">Due date :</label>
+                        <label for="project_due_date" class="font-weight-bold">Due date : <small class="text-danger">*</small></label>
                         <input type="date" class="form-control" name="project_due_date" required>
                     </div>
-                    <button type="submit" class="btn btn-primary shadow">Save</button>
-                    <a href="{{ route('project.index') }}" class="btn btn-secondary">Cancel</a>
+                    <button type="submit" class="btn btn-primary shadow-sm">Save</button>
+                    <a href="{{ route('project.index') }}" class="btn btn-secondary shadow-sm">Cancel</a>
                 </div>
             </div>
         </div>

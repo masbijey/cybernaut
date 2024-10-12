@@ -15,6 +15,7 @@ class Signage extends Model
     
     protected $fillable = [
         'meeting_room',
-        'event_name'
+        'event_name',
+        'update_by'
     ];
 }

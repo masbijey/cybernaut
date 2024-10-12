@@ -15,15 +15,11 @@ class Userrole extends Model
     protected $fillable =[
         'user_id', // tambahkan kolom user_id di sini
         'admin',
-        'signage',
-        'workorder',
-        'task',
         'asset',
-        'voucher',
-        'beo',
         'hris',
-        'attendance',
-        'leave',
+        'room',
+        'maintenance',
+        'business'
     ];
 
     public function user(): BelongsTo

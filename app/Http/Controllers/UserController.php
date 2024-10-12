@@ -158,15 +158,11 @@ class UserController extends Controller
         Userrole::create([
             'user_id' => $newuser->id,
             'admin' => '0',
-            'signage' => '0',
-            'workorder' => '0',
-            'task' => '0',
             'asset' => '0',
-            'voucher' => '0',
-            'beo' => '0',
             'hris' => '0',
-            'attendance' => '0',
-            'leave' => '0',
+            'maintenance' => '0',
+            'business' => '0',
+            'room' => '0'
         ]);
 
         alert()->success('Berhasil.', 'User berhasil dibuat');
@@ -184,40 +180,27 @@ class UserController extends Controller
         }
     }
 
-    public function edit($id)
-    {
-        //
-    }
-
     public function update(Request $request, User $id)
     {
 
         $validator = Validator::make($request->all(), [
             'admin' => 'required|number',
-            'signage' => 'required|number',
-            'workorder' => 'required|number',
-            'task' => 'required|number',
             'asset' => 'required|number',
-            'voucher' => 'required|number',
-            'beo' => 'required|number',
             'hris' => 'required|number',
-            'attendance' => 'required|number',
-            'leave' => 'required|number',
+            'room' => 'required|number',
+            'business' => 'required|number',
+            'maintenance' => 'required|number'
         ]);
 
         $data = Userrole::where('user_id', $id->id);
 
         $data->update([
             'admin' => $request->admin,
-            'signage' => $request->signage,
-            'workorder' => $request->workorder,
-            'task' => $request->task,
             'asset' => $request->asset,
-            'voucher' => $request->voucher,
-            'beo' => $request->beo,
             'hris' => $request->hris,
-            'attendance' => $request->attendance,
-            'leave' => $request->leave,
+            'maintenance' => $request->maintenance,
+            'room' => $request->room,
+            'business' => $request->business,
         ]);
 
         alert()->success('Berhasil.', 'User berhasil di perbarui');

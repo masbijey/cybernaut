@@ -68,7 +68,7 @@ class SignageController extends Controller
     public function index()
     {
         if (Auth::user()->role != null) {
-            $signagelevel = Auth::user()->role->signage;
+            $signagelevel = Auth::user()->role->maintenance;
             if (!in_array($signagelevel, ['1', '2', '3'])) {
                 alert()->error('Gagal.','Hubungi admin untuk akses di menu Signage');
                 return redirect('/');
@@ -86,16 +86,19 @@ class SignageController extends Controller
 
     public function store(Request $request)
     {
-        $signagelevel = Auth::user()->role->signage;
+        $signagelevel = Auth::user()->role->maintenance;
         
         if (!in_array($signagelevel, ['2', '3'])) {
             alert()->error('Gagal.','Tidak ada akses membuat Signage');
             return redirect('signage');
         }
 
+        $update_by =  Auth::user()->id;
+
         Signage::create([
             'meeting_room'  => $request->meeting_room,
-            'event_name'    => $request->event_name
+            'event_name'    => $request->event_name,
+            'update_by'     => $update_by
         ]);
 
         alert()->success('Berhasil.','Signage berhasil di update');

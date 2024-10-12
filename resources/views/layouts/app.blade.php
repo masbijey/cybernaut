@@ -154,6 +154,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Maintenance:</h6>
 
+                        @if(in_array(Auth::user()->role->maintenance, ['1', '2', '3', '4']))
                         <a class="collapse-item collapsed" href="#" data-toggle="collapse" data-target="#woSubMenu" aria-expanded="false" aria-controls="woSubMenu">Helpdesk</a>
                         <div id="woSubMenu" class="collapse">
                             <div class="bg-white py-2 collapse-inner rounded">
@@ -176,7 +177,6 @@
                                 <a class="collapse-item" href="{{ route('task.index')}}">Finished</a>
                             </div>
                         </div>
-
                         <a class="collapse-item collapsed" href="#" data-toggle="collapse" data-target="#projectSubMenu" aria-expanded="false" aria-controls="projectSubMenu">Project</a>
                         <div id="projectSubMenu" class="collapse">
                             <div class="bg-white py-2 collapse-inner rounded">
@@ -188,9 +188,9 @@
                                 <a class="collapse-item" href="{{ route('project.index')}}">Finished</a>
                             </div>
                         </div>
-
+                        
                         <a class="collapse-item" href="{{ route('signage.index') }}">Signage Manager</a>
-
+                        @endif
                     </div>
                 </div>
             </li>
@@ -204,31 +204,31 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Components:</h6>
 
-                        @if(in_array(Auth::user()->role->asset, ['1', '2', '3', '4']))
+                        @if(in_array(Auth::user()->role->room, ['1', '2', '3', '4']))
                         <a class="collapse-item" href="{{ route('asset.index')}}">Room Summary</a>
                         @endif
 
-                        @if(in_array(Auth::user()->role->asset, ['1', '2', '3', '4']))
+                        @if(in_array(Auth::user()->role->room, ['1', '2', '3', '4']))
                         <a class="collapse-item" href="{{ route('asset.index')}}">Room Status</a>
                         @endif
 
-                        @if(in_array(Auth::user()->role->asset, ['1', '2', '3', '4']))
+                        @if(in_array(Auth::user()->role->room, ['1', '2', '3', '4']))
                         <a class="collapse-item" href="{{ route('asset.index')}}">VCU Check</a>
                         @endif
 
-                        @if(in_array(Auth::user()->role->asset, ['1', '2', '3', '4']))
+                        @if(in_array(Auth::user()->role->room, ['1', '2', '3', '4']))
                         <a class="collapse-item" href="{{ route('asset.index')}}">C/O Check</a>
                         @endif
 
-                        @if(in_array(Auth::user()->role->asset, ['1', '2', '3', '4']))
+                        @if(in_array(Auth::user()->role->room, ['1', '2', '3', '4']))
                         <a class="collapse-item" href="{{ route('asset.index')}}">RA Cleaning</a>
                         @endif
 
-                        @if(in_array(Auth::user()->role->asset, ['1', '2', '3', '4']))
+                        @if(in_array(Auth::user()->role->room, ['1', '2', '3', '4']))
                         <a class="collapse-item" href="{{ route('asset.index')}}">RPM Project</a>
                         @endif
 
-                        @if(in_array(Auth::user()->role->asset, ['1', '2', '3', '4']))
+                        @if(in_array(Auth::user()->role->room, ['1', '2', '3', '4']))
                         <a class="collapse-item" href="{{ route('asset.index')}}">Room Administration</a>
                         @endif
                     </div>

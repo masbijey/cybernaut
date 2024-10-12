@@ -28,7 +28,7 @@ class TaskController extends Controller
 {
     public function index()
     {
-        if (in_array(Auth::user()->role->task, ['1', '2', '3', '4'])) {
+        if (in_array(Auth::user()->role->maintenance, ['1', '2', '3', '4'])) {
             $task = Task::all();
 
             return view('maintenance.task.index', compact('task'));
@@ -40,7 +40,7 @@ class TaskController extends Controller
 
     public function create()
     {
-        if (in_array(Auth::user()->role->task, ['1', '2', '3', '4'])) {
+        if (in_array(Auth::user()->role->maintenance, ['1', '2', '3', '4'])) {
             $user = User::all();
             $asset = Asset::all();
             $location = Location::all();
@@ -54,7 +54,7 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
-        if (in_array(Auth::user()->role->task, ['1', '2', '3', '4'])) {
+        if (in_array(Auth::user()->role->maintenance, ['1', '2', '3', '4'])) {
 
             $validator = Validator::make($request->all(), [
                 'task_title' => 'required',
@@ -209,7 +209,7 @@ class TaskController extends Controller
 
     public function taskdone($id)
     {
-        if (in_array(Auth::user()->role->task, ['2', '3', '4'])) {
+        if (in_array(Auth::user()->role->maintenance, ['2', '3', '4'])) {
             $update_by = Auth::user()->id;
 
             $task = Task::findOrFail($id);
@@ -227,7 +227,7 @@ class TaskController extends Controller
 
     public function taskundone($id)
     {
-        if (in_array(Auth::user()->role->task, ['2', '3', '4'])) {
+        if (in_array(Auth::user()->role->maintenance, ['2', '3', '4'])) {
             $update_by = Auth::user()->id;
 
             $task = Task::findOrFail($id);
@@ -245,7 +245,7 @@ class TaskController extends Controller
 
     public function addcomment(Request $request)
     {
-        if (in_array(Auth::user()->role->task, ['1', '2', '3', '4'])) {
+        if (in_array(Auth::user()->role->maintenance, ['1', '2', '3', '4'])) {
             $validator = Validator::make($request->all(), [
                 'file' => 'required|mimes:jpeg,jpg,png,pdf',
                 'description' => 'required',

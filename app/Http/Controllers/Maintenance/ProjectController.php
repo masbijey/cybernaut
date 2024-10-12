@@ -27,10 +27,16 @@ use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
-    public function index() {
-        $data_project = Project::all();
+    public function index()
+    {
+        if (in_array(Auth::user()->role->maintenance, ['1', '2', '3', '4'])) {
+            $data_project = Project::all();
 
-        return view('maintenance.project.index', compact('data_project'));
+            return view('maintenance.project.index', compact('data_project'));
+        } else {
+            alert()->error('Stop.', 'Access Forbidden !');
+            return redirect('/');
+        }
     }
 
     public function create()
@@ -40,7 +46,7 @@ class ProjectController extends Controller
 
     public function store(Request $request)
     {
-        if (in_array(Auth::user()->role->task, ['1', '2', '3', '4'])) {
+        if (in_array(Auth::user()->role->maintenance, ['1', '2', '3', '4'])) {
 
             $validator = Validator::make($request->all(), [
                 'project_name' => 'required',
@@ -158,7 +164,7 @@ class ProjectController extends Controller
 
     public function taskdone($id)
     {
-        if (in_array(Auth::user()->role->task, ['2', '3', '4'])) {
+        if (in_array(Auth::user()->role->maintenance, ['2', '3', '4'])) {
             $update_by = Auth::user()->id;
 
             $task = Task::findOrFail($id);
@@ -176,7 +182,7 @@ class ProjectController extends Controller
 
     public function taskundone($id)
     {
-        if (in_array(Auth::user()->role->task, ['2', '3', '4'])) {
+        if (in_array(Auth::user()->role->maintenance, ['2', '3', '4'])) {
             $update_by = Auth::user()->id;
 
             $task = Task::findOrFail($id);
@@ -194,7 +200,7 @@ class ProjectController extends Controller
 
     public function addcomment(Request $request)
     {
-        if (in_array(Auth::user()->role->task, ['1', '2', '3', '4'])) {
+        if (in_array(Auth::user()->role->maintenance, ['1', '2', '3', '4'])) {
             $validator = Validator::make($request->all(), [
                 'file' => 'required|mimes:jpeg,jpg,png,pdf',
                 'description' => 'required',

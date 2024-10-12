@@ -37,33 +37,23 @@ User Details | {{ $data->name }}
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><label for="">User Management</label></td>
+                                    <td><label for="">System Administration</label></td>
                                     <td class="text-center">
                                         <input type="number" min="0" max="4" maxlength="1" required class="form-control bg-warning text-dark font-weight-bold text-center" value="{{ $data->role->admin }}" name="admin">
                                     </td>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td><label for="">Signage</label></td>
+                                    <td><label for="">Maintenance</label></td>
                                     <td class="text-center">
-                                        <input type="number" min="0" max="4" maxlength="1" required class="form-control bg-warning text-dark font-weight-bold text-center" value="{{ $data->role->signage }}" name="signage">
+                                        <input type="number" min="0" max="4" maxlength="1" required class="form-control bg-warning text-dark font-weight-bold text-center" value="{{ $data->role->maintenance }}" name="maintenance">
                                     </td>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td><label for="">Workorder</label></td>
+                                    <td><label for="">Room</label></td>
                                     <td class="text-center">
-                                        <input type="number" min="0" max="4" maxlength="1" required class="form-control bg-warning text-dark font-weight-bold text-center" value="{{ $data->role->workorder }}" name="workorder">
-                                    </td>
-                                    <td>1 = view, create, & add comment | Staff<br>
-                                        2 = change status | SPV<br>
-                                        3 = reject | HOD
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><label for="">Task</label></td>
-                                    <td class="text-center">
-                                        <input type="number" min="0" max="4" maxlength="1" required class="form-control bg-warning text-dark font-weight-bold text-center" value="{{ $data->role->task }}" name="task">
+                                        <input type="number" min="0" max="4" maxlength="1" required class="form-control bg-warning text-dark font-weight-bold text-center" value="{{ $data->role->room }}" name="room">
                                     </td>
                                     <td></td>
                                 </tr>
@@ -75,19 +65,13 @@ User Details | {{ $data->name }}
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td><label for="">Voucher</label></td>
+                                    <td><label for="">Business</label></td>
                                     <td class="text-center">
-                                        <input type="number" min="0" max="4" maxlength="1" required class="form-control bg-warning text-dark font-weight-bold text-center" value="{{ $data->role->voucher }}" name="voucher">
+                                        <input type="number" min="0" max="4" maxlength="1" required class="form-control bg-warning text-dark font-weight-bold text-center" value="{{ $data->role->business }}" name="business">
                                     </td>
                                     <td></td>
                                 </tr>
-                                <tr>
-                                    <td><label for="">BEO</label></td>
-                                    <td class="text-center">
-                                        <input type="number" min="0" max="4" maxlength="1" required class="form-control bg-warning text-dark font-weight-bold text-center" value="{{ $data->role->beo }}" name="beo">
-                                    </td>
-                                    <td></td>
-                                </tr>
+                                
                                 <tr>
                                     <td><label for="">HRIS</label></td>
                                     <td class="text-center">
@@ -101,20 +85,6 @@ User Details | {{ $data->name }}
                                         5 super admin
                                     </td>
                                 </tr>
-                                <!-- <tr>
-                                    <td><label for="">Attendance</label></td>
-                                    <td class="text-center">
-                                        <input type="number" min="0" max="4" maxlength="1" required class="form-control bg-warning text-dark font-weight-bold text-center" value="{{ $data->role->attendance }}" name="attendance">
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><label for="">Leave</label></td>
-                                    <td class="text-center">
-                                        <input type="number" min="0" max="5" maxlength="1" required class="form-control bg-warning text-dark font-weight-bold text-center" value="{{ $data->role->leave }}" name="leave">
-                                    </td>
-                                    <td></td>
-                                </tr> -->
                             </tbody>
                         </table>
                     </div>

@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('title')
-Add new Task
+Create new Task
 @endsection
 
 @section('content')
-<h1 class="h3 text-gray-800">ADD NEW TASK</h1>
+<h1 class="h3 text-gray-800">New task</h1>
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -190,8 +190,8 @@ Add new Task
                     </div>
 
                     <div class="form-group">
-                        <button class="btn shadow btn-primary" type="submit">Save</button>
-                        <a href="{{ route('task.index') }}" class="btn btn-secondary shadow">Cancel</a>
+                        <button class="btn shadow btn-primary shadow-sm" type="submit">Save</button>
+                        <a href="{{ route('task.index') }}" class="btn btn-secondary shadow-sm">Cancel</a>
                     </div>
                 </div>
             </div>
