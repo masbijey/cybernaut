@@ -5,7 +5,7 @@ Add new asset
 @endsection
 
 @section('content')
-<h1 class="h3 text-gray-800">NEW ASSET</h1>
+<h1 class="h3 text-gray-800">Add new asset</h1>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
@@ -16,47 +16,87 @@ Add new asset
 
 <form method="POST" action="{{ route('asset.store') }}" enctype="multipart/form-data" id="priceForm">
     @csrf
-    <div class="row mt-4">
+    <div class="row mt-4 mb-4">
         <div class="col-sm-12 col-md-12 col-lg-4">
             <div class="card mb-3 shadow">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Asset Information</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Asset information</h6>
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="name">Asset Name :</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
+                        <label for="name" class="font-weight-bold">Asset name : <small class="text-danger">*</small></label>
+                        <input type="text"
+                            class="form-control @error('name') is-invalid @enderror"
+                            value="{{ old('name') }}"
+                            id="name"
+                            name="name">
+                        @error('name')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-group">
-                        <label for="category">Category :</label>
-                        <select class="custom-select form-control" id="category" name="category" required style="width: 100%;">
-                            <option value="" selected>select a category</option>
+                        <label for="category" class="font-weight-bold">Category : <small class="text-danger">*</small></label>
+                        <select class="custom-select form-control @error('name') is-invalid @enderror"
+                            id="category"
+                            name="category"
+                            style="width: 100%;">
+                            <option value="" selected disabled>select a category</option>
                             @foreach ($assetcat as $data)
                             <option value="{{ $data->id }}">{{ $data->name }}</option>
                             @endforeach
                         </select>
+                        @error('category')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-group">
-                        <label for="merk">Merk :</label>
-                        <input type="text" class="form-control" id="merk" name="merk" required>
+                        <label for="merk" class="font-weight-bold">Merk : <small class="text-danger">*</small></label>
+                        <input type="text"
+                            class="form-control @error('merk') is-invalid @enderror"
+                            value="{{ old('merk') }}"
+                            id="merk"
+                            name="merk">
+                        @error('merk')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-group">
-                        <label for="type">Type / Model :</label>
-                        <input type="text" class="form-control" id="type" name="type" required>
+                        <label for="type" class="font-weight-bold">Type / Model : <small class="text-danger">*</small></label>
+                        <input type="text"
+                            class="form-control @error('merk') is-invalid @enderror"
+                            id="type"
+                            name="type">
+                        @error('type')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-group">
-                        <label for="serialNumber">Serial Number :</label>
-                        <input type="text" class="form-control" id="serialNumber" name="serialNumber" required>
+                        <label for="serialNumber" class="font-weight-bold">Serial number : <small class="text-danger">*</small></label>
+                        <input type="text"
+                            class="form-control @error('merk') is-invalid @enderror"
+                            id="serialNumber"
+                            name="serialNumber">
+                        @error('serialNumber')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-group">
-                        <label for="file">Asset Photo :</label>
+                        <label for="file" class="font-weight-bold">Asset photo : <small class="text-danger">*</small></label>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="file" name="file" accept="image/*" capture="environment" required>
+                            <input type="file"
+                                class="custom-file @error('merk') is-invalid @enderror"
+                                id="file"
+                                name="file"
+                                accept="image/*"
+                                capture="environment">
+                            @error('file')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                             <label class="custom-file-label" for="file">Choose file</label>
                         </div>
                     </div>
@@ -67,43 +107,80 @@ Add new asset
         <div class="col-sm-12 col-md-12 col-lg-4">
             <div class="card mb-3 shadow">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Purchase Information</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Purchase information</h6>
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="vendorName">Vendor Name :</label>
-                        <input type="text" class="form-control" id="vendorName" name="vendorName" required>
+                        <label for="vendorName" class="font-weight-bold">Vendor name : <small class="text-danger">*</small></label>
+                        <input type="text"
+                            class="form-control @error('vendorName') is-invalid @enderror"
+                            id="vendorName"
+                            name="vendorName">
+                        @error('vendorName')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <label for="vendorPhone">Vendor Phone :</label>
-                        <input type="number" class="form-control" id="vendorPhone" name="vendorPhone" required>
+                        <label for="vendorPhone" class="font-weight-bold">Vendor phone : <small class="text-danger">*</small></label>
+                        <input type="number"
+                            class="form-control @error('vendorPhone') is-invalid @enderror"
+                            id="vendorPhone"
+                            name="vendorPhone">
+                        @error('vendorPhone')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <label for="vendorAddress">Vendor Address :</label>
-                        <textarea name="vendorAddress" id="vendorAddress" class="form-control" required></textarea>
+                        <label for="vendorAddress" class="font-weight-bold">Vendor address : <small class="text-danger">*</small></label>
+                        <textarea name="vendorAddress"
+                            id="vendorAddress"
+                            class="form-control @error('vendorAddress') is-invalid @enderror"></textarea>
+                        @error('vendorAddress')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <label for="buyDate">Buy Date :</label>
-                        <input type="date" class="form-control" id="buyDate" name="buyDate" required>
+                        <label for="buyDate" class="font-weight-bold">Buy date : <small class="text-danger">*</small></label>
+                        <input type="date"
+                            class="form-control @error('buyDate') is-invalid @enderror"
+                            id="buyDate"
+                            name="buyDate">
+                        @error('buyDate')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <label for="buyPrice">Buy Price :</label>
-                        <input type="text" class="form-control" id="buyPrice" name="buyPrice" required>
+                        <label for="buyPrice" class="font-weight-bold">Buy price : <small class="text-danger">*</small></label>
+                        <input type="text"
+                            class="form-control @error('buyPrice') is-invalid @enderror"
+                            id="buyPrice"
+                            name="buyPrice">
+                        @error('buyPrice')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <label for="status">Buy Condition :</label><br>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="customRadio11" name="buycond" class="custom-control-input" value="Good" required>
-                            <label class="custom-control-label" for="customRadio11">New</label>
+                        <label for="status" class="font-weight-bold">Buy condition : <small class="text-danger">*</small></label><br>
+                        <div class="custom-control custom-radio custom-control-inline @error('buycond') is-invalid @enderror">
+                            <input type="radio" id="customRadio11" name="buycond" class="custom-control-input" value="Good">
+                            <label class="custom-control-label font-weight-bolder text-success" for="customRadio11">New</label>
                         </div>
                         <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="customRadio12" name="buycond" class="custom-control-input" value="Broken" required>
-                            <label class="custom-control-label" for="customRadio12">Used</label>
+                            <input type="radio" id="customRadio12" name="buycond" class="custom-control-input" value="Broken">
+                            <label class="custom-control-label font-weight-bolder text-warning" for="customRadio12">Used</label>
                         </div>
+                        @error('buycond')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <label for="remark">Asset Remark :</label>
-                        <textarea name="asset_remark" id="remark" class="form-control"></textarea>
+                        <label for="remark" class="font-weight-bold">Asset remark : <small class="text-danger">*</small></label>
+                        <textarea name="asset_remark"
+                            id="remark"
+                            class="form-control @error('asset_remark') is-invalid @enderror"></textarea>
+                        @error('asset_remark')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
             </div>
@@ -112,57 +189,72 @@ Add new asset
         <div class="col-sm-12 col-md-12 col-lg-4">
             <div class="card mb-3 shadow">
                 <div class="card-header text-primary py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Asset Allocation</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Asset allocation</h6>
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="location">Location :</label>
-                        <select class="custom-select form-control" id="location" name="location" required style="width: 100%;">
-                            <option value="" selected>select a location</option>
+                        <label for="location" class="font-weight-bold">Location : <small class="text-danger">*</small></label>
+                        <select class="custom-select form-control @error('buyPrice') is-invalid @enderror" id="location" name="location" style="width: 100%;">
+                            <option value="" selected disabled>select a location</option>
                             @foreach ($location as $data)
                             <option value="{{ $data->id }}">{{ $data->name }}</option>
                             @endforeach
                         </select>
+                        @error('location')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <label for="employee">Employee :</label>
-                        <select class="custom-select form-control" id="employee" name="employee" required style="width: 100%;">
-                            <option value="" selected>select a employee</option>
+                        <label for="employee" class="font-weight-bold">Employee : <small class="text-danger">*</small></label>
+                        <select class="custom-select form-control @error('buyPrice') is-invalid @enderror" id="employee" name="employee" style="width: 100%;">
+                            <option value="" selected disabled>select a employee</option>
                             @foreach ($employee as $data)
                             <option value="{{ $data->id }}">{{ $data->name }}</option>
                             @endforeach
                         </select>
+                        @error('employee')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <label for="department">Department :</label>
-                        <select class="custom-select form-control" id="department" name="department" required style="width: 100%;">
-                            <option value="" selected>select a department</option>
+                        <label for="department" class="font-weight-bold">Department : <small class="text-danger">*</small></label>
+                        <select class="custom-select form-control @error('buyPrice') is-invalid @enderror" id="department" name="department" style="width: 100%;">
+                            <option value="" selected disabled>select a department</option>
                             @foreach ($department as $data)
                             <option value="{{ $data->id }}">{{ $data->name }}</option>
                             @endforeach
                         </select>
+                        @error('department')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <label for="status">Condition :</label><br>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="good_condition" name="condition" class="custom-control-input" value="Good" required>
-                            <label class="custom-control-label" for="good_condition">Good</label>
+                        <label for="status" class="font-weight-bold">Condition : <small class="text-danger">*</small></label><br>
+                        <div class="custom-control custom-radio custom-control-inline @error('condition') is-invalid @enderror">
+                            <input type="radio" id="good_condition" name="condition" class="custom-control-input" value="Good">
+                            <label class="custom-control-label text-success font-weight-bolder" for="good_condition">Good</label>
                         </div>
                         <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="broken_condition" name="condition" class="custom-control-input" value="Broken" required>
-                            <label class="custom-control-label" for="broken_condition">Broken</label>
+                            <input type="radio" id="broken_condition" name="condition" class="custom-control-input" value="Broken">
+                            <label class="custom-control-label text-danger font-weight-bolder" for="broken_condition">Broken</label>
                         </div>
+                        @error('condition')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <label for="remark">Allocation Remark :</label>
-                        <textarea name="remark" id="remark" class="form-control"></textarea>
+                        <label for="remark" class="font-weight-bold">Allocation Remark : <small class="text-danger">*</small></label>
+                        <textarea name="remark" id="remark" class="form-control @error('remark') is-invalid @enderror"></textarea>
+                        @error('remark')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
-                <button class="btn btn-primary shadow" type="submit">Save</button>
-                <a href="{{ route('asset.index') }}" class="btn btn-secondary shadow">Cancel</a>
+                <button class="btn btn-primary shadow-sm" type="submit">Save</button>
+                <a href="{{ route('asset.index') }}" class="btn btn-secondary shadow-sm">Cancel</a>
             </div>
         </div>
     </div>

@@ -5,18 +5,18 @@ Asset List
 @endsection
 
 @section('content')
-<h1 class="h3 text-gray-800">ASSET MANAGEMENT</h1>
+<h1 class="h3 text-gray-800">Asset management</h1>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Asset Management</li>
+        <li class="breadcrumb-item active" aria-current="page">Asset management</li>
     </ol>
 </nav>
 
 <div class="mb-2">
-    <button type="button" class="btn mr-0 mb-0 d-inline-block">UPDATE : </button>
+    <button type="button" class="btn mr-0 mb-0 d-inline-block" disabled>UPDATE : </button>
 
-    <div class="btn-group shadow">
+    <div class="btn-group shadow-sm">
         <a href="{{ route('asset.create') }}" class="btn btn-primary btn-sm shadow"><i class='fas fa-plus'></i> New Asset</a>
         <button type="button" class="btn btn-outline-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="sr-only">Toggle Dropdown</span>
@@ -39,10 +39,10 @@ Asset List
                     <th>Category</th>
                     <th>Merk</th>
                     <th>Type</th>
-                    <th>Serial Number</th>
+                    <th>Serial number</th>
                     <th>Status</th>
                     <th>Location</th>
-                    <th>Last Activity</th>
+                    <th>Last activity</th>
                 </tr>
             </thead>
             <tbody>

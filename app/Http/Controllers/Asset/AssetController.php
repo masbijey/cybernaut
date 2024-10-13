@@ -58,14 +58,13 @@ class AssetController extends Controller
     public function store(Request $request)
     {
         if (in_array(Auth::user()->role->asset, ['2', '3', '4'])) {
-            $validator = Validator::make($request->all(), [
-                //for asset table
+            $validatedData = $request->validate([
                 'name' => 'required',
                 'category' => 'required',
                 'merk' => 'required',
                 'type' => 'required',
                 'serialNumber' => 'required',
-                'file' => 'required',
+                'file' => 'required|image',
                 'vendorName' => 'required',
                 'vendorPhone' => 'required|numeric',
                 'vendorAddress' => 'required',
@@ -73,18 +72,12 @@ class AssetController extends Controller
                 'buyPrice' => 'required',
                 'buycond' => 'required',
                 'asset_remark' => 'required',
-
-                //for allocation table
-                'remark' => 'nullable',
+                'remark' => 'required',
                 'location' => 'required',
                 'department' => 'required',
-                'employee' => 'required'
+                'employee' => 'required',
+                'condition' => 'required',
             ]);
-
-            if ($validator->fails()) {
-                alert()->error('Gagal.', 'pastikan mengisi data dengan benar');
-                return redirect('/asset');
-            }
 
             $path = $request->file->store('public/asset');
             $url = Storage::url($path);

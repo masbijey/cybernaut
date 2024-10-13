@@ -5,12 +5,12 @@ Asset Category Management
 @endsection
 
 @section('content')
-<h1 class="h3 text-gray-800">ASSET CATEGORY MANAGEMENT</h1>
+<h1 class="h3 text-gray-800">Asset category management</h1>
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Asset Category Management</li>
+        <li class="breadcrumb-item active" aria-current="page">Asset category management</li>
     </ol>
 </nav>
 
@@ -18,14 +18,14 @@ Asset Category Management
     <div class="col-sm-12 col-md-4 col-lg-4">
         <div class="card mb-2 shadow-sm">
             <div class="card-header text-primary py-3">
-                <h6 class="m-0 font-weight-bold text-primary">New Asset Category</h6>
+                <h6 class="m-0 font-weight-bold text-primary">New asset category</h6>
             </div>
             <div class="card-body">
                 <form method="POST" action="{{ route('category.store') }}">
                     @csrf
 
                     <table class="table table-borderless">
-                        <td><label for="name">Category Name</label></td>
+                        <td><label for="name">Category name</label></td>
                         <td><input type="text" name="name" id="name" class="form-control" required></td>
                     </table>
 
@@ -39,14 +39,14 @@ Asset Category Management
     <div class="col-sm-12 col-md-4 col-lg-5">
         <div class="card mb-2 shadow-sm">
             <div class="card-header text-primary py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Category List</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Category list</h6>
             </div>
             <div class="card-body">
                 <table class="table table-hover" id="location-table">
                     <thead>
                         <tr class="text-center">
                             <th>#</th>
-                            <th>Category Name</th>
+                            <th>Category name</th>
                         </tr>
                     </thead>
                     <tbody>
