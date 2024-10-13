@@ -21,7 +21,7 @@ Asset Information
         <div class="card shadow mb-3">
             <div class="card-body">
                 <div class="mb-3 text-center">
-                    <img src="{{ url('public'.$data->file) }}" class="img-fluid" alt="Responsive image" width="200px">
+                    <img src="{{ url($data->file) }}" class="img-fluid" alt="Responsive image" width="200px">
                 </div>
 
                 <table class="table table-hover">
@@ -221,7 +221,7 @@ Asset Information
                                 @endif
                             </td>
                             <td>{{ $data->remark }}</td>
-                            <td><a href="{{ url('public/'.$data->file) }}" class="btn btn-sm btn-outline-primary">File</a></td>
+                            <td><a href="{{ url($data->file) }}" class="btn btn-sm btn-outline-primary">File</a></td>
                         </tr>
                         @endforeach
                     </tbody>

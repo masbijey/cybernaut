@@ -72,6 +72,7 @@ class AssetController extends Controller
                 'buyDate' => 'required',
                 'buyPrice' => 'required',
                 'buycond' => 'required',
+                'asset_remark' => 'required',
 
                 //for allocation table
                 'remark' => 'nullable',
@@ -114,7 +115,8 @@ class AssetController extends Controller
                 'buyPrice' => $request->buyPrice,
                 'file' => $url,
                 'created_by' => $updateBy,
-                'buyCond' => $request->buycond
+                'buyCond' => $request->buycond,
+                'remark' => $request->asset_remark,
             ]);
 
             Assetallocation::create([
