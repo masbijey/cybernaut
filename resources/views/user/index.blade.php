@@ -12,7 +12,7 @@
 
 <div class="col-sm-12 col-md-12 col-lg-12">
 
-    <button type="button" class="btn btn-primary shadow mb-3" data-toggle="modal" data-target="#exampleModal3">
+    <button type="button" class="btn btn-primary shadow-sm mb-3" data-toggle="modal" data-target="#exampleModal3">
         <i class='fas fa-plus'></i> New User
     </button>
 

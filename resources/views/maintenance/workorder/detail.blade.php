@@ -24,27 +24,227 @@ Tickets detail | {{ $workorder->title }}
 
                     <div id="copySuccess" class="alert alert-success mt-2" style="display:none;">Link berhasil disalin!</div>
                 </div>
-                <table class="table table-borderless table-sm">
-                    <tr>
-                        <td class="font-weight-bold">No. Ticket</td>
-                        <td class="font-weight-bold text-success"> : #{{ $workorder->order_no }}</td>
-                    </tr>
-                    <tr>
-                        <td class="font-weight-bold">Due date</td>
-                        <td> : {{ \Carbon\Carbon::parse($workorder->due_date)->format('d M Y') }}</td>
-                    </tr>
-                    <tr>
-                        <td class="font-weight-bold">Subject</td>
-                        <td> : {{ $workorder->title }}</td>
-                    </tr>
-                    <tr>
-                        <td class="font-weight-bold">Score</td>
-                        @if ($workorder !== 'Closed')
-                        <td class="text-danger">: -</td>
-                        @endif
-                    </tr>
+                <div class="row">
+                    <div class="col">
+                        <table class="table table-sm">
+                            @if ($workorder == 'Closed')
+                            <tr>
+                                <td class="font-weight-bold">Score</td>
+                                <td class="text-danger">: -</td>
+                            </tr>
+                            @endif
+                            <tr>
+                                <td class="font-weight-bold">No. Ticket</td>
+                                <td class="font-weight-bold text-success"> : #{{ $workorder->order_no }}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold">Due date</td>
+                                <td> : {{ \Carbon\Carbon::parse($workorder->due_date)->format('d M Y') }}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold">Subject</td>
+                                <td>: {{ $workorder->title }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col">
+                        <table class="table table-sm">
+                            <tr>
+                                <td class="font-weight-bold">Departments
+                                </td>
+                                @if ($workorder !== 'Closed')
+                                <td>:
+                                    @if ($workorder->status !== 'Done')
 
-                </table>
+                                    @foreach ($workorder->departmentMany as $department)
+                                    @if ($department->department !== null)
+                                    <a href="#" class="text-decoration-none btn-link">{{ $department->department->name }},</a>
+                                    <!-- <a href="" class="btn btn-sm text-decoration-none" data-placement="top" title="Hapus"><i class='fas fa-trash'></i></a> -->
+                                    @endif
+                                    @endforeach
+                                    <small>
+                                        <a href="#collapseAddDepartment" data-toggle="collapse" class="btn-link text-success"><i class='fas fa-plus'></i> add</a><br>
+                                    </small>
+
+                                    <div class="collapse" id="collapseAddDepartment">
+                                        <div class="card card-body">
+                                            <form method="POST" action="{{ route('workorder.addrelation') }}" enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $workorder->id }}">
+                                                <div class="form-group">
+                                                    <select class="js-example-basic-multiple custom-select" id="select-dept-add" name="department_ids[]" multiple="multiple" style="width: 100%;" required>
+                                                        @if(!isset($workorder->departmentMany))
+                                                        @foreach($workorder->departmentMany as $data)
+                                                        <option value="{{ $data->location->id }}" selected>{{ $data->department->name }}</option>
+                                                        @endforeach
+                                                        @endif
+
+                                                        @foreach($departmentlist as $data)
+                                                        <option value="{{ $data->id }}">{{ $data->name }}
+                                                        </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <button type="submit" class="btn btn-sm btn-primary shadow">Save</button>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal fade" id="addDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <form method="POST" action="{{ route('workorder.addrelation') }}" enctype="multipart/form-data">
+                                                        @csrf
+                                                        <input type="hidden" name="id" value="{{ $workorder->id }}">
+                                                        <div class="form-group">
+                                                            <select class="js-example-basic-multiple custom-select" id="select-dept-add" name="department_ids[]" multiple="multiple" style="width: 100%;" required>
+                                                                @if(!isset($workorder->departmentMany))
+                                                                @foreach($workorder->departmentMany as $data)
+                                                                <option value="{{ $data->location->id }}" selected>{{ $data->department->name }}</option>
+                                                                @endforeach
+                                                                @endif
+
+                                                                @foreach($departmentlist as $data)
+                                                                <option value="{{ $data->id }}">{{ $data->name }}
+                                                                </option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary shadow">Save</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @else
+                                    @foreach($workorder->departmentMany as $department)
+                                    @if($department->department !== null)
+                                    <a href="#">{{ $department->department->name }}</a>
+                                    @endif
+                                    @endforeach
+                                    @endif
+                                </td>
+                                @endif
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold">Locations</td>
+                                @if ($workorder !== 'Closed')
+                                <td>
+                                    @if ($workorder->status !== 'Done')
+
+                                    @foreach($workorder->locationMany as $location)
+                                    @if ($location->location !== null)
+                                    : <a href="#" class="text-decoration-none btn-link">{{ $location->location->name }}</a>,
+                                    <!-- <a href="#" class="btn btn-sm" data-placement="top" title="Hapus"><i class='fas fa-trash'></i></a> -->
+                                    @endif
+                                    @endforeach
+
+                                    <small>
+                                        <a href="#collapseAddLocation" data-toggle="collapse" class="btn-link text-success"><i class='fas fa-plus'></i> add</a><br>
+                                    </small>
+
+                                    <div class="collapse" id="collapseAddLocation">
+                                        <div class="card card-body">
+                                            <form method="POST" action="{{ route('workorder.addrelation') }}" enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $workorder->id }}">
+                                                <div class="form-group">
+                                                    <select class="js-example-basic-multiple custom-select form-control form-control-sm" id="select-location-add" name="location_ids[]" multiple="multiple" style="width: 100%;">
+                                                        @if(!isset($workorder->locationMany))
+                                                        @foreach($workorder->locationMany as $data)
+                                                        <option value="{{ $data->location->id }}" selected>{{ $data->location->name }}</option>
+                                                        @endforeach
+                                                        @endif
+
+                                                        @foreach($locationlist as $data)
+                                                        <option value="{{ $data->id }}">{{ $data->name }}
+                                                        </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary shadow btn-sm">Save</button>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    @else
+
+                                    @foreach($workorder->locationMany as $location)
+                                    @if($location->location !== null)
+                                    <a href="#">{{ $location->location->name }}</a>,
+                                    @endif
+                                    @endforeach
+                                    @endif
+                                </td>
+                                @endif
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold">Assets</td>
+                                @if ($workorder !== 'Closed')
+                                <td> :
+                                    @if ($workorder->status !== 'Done')
+
+                                    @foreach($workorder->assetMany as $asset)
+                                    @if($asset->asset !== null)
+                                    : <a href="#">{{ $asset->asset->name }}</a>
+                                    @endif
+                                    @endforeach
+
+                                    <small class="">
+                                        <a href="#collapseAddAsset" data-toggle="collapse" class="btn-link text-success"><i class='fas fa-plus'></i> add</a><br>
+                                    </small>
+
+                                    <div class="collapse" id="collapseAddAsset">
+                                        <div class="card card-body">
+                                            <form method="POST" action="{{ route('workorder.addrelation') }}" enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $workorder->id }}">
+                                                <div class="form-group">
+                                                    <select class="js-example-basic-multiple custom-select" id="select-asset-add" name="asset_ids[]" multiple="multiple" required style="width: 100%;">
+                                                        @if(!isset($workorder->assetMany))
+                                                        @foreach($workorder->assetMany as $data)
+                                                        <option value="{{ $data->asset->id }}" selected>{{ $data->asset->name }}</option>
+                                                        @endforeach
+                                                        @endif
+
+                                                        @foreach($assetlist as $data)
+                                                        <option value="{{ $data->id }}">{{ $data->name }}
+                                                        </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary shadow btn-sm">Save</button>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    @else
+                                    @foreach($workorder->assetMany as $asset)
+                                    @if($asset->asset !== null)
+                                    <a href="#">{{ $asset->asset->name }}</a>
+                                    @endif
+                                    @endforeach
+                                    @endif
+                                </td>
+                                @endif
+                            </tr>
+                            @if ($workorder == 'Closed')
+                            <tr>
+                                <td class="font-weight-bold">Workers</td>
+                                <td>:
+                                    @foreach($workorder->memberMany as $member)
+                                    @if($member->user !== null)
+                                    <a href="#">{{ $member->user->name }}</a>,
+                                    @endif
+                                    @endforeach
+                                </td>
+                            </tr>
+                            @endif
+                        </table>
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <label class="font-weight-bold">Description :</label>
@@ -222,251 +422,7 @@ Tickets detail | {{ $workorder->title }}
     <div class="col-sm-12 col-md-12 col-lg-4">
         <div class="card mb-3 shadow ">
             <div class="card-body">
-                <div class="form-group">
-                    <label class="font-weight-bold">Departments :</label>
-
-                    @if ($workorder->status !== 'Done')
-
-                    <ol>
-                        @foreach ($workorder->departmentMany as $department)
-                        @if ($department->department !== null)
-                        <li>
-                            <a href="#">{{ $department->department->name }}</a>
-                            <a href="" class="btn btn-sm text-decoration-none" data-placement="top" title="Hapus"><i class='fas fa-trash'></i></a>
-                        </li>
-                        @endif
-                        @endforeach
-                    </ol>
-
-                    <small class="">
-                        <a href="#collapseAddDepartment" data-toggle="collapse"><i class='fas fa-edit'></i> add departments</a><br>
-                    </small>
-
-                    <div class="collapse" id="collapseAddDepartment">
-                        <div class="card card-body">
-                            <form method="POST" action="{{ route('workorder.addrelation') }}" enctype="multipart/form-data">
-                                @csrf
-                                <input type="hidden" name="id" value="{{ $workorder->id }}">
-                                <div class="form-group">
-                                    <select class="js-example-basic-multiple custom-select" id="select-dept-add" name="department_ids[]" multiple="multiple" style="width: 100%;" required>
-                                        @if(!isset($workorder->departmentMany))
-                                        @foreach($workorder->departmentMany as $data)
-                                        <option value="{{ $data->location->id }}" selected>{{ $data->department->name }}</option>
-                                        @endforeach
-                                        @endif
-
-                                        @foreach($departmentlist as $data)
-                                        <option value="{{ $data->id }}">{{ $data->name }}
-                                        </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <button type="submit" class="btn btn-sm btn-primary shadow">Save</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    @else
-
-                    <ol>
-                        @foreach($workorder->departmentMany as $department)
-                        @if($department->department !== null)
-                        <li><a href="#">{{ $department->department->name }}</a></li>
-                        @endif
-                        @endforeach
-                    </ol>
-                    @endif
-                </div>
-            </div>
-        </div>
-
-        <div class="card mb-3 shadow ">
-            <div class="card-body">
-                <div class="form-group">
-                    <label class="font-weight-bold">Locations :</label>
-
-                    @if ($workorder->status !== 'Done')
-
-                    <ol>
-                        @foreach($workorder->locationMany as $location)
-                        @if ($location->location !== null)
-                        <li>
-                            <a href="#">{{ $location->location->name }}</a>
-                            <a href="#" class="btn btn-sm" data-placement="top" title="Hapus"><i class='fas fa-trash'></i></a>
-                        </li>
-                        @endif
-                        @endforeach
-                    </ol>
-
-                    <small class="">
-                        <a href="#collapseAddLocation" data-toggle="collapse"><i class='fas fa-edit'></i> add location</a><br>
-                    </small>
-
-                    <div class="collapse" id="collapseAddLocation">
-                        <div class="card card-body">
-                            <form method="POST" action="{{ route('workorder.addrelation') }}" enctype="multipart/form-data">
-                                @csrf
-                                <input type="hidden" name="id" value="{{ $workorder->id }}">
-                                <div class="form-group">
-                                    <select class="js-example-basic-multiple custom-select form-control form-control-sm" id="select-location-add" name="location_ids[]" multiple="multiple" style="width: 100%;">
-                                        @if(!isset($workorder->locationMany))
-                                        @foreach($workorder->locationMany as $data)
-                                        <option value="{{ $data->location->id }}" selected>{{ $data->location->name }}</option>
-                                        @endforeach
-                                        @endif
-
-                                        @foreach($locationlist as $data)
-                                        <option value="{{ $data->id }}">{{ $data->name }}
-                                        </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <button type="submit" class="btn btn-primary shadow btn-sm">Save</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    @else
-
-                    <ol>
-                        @foreach($workorder->locationMany as $location)
-                        @if($location->location !== null)
-                        <li><a href="#">{{ $location->location->name }}</a></li>
-                        @endif
-                        @endforeach
-                    </ol>
-                    @endif
-                </div>
-            </div>
-        </div>
-
-        <div class="card mb-3 shadow ">
-            <div class="card-body">
-                <div class="form-group">
-                    <label class="font-weight-bold">Assets :</label>
-
-                    @if ($workorder->status !== 'Done')
-
-                    <ol>
-                        @foreach($workorder->assetMany as $asset)
-                        @if($asset->asset !== null)
-                        <li>
-                            <a href="#">{{ $asset->asset->name }}</a>
-                            <a href="#" class="btn btn-sm" data-placement="top" title="Hapus"><i class='fas fa-trash'></i></a>
-                        </li>
-                        @endif
-                        @endforeach
-                    </ol>
-
-                    <small class="">
-                        <a href="#collapseAddAsset" data-toggle="collapse"><i class='fas fa-edit'></i> add assets</a><br>
-                    </small>
-
-                    <div class="collapse" id="collapseAddAsset">
-                        <div class="card card-body">
-                            <form method="POST" action="{{ route('workorder.addrelation') }}" enctype="multipart/form-data">
-                                @csrf
-                                <input type="hidden" name="id" value="{{ $workorder->id }}">
-                                <div class="form-group">
-                                    <select class="js-example-basic-multiple custom-select" id="select-asset-add" name="asset_ids[]" multiple="multiple" required style="width: 100%;">
-                                        @if(!isset($workorder->assetMany))
-                                        @foreach($workorder->assetMany as $data)
-                                        <option value="{{ $data->asset->id }}" selected>{{ $data->asset->name }}</option>
-                                        @endforeach
-                                        @endif
-
-                                        @foreach($assetlist as $data)
-                                        <option value="{{ $data->id }}">{{ $data->name }}
-                                        </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <button type="submit" class="btn btn-primary shadow btn-sm">Save</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    @else
-
-                    <ol>
-                        @foreach($workorder->assetMany as $asset)
-                        @if($asset->asset !== null)
-                        <li><a href="#">{{ $asset->asset->name }}</a></li>
-                        @endif
-                        @endforeach
-                    </ol>
-                    @endif
-                </div>
-            </div>
-        </div>
-
-        <div class="card mb-3 shadow ">
-            <div class="card-body">
-                <div class="form-group">
-                    <label class="font-weight-bold">Finished by :</label>
-                    @if ($workorder->status !== 'Done')
-                    <!-- <table class="table table-sm table-borderless">
-                                <tbody>
-                                    @foreach($workorder->memberMany as $member)
-                                    @if($member->user !== null)
-                                    <tr>
-                                        <td><a href="#">{{ $member->user->name }}</a></td>
-                                        <td class="text-right">
-                                            <a href="#" class="btn btn-sm" data-placement="top" title="Hapus"><i class='fas fa-trash'></i></a>
-                                        </td>
-                                    </tr>
-                                    @endif
-                                    @endforeach
-                                </tbody>
-                            </table>
-
-                            <small class="">
-                                <a href="#collapseAddMember" data-toggle="collapse"><i class='fas fa-edit'></i> add people</a><br>
-                            </small>
-
-                            <div class="collapse" id="collapseAddMember">
-                                <div class="card card-body">
-                                    <form method="POST" action="{{ route('workorder.addrelation') }}" enctype="multipart/form-data">
-                                        @csrf
-                                        <input type="hidden" name="id" value="{{ $workorder->id }}">
-                                        <div class="form-group">
-                                            <select class="js-example-basic-multiple custom-select" id="select-member-add" name="member_ids[]" multiple="multiple" required style="width: 100%;">
-                                                @if(!isset($workorder->memberMany))
-                                                @foreach($workorder->memberMany as $data)
-                                                <option value="{{ $data->member->id }}" selected>{{ $data->member->name }}</option>
-                                                @endforeach
-                                                @endif
-
-                                                @foreach($userlist as $data)
-                                                <option value="{{ $data->id }}">{{ $data->name }}
-                                                </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary shadow btn-sm">Save</button>
-                                    </form>
-                                </div>
-                            </div> -->
-
-                    <p class="text-danger">tickets on progress.</p>
-                    @else
-
-                    <ol>
-                        @foreach($workorder->memberMany as $member)
-                        @if($member->user !== null)
-                        <li><a href="#">{{ $member->user->name }}</a></li>
-                        @endif
-                        @endforeach
-                    </ol>
-
-                    @endif
-                </div>
-            </div>
-        </div>
-
-        <div class="card mb-3 shadow ">
-            <div class="card-body">
-                <h6 class="font-weight-bold">Timeline :</h6>
+                <h6 class="font-weight-bold">Comments :</h6>
                 @if (!isset($workordercommentMany))
                 <p class="text-danger">Belum ada data</p>
                 @endif
@@ -482,7 +438,26 @@ Tickets detail | {{ $workorder->title }}
                 <hr>
                 @endforeach
 
-                <small class="">
+                <hr>
+
+                <form method="POST" action="{{ route('workorder.addcomment') }}" enctype="multipart/form-data">
+                    @csrf
+
+                    <input type="hidden" name="id" value="{{ $workorder->id }}">
+
+                    <div class="form-group">
+                        <label for="file_remark" class="font-weight-bold">Add comment <small class="text-danger">*</small></label>
+                        <textarea name="description" id="file_remark" class="form-control" required rows="5"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="font-weight-bold">Insert Image <small class="text-danger">*</small></label>
+                        <input type="file" class="form-control-file" id="file" name="file" required>
+                        <small class="text-info">image only</small>
+                    </div>
+                    <button class="btn shadow btn-primary" type="submit">Save</button>
+                </form>
+
+                <!-- <small class="">
                     <a href="#collapseAddComment" data-toggle="collapse"><i class='fas fa-edit'></i> add comments</a><br>
                 </small>
 
@@ -507,8 +482,7 @@ Tickets detail | {{ $workorder->title }}
                             <button class="btn shadow btn-primary btn-sm" type="submit">Save</button>
                         </form>
                     </div>
-                </div>
-
+                </div> -->
             </div>
         </div>
     </div>
