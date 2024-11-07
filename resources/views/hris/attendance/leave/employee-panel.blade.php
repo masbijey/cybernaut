@@ -30,32 +30,38 @@ $userRole = Auth::user()->role->hris;
             <form method="POST" action="{{ route('leaveapproval.store') }}" enctype="multipart/form-data">
                 @csrf
 
-                <div class="modal-header">
+                <!-- <div class="modal-header">
                     <h5 class="modal-title m-0 font-weight-bold text-primary" id="exampleModalLabel">Leave Form Request</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
-                </div>
+                </div> -->
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="start_date" class="font-weight-bold">Start date:</label>
-                        <input type="date" id="start_date" name="start_date" class="form-control" required>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                            <label for="start_date" class="font-weight-bold">Start date:</label>
+                            <input type="date" id="start_date" name="start_date" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="end_date" class="font-weight-bold">End date:</label>
+                            <input type="date" id="end_date" name="end_date" class="form-control" required>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="end_date" class="font-weight-bold">End date:</label>
-                        <input type="date" id="end_date" name="end_date" class="form-control" required>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="work_date" class="font-weight-bold">Work date:</label>
+                            <input type="date" id="work_date" name="work_date" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="totalDays" class="font-weight-bold">Total Days:</label>
+                            <input type="text" id="totalDays" class="form-control" readonly>
+                        </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="work_date" class="font-weight-bold">Work date:</label>
-                        <input type="date" id="work_date" name="work_date" class="form-control" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="totalDays" class="font-weight-bold">Total Days:</label>
-                        <input type="text" id="totalDays" class="form-control" readonly>
-                    </div>
+                </div>
 
                     <div class="form-group">
                         <label class="font-weight-bold">Your leave:</label>
@@ -101,7 +107,7 @@ $userRole = Auth::user()->role->hris;
                 </div>
                 <div class="modal-footer">
                     <button type="Reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
         </div>
