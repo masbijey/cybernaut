@@ -6,6 +6,7 @@ Add new asset
 
 @section('content')
 <h1 class="h3 text-gray-800">Add new asset</h1>
+
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>

@@ -16,19 +16,21 @@ Helpdesk Management
 
 <!-- <a href="{{ route('workorder.create') }}" class="btn btn-primary shadow"><i class='fas fa-plus'></i> New Ticket</a> -->
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
+<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModalScrollable">
     <i class='fas fa-plus'></i> New Ticket
 </button>
 
-<!-- Modal -->
+<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#helpdesk_filter">
+    <i class='fas fa-eye'></i> Filter Data
+</button>
+
 <div class="modal" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollable" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
             <form method="POST" action="{{ route('workorder.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title text-primary font-weight-bolder" id="exampleModalCenteredLabel">Create new Ticket</h5>
+                    <h5 class="modal-title text-primary font-weight-bolder" id="exampleModalCenteredLabel">Create a ticket</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -89,11 +91,6 @@ Helpdesk Management
     </div>
 </div>
 
-<button type="button" class="btn btn-info" data-toggle="modal" data-target="#helpdesk_filter">
-    <i class='fas fa-eye'></i> Filter Data
-</button>
-
-<!-- Modal -->
 <div class="modal" id="helpdesk_filter" tabindex="-1" role="dialog" aria-labelledby="helpdesk_filter" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
@@ -137,8 +134,7 @@ Helpdesk Management
     </div>
 </div>
 
-
-<div class="row mb-3 mt-3">
+<div class="row mb-3 mt-2">
     <div class="col-xl-3 col-md-6 my-2">
         <div class="card border-left-primary shadow h-100 py-2">
             <div class="card-body">

@@ -58,12 +58,13 @@ Tickets detail | {{ $workorder->title }}
 
                                     @foreach ($workorder->departmentMany as $department)
                                     @if ($department->department !== null)
-                                    <a href="#" class="text-decoration-none btn-link">{{ $department->department->name }},</a>
+                                    {{ $department->department->name }},
+                                    <!-- <a href="#" class="text-decoration-none btn-link">{{ $department->department->name }},</a> -->
                                     <!-- <a href="" class="btn btn-sm text-decoration-none" data-placement="top" title="Hapus"><i class='fas fa-trash'></i></a> -->
                                     @endif
                                     @endforeach
                                     <small>
-                                        <a href="#collapseAddDepartment" data-toggle="collapse" class="btn-link text-success"><i class='fas fa-plus'></i> add</a><br>
+                                        <a href="#collapseAddDepartment" data-toggle="collapse" class="btn-link text-primary"><i class='fas fa-plus'></i> add</a><br>
                                     </small>
 
                                     <div class="collapse" id="collapseAddDepartment">
@@ -136,13 +137,13 @@ Tickets detail | {{ $workorder->title }}
 
                                     @foreach($workorder->locationMany as $location)
                                     @if ($location->location !== null)
-                                    : <a href="#" class="text-decoration-none btn-link">{{ $location->location->name }}</a>,
+                                    : {{ $location->location->name }},
                                     <!-- <a href="#" class="btn btn-sm" data-placement="top" title="Hapus"><i class='fas fa-trash'></i></a> -->
                                     @endif
                                     @endforeach
 
                                     <small>
-                                        <a href="#collapseAddLocation" data-toggle="collapse" class="btn-link text-success"><i class='fas fa-plus'></i> add</a><br>
+                                        <a href="#collapseAddLocation" data-toggle="collapse" class="btn-link text-primary"><i class='fas fa-plus'></i> add</a><br>
                                     </small>
 
                                     <div class="collapse" id="collapseAddLocation">
@@ -188,12 +189,12 @@ Tickets detail | {{ $workorder->title }}
 
                                     @foreach($workorder->assetMany as $asset)
                                     @if($asset->asset !== null)
-                                    : <a href="#">{{ $asset->asset->name }}</a>
+                                    : {{ $asset->asset->name }}
                                     @endif
                                     @endforeach
 
                                     <small class="">
-                                        <a href="#collapseAddAsset" data-toggle="collapse" class="btn-link text-success"><i class='fas fa-plus'></i> add</a><br>
+                                        <a href="#collapseAddAsset" data-toggle="collapse" class="btn-link text-primary"><i class='fas fa-plus'></i> add</a><br>
                                     </small>
 
                                     <div class="collapse" id="collapseAddAsset">

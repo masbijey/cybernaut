@@ -5,12 +5,12 @@ Create new Task
 @endsection
 
 @section('content')
-<h1 class="h3 text-gray-800">New task</h1>
+<h1 class="h3 text-gray-800">Create New task</h1>
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('task.index') }}">Task List</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('task.index') }}">Task Manager</a></li>
         <li class="breadcrumb-item active" aria-current="page">Add New Task</li>
     </ol>
 </nav>

@@ -6,7 +6,7 @@ Asset Information
 
 @section('content')
 <div class="d-sm-flex align-items-center justify-content-between">
-    <h1 class="h3 text-gray-800">ASSET INFORMATION</h1>
+    <h1 class="h3 text-gray-800">Asset Information</h1>
 </div>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">

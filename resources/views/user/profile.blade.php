@@ -23,16 +23,16 @@ Employee details | {{ $employee->name }}
 <div class="row">
     <div class="col">
         <div class="mb-3">
-            <button class="btn btn-primary btn-sm">Summary</button>
-            <button class="btn btn-outline-primary btn-sm">Experience</button>
-            <button class="btn btn-outline-primary btn-sm">Education</button>
-            <button class="btn btn-outline-primary btn-sm">Family</button>
-            <button class="btn btn-outline-primary btn-sm">Contract</button>
-            <button class="btn btn-outline-primary btn-sm">Training</button>
-            <button class="btn btn-outline-primary btn-sm">Attendance</button>
-            <button class="btn btn-outline-primary btn-sm">Punishment & Reward</button>
-            <button class="btn btn-outline-primary btn-sm">Log</button>
-            <button class="btn btn-outline-primary btn-sm">Leaves</button>
+            <button class="btn btn-primary btn-sm my-1">Summary</button>
+            <button class="btn btn-outline-primary btn-sm my-1">Experience</button>
+            <button class="btn btn-outline-primary btn-sm my-1">Education</button>
+            <button class="btn btn-outline-primary btn-sm my-1">Family</button>
+            <button class="btn btn-outline-primary btn-sm my-1">Contract</button>
+            <button class="btn btn-outline-primary btn-sm my-1">Training</button>
+            <button class="btn btn-outline-primary btn-sm my-1">Attendance</button>
+            <button class="btn btn-outline-primary btn-sm my-1">Punishment & Reward</button>
+            <button class="btn btn-outline-primary btn-sm my-1">Log</button>
+            <button class="btn btn-outline-primary btn-sm my-1">Leaves</button>
         </div>
 
         <div class="card mb-3">

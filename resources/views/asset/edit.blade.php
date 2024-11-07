@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h1 class="h3 mb-2 text-gray-800">New Asset</h1>
+<h1 class="h3 mb-2 text-gray-800">Add new asset</h1>
 
 <form method="POST" action="{{ route('asset.store') }}" enctype="multipart/form-data">
     @csrf
