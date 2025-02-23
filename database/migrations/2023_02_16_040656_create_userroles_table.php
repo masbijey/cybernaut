@@ -13,16 +13,12 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->integer('user_id');
-            $table->string('signage')->nullable();
-            $table->string('workorder')->nullable();
-            $table->string('task')->nullable();
-            $table->string('asset')->nullable();
-            $table->string('voucher')->nullable();
-            $table->string('beo')->nullable();
-            $table->string('hris')->nullable();
-            $table->string('attendance')->nullable();
-            $table->string('leave')->nullable();
             $table->string('admin')->nullable();
+            $table->string('asset')->nullable();
+            $table->string('hris')->nullable();
+            $table->string('maintenance')->nullable();
+            $table->string('business')->nullable();
+            $table->string('room')->nullable();
         });
     }
 

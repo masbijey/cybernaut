@@ -14,82 +14,11 @@ Helpdesk Management
     </ol>
 </nav>
 
-<!-- <a href="{{ route('workorder.create') }}" class="btn btn-primary shadow"><i class='fas fa-plus'></i> New Ticket</a> -->
-
-<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModalScrollable">
-    <i class='fas fa-plus'></i> New Ticket
-</button>
+<a href="{{ route('workorder.create') }}" class="btn btn-primary btn-sm shadow"><i class='fas fa-plus'></i> New Ticket</a>
 
 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#helpdesk_filter">
     <i class='fas fa-eye'></i> Filter Data
 </button>
-
-<div class="modal" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollable" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-        <div class="modal-content">
-            <form method="POST" action="{{ route('workorder.store') }}" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-header">
-                    <h5 class="modal-title text-primary font-weight-bolder" id="exampleModalCenteredLabel">Create a ticket</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="department" class="font-weight-bolder">To Department :</label>
-                        <select class="js-example-basic-multiple custom-select form-control-sm" id="tag-department" name="department_ids[]" multiple="multiple" style="width: 100%;" required>
-                            @foreach($department as $data)
-                            <option value="{{ $data->id }}">{{ $data->name }}</option>
-                            @endforeach
-                        </select> <br>
-                        <small class="text-info">*tandai department tujuan | dapat memilih lebih dari satu</small>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="file" class="font-weight-bolder">Insert image :</label> <br>
-                        <input type="file" name="file" id="file"> <br>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="title" class="font-weight-bolder">Subject :</label>
-                        <input type="text" class="form-control" id="title" name="title" placeholder="" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="description" class="font-weight-bolder">Message :</label>
-                        <textarea name="description" id="description" name="description" class="form-control form-control-sm" rows="5" required></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="due_date" class="font-weight-bolder">Due date :</label>
-                        <input type="date" class="form-control" id="due_date" name="due_date" placeholder="" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="priority" class="font-weight-bolder">Priority :</label>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="Low" name="priority" class="custom-control-input" value="Low" required>
-                            <label class="custom-control-label text-success font-weight-bolder" for="Low">Low</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="Medium" name="priority" class="custom-control-input" value="Medium" required>
-                            <label class="custom-control-label text-warning font-weight-bolder" for="Medium">Medium</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="High" name="priority" class="custom-control-input" value="High" required>
-                            <label class="custom-control-label text-danger font-weight-bolder" for="High">High</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 <div class="modal" id="helpdesk_filter" tabindex="-1" role="dialog" aria-labelledby="helpdesk_filter" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">

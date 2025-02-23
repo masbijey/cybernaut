@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+Create Ticket
+@endsection
+
 @section('content')
 <h1 class="h3 text-gray-800">Create Ticket</h1>
 

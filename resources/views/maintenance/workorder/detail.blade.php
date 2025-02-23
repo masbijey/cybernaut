@@ -189,7 +189,7 @@ Tickets detail | {{ $workorder->title }}
 
                                     @foreach($workorder->assetMany as $asset)
                                     @if($asset->asset !== null)
-                                    : {{ $asset->asset->name }}
+                                    <a href="#">{{ $asset->asset->name }} {{ $asset->asset->merk }} {{ $asset->asset->type }} {{ $asset->asset->serialNumber }}</a> <br>
                                     @endif
                                     @endforeach
 
@@ -206,12 +206,12 @@ Tickets detail | {{ $workorder->title }}
                                                     <select class="js-example-basic-multiple custom-select" id="select-asset-add" name="asset_ids[]" multiple="multiple" required style="width: 100%;">
                                                         @if(!isset($workorder->assetMany))
                                                         @foreach($workorder->assetMany as $data)
-                                                        <option value="{{ $data->asset->id }}" selected>{{ $data->asset->name }}</option>
+                                                        <option value="{{ $data->asset->id }}" selected>{{ $data->asset->name }} {{ $data->asset->merk }} {{ $data->asset->type }} {{ $data ->asset->serialNumber }}</option>
                                                         @endforeach
                                                         @endif
 
                                                         @foreach($assetlist as $data)
-                                                        <option value="{{ $data->id }}">{{ $data->name }}
+                                                        <option value="{{ $data->id }}">{{ $data->name }} {{ $data->merk }} {{ $data->type }} {{ $data->serialNumber }}
                                                         </option>
                                                         @endforeach
                                                     </select>

@@ -98,7 +98,7 @@ class SignageController extends Controller
         Signage::create([
             'meeting_room'  => $request->meeting_room,
             'event_name'    => $request->event_name,
-            'update_by'     => $update_by
+            'updated_by'     => $update_by
         ]);
 
         alert()->success('Berhasil.','Signage berhasil di update');

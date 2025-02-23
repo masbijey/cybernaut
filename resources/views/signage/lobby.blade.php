@@ -27,7 +27,9 @@
         }
 
         :-webkit-full-screen {}
+
         :-ms-fullscreen {}
+
         :fullscreen {}
     </style>
 </head>
@@ -41,26 +43,45 @@
                 <th>Event Name</th>
             </thead>
             <tbody>
+                @if(isset($wokntok->event_name))
                 <tr>
                     <td>Lobby</td>
                     <td>WOK N TOK</td>
-                    <td>{{ $wokntok->event_name }}</td>
+                    <td>
+                        {{ $wokntok->event_name }}
+                    </td>
                 </tr>
+                @endif
+                
+                @if(isset($power_up->event_name))
                 <tr>
                     <td>2nd</td>
                     <td>POWER UP</td>
-                    <td>{{ $power_up->event_name }}</td>
+                    <td>
+                        {{ $power_up->event_name }}
+                    </td>
                 </tr>
+                @endif
+
+                @if(isset($gear_up->event_name))
                 <tr>
                     <td>2nd</td>
                     <td>GEAR UP</td>
-                    <td>{{ $gear_up->event_name }}</td>
+                    <td>
+                        {{ $gear_up->event_name }}
+                    </td>
                 </tr>
+                @endif
+
+                @if(isset($light_up->event_name))
                 <tr>
                     <td>2nd</td>
                     <td>LIGHT UP</td>
-                    <td>{{ $light_up->event_name }}</td>
+                    <td>
+                        {{ $light_up->event_name }}
+                    </td>
                 </tr>
+                @endif
             </tbody>
         </table>
     </div>

@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Employee;
+use App\Models\User;
 use App\Models\Employeetraining;
 
 class TrainingController extends Controller
@@ -19,7 +20,7 @@ class TrainingController extends Controller
     public function index()
     {
         $training = Employeetraining::withTrashed()->get();
-        $employee = Employee::withTrashed()->get();
+        $employee = User::withTrashed()->get();
 
         return view('hris.detail.training.index', compact('training', 'employee'));
     }
@@ -53,7 +54,7 @@ class TrainingController extends Controller
 
         foreach ($employeeIds as $employeeId) {
             Employeetraining::create([
-                'employee_id' => $employeeId,
+                'user_id' => $employeeId,
                 'description' => $request->description,
                 'start' => $timestart,
                 'end' => $timeend,

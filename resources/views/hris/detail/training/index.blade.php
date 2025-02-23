@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+Training Record
+@endsection
+
 @section('content')
 <h1 class="h3 mb-2 text-gray-800">Training Record</h1>
 
@@ -78,6 +82,10 @@
                 <h6 class="font-weight-bold text-primary">Training</h6>
             </div>
             <div class="card-body">
+                @if($training->isEmpty())
+                <p class="text-center text-danger">Data training tidak tersedia.</p>
+                @endif
+
                 <table class="table table-hover nowrap" id="employee-table">
                     <thead>
                         <tr class="text-center">
@@ -94,10 +102,9 @@
                     </thead>
                     <tbody>
                         @foreach($training as $data)
-                        @if(!empty($data->employee))
                         <tr class="text-center">
                             <td class="text-center">{{ $loop->iteration }}</td>
-                            <td class="text-left">{{ $data->employee->name }}</td>
+                            <td class="text-left">{{ $data->user->name }}</td>
                             <td>{{ \Carbon\Carbon::parse($data->start)->format('Y-m-d H:i:s') }}</td>
                             <td>{{ \Carbon\Carbon::parse($data->end)->format('Y-m-d H:i:s') }}</td>
                             <td class="sum">{{ \Carbon\Carbon::parse($data->duration)->format('H:i:s') }}</td>
@@ -106,7 +113,6 @@
                             <td>{{ $data->venue }}</td>
                             <td><a href="{{ $data->file }}" class="btn btn-primary btn-sm">FILE</a></td>
                         </tr>
-                        @endif
                         @endforeach
                     </tbody>
                 </table>
@@ -180,14 +186,14 @@
         theme: 'bootstrap'
     });
 
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('#employee-table').DataTable({
             responsive: true
         });
     });
- 
 
-    $(document).ready(function () {
+
+    $(document).ready(function() {
         $('#employee-table1').DataTable({
             responsive: true
         });

@@ -124,6 +124,7 @@ Route::controller(TrainingController::class)->middleware('auth')->group(function
 Route::controller(LeaveController::class)->middleware('auth')->group(function () {
     Route::get('hris/leave', 'index')->name('leave.index'); // for employee
     Route::post('leave/store', 'store')->name('leave.store');
+    Route::get('hris/leave/form', 'leaveform')->name('leave.form_leave'); // for employee
 
     Route::get('hris/leave/approval', 'leaveapproval')->name('leaveapproval.index');
     Route::post('hris/leave/approval/store', 'leaveapprovalstr')->name('leaveapproval.store');

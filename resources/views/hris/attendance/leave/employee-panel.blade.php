@@ -17,12 +17,12 @@ Leave Management
 $userRole = Auth::user()->role->hris;
 @endphp
 
-<button type="button" class="btn btn-primary btn-sm btn-sm mr-2 my-1  shadow-sm"
+<!-- <button type="button" class="btn btn-primary btn-sm btn-sm mr-2 my-1  shadow-sm"
     data-toggle="modal"
     data-target="#leaveForm"
     @if(!in_array($userRole, [2,3,4,5])) disabled @endif>
     <i class='fas fa-plus'></i> Form Request
-</button>
+</button> -->
 
 <div class="modal" id="leaveForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -40,28 +40,28 @@ $userRole = Auth::user()->role->hris;
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                            <label for="start_date" class="font-weight-bold">Start date:</label>
-                            <input type="date" id="start_date" name="start_date" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="end_date" class="font-weight-bold">End date:</label>
-                            <input type="date" id="end_date" name="end_date" class="form-control" required>
-                        </div>
-                    </div>
+                                <label for="start_date" class="font-weight-bold">Start date:</label>
+                                <input type="date" id="start_date" name="start_date" class="form-control" required>
+                            </div>
 
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="work_date" class="font-weight-bold">Work date:</label>
-                            <input type="date" id="work_date" name="work_date" class="form-control" required>
+                            <div class="form-group">
+                                <label for="end_date" class="font-weight-bold">End date:</label>
+                                <input type="date" id="end_date" name="end_date" class="form-control" required>
+                            </div>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="totalDays" class="font-weight-bold">Total Days:</label>
-                            <input type="text" id="totalDays" class="form-control" readonly>
+
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="work_date" class="font-weight-bold">Work date:</label>
+                                <input type="date" id="work_date" name="work_date" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="totalDays" class="font-weight-bold">Total Days:</label>
+                                <input type="text" id="totalDays" class="form-control" readonly>
+                            </div>
                         </div>
                     </div>
-                </div>
 
                     <div class="form-group">
                         <label class="font-weight-bold">Your leave:</label>
@@ -113,6 +113,12 @@ $userRole = Auth::user()->role->hris;
         </div>
     </div>
 </div>
+
+<a href="{{ route('leave.form_leave') }}"
+    class="btn btn-primary btn-sm 
+    @if(!in_array($userRole, [2,3,4,5])) disabled @endif btn-sm mr-2 my-1 shadow-sm">
+    <i class='fas fa-plus'></i> Form Request
+</a>
 
 <button type="button" class="btn btn-primary btn-sm btn-sm mr-2 my-1  shadow-sm"
     data-toggle="modal"

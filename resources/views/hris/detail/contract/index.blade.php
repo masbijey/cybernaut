@@ -30,6 +30,11 @@
 </script>
 @endsection
 
+@section('title')
+Employee Contract Management
+@endsection
+
+
 @section('content')
 <h1 class="h3 text-gray-800">CONTRACT MANAGEMENT</h1>
 <nav aria-label="breadcrumb">

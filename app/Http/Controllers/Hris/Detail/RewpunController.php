@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Auth;
 use App\Models\Department;
 use App\Models\Employee;
+use App\Models\User;
 use App\Models\Employeerewpun;
 
 
@@ -19,7 +20,7 @@ class RewpunController extends Controller
     public function index()
     {
         $rewpun = Employeerewpun::all();
-        $employee = Employee::all();
+        $employee = User::all();
         $department = Department::all();
 
         return view('hris.detail.rewpun.index', compact('rewpun', 'employee', 'department'));

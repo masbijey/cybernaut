@@ -14,16 +14,11 @@ class UserroleSeeder extends Seeder
     {
         DB::table('userroles')->insert([
             'user_id' => '1',
-            'signage' => '2',
-            'workorder' => '2',
-            'task' => '2',
+            'admin' => '3',
             'asset' => '2',
-            'voucher' => '2',
-            'beo' => '2',
             'hris' => '2',
-            'attendance' => '2',
-            'leave' => '2',
-            'admin' => '3'
+            'maintenance' => '2',
+            'room' => '2',
         ]);
     }
 }

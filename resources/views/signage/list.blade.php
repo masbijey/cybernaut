@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-S C L B L E | Signage Management
+Signage Management
 @endsection
 
 @section('content')

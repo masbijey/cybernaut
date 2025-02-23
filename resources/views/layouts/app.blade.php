@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>
-        KAIZEN - @yield('title')
+        SAKA - @yield('title')
     </title>
     <link href="{{ url('/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ url('/css/sb-admin-2.min.css') }}" rel="stylesheet">
@@ -32,7 +32,7 @@
                     <i class="fas fa-chart-line"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">
-                    K A I Z E N
+                    S A K A
                     <sup></sup>
                 </div>
             </a>
@@ -447,7 +447,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Kaizen 2019</span>
+                        <span>Copyright &copy; SAKA 2019</span>
                     </div>
                 </div>
             </footer>

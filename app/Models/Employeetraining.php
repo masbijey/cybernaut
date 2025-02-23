@@ -12,7 +12,7 @@ class Employeetraining extends Model
     use softDeletes;
 
     protected $fillable = [
-        'employee_id',
+        'user_id',
         'description',
         'trainer',
         'date',
@@ -23,9 +23,9 @@ class Employeetraining extends Model
         'file'
     ];
 
-    public function employee()
+    public function user()
     {
-        return $this->belongsTo(Employee::class, 'employee_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
     
 }

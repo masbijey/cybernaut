@@ -47,7 +47,7 @@ class LeaveController extends Controller
             ->count();
 
         $dp = Employeeleave::where('user_id', $user_login->id)
-            ->where('type', 'day_payment')
+            ->where('type', 'public_holiday')
             ->where('pick_date', null)
             ->count();
 
@@ -245,4 +245,51 @@ class LeaveController extends Controller
             return redirect()->back();
         }
     }
+
+    public function leaveform()
+    {
+
+        $now = Carbon::now();
+        $cek_leave = Employeeleave::where('valid_until', '<', $now)
+            ->update(['pick_date' => 'expired']);
+
+        $user_login = Auth::user();
+        $leave = Employeeleave::where('user_id', $user_login->id)->get();
+        $leave_data = Employeeleave::where('user_id', $user_login->id)
+            ->whereNull('pick_date')
+            ->get();
+
+        $history = Employeeleaveapproval::where('user_id', $user_login->id)
+            ->get();
+
+        $employee = User::all();
+
+        $al = Employeeleave::where('user_id', $user_login->id)
+            ->where('type', 'annual_leave')
+            ->where('pick_date', null)
+            ->count();
+
+        $eo = Employeeleave::where('user_id', $user_login->id)
+            ->where('type', 'extra_off')
+            ->where('pick_date', null)
+            ->count();
+
+        $dp = Employeeleave::where('user_id', $user_login->id)
+            ->where('type', 'day_payment')
+            ->where('pick_date', null)
+            ->count();
+
+        // dd($al);
+
+        return view('hris.attendance.leave.form_leave', compact(
+            'employee',
+            'leave',
+            'leave_data',
+            'history',
+            'al',
+            'eo',
+            'dp'
+        ));
+    }
+
 }

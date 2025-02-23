@@ -13,6 +13,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('meeting_room');
             $table->string('event_name');
+            $table->integer('updated_by')->nullable();
         });
     }
 

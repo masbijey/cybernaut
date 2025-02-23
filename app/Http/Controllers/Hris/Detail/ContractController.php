@@ -59,6 +59,6 @@ class ContractController extends Controller
         ]);
 
         alert()->success('Berhasil.','Data berhasil dibuat');
-        return redirect('/agreement');
+        return redirect('/employee/contract');
     }
 }
