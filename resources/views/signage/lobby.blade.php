@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="30">
     <title>Yello Signage</title>
     <style>
         body,
         html {
-            background-image: url("{{ url('image.jpg') }}");
+            
+            background-image: url("{{ url('http://172.18.123.45:8080/yjmb_app/public/image.jpg') }}");
             background-repeat: no-repeat;
             background-size: cover;
         }
@@ -26,11 +26,7 @@
             text-align: center;
         }
 
-        :-webkit-full-screen {}
-
-        :-ms-fullscreen {}
-
-        :fullscreen {}
+       
     </style>
 </head>
 
@@ -43,45 +39,41 @@
                 <th>Event Name</th>
             </thead>
             <tbody>
-                @if(isset($wokntok->event_name))
+			@if (date('Y-m-d', strtotime($wokntok->created_at)) != date('Y-m-d'))
+			@else
                 <tr>
                     <td>Lobby</td>
                     <td>WOK N TOK</td>
-                    <td>
-                        {{ $wokntok->event_name }}
-                    </td>
+                    <td>{{ $wokntok->event_name }}</td>
                 </tr>
-                @endif
-                
-                @if(isset($power_up->event_name))
+			@endif
+			
+			@if (date('Y-m-d', strtotime($power_up->created_at)) != date('Y-m-d'))
+			@else
                 <tr>
                     <td>2nd</td>
                     <td>POWER UP</td>
-                    <td>
-                        {{ $power_up->event_name }}
-                    </td>
+                    <td>{{ $power_up->event_name }}</td>
                 </tr>
-                @endif
-
-                @if(isset($gear_up->event_name))
+			@endif
+			
+			@if (date('Y-m-d', strtotime($gear_up->created_at)) != date('Y-m-d'))
+			@else
                 <tr>
                     <td>2nd</td>
                     <td>GEAR UP</td>
-                    <td>
-                        {{ $gear_up->event_name }}
-                    </td>
+                    <td>{{ $gear_up->event_name }}</td>
                 </tr>
-                @endif
-
-                @if(isset($light_up->event_name))
+			@endif
+			
+			@if (date('Y-m-d', strtotime($light_up->created_at)) != date('Y-m-d'))
+			@else
                 <tr>
                     <td>2nd</td>
                     <td>LIGHT UP</td>
-                    <td>
-                        {{ $light_up->event_name }}
-                    </td>
+                    <td>{{ $light_up->event_name }}</td>
                 </tr>
-                @endif
+			@endif
             </tbody>
         </table>
     </div>
